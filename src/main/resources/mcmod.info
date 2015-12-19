@@ -1,0 +1,17 @@
+[
+{
+  "modid" : "OpenMods-IGW",
+  "name" : "OpenMods-InGameWiki integration",
+  "version" : "${version}",
+  "url" : "http://openmods.info/",
+  "credits" : "",
+  "authors": [
+    "TheSilkMiner"
+  ],
+  "description": "OpenMods-InGameWiki integration",
+  "logoFile" : "",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ]
+}]
