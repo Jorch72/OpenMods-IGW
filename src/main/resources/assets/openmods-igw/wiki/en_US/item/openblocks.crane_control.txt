@@ -10,7 +10,7 @@
 
 
 
-This hi-tech wireless remote is used for controlling [link{item/openblocks.crane_backpack}]magnet backpacks [link{}].
+This hi-tech wireless remote is used for controlling [link{openmods-igw:item/openblocks.crane_backpack}]magnet backpacks [link{}].
 
 Right click to raise, Sneak + right click to lower, left click to pick/release.
-Blinking light signals something is under [link{item/openblocks.crane_magnet}]magnet [link{}].
+Blinking light signals something is under [link{openmods-igw:item/openblocks.crane_magnet}]magnet [link{}].

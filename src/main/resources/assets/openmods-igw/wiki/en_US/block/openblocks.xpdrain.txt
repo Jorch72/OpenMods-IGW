@@ -10,5 +10,5 @@
 
 
 
-Place the XP drain above an [link{block/openblocks.tank}]OpenBlocks tank [link{}]and stand on it.
-Your XP will drain into the tank, which can then be used for blocks such as the [link{block/openblocks.autoenchantmenttable}]auto enchantment table [link{}]or the [link{block/openblocks.autoanvil}]auto anvil [link{}].
+Place the XP drain above an [link{openmods-igw:block/openblocks.tank}]OpenBlocks tank [link{}]and stand on it.
+Your XP will drain into the tank, which can then be used for blocks such as the [link{openmods-igw:block/openblocks.autoenchantmenttable}]auto enchantment table [link{}]or the [link{openmods-igw:block/openblocks.autoanvil}]auto anvil [link{}].

@@ -11,4 +11,4 @@
 
 
 Bring the outside inside with the new Sky block! Just apply a [link{item/redstone}]redstone [link{}]signal.
-We also offer [link{block/openblocks.sky.inverted}]an inverted version [link{}].
+We also offer [link{openmods-igw:block/openblocks.sky.inverted}]an inverted version [link{}].

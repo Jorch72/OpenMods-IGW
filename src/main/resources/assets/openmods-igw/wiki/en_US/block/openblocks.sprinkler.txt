@@ -10,6 +10,6 @@
 
 
 
-The sprinkler will help fertilize crops up to 4 blocks away. Simply place it above an [link{block/openblocks.tank}]OpenBlocks tank [link{}]filled with water!
+The sprinkler will help fertilize crops up to 4 blocks away. Simply place it above an [link{openmods-igw:block/openblocks.tank}]OpenBlocks tank [link{}]filled with water!
 You can also add [link{item/bonemeal}]bonemeal [link{}]for an even faster rate of growth.
 It also acts as a [link{block/water}]water source block [link{}]!

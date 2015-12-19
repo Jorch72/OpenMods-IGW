@@ -10,5 +10,5 @@
 
 
 
-Attach an XP shower to a [link{block/openblocks.tank}]tank [link{}]of [link{block/openblocks.xp_juice}]XP juice [link{}] and it'll pour out XP orbs.
-These orbs can be collected by an [link{block/openblocks.xpdrain}]XP Drain [link{}]or an [link{block/minefactoryreloaded.mfr.machine.sewer}]MFR Sewer [link{}].
+Attach an XP shower to a [link{openmods-igw:block/openblocks.tank}]tank [link{}]of [link{openmods-igw:block/openblocks.xp_juice}]XP juice [link{}] and it'll pour out XP orbs.
+These orbs can be collected by an [link{openmods-igw:block/openblocks.xpdrain}]XP Drain [link{}]or an [link{block/minefactoryreloaded.mfr.machine.sewer}]MFR Sewer [link{}].

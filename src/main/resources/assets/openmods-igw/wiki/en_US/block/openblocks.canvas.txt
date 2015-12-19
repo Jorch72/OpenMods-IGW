@@ -11,4 +11,4 @@
 
 
 The canvas is a perfectly white block that's perfect for painting.
-See the [link{block/openblocks.paintmixer}]Paint Mixer [link{}]for information about making paints.
+See the [link{openmods-igw:block/openblocks.paintmixer}]Paint Mixer [link{}]for information about making paints.

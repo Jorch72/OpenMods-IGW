@@ -10,5 +10,5 @@
 
 
 
-The drawing table is for creating [link{item/openblocks.stencil}]stencils [link{}]which can be used while painting.
-Insert an [link{item/openblocks.unprepared_stencil}]Unprepared Stencil [link{}]into the drawing table then use the arrows to select which stencil you want!
+The drawing table is for creating [link{openmods-igw:item/openblocks.stencil}]stencils [link{}]which can be used while painting.
+Insert an [link{openmods-igw:item/openblocks.unprepared_stencil}]Unprepared Stencil [link{}]into the drawing table then use the arrows to select which stencil you want!

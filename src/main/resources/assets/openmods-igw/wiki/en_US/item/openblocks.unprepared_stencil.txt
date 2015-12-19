@@ -10,7 +10,7 @@
 
 
 
-Stencils can be placed onto blocks and then painted over using [link{item/openblocks.paintbrush}]paint brushes [link{}]!
+Stencils can be placed onto blocks and then painted over using [link{openmods-igw:item/openblocks.paintbrush}]paint brushes [link{}]!
 
-You can paint a block using multiple [link{item/openblocks.stencil}]stencils [link{}]and you can click on them with an empty hand to rotate them.
-Place an Unprepared Stencil in a [link{block/openblocks.drawingtable}]Drawing table [link{}]to create different patterns.
+You can paint a block using multiple [link{openmods-igw:item/openblocks.stencil}]stencils [link{}]and you can click on them with an empty hand to rotate them.
+Place an Unprepared Stencil in a [link{openmods-igw:block/openblocks.drawingtable}]Drawing table [link{}]to create different patterns.
