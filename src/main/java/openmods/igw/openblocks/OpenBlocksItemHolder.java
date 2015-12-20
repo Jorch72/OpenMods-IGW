@@ -1,4 +1,4 @@
-package openmods.igw;
+package openmods.igw.openblocks;
 
 import net.minecraft.block.Block;
 import openmods.Mods;

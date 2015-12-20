@@ -2,7 +2,10 @@ package openmods.igw;
 
 import igwmod.api.WikiRegistry;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 import net.minecraft.block.Block;
@@ -25,13 +28,18 @@ import com.google.common.collect.Sets;
 import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
 
+/**
+ * @author boq
+ */
 public class PageRegistryHelper {
 
 	private interface Callback<T> {
-		public void call(String modId, String name, T object);
+
+		void call(String modId, String name, T object);
 	}
 
 	private static <T> void iterateGameData(FMLControlledNamespacedRegistry<T> registry, Callback<T> callback) {
+
 		@SuppressWarnings("unchecked")
 		Set<String> ids = registry.getKeys();
 

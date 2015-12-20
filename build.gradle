@@ -54,7 +54,6 @@ apply plugin: 'forge'
 
 dependencies {
     compile project(":OpenModsLib") // Load OpenModsLib from submodule
-	compile project(":OpenBlocks") //Load OpenBlocks from submodule
     compile "igwmod:IGW-Mod-1.7.10:1.1.9-29:userdev"
 }
 

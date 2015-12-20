@@ -1,6 +1,11 @@
-package openmods.igw;
+package openmods.igw.openblocks;
 
-import igwmod.gui.*;
+import igwmod.gui.GuiWiki;
+import igwmod.gui.IPageLink;
+import igwmod.gui.IReservedSpace;
+import igwmod.gui.LocatedStack;
+import igwmod.gui.LocatedString;
+import igwmod.gui.LocatedTexture;
 import igwmod.gui.tabs.IWikiTab;
 
 import java.util.List;
@@ -27,6 +32,9 @@ import com.google.common.collect.Lists;
  * pagesPerTab() (where you need to edit the amount of items shown, usually diminishing by 2 every time)
  * getReservedSpaces() (where the y of the located texture must be edited to allow for a design-compatible number).
  */
+/**
+ * @author TheSilkMiner
+ */
 public final class OpenBlocksWikiTab implements IWikiTab {
 
 	private static RenderItem renderer = new RenderItem();
@@ -51,7 +59,7 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 	}
 
 	private interface IPageLinkFactory {
-		public IPageLink createPage(LinkNumerator numerator);
+		IPageLink createPage(LinkNumerator numerator);
 	}
 
 	private static IPageLinkFactory createStaticPageFactory(final String id) {
