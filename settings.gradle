@@ -1,2 +1,3 @@
 rootProject.name = 'OpenMods-IGW'
 include ":OpenModsLib"
+include ":OpenBlocks"
