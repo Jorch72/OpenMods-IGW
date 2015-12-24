@@ -3,7 +3,7 @@
 "[prefix{o}]The Auto Anvil and [link{openmods-igw:block/openblocks.autoenchantmenttable}]Auto Enchantment Table [link{}], imported fresh from OpenXP. Uses liquid XP to perform their function automatically.[prefix{}]"
 - The feature mentioned in the README on OpenBlocks's Github page
 
-The Auto Anvil, much like its [link{item/anvil.intact}]vanilla counterpart [link{}], can be used to repair items, as well as to combine enchantments.
+The Auto Anvil, much like its [link{block/anvil.intact}]vanilla counterpart [link{}], can be used to repair items, as well as to combine enchantments.
 The only difference is that it runs from [link{openmods-igw:block/openblocks.xp_juice}]XP juice [link{}] and can be completely automated.
 
 [prefix{l}]Info-Book description [prefix{}]
@@ -19,7 +19,7 @@ Right click and drag the anvil in the tab to spin it around and select other sid
 [prefix{2}]Physics: [prefix{}]No
 [prefix{2}]Transparency: [prefix{}]Yes
 [prefix{2}]Luminance: [prefix{}]No
-[prefix{2}]Blast resistance: [prefix{}]5.0
+[prefix{2}]Blast resistance: [prefix{}]1.0
 [prefix{2}]Hardness: [prefix{}]1.0
 [prefix{2}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
 [prefix{2}]Stackable: [prefix{}]Yes, up to 64
@@ -456,4 +456,5 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 [prefix{l}]Related features [prefix{}]
 [link{openmods-igw:block/openblocks.autoenchantmenttable}]Auto Enchantment Table [link{}]
 [link{openmods-igw:block/openblocks.xp_juice}]XP Juice [link{}]
-[link{openmods-igw:block/openblocks.xpdrain}}]XP Drain [link{}]
+[link{openmods-igw:block/openblocks.xpdrain}]XP Drain [link{}]
+[link{openmods-igw:item/openblocks.epic_eraser}]TEST [link{}]

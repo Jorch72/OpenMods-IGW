@@ -1,16 +1,386 @@
-[crafting{200,15,key=block/openblocks.autoenchantmenttable}]
+[prefix{l}][prefix{1}]AUTO ENCHANTMENT TABLE [prefix{}] [prefix{}]
 
+"[prefix{o}]The [link{openmods-igw:block/openblocks.autoanvil}]Auto Anvil [link{}]and Auto Enchantment Table, imported fresh from OpenXP. Uses liquid XP to perform their function automatically. [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's Github page
 
+The Auto Enchantment Table, much like its [link{block/enchantmentTable}]vanilla counterpart [link{}], can be used to enchant tools and [link{item/book}]books [link{}].
+The only difference is that it runs from [link{openmods-igw:block/openblocks.xp_juice}]XP juice [link{}] and can be completely automated.
 
-
-
-
-
-
-
-
-
-The auto enchantment table works in a similar way to [link{item/enchantmentTable}]the vanilla enchantment table [link{}]except it runs off [link{openmods-igw:block/openblocks.xp_juice}]XP juice [link{}].
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+The auto enchantment table works in a similar way to [link{block/enchantmentTable}]the vanilla enchantment table [link{}]except it runs off [link{openmods-igw:block/openblocks.xp_juice}]XP juice [link{}].
 Use the tabs on the right side of the interface to select where items or xp can be pulled from.
 
 Just like with the vanilla table [link{block/bookshelf}]bookshelves [link{}]are required for higher levels.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]openblocks:autoenchantmenttable
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Auto Enchantment Table can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.05 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.35 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.30 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,565,key=block/openblocks.autoenchantmenttable}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+Auto Enchantment Table, much like the vanilla Enchantment Table, are used to enchant tools and books.
+Enchanting requires as always XP points, stored in the machine as [link{openmods-igw:block/openblocks.xp_juice}]XP juice [link{}].
+Like the vanilla one, the Auto Enchantment Table needs [link{block/bookshelf}]bookshelves [link{}] to work.
+Another similar feature are the particles, shown when the Auto Enchantment Table is placed near bookshelves.
+
+[prefix{2}]Enchanting [prefix{}]
+[prefix{o}]See also: Enchanting on "minecraft.gamepedia.com" [prefix{}]
+[prefix{o}]See also: Enchantment mechanics on "minecraft.gamepedia.com" [prefix{}]
+
+The Auto Enchantment Table's main purpose is to enchant items.
+[link{block/bookshelf}]Bookshelves [link{}]surrounding the table, with a block of air in between, will increase the maximum enchantment level.
+The table will enchant all tools and armor except the [link{item/hoeWood}]hoe [link{}], [link{item/shears}]shears [link{}], [link{item/flintAndSteel}]flint and steel [link{}], [link{item/leash}]lead [link{}] and [link{item/horsearmormetal}]horse armor [link{}].
+The hoe and shears cannot be enchanted by the enchantment table and require an anvil and an appropriate enchanted book.
+
+[prefix{2}]Standard Galactic Alphabet [prefix{}]
+The arcane glyphs that float from bookshelves to the auto enchantment table are written in the Standard Galactic Alphabet, which is a simple alphabet substitution cipher used in the Commander Keen series of computer games.
+You can only see them if Particles are turned on (which means the setting is not on "Minimal"), though.
+
+[prefix{o}]See also: Gallery [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+[image{200, 1095, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gui.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The GUI can be divided into three zones: the top one, the right one and the bottom one.
+
+[prefix{2}]Top zone [prefix{}]
+[image{200, 1385, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gui_top.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+On this part of the GUI you can determine five zones, as depicted in the above image.
+
+The first part of the GUI, rounded with a red square in the image, is the slot where the tool or the book which will be enchanted needs to be placed.
+
+The second part, rounded with yellow, is the enchanting level.
+With this slider, you can control how many levels will be taken on enchanting.
+The enchantments applied will still be random, but the exact quantity of XP specified will be consumed, nothing more, nothing less.
+To help with the setting, the slider also provides the current amount of levels selected.
+E.g. in the image, the current maximum level selected is 1 (the minimum).
+
+The third section which has been marked in blue, is the slot where the enchanted item will "appear".
+Differently from the vanilla Enchantment Table, the enchanting process is instant, if there is enough XP.
+
+The fourth section, rounded of green, displays the current amount of [link{openmods-igw:block/openblocks.xp_juice}]XP Juice [link{}] currently stored in the machine buffer.
+
+The fifth and last section, marked with purple, displays the maximum level currently reachable, with the current setup of XP Juice stored and bookshelves.
+Sometimes, though, the field won't be updated and, as such, the only way to actually know the maximum enchanting level is simply by chance.
+
+[prefix{2}]Right zone [prefix{}]
+[image{200, 1866, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gui_right.png}]
+
+The right zone, also known as the "tab" zone holds various tabs that allow to configure the various aspects of the Auto Enchantment Table.
+
+The first tab controls the tool input, the second the Juice input and the last one the enchanted tool output.
+
+Every tab has the same structure: in the middle there is the Auto Enchantment Table, where you can choose the side where the specified item should be extracted or ejected.
+Holding right-click on the image and then moving the mouse in a specific direction will rotate the table in that same direction, while selecting a side with left-click will mark it as the side to use.
+Every time the tab is opened, the Auto Enchantment Table will be rotated to the same position as you would see it without the GUI.
+
+Down the bottom line of the tab, there is a check-box which allows you to enable the automatic features of the Auto Enchantment Table.
+In particular, it is possible to allow or disallow the automatic extraction of the tool, the automatic drink of XP Juice and the automatic ejection of the enchanted item.
+[prefix{o}]See also: Gallery [prefix{}]
+
+[prefix{2}]Bottom zone [prefix{}]
+It simply holds the inventory of the player.
+
+[prefix{l}]Setup [prefix{}]
+First of all, you need to place down the Auto Enchantment Table.
+After that, you need some [link{openmods-igw:block/openblocks.tank}]OpenBlocks tanks [link{}] full of XP Juice.
+Place them down either on the side of the table, on the top or on the bottom of it. Then select the side from where to input XP Juice in the XP tab.
+As a suggestion, you could also tick Auto Drink to always have XP in the buffer.
+
+If you want to automate everything, you can also place two [link{block/chest}]chests [link{}]around the Auto Enchantment Table and then set those sides as auto extract or auto eject.
+
+The following is an image of a completely automated setup, as a suggestion:
+[image{200, 2373, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/setup_suggestion.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:autoenchantmenttable [prefix{}]
+Allows to enable (true) or disable (false) the Auto Enchantment Table.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+No tutorials available for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+[prefix{2}]Classic automation [prefix{}]
+A really useful structure is represented in the above image, here reported for reference.
+[image{200, 2653, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/setup_suggestion.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is a structure which we like to call "Classic Automation".
+It allows for a completely automated process of repairing and/or enchanting.
+It consists of a tank running down the bottom of the table.
+No [link{openmods-igw:block/openblocks.xpdrain}]XP Drains [link{}] are needed since the refill of XP Juice will be done through [link{openmods-igw:item/openblocks.xpbucket}]XP Buckets [link{}].
+This because the enchanting at level from 27 to 30 require a full tank to be processed, which equals to 10 XP Buckets.
+I think using Buckets is an easier way to keep track of the inserted XP.
+The table is then surrounded by chests, with the left one being either the tool input or output and the right one the opposite of the left.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Auto Enchantment Table
+
+The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simply repetitions of the first one, so they are not listed here.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Auto Enchanting Table added.
+[prefix{2}]When?: [prefix{}]Auto Enchanting Table requires bookshelves.
+
+[prefix{l}]Trivia [prefix{}]
+- Since its height is 3/4 of a normal block, you can walk off its edge even if you are sneaking.
+- Due to its lower height, if the Auto Enchantment Table is placed on [link{block/ice}]Ice [link{}], you will still slide on it.
+- All the inputs and outputs operation can be mapped to be done on the same side.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 3150, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tab_tool.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Tool Tab in the GUI. Notice the rotated Enchantment Table and the selected side. [prefix{}]
+
+[image{200, 3390, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tab_juice.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The XP Juice Tab in the GUI. Notice how the Auto Enchantment Table has been rotated to reach the bottom side of it. [prefix{}]
+
+[image{200, 3645, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tab_output.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Output Tab in the GUI, with a side selected and the check-box ticked. [prefix{}]
+
+[image{200, 3876, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tutorial_almostInEnchant.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]This and the following images will show the process of auto enchanting a tool (e.g. a [link{item/pickaxeDiamond}]diamond pickaxe [link{}]). In here the tool is about to be placed in the first slot. [prefix{o}]
+
+[image{200, 4150, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tutorial_enchanted.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The enchanted tool. Notice how the buffer is refilling itself up after the enchanting process has been performed. [prefix{o}]
+
+[image{200, 4415, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tutorial_enchantments.png}]
+
+
+
+
+
+
+
+
+
+[prefix{o}]As you can see, the applied enchantments are still random. [prefix{}]
+
+[image{200, 4546, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_comparison.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The vanilla enchanting table, on the left, and the automatic version, on the right. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.autoanvil}]Auto Anvil [link{}]
+[link{openmods-igw:block/openblocks.xp_juice}]XP Juice [link{}]
+[link{openmods-igw:item/openblocks.xpbucket}]XP Bucket [link{}]
