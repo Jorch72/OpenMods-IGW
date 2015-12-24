@@ -23,8 +23,13 @@ import java.util.List;
 public class ClientProxy implements IInitProxy {
 
 	@Override
-	public void preInit(FMLPreInitializationEvent evt) {
+	public void preInit(FMLPreInitializationEvent evt) { }
 
+	@Override
+	public void init(FMLInitializationEvent evt) { }
+
+	@Override
+	public void postInit(FMLPostInitializationEvent evt) {
 		PageRegistryHelper registryHelper = new PageRegistryHelper();
 		registryHelper.loadItems();
 
@@ -40,10 +45,4 @@ public class ClientProxy implements IInitProxy {
 			Log.warn("Failed to find items and blocks for OpenBlocks");
 		}
 	}
-
-	@Override
-	public void init(FMLInitializationEvent evt) { }
-
-	@Override
-	public void postInit(FMLPostInitializationEvent evt) { }
 }

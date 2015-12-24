@@ -22,18 +22,17 @@ public class OpenModsIGW {
 	public static IInitProxy proxy;
 
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent evt) {
-
+	public void preInit(final FMLPreInitializationEvent evt) {
 		proxy.preInit(evt);
 	}
 
 	@Mod.EventHandler
-	public void init(FMLInitializationEvent evt) {
+	public void init(final FMLInitializationEvent evt) {
 		proxy.init(evt);
 	}
 
 	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent evt) {
+	public void postInit(final FMLPostInitializationEvent evt) {
 		proxy.postInit(evt);
 	}
 }

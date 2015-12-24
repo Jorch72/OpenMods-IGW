@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import openmods.Log;
 import openmods.api.VisibleForDocumentation;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +24,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import cpw.mods.fml.common.registry.*;
+import cpw.mods.fml.common.registry.GameData;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
 
 /**
@@ -147,7 +148,8 @@ public class PageRegistryHelper {
 				final String page = "openmods-igw:item/" + StringUtils.removeStart(stack.getUnlocalizedName(), "item.");
 				WikiRegistry.registerBlockAndItemPageEntry(stack, page);
 				results.add(Pair.of(page, stack));
-				Log.info("%s -> %s", itemId, page);
+				//Log.info("%s -> %s", itemId, page);
+				// Debug message commented out
 			}
 		}
 

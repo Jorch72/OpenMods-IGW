@@ -1,5 +1,7 @@
 package openmods.igw.openblocks;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 import igwmod.gui.GuiWiki;
 import igwmod.gui.IPageLink;
 import igwmod.gui.IReservedSpace;
@@ -9,15 +11,22 @@ import igwmod.gui.LocatedTexture;
 import igwmod.gui.tabs.IWikiTab;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
+import openmods.Log;
+import openmods.Mods;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 
@@ -93,11 +102,12 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 		};
 	}
 
-	public final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
+	private final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
 
-	public final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
+	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
 
 	public OpenBlocksWikiTab(List<Pair<String, ItemStack>> stacks) {
+		staticPageFactories.add(createStaticPageFactory("about"));
 		staticPageFactories.add(createStaticPageFactory("credits"));
 		staticPageFactories.add(createStaticPageFactory("obUtils"));
 		staticPageFactories.add(createStaticPageFactory("bKey"));
@@ -147,7 +157,7 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	@Override
 	public int getSearchBarAndScrollStartY() {
-		return 96;
+		return 98;
 	}
 
 	@Override
@@ -180,6 +190,28 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 		return new ItemStack(Objects.firstNonNull(OpenBlocksItemHolder.flag, Blocks.sponge));
 	}
 
+	private static String normalizeString(final String name) {
+		String str = name;
+
+		if (str.startsWith("openmods-igw:")) str = StringUtils.removeStart(str, "openmods-igw:");
+		if (str.startsWith("block/")) str = StringUtils.removeStart(str, "block/");
+		if (str.startsWith("item/")) str = StringUtils.removeStart(str, "item/");
+		if (str.startsWith("openblocks.")) str = StringUtils.removeStart(str, "openblocks.");
+		if (str.contains(".")) str = str.replace('.', ':');
+
+		return str;
+	}
+
+	private static int normalizeMeta(final String meta) {
+		// TODO Implement.
+		return 0;
+	}
+
+	private boolean manageException(final String name, final int meta) {
+
+		return false;
+	}
+
 	@Override
 	public ItemStack renderTabIcon(GuiWiki gui) {
 		return createIconItemStack();
@@ -187,11 +219,58 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	@Override
 	public void onPageChange(GuiWiki gui, String pageName, Object... metadata) {
+		// TODO Items
+		// I don't have a clue
+		ItemStack stack = null;
+
+		Log.debug(pageName);
+
 		if (metadata.length > 0 && metadata[0] instanceof ItemStack) {
-			tabIcon = (ItemStack)metadata[0];
+			stack = (ItemStack)metadata[0];
 		} else if (metadata.length == 0) {
-			tabIcon = createIconItemStack();
+			boolean wasItem = pageName.contains("item/");
+			String name = normalizeString(pageName);
+			int meta = 0;
+			if (name.contains(":")) {
+				final String[] split = name.split(Pattern.quote(":"));
+				if (split.length != 2) {
+					Log.warn("An error in the page name has been found.");
+					Log.warn("Process can not continue.");
+					tabIcon = createIconItemStack();
+					return;
+				}
+				name = split[0];
+				meta = normalizeMeta(split[1]);
+			}
+
+			Item item = null;
+			if (!wasItem) {
+				Block b = GameRegistry.findBlock(Mods.OPENBLOCKS, name);
+				if (b == null) {
+					Log.warn("Couldn't find specified block.");
+					Log.warn("Attempting to search for an item");
+					wasItem = true;
+				}
+				if (!wasItem) item = Item.getItemFromBlock(b);
+			}
+			if (wasItem) {
+				item = GameRegistry.findItem(Mods.OPENBLOCKS, name);
+				if (item == null) {
+					Log.warn("Couldn't find specified item.");
+					Log.warn("Make sure the selected item is correct.");
+					Log.warn("Reverting back to default ItemStack");
+				}
+			}
+
+			if (item == null) {
+				if (!manageException(name, meta)) stack = createIconItemStack();
+				else Log.info("Exception managed.");
+			} else {
+				stack = new ItemStack(item, 1, meta);
+			}
 		}
+
+		tabIcon = stack;
 	}
 
 	@Override

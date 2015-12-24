@@ -13,15 +13,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy implements IInitProxy {
 
 	@Override
-	public void preInit(FMLPreInitializationEvent evt) {
-
-		Log.warn("This mod (%s) is currently not needed on server side.", Constants.NAME);
-		Log.warn("You can install it to force people to use it, though.");
-	}
+	public void preInit(FMLPreInitializationEvent evt) { }
 
 	@Override
 	public void init(FMLInitializationEvent evt) { }
 
 	@Override
-	public void postInit(FMLPostInitializationEvent evt) { }
+	public void postInit(FMLPostInitializationEvent evt) {
+		Log.warn("This mod (%s) is currently not needed on server side.", Constants.NAME);
+		Log.warn("You can install it to force people to use it, though.");
+	}
 }
