@@ -5,8 +5,8 @@ import igwmod.api.WikiRegistry;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,18 +20,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
+import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
+import cpw.mods.fml.common.registry.GameData;
 
-/**
- * @author boq
- */
 public class PageRegistryHelper {
 
 	private interface Callback<T> {
@@ -65,6 +63,8 @@ public class PageRegistryHelper {
 	}
 
 	private final Map<String, ModEntry> mods = Maps.newHashMap();
+
+	private final Map<String, ItemStack> claimedPages = Maps.newHashMap();
 
 	private ModEntry getOrCreateModEntry(String modId) {
 		ModEntry result = mods.get(modId);
@@ -130,7 +130,7 @@ public class PageRegistryHelper {
 
 			for (ItemStack stack : stacks) {
 				final String page = "openmods-igw:block/" + StringUtils.removeStart(stack.getUnlocalizedName(), "tile.");
-				WikiRegistry.registerBlockAndItemPageEntry(stack, page);
+				claimPage(stack, page);
 				results.add(Pair.of(page, stack));
 			}
 		}
@@ -146,14 +146,21 @@ public class PageRegistryHelper {
 
 			for (ItemStack stack : stacks) {
 				final String page = "openmods-igw:item/" + StringUtils.removeStart(stack.getUnlocalizedName(), "item.");
-				WikiRegistry.registerBlockAndItemPageEntry(stack, page);
+				claimPage(stack, page);
 				results.add(Pair.of(page, stack));
-				//Log.info("%s -> %s", itemId, page);
-				// Debug message commented out
 			}
 		}
 
 		return results;
+	}
+
+	private void claimPage(ItemStack stack, String page) {
+		WikiRegistry.registerBlockAndItemPageEntry(stack, page);
+		if (!claimedPages.containsKey(page)) claimedPages.put(page, stack);
+	}
+
+	public Map<String, ItemStack> getAllClaimedPages() {
+		return ImmutableMap.copyOf(claimedPages);
 	}
 
 	public void claimEntities(String modId) {

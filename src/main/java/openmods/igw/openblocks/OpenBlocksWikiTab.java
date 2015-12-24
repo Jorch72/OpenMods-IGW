@@ -1,8 +1,5 @@
 package openmods.igw.openblocks;
 
-import com.google.common.collect.Maps;
-import cpw.mods.fml.common.registry.GameRegistry;
-
 import igwmod.gui.GuiWiki;
 import igwmod.gui.IPageLink;
 import igwmod.gui.IReservedSpace;
@@ -13,22 +10,14 @@ import igwmod.gui.tabs.IWikiTab;
 
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-import openmods.Log;
-import openmods.Mods;
-
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 
@@ -49,34 +38,6 @@ import com.google.common.collect.Lists;
 public final class OpenBlocksWikiTab implements IWikiTab {
 
 	private static RenderItem renderer = new RenderItem();
-
-	/*
-	 * First string is unlocalized name, second is the internal name.
-	 *
-	 * Refer to OpenBlocks main class.
-	 */
-	private static Map<String, String> exceptions = Maps.newHashMap();
-
-	static {
-		renderer.setRenderManager(RenderManager.instance);
-
-		exceptions.put("glasses.pencil", "pencilGlasses");
-		exceptions.put("glasses.crayon", "crayonGlasses");
-		exceptions.put("glasses.technicolor", "technicolorGlasses");
-		exceptions.put("glasses.admin", "seriousGlasses");
-		exceptions.put("crane_control", "craneControl");
-		exceptions.put("crane_backpack", "craneBackpack");
-		exceptions.put("xpbucket", "filledbucket"); //?
-		exceptions.put("sleepingbag", "sleepingBag");
-		exceptions.put("paintbrush", "paintBrush");
-		exceptions.put("height_map", "heightMap");
-		exceptions.put("empty_map", "emptyMap");
-		exceptions.put("tasty_clay", "tastyClay");
-		exceptions.put("golden_eye", "goldenEye");
-		exceptions.put("info_book", "infoBook");
-		exceptions.put("epic_eraser", "epicEraser");
-		exceptions.put("OpenBlocks.xpjuice", "xpjuice"); // I guess not
-	}
 
 	private ItemStack tabIcon;
 
@@ -132,7 +93,9 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
 
-	public OpenBlocksWikiTab(List<Pair<String, ItemStack>> stacks) {
+	private final Map<String, ItemStack> defaultIcons;
+
+	public OpenBlocksWikiTab(List<Pair<String, ItemStack>> stacks, Map<String, ItemStack> allClaimedPages) {
 		staticPageFactories.add(createStaticPageFactory("about"));
 		staticPageFactories.add(createStaticPageFactory("credits"));
 		staticPageFactories.add(createStaticPageFactory("obUtils"));
@@ -142,6 +105,8 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 		for (Pair<String, ItemStack> e : stacks)
 			itemPageFactories.add(createItemPageFactory(e.getLeft(), e.getRight()));
+
+		this.defaultIcons = allClaimedPages;
 	}
 
 	@Override
@@ -212,114 +177,26 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 		}
 	}
 
-	private static ItemStack createIconItemStack() {
+	private static ItemStack createFallbackItemStack() {
 		return new ItemStack(Objects.firstNonNull(OpenBlocksItemHolder.flag, Blocks.sponge));
-	}
-
-	private static String normalizeString(final String name) {
-		String str = name;
-
-		if (str.startsWith("openmods-igw:")) str = StringUtils.removeStart(str, "openmods-igw:");
-		if (str.startsWith("block/")) str = StringUtils.removeStart(str, "block/");
-		if (str.startsWith("item/")) str = StringUtils.removeStart(str, "item/");
-		if (str.startsWith("openblocks.")) str = StringUtils.removeStart(str, "openblocks.");
-		if (str.contains(".")) str = str.replace('.', ':');
-
-		return str;
-	}
-
-	private static int normalizeMeta(final String meta) {
-		// TODO Implement.
-		return 0;
-	}
-
-	private boolean manageException(final String name, final int meta) {
-
-		boolean isException = false;
-		String key = "";
-
-		for (Map.Entry<String, String> entry : exceptions.entrySet()) {
-			if (entry.getKey().contains(name)) {
-				isException = true;
-				key = entry.getKey();
-				Log.debug("Found exception: " + key);
-			}
-		}
-
-		Log.debug(key);
-
-		if(!isException || key == null || key.isEmpty()) return false;
-
-		Item item = GameRegistry.findItem(Mods.OPENBLOCKS, exceptions.get(key));
-
-		if (item == null) {
-			Log.warn("Exception handling failed!");
-			return false;
-		}
-
-		tabIcon = new ItemStack(item, 1, meta);
-
-		return true;
 	}
 
 	@Override
 	public ItemStack renderTabIcon(GuiWiki gui) {
-		return createIconItemStack();
+		return createFallbackItemStack();
 	}
 
 	@Override
 	public void onPageChange(GuiWiki gui, String pageName, Object... metadata) {
-		ItemStack stack = null;
-
-		Log.debug(pageName);
+		final ItemStack stack;
 
 		if (metadata.length > 0 && metadata[0] instanceof ItemStack) {
 			stack = (ItemStack)metadata[0];
 		} else if (metadata.length == 0) {
-			boolean wasItem = pageName.contains("item/");
-			String name = normalizeString(pageName);
-			int meta = 0;
-			if (name.contains(":")) {
-				final String[] split = name.split(Pattern.quote(":"));
-				if (split.length != 2) {
-					Log.warn("An error in the page name has been found.");
-					Log.warn("Process can not continue.");
-					tabIcon = createIconItemStack();
-					return;
-				}
-				name = split[0];
-				meta = normalizeMeta(split[1]);
-			}
-
-			Item item = null;
-			if (!wasItem) {
-				Block b = GameRegistry.findBlock(Mods.OPENBLOCKS, name);
-				if (b == null) {
-					Log.warn("Couldn't find specified block.");
-					Log.warn("Attempting to search for an item");
-					wasItem = true;
-				}
-				if (!wasItem) item = Item.getItemFromBlock(b);
-			}
-			if (wasItem) {
-				item = GameRegistry.findItem(Mods.OPENBLOCKS, name);
-				if (item == null) {
-					Log.warn("Couldn't find specified item.");
-					Log.warn("Make sure the selected item is correct.");
-					Log.warn("Reverting back to default ItemStack");
-				}
-			}
-
-			if (item == null) {
-				if (!manageException(name, meta)) {
-					stack = createIconItemStack();
-				} else {
-					Log.debug("Exception managed");
-					return;
-				}
-			} else {
-				stack = new ItemStack(item, 1, meta);
-			}
+			final ItemStack defaultStack = defaultIcons.get(pageName);
+			stack = defaultStack != null? defaultStack : createFallbackItemStack();
+		} else {
+			stack = createFallbackItemStack();
 		}
 
 		tabIcon = stack;
