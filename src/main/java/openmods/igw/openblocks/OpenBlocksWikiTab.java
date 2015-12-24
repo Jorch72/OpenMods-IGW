@@ -1,5 +1,6 @@
 package openmods.igw.openblocks;
 
+import com.google.common.collect.Maps;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import igwmod.gui.GuiWiki;
@@ -11,6 +12,7 @@ import igwmod.gui.LocatedTexture;
 import igwmod.gui.tabs.IWikiTab;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import net.minecraft.block.Block;
@@ -48,8 +50,32 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	private static RenderItem renderer = new RenderItem();
 
+	/*
+	 * First string is unlocalized name, second is the internal name.
+	 *
+	 * Refer to OpenBlocks main class.
+	 */
+	private static Map<String, String> exceptions = Maps.newHashMap();
+
 	static {
 		renderer.setRenderManager(RenderManager.instance);
+
+		exceptions.put("glasses.pencil", "pencilGlasses");
+		exceptions.put("glasses.crayon", "crayonGlasses");
+		exceptions.put("glasses.technicolor", "technicolorGlasses");
+		exceptions.put("glasses.admin", "seriousGlasses");
+		exceptions.put("crane_control", "craneControl");
+		exceptions.put("crane_backpack", "craneBackpack");
+		exceptions.put("xpbucket", "filledbucket"); //?
+		exceptions.put("sleepingbag", "sleepingBag");
+		exceptions.put("paintbrush", "paintBrush");
+		exceptions.put("height_map", "heightMap");
+		exceptions.put("empty_map", "emptyMap");
+		exceptions.put("tasty_clay", "tastyClay");
+		exceptions.put("golden_eye", "goldenEye");
+		exceptions.put("info_book", "infoBook");
+		exceptions.put("epic_eraser", "epicEraser");
+		exceptions.put("OpenBlocks.xpjuice", "xpjuice"); // I guess not
 	}
 
 	private ItemStack tabIcon;
@@ -209,7 +235,31 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	private boolean manageException(final String name, final int meta) {
 
-		return false;
+		boolean isException = false;
+		String key = "";
+
+		for (Map.Entry<String, String> entry : exceptions.entrySet()) {
+			if (entry.getKey().contains(name)) {
+				isException = true;
+				key = entry.getKey();
+				Log.debug("Found exception: " + key);
+			}
+		}
+
+		Log.debug(key);
+
+		if(!isException || key == null || key.isEmpty()) return false;
+
+		Item item = GameRegistry.findItem(Mods.OPENBLOCKS, exceptions.get(key));
+
+		if (item == null) {
+			Log.warn("Exception handling failed!");
+			return false;
+		}
+
+		tabIcon = new ItemStack(item, 1, meta);
+
+		return true;
 	}
 
 	@Override
@@ -219,8 +269,6 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	@Override
 	public void onPageChange(GuiWiki gui, String pageName, Object... metadata) {
-		// TODO Items
-		// I don't have a clue
 		ItemStack stack = null;
 
 		Log.debug(pageName);
@@ -263,8 +311,12 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 			}
 
 			if (item == null) {
-				if (!manageException(name, meta)) stack = createIconItemStack();
-				else Log.info("Exception managed.");
+				if (!manageException(name, meta)) {
+					stack = createIconItemStack();
+				} else {
+					Log.debug("Exception managed");
+					return;
+				}
 			} else {
 				stack = new ItemStack(item, 1, meta);
 			}
