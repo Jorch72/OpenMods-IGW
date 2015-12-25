@@ -11,7 +11,11 @@ import igwmod.gui.tabs.IWikiTab;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -23,6 +27,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+
+import openmods.Log;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 /*
  * WARNING!
@@ -40,6 +48,7 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 	private static RenderItem renderer = new RenderItem();
 
 	private ItemStack tabIcon;
+	private Entity tabEntity;
 
 	private static class LinkNumerator {
 		private int staticEntries;
@@ -163,22 +172,32 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 
 	@Override
 	public void renderForeground(GuiWiki gui, int mouseX, int mouseY) {
-		if (tabIcon != null) {
-			if (tabIcon.getItem() instanceof ItemBlock) {
-				gui.renderRotatingBlockIntoGUI(gui, tabIcon, 55, 33, 2.8F);
-				return;
-			}
+		if (tabIcon == null) return;
 
-			GL11.glPushMatrix();
-			GL11.glTranslated(49, 20, 0);
-			GL11.glScaled(2.2, 2.2, 2.2);
-			renderer.renderItemAndEffectIntoGUI(gui.getFontRenderer(), gui.mc.getTextureManager(), tabIcon, 0, 0);
-			GL11.glPopMatrix();
+		if (tabIcon.getItem() instanceof ItemBlock) {
+			gui.renderRotatingBlockIntoGUI(gui, tabIcon, 55, 33, 2.8F);
+			return;
 		}
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(49, 20, 0);
+		GL11.glScaled(2.2, 2.2, 2.2);
+		renderer.renderItemAndEffectIntoGUI(gui.getFontRenderer(), gui.mc.getTextureManager(), tabIcon, 0, 0);
+		GL11.glPopMatrix();
 	}
 
 	private static ItemStack createFallbackItemStack() {
 		return new ItemStack(Objects.firstNonNull(OpenBlocksItemHolder.flag, Blocks.sponge));
+	}
+
+	private static Entity getEntity(Class<? extends Entity> clazz) {
+		try {
+			return clazz.getConstructor(net.minecraft.world.World.class)
+					.newInstance(FMLClientHandler.instance().getClient().theWorld);
+		} catch (ReflectiveOperationException e) {
+			Log.warn(e, "The entity %s does not have a constructor with a single world parameter.", clazz);
+			return null;
+		}
 	}
 
 	@Override
@@ -189,21 +208,59 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 	@Override
 	public void onPageChange(GuiWiki gui, String pageName, Object... metadata) {
 		final ItemStack stack;
+		final Entity entity;
 
 		if (metadata.length > 0 && metadata[0] instanceof ItemStack) {
 			stack = (ItemStack)metadata[0];
+			entity = null;
+		} else if (metadata.length > 0 && metadata[0] instanceof Entity) {
+			entity = getEntity(((Entity)metadata[0]).getClass());
+			stack = entity == null? createFallbackItemStack() : null;
 		} else if (metadata.length == 0) {
 			final ItemStack defaultStack = defaultIcons.get(pageName);
 			stack = defaultStack != null? defaultStack : createFallbackItemStack();
+			entity = null;
 		} else {
 			stack = createFallbackItemStack();
+			entity = null;
 		}
 
 		tabIcon = stack;
+		tabEntity = entity;
 	}
 
 	@Override
-	public void renderBackground(GuiWiki gui, int mouseX, int mouseY) {}
+	public void renderBackground(GuiWiki gui, int mouseX, int mouseY) {
+		if (tabEntity == null) return;
+
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		final float maxHitBox = Math.max(1, Math.max(tabEntity.width, tabEntity.height));
+		final int scale = (int)(40 * 0.7F / maxHitBox);
+		final float x = gui.getGuiLeft() + 65;
+		final float y = gui.getGuiTop() + 49;
+
+		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
+		GL11.glPushMatrix();
+		GL11.glTranslatef(x, y, 50.0F);
+		GL11.glScalef(-scale, scale, scale);
+		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(30.0F, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(135.0F, 0.0F, 1.0F, 0.0F);
+		RenderHelper.enableStandardItemLighting();
+		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(-igwmod.TickHandler.ticksExisted, 0.0F, 1.0F, 0.0F);
+		GL11.glTranslatef(0.0F, tabEntity.yOffset, 0.0F);
+		RenderManager.instance.playerViewY = 180.0F;
+		RenderManager.instance.renderEntityWithPosYaw(tabEntity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+		GL11.glPopMatrix();
+		RenderHelper.disableStandardItemLighting();
+		GL11.glDisable(org.lwjgl.opengl.GL12.GL_RESCALE_NORMAL);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	}
 
 	@Override
 	public void onMouseClick(GuiWiki gui, int mouseX, int mouseY, int mouseKey) {}
