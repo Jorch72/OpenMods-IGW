@@ -1,0 +1,115 @@
+# TODO
+List of things to complete before version **1.0**
+
+- [ ] Add block documentation
+  - [X] Auto Anvil
+  - [X] Auto Enchantment Table
+  - [X] Bear Trap
+  - [ ] Big Button
+  - [ ] Block Breaker
+  - [ ] Block Placer
+  - [ ] Builder Guide (should be the enhanced one)
+  - [ ] Cannon
+  - [ ] Canvas
+  - [ ] Donation Station
+  - [ ] Drawing Table
+  - [ ] Elevator
+  - [ ] Elevator (Rotating)
+  - [ ] Fan
+  - [ ] Flag
+  - [ ] Golden Egg
+  - [ ] Grave
+  - [ ] Guide (the normal one)
+  - [ ] Healer
+  - [ ] Item Dropper
+  - [ ] Ladder
+  - [ ] Paint Can
+  - [ ] Paint Mixer
+  - [ ] Path
+  - [ ] Projector
+  - [ ] Rope Ladder
+  - [ ] Scaffolding
+  - [ ] Sky Block
+    - [ ] Inverted
+	- [ ] Normal
+  - [ ] Sponge
+  - [ ] Sprinkler
+  - [ ] Tank
+  - [ ] Target
+  - [ ] Trophy
+  - [ ] Vacuum Hopper
+  - [ ] Village Highlighter
+  - [ ] XP Juice (see also Fluids)
+  - [ ] XP Bottler
+  - [ ] XP Drain
+  - [ ] XP Shower
+- [ ] Add item documentation
+  - [ ] Assistant Base
+  - [ ] Beam
+  - [ ] Cartographer
+  - [ ] Crane Backpack
+  - [ ] Crane Controller
+  - [ ] Crane Engine
+  - [ ] Crane Magnet
+  - [ ] Crayon
+  - [ ] Cursor
+  - [ ] /dev/null
+  - [ ] Empty Height Map (the unobtainable one?)
+  - [ ] Epic Eraser
+  - [ ] Glasses
+    - [ ] Admin (Serious)
+	- [ ] Crayon
+	- [ ] Pencil
+	- [ ] Technicolor
+  - [ ] Glider Wing
+  - [ ] Golden Eye
+  - [ ] Hang Glider
+  - [ ] Height Map (or is this one?)
+  - [ ] Info Book
+  - [ ] Line
+  - [ ] Luggage
+  - [ ] Map Controller
+  - [ ] Map Memory
+  - [ ] Paintbrush
+  - [ ] Pedometer
+  - [ ] Pencil
+  - [ ] Pointer
+  - [ ] Sketching Pencil
+  - [ ] Sleeping Bag
+  - [ ] Slimalyzer
+  - [ ] Sonic Glasses
+  - [ ] Sponge (On A Stick)
+  - [ ] Squeegee
+  - [ ] Stencil
+  - [ ] Tasty Clay
+  - [ ] Unprepared Stencil
+  - [ ] Wrench
+  - [ ] XP Bucket
+- [ ] Add fluid documentation
+  - [ ] XP Juice (see Blocks)
+- [ ] Add entity documentation
+  - [ ] Cartographer
+  - [ ] Luggage
+  - [ ] Mini Me
+- [ ] Add other bits and pieces
+  - [ ] About page
+    - [ ] Add locale to en_US.lang
+	- [ ] Add documentation
+  - [ ] B Key (rewrite)
+  - [ ] Credits (rewrite)
+  - [ ] Enchantments (rewrite)
+  - [ ] OB Utilities (rewrite)
+  - [ ] Maybe pages
+    - [ ] Changelogs (try to implement)
+	- [ ] Contacts (if boq wants, replace either Changelogs or B Key -> OB Utilities)
+- [ ] Provide templates
+  - [X] Block
+  - [ ] Item
+  - [ ] Fluid
+  - [ ] Entity
+  - [ ] Tab (?)
+- [ ] Code changes (maybe?)
+  - [ ] Notification in case of missing IGW Mod (not FML one, but custom)
+  - [ ] Configuration
+    - [ ] Turn on and off every integration (modpack makers are crazy)
+	- [ ] Turn on and off separate tabs for every OpenMod

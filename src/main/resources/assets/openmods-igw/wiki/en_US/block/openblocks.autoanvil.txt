@@ -232,12 +232,13 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{l}]History [prefix{}]
 [prefix{2}]1.2.2: [prefix{}]Auto Anvil added.
+[prefix{2}]1.4.0: [prefix{}]Auto Anvil no longer overwrites items in output slot.
 
 [prefix{l}]Trivia [prefix{}]
 - All the inputs and outputs operation can be mapped to be done on the same side.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 3300, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_tool_tab.png}]
+[image{200, 3320, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_tool_tab.png}]
 
 
 
@@ -261,7 +262,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Tool Tab in the GUI, just right after its opening. [prefix{}]
 
-[image{200, 3530, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_modifier_tab.png}]
+[image{200, 3550, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_modifier_tab.png}]
 
 
 
@@ -285,7 +286,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Modifier Tab in the GUI. Notice the selected side on the right and the check-box. [prefix{}]
 
-[image{200, 3770, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_xp_tab.png}]
+[image{200, 3782, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_xp_tab.png}]
 
 
 
@@ -309,7 +310,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The XP Juice Tab in the GUI. Notice how the Auto Anvil has been rotated to reach the bottom side of it. [prefix{}]
 
-[image{200, 4013, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_output_tab.png}]
+[image{200, 4033, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_output_tab.png}]
 
 
 
@@ -333,7 +334,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Output Tab in the GUI. Notice how the check-box is ticked, but no side is selected. [prefix{}]
 
-[image{200, 4251, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickInSlot.png}]
+[image{200, 4271, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickInSlot.png}]
 
 
 
@@ -359,7 +360,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]A series of screen-shots which show the repairing process of an item. Notice in the last the diminished XP Level. [prefix{}]
 
-[image{200, 4523, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickToolTip.png}]
+[image{200, 4543, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickToolTip.png}]
 
 
 
@@ -383,7 +384,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 
 
-[image{200, 4762, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickAlmostInSecondSlot.png}]
+[image{200, 4782, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickAlmostInSecondSlot.png}]
 
 
 
@@ -407,7 +408,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 
 
-[image{200, 5000, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickRepaired.png}]
+[image{200, 5020, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickRepaired.png}]
 
 
 
@@ -431,8 +432,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 
 
-[image{200, 5246, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_comparison.png}]
-
+[image{200, 5266, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_comparison.png}]
 
 
 
@@ -457,4 +457,3 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 [link{openmods-igw:block/openblocks.autoenchantmenttable}]Auto Enchantment Table [link{}]
 [link{openmods-igw:block/openblocks.xp_juice}]XP Juice [link{}]
 [link{openmods-igw:block/openblocks.xpdrain}]XP Drain [link{}]
-[link{openmods-igw:item/openblocks.epic_eraser}]TEST [link{}]

@@ -221,6 +221,7 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 			stack = defaultStack != null? defaultStack : createFallbackItemStack();
 			entity = null;
 		} else {
+			Log.warn("Reached fallback code. This should never happen!");
 			stack = createFallbackItemStack();
 			entity = null;
 		}

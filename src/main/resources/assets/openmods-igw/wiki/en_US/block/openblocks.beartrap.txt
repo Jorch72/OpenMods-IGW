@@ -1,13 +1,165 @@
-[crafting{200,15,key=block/openblocks.beartrap}]
+[prefix{l}][prefix{1}]BEAR TRAP [prefix{}] [prefix{}]
 
+"[prefix{o}]Bear traps-- like venus fly traps, but snappier [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Bear Trap traps every mob, excluding players, who walks over it.
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 Place a bear trap and click on it to open it up. When a mob walks over the trap they'll be unable to move!
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No. It breaks instead.
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]openblocks:beartrap
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Bear Trap can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.05 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.61 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.40 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.29 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.21 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,440,key=block/openblocks.beartrap}]
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Bear Trap can be used to block all mobs, either peaceful or hostile.
+
+Its usage is extremely simple: place them down and then wait for mobs to walk over it.
+They will be trapped until they despawn or you kill them.
+
+Hostile mobs are still able to damage you, though.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place it down and then wait for mobs to walk over it.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:beartrap [prefix{}]
+Allows to enable (true) or disable (false) the Bear Trap.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+The following list is made of unofficial structures.
+
+[prefix{2}]Mob Spawner protection system [prefix{}]
+This is a structure that I, TheSilkMiner, used in my Agrarian Skies let's play.
+It serves as a protection against mobs who are able to evade the first barrier of pistons during its closing (opened in the image) and avoid them to wander away on the island.
+The design can also provide a second barrier of pistons to avoid that mobs that are not trapped in the bear traps (it can happen) can leave the mob spawner.
+[image{200, 974, openmods-igw:wiki/worldwide/images/block/beartrap/structures_spawner_agrarian.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+As you can see in the image, the setup is extremely simple: two bear traps positioned in between two one-block barriers which can be raised and a two-high ceiling.
+The two barriers can be raised using the buttons, which are connected to a Flick-Flock [link{item/redstone}]redstone [link{}]circuit.
+
+[prefix{2}]Trading system [prefix{}]
+Another neat "structure" I use.
+It is simply a way to trap [link{entity/Villager}]Villagers [link{}] and use them for trades.
+[image{200, 1222, openmods-igw:wiki/worldwide/images/block/beartrap/structures_trading_survival.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The setup is extremely simple: place some bear traps all around the house and then lure some villagers from a nearby village until they get trapped in one of the bear traps.
+Now you can use them for trades.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Bear Trap (North/South)
+[prefix{o}]1: [prefix{}] Bear Trap (East/West)
+[prefix{o}]2: [prefix{}] Bear Trap (South/North)
+[prefix{o}]3: [prefix{}] Bear Trap (West/East)
+
+The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simply repetitions of the first four, so they are not listed here.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Bear Trap added.
+[prefix{2}]1.3.0: [prefix{}]Bear Trap can now be opened by [link{item/redstone}]redstone [link{}].
+[prefix{2}]1.4.4: [prefix{}]Bear Trap now opens when the contained entity is killed.
+[prefix{2}]1.4.4: [prefix{}]Bear Trap keeps entities trapped after game restarts.
+
+[prefix{l}]Trivia [prefix{}]
+- After 1.4.4, right-clicking on the bear trap to open it is no more needed.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1653, openmods-igw:wiki/worldwide/images/block/beartrap/gallery_closed_beartrap_thx_pig.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The bear trap appearance when its closed. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.trophy}]Trophy [link{}]
+[link{openmods-igw:block/openblocks.grave}]Grave [link{}]

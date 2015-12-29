@@ -219,7 +219,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{l}]History [prefix{}]
 [prefix{2}]1.2.2: [prefix{}]Auto Enchanting Table added.
-[prefix{2}]When?: [prefix{}]Auto Enchanting Table requires bookshelves.
+[prefix{2}]1.2.3: [prefix{}]Auto Enchanting Table requires bookshelves.
 
 [prefix{l}]Trivia [prefix{}]
 - Since its height is 3/4 of a normal block, you can walk off its edge even if you are sneaking.
