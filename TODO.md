@@ -1,6 +1,7 @@
 # TODO
 List of things to complete before version **1.0**
 
+- [ ] Checkstyle (maybe?)
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table

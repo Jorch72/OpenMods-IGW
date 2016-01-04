@@ -25,7 +25,7 @@ Just like with the vanilla table [link{block/bookshelf}]bookshelves [link{}]are 
 [prefix{4}]Stackable: [prefix{}]Yes, up to 64
 [prefix{4}]Flammable: [prefix{}]No
 [prefix{4}]Drops: [prefix{}]Itself
-[prefix{4}]Name: [prefix{}]openblocks:autoenchantmenttable
+[prefix{4}]Name: [prefix{}]OpenBlocks:autoenchantmenttable
 
 [prefix{l}]Obtaining [prefix{}]
 [prefix{2}]Mining [prefix{}]

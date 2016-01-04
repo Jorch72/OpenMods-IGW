@@ -11,7 +11,7 @@ Place a bear trap and click on it to open it up. When a mob walks over the trap 
 [prefix{}]
 
 [prefix{l}]Technical information [prefix{}]
-[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Type: [prefix{}]Non-solid block
 [prefix{4}]Physics: [prefix{}]No. It breaks instead.
 [prefix{4}]Transparency: [prefix{}]Yes
 [prefix{4}]Luminance: [prefix{}]No
@@ -21,7 +21,7 @@ Place a bear trap and click on it to open it up. When a mob walks over the trap 
 [prefix{4}]Stackable: [prefix{}]Yes, up to 64
 [prefix{4}]Flammable: [prefix{}]No
 [prefix{4}]Drops: [prefix{}]Itself
-[prefix{4}]Name: [prefix{}]openblocks:beartrap
+[prefix{4}]Name: [prefix{}]OpenBlocks:beartrap
 
 [prefix{l}]Obtaining [prefix{}]
 [prefix{2}]Mining [prefix{}]

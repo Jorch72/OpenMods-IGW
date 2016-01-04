@@ -1,4 +1,4 @@
-[prefix{l}][prefix{1}]AUTO ANVIL [prefix{}] [prefix{}]
+﻿[prefix{l}][prefix{1}]AUTO ANVIL [prefix{}] [prefix{}]
 
 "[prefix{o}]The Auto Anvil and [link{openmods-igw:block/openblocks.autoenchantmenttable}]Auto Enchantment Table [link{}], imported fresh from OpenXP. Uses liquid XP to perform their function automatically.[prefix{}]"
 - The feature mentioned in the README on OpenBlocks's Github page
@@ -25,7 +25,7 @@ Right click and drag the anvil in the tab to spin it around and select other sid
 [prefix{2}]Stackable: [prefix{}]Yes, up to 64
 [prefix{2}]Flammable: [prefix{}]No
 [prefix{2}]Drops: [prefix{}]Itself
-[prefix{2}]Name: [prefix{}]openblocks:autoanvil
+[prefix{2}]Name: [prefix{}]OpenBlocks:autoanvil
 
 [prefix{l}]Obtaining [prefix{}]
 [prefix{2}]Mining [prefix{}]

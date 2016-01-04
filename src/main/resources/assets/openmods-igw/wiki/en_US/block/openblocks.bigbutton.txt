@@ -1,15 +1,194 @@
-[crafting{200,15,key=block/openblocks.bigbutton}]
+[prefix{l}][prefix{1}]BIG BUTTON [prefix{}] [prefix{}]
 
+"[prefix{o}]The Redstone Configurable Pulse Lightweight Mega Touch Sensor, also known as the BIG BUTTON [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Big Button is a larger version than [link{block/button}]its vanilla counterpart [link{}].
+The length of its pulse can be configured thanks to the built-in GUI.
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 The big button is a large [link{block/button}]button [link{}]that can be placed on walls.
 If you shift-click on the button with an empty hand it will bring up an inventory with a single slot.
 You can put items into this slot to increase the length of time the button is pressed - one item increases the button press by one tick.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]No tool required
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:bigbutton
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Big Button can be mined with any tool. It can also be mined with bare hands.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand and every other tools: [prefix{}]1.53 seconds
+
+[prefix{2}]Crafting [prefix{}]
+[crafting{200,476,key=block/openblocks.bigbutton}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{2}]Spontaneous drop [prefix{}]
+The Big Button will also spontaneously drop itself if the block it is attached to is removed, if water or lava flows into its space or a piston tries to push or moves a block into its space.
+Be wary, though, that lava destroys the drop instantaneously.
+
+[prefix{l}]Usage [prefix{}]
+A button can be used as a monostable power source (it will automatically deactivate shortly after being activated).
+
+[prefix{2}]Placement [prefix{}]
+To place the Big Button, use the "Use Item/Place Block" control (right-click, by default) while aiming at the surface to which it should be attached.
+A button can be attached only to the side of any full solid opaque block.
+
+[prefix{2}]Activation [prefix{}]
+The Big Button is usually in an inactive state, but can be temporarily activated by players.
+To activate a placed button, use the "Use Item/Place Block" control (right-click, by default).
+
+[prefix{2}]Behavior [prefix{}]
+[prefix{o}]See also: Configuration [prefix{}]
+[prefix{o}]See also: GUI [prefix{}]
+When activated, the Big Button will stay active for as many ticks as the items placed in its configuration slot.
+The minimum amount of time it will stay activated is always 1 redstone tick (2 game ticks or 1/10 of a second).
+While active, the button:
+- powers any adjacent [link{item/redstone}]redstone dust [link{}]to power level 15, including beneath the button;
+- powers any adjacent [link{item/comparator}]redstone comparators [link{}]or [link{item/diode}]redstone repeaters [link{}]facing away from the button to power level 15;
+- strongly powers its attachment block to power level 15;
+- activates any adjacent mechanism components, including above or below, such as [link{block/pistonBase}]pistons [link{}], [link{block/redstoneLight}]redstone lamps [link{}], etc.
+When a button changes state it will provide a redstone update to all redstone components adjacent to itself (including above and below), and to all redstone components adjacent to its attachment block. 
+
+[prefix{2}]Configuration [prefix{}]
+To configurate the amount of time this block will stay powered, use the "Use Item/Place Block" control (right-click, by default) while crouching (shift, by default).
+In the opened GUI, place a stack of item corresponding to the amount of redstone ticks the button should stay pressed.
+E.g. to replicate a stone button, you would need to place 10 items.
+[prefix{o}]See also: Gallery [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+[image{200, 1242, openmods-igw:wiki/worldwide/images/block/bigbutton/gui.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+On the top of the GUI you can find a single slot.
+In there you can place up to a stack of items to determine the length of a redstone pulse.
+In other words, this will determine how many redstone ticks the button will stay activated.
+
+The bottom part of the GUI is simply the player inventory.
+
+[prefix{l}]Setup [prefix{}]
+Place the button on the desired surface.
+If you want to configure the amount of ticks the button should stay pressed, shift-right-click the button with an empty hand and place a stack of item in the slot.
+One item equals one redstone tick.
+
+For reference, a stone button stays powered for 10 redstone ticks (1 second) while a wooden one for 15 redstone ticks (1.5 seconds).
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:bigbutton [prefix{}]
+Allows to enable (true) or disable (false) the Big Button.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+The following list is made of unofficial structures.
+
+[prefix{2}]Cheaper T Flip-Flop circuit [prefix{}]
+This structure is simply another way to make a T Flip-Flop circuit.
+As you can see in the image, the structure is really simple: a [link{block/pistonStickyBase}]sticky piston [link{}]facing a solid block connected via another block to a Big Button.
+Under the block the piston is facing, there is a simple [link{block/notGate}]redstone torch [link{}].
+The output line starts from the block just above the torch and goes all the way to where you want it to be.
+[image{200, 1900, openmods-igw:wiki/worldwide/images/block/bigbutton/structures_flip_flop.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]See also Memory circuit on minecraft.gamepedia.com [prefix{}]
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Big Button (North)
+[prefix{o}]1: [prefix{}] Big Button (West)
+[prefix{o}]2: [prefix{}] Big Button (South)
+[prefix{o}]3: [prefix{}] Big Button (East)
+
+The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simply repetitions of the first four, so they are not listed here.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Big Button added.
+
+[prefix{l}]Trivia [prefix{}]
+- If there isn't any item in the slot, the block will stay activated for one tick anyway.
+- Differently from the [link{block/button}]normal button [link{}], you cannot walk through the Big Button
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2253, openmods-igw:wiki/worldwide/images/block/bigbutton/gallery_comparison.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]An activated Big Button (on the right) compared with its inactivated counterpart (on the left). [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{block/button}]Button [link{}]
