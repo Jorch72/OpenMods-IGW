@@ -1,13 +1,183 @@
-[crafting{200,15,key=block/openblocks.blockbreaker}]
+[prefix{l}][prefix{1}]BLOCK BREAKER [prefix{}] [prefix{}]
 
+"[prefix{o}]The Block Breaker and [link{openmods-igw:block/openblocks.blockPlacer}]Block Placer [link{}]are back! A perfect replacement for the now-dormant RedPower mod [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Block Breaker, as the name says, breaks the block in front of him when powered by [link{item/redstone}]redstone [link{}].
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 When given a [link{item/redstone}]redstone pulse [link{}]the block breaker will break the block it's facing.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:blockbreaker
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Block Breaker can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,464,key=block/openblocks.blockbreaker}]
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Block Breaker, as the name says, breaks the block in front of it.
+On every redstone input, the block breaker will activate for half a second.
+If the input is not a pulse, like with a [link{block/lever}]Lever [link{}], then the Block Breaker will reactivate when updated.
+
+The maximum harvest level of a Block Breaker corresponds to the [link{item/pickaxeDiamond}]Diamond Pickaxe [link{}].
+
+When breaking a block, the front texture of the Block Breaker changes to an activated state.
+
+The output of the broken block is on the back of the Block Breaker.
+You can connect also pipes from other mods to it, e.g. BuildCraft ones.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place down a Block Breaker, facing the block you want to break, and then place down either a lever or a redstone clock.
+Now the block breaker should automatically start breaking the block in front of him.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:blockbreaker [prefix{}]
+Allows to enable (true) or disable (false) the Block Breaker.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+No Tutorial is available for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+The following list is made of unofficial structures.
+
+[prefix{2}]Automated [link{block/cobblestone}]Cobblestone [link{}]farm [prefix{}]
+An unofficial structure, useful for quick mining.
+As you can see in the following image, the structure is really simple, but requires a lot of resources, so it is mostly a mid-game structure.
+But cobblestone is never enough...
+
+[image{200, 1064, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_cobblestone_farm.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The pulse circuit, used to power the [link{block/pistonBase}]Piston [link{}] just for one redstone tick is here constructed with a [link{block/pistonStickyBase}]Sticky Piston [link{}] and another block.
+You can also use a normal piston and a gravity-subjected block, like [link{block/sand.default}]Sand [link{}] or [link{block/gravel}]Gravel [link{}].
+
+[prefix{2}]Silk Touch fixer (Advanced version) [prefix{}]
+This is a structure I built once because I had to mine some blocks ([link{block/oreRedstone}]Redstone Ores [link{}]), but I had only a Silk Touch pick.
+In fact, this structure is mainly thought for people whose only [link{item/pickaxeWood}]Pickaxe [link{}] is enchanted with Silk Touch and they have to mine some ores.
+
+This structure can also be simplified, by removing the whole [link{openmods-igw:block/openblocks.blockPlacer}]Block Placer [link{}] and [link{openmods-igw:block/openblocks.vacuumhopper}]Vacuum Hopper [link{}]parts.
+In the advanced type the Block Breaker is powered by a [link{block/lever}]Lever [link{}] and acts as a BUD switch.
+
+[image{200, 1400, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_silkfixer_no_ref.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Block Breaker (Down)
+[prefix{o}]1: [prefix{}] Block Breaker (Up)
+[prefix{o}]2: [prefix{}] Block Breaker (North)
+[prefix{o}]3: [prefix{}] Block Breaker (South)
+[prefix{o}]4: [prefix{}] Block Breaker (West)
+[prefix{o}]5: [prefix{}] Block Breaker (East)
+
+Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will simply place the Block Breaker with the default facing (down).
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Block Breaker added.
+[prefix{2}]1.2.9: [prefix{}]Fixed Block Breaker sometimes ignoring restrictions.
+[prefix{2}]1.3.0: [prefix{}]Fixed Block Breaker not dropping results.
+[prefix{2}]1.4.2: [prefix{}]Fixed Block Breaker not pushing to BuildCraft pipes.
+[prefix{2}]1.4.3: [prefix{}]Changed Block Breaker timing to prevent item duplication.
+
+[prefix{l}]Trivia [prefix{}]
+- The Block Breaker is an extremely good example of a BUD switch: see as an example the Silk Touch fixer structure.
+- Differently from other blocks, the Block Breaker doesn't store the activated state in a data value, but as a boolean value in its Block Entity.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1859, openmods-igw:wiki/worldwide/images/block/blockbreaker/gallery_activated_bb.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]An activated Block Breaker [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.blockPlacer}]Block Placer [link{}]
+[link{openmods-igw:block/openblocks.vacuumhopper}]Vacuum Hopper [link{}]
