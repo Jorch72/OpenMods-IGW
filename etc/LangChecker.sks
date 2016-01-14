@@ -22,6 +22,7 @@ public class LangChecker {
 	
 	private static final String BLANK = "BLANK";
 	private static final String COMMENT = "COMMENT";
+	private static final String TRANSLATION_NEEDED = " ## NEEDS TRANSLATION ##";
 	
 	public static void main(final String[] args) {
 		
@@ -125,7 +126,7 @@ public class LangChecker {
 			
 			if (translated == null || translated.isEmpty() || translated.equals(" ")) {
 				
-				newOtherLangMap.put(enUsEntry.getKey(), enUsEntry.getValue() + " ## NEEDS TRANSLATION ##");
+				newOtherLangMap.put(enUsEntry.getKey(), enUsEntry.getValue() + TRANSLATION_NEEDED);
 				continue;
 			}
 			

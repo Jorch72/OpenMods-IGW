@@ -2,12 +2,13 @@
 List of things to complete before version **1.0**
 
 - [ ] Checkstyle (maybe?)
+- [X] Language updater script
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table
   - [X] Bear Trap
-  - [ ] Big Button
-  - [ ] Block Breaker
+  - [X] Big Button
+  - [X] Block Breaker
   - [ ] Block Placer
   - [ ] Builder Guide (should be the enhanced one)
   - [ ] Cannon
