@@ -1,7 +1,3 @@
-<#language "java">
-<#script "LangChecker" visibility public>
-<#start script>
-/*************************************************************************************************/
 /*
  * This file is part of OpenMods project.
  * Please see LICENSE file for more information.
@@ -217,5 +213,3 @@ public class LangChecker {
 		}
 	}
 }
-/*************************************************************************************************/
-<#end script>
