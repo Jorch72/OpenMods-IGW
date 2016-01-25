@@ -45,6 +45,10 @@ repositories {
         url "http://maven.k-4u.nl/"
     }
 	maven {
+		name "ChickenBones"
+		url "http://chickenbones.net/maven/"
+	}
+	maven {
 		name "ProfMobius"
 		url "http://mobiusstrip.eu/maven"
 	}
