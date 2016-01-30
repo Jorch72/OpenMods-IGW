@@ -1,13 +1,215 @@
-[crafting{200,15,key=block/openblocks.blockPlacer}]
+[prefix{l}][prefix{1}]BLOCK PLACER [prefix{}] [prefix{}]
 
+"[prefix{o}]The [link{openmods-igw:block/openblocks.blockbreaker}]Block Breaker [link{}]and Block Placer are back! A perfect replacement for the now-dormant RedPower mod [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Block Placer, as the name says, places a block from its inventory in front of it when powered by [link{item/redstone}]redstone [link{}].
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 When given a [link{item/redstone}]redstone pulse [link{}]the block placer will place an item in the direction it's facing.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]0
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:blockPlacer
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Block Placer can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,474,key=block/openblocks.blockPlacer}]
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Block Placer, as the name implies, places a block from its internal inventory in front of it.
+On every redstone input, the Block Placer will activate.
+Differently from the [link{openmods-igw:block/openblocks.blockbreaker}]Block Breaker [link{}], it will activate once per redstone input.
+In other words, if the input is not a pulse, like with a [link{block/lever}]Lever [link{}], the block placer will place a block just one time.
+The input will have to be turned off and then on again to place another block.
+
+Blocks placed by Block Placers still follow the same placement rules of the player.
+E.g., [link{openmods-igw:block/openblocks.ropeladder}]Rope Ladders [link{}]will still unroll themselves to the ground, consuming one item per block placed (if enabled).
+
+[prefix{l}]GUI [prefix{}]
+[image{200, 795, openmods-igw:wiki/worldwide/images/block/blockPlacer/gui.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Block Placer's GUI is very similar to the [link{block/dropper}]Dropper's [link{}]or [link{block/dispenser}]Dispenser's [link{}] ones.
+
+The top part of the GUI is dominated by nine slots, placed on a 3 by 3 grid.
+In here you can place the items you want the machine to place.
+If more than one slot is occupied, then the block which will be placed will be chosen according to the following pattern:
+[image{200, 1143, openmods-igw:/wiki/worldwide/images/block/blockPlacer/gui_choose_pattern_cropped.png}]
+
+
+
+
+
+
+
+
+
+The bottom part of the GUI represents the player inventory.
+
+[prefix{l}]Setup [prefix{}]
+Place down a Block Placer, facing the direction you want to place the block, and then place down either a lever or a redstone clock.
+Open the GUI and place in it the items you need to place down.
+Activate the lever or the redstone clock.
+Now the block placer should automatically place a block in front of him.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:blockPlacer [prefix{}]
+Allows to enable (true) or disable (false) the Block Placer.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+[prefix{2}]Silk Touch fixer (Advanced version) [prefix{}]
+This is a structure I built once because I had to mine some blocks ([link{block/oreRedstone}]Redstone Ores [link{}]), but I had only a Silk Touch pick.
+In fact, this structure is mainly thought for people whose only [link{item/pickaxeWood}]Pickaxe [link{}] is enchanted with Silk Touch and they have to mine some ores.
+
+[image{200, 1551, openmods-igw:wiki/worldwide/images/block/blockPlacer/structures_silkfixer_no_ref.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Block Placer (Down)
+[prefix{o}]1: [prefix{}] Block Placer (Up)
+[prefix{o}]2: [prefix{}] Block Placer (North)
+[prefix{o}]3: [prefix{}] Block Placer (South)
+[prefix{o}]4: [prefix{}] Block Placer (West)
+[prefix{o}]5: [prefix{}] Block Placer (East)
+
+Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will simply place the Block Placer with the default facing (down).
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Block Placer added.
+[prefix{2}]1.2.5: [prefix{}]Fixed Block Placer using the whole stack instead of single items.
+[prefix{2}]1.2.6: [prefix{}]Fixed Block Placer sometimes emptying inventories by themselves.
+
+[prefix{l}]Trivia [prefix{}]
+- Even if the block placer uses a fake player to place blocks, it still is unable to use items.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1931, openmods-igw:wiki/worldwide/images/block/blockPlacer/gallery_block_placer_item_use.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]As you can see, an activated block breaker still keeps the original placing rules. [prefix{}]
+[prefix{o}]E.g., the [link{openmods-igw:block/openblocks.ropeladder}]Rope Ladders [link{}]have been placed following the "use all stack" rule anyway. [prefix{}]
+[prefix{o}]In the image you can also see a [link{openmods-igw:entity/OpenBlocks.Cartographer}]little Cartographer [link{}]. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.blockbreaker}]Block Breaker [link{}]
+[link{openmods-igw:block/openblocks.vacuumhopper}]Vacuum Hopper [link{}]
+[link{openmods-igw:entity/OpenBlocks.Cartographer}]Cartographer [link{}]
+[link{openmods-igw:block/openblocks.ropeladder}]Rope Ladders [link{}]

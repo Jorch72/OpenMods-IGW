@@ -66,6 +66,7 @@ This block has no GUI.
 
 [prefix{l}]Setup [prefix{}]
 Place down a Block Breaker, facing the block you want to break, and then place down either a lever or a redstone clock.
+Activate the lever or the redstone clock.
 Now the block breaker should automatically start breaking the block in front of him.
 
 [prefix{l}]Configuration options [prefix{}]
@@ -85,7 +86,7 @@ An unofficial structure, useful for quick mining.
 As you can see in the following image, the structure is really simple, but requires a lot of resources, so it is mostly a mid-game structure.
 But cobblestone is never enough...
 
-[image{200, 1064, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_cobblestone_farm.png}]
+[image{200, 1072, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_cobblestone_farm.png}]
 
 
 
@@ -110,7 +111,7 @@ In fact, this structure is mainly thought for people whose only [link{item/picka
 This structure can also be simplified, by removing the whole [link{openmods-igw:block/openblocks.blockPlacer}]Block Placer [link{}] and [link{openmods-igw:block/openblocks.vacuumhopper}]Vacuum Hopper [link{}]parts.
 In the advanced type the Block Breaker is powered by a [link{block/lever}]Lever [link{}] and acts as a BUD switch.
 
-[image{200, 1400, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_silkfixer_no_ref.png}]
+[image{200, 1414, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_silkfixer_no_ref.png}]
 
 
 
@@ -138,6 +139,7 @@ Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will si
 
 [prefix{l}]History [prefix{}]
 [prefix{2}]1.2.2: [prefix{}]Block Breaker added.
+[prefix{2}]1.2.6: [prefix{}]Fixed Block Placer sometimes emptying inventories by themselves.
 [prefix{2}]1.2.9: [prefix{}]Fixed Block Breaker sometimes ignoring restrictions.
 [prefix{2}]1.3.0: [prefix{}]Fixed Block Breaker not dropping results.
 [prefix{2}]1.4.2: [prefix{}]Fixed Block Breaker not pushing to BuildCraft pipes.
@@ -148,7 +150,7 @@ Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will si
 - Differently from other blocks, the Block Breaker doesn't store the activated state in a data value, but as a boolean value in its Block Entity.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1859, openmods-igw:wiki/worldwide/images/block/blockbreaker/gallery_activated_bb.png}]
+[image{200, 1889, openmods-igw:wiki/worldwide/images/block/blockbreaker/gallery_activated_bb.png}]
 
 
 
