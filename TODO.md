@@ -9,7 +9,7 @@ List of things to complete before version **1.0**
   - [X] Bear Trap
   - [X] Big Button
   - [X] Block Breaker
-  - [ ] Block Placer
+  - [X] Block Placer
   - [ ] Builder Guide (should be the enhanced one)
   - [ ] Cannon
   - [ ] Canvas
@@ -111,7 +111,8 @@ List of things to complete before version **1.0**
   - [ ] Entity
   - [ ] Tab (?)
 - [ ] Code changes (maybe?)
-  - [ ] Notification in case of missing IGW Mod (not FML one, but custom)
+  - [X] Notification in case of missing IGW Mod (not FML one, but custom)
+    - [X] Removed IGW Mod dependency
   - [ ] Configuration
     - [ ] Turn on and off every integration (modpack makers are crazy)
 	- [ ] Turn on and off separate tabs for every OpenMod

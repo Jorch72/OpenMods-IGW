@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.common.MinecraftForge;
 import openmods.Log;
 import openmods.Mods;
 import openmods.igw.PageRegistryHelper;
+import openmods.igw.client.GuiOpenEventHandler;
+import openmods.igw.client.WarningGui;
 import openmods.igw.openblocks.OpenBlocksWikiTab;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -19,14 +23,24 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ClientProxy implements IInitProxy {
 
-	@Override
-	public void preInit(FMLPreInitializationEvent evt) {}
+	private boolean shallLoad;
 
 	@Override
-	public void init(FMLInitializationEvent evt) {}
+	public void preInit(final FMLPreInitializationEvent evt) {
+		if (cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) this.shallLoad = true;
+		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
+	}
 
 	@Override
-	public void postInit(FMLPostInitializationEvent evt) {
+	public void init(final FMLInitializationEvent evt) {}
+
+	@Override
+	public void postInit(final FMLPostInitializationEvent evt) {
+		if(!this.shallLoad) {
+			WarningGui.markShow();
+			return;
+		}
+
 		PageRegistryHelper registryHelper = new PageRegistryHelper();
 		registryHelper.loadItems();
 
