@@ -1,4 +1,4 @@
-package openmods.igw;
+package openmods.igw.utils;
 
 import igwmod.api.WikiRegistry;
 
@@ -65,6 +65,7 @@ public class PageRegistryHelper {
 	private final Map<String, ModEntry> mods = Maps.newHashMap();
 
 	private final Map<String, ItemStack> claimedPages = Maps.newHashMap();
+	private final Map<String, Class<? extends Entity>> claimedEntities = Maps.newHashMap();
 
 	private ModEntry getOrCreateModEntry(String modId) {
 		ModEntry result = mods.get(modId);
@@ -163,15 +164,26 @@ public class PageRegistryHelper {
 		return ImmutableMap.copyOf(claimedPages);
 	}
 
-	public void claimEntities(String modId) {
+	public List<Pair<String, String>> claimEntities(String modId) {
+		final List<Pair<String, String>> result = Lists.newArrayList();
+
 		final ModEntry entry = mods.get(modId);
-		if (entry == null) return;
+		if (entry == null) return result;
 
 		for (Map.Entry<String, Class<? extends Entity>> e : entry.entities.entrySet()) {
 			final Class<? extends Entity> cls = e.getValue();
 			if (cls.isAnnotationPresent(VisibleForDocumentation.class)) {
-				WikiRegistry.registerEntityPageEntry(cls, "openmods-igw:entity/" + e.getKey());
+				final String pageId = "openmods-igw:entity/" + e.getKey();
+				WikiRegistry.registerEntityPageEntry(cls, pageId);
+				result.add(Pair.of(pageId, cls.getCanonicalName()));
+				if (!claimedEntities.containsKey(pageId)) claimedEntities.put(pageId, cls);
 			}
 		}
+
+		return result;
+	}
+
+	public Map<String, Class<? extends Entity>> getAllClaimedEntitiesPages() {
+		return ImmutableMap.copyOf(this.claimedEntities);
 	}
 }

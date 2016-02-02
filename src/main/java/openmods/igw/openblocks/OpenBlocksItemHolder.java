@@ -2,11 +2,11 @@ package openmods.igw.openblocks;
 
 import net.minecraft.block.Block;
 import openmods.Mods;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
+import cpw.mods.fml.common.registry.GameRegistry;
 
-@ObjectHolder(Mods.OPENBLOCKS)
+@GameRegistry.ObjectHolder(Mods.OPENBLOCKS)
 public class OpenBlocksItemHolder {
 
-	@ObjectHolder("flag")
+	@GameRegistry.ObjectHolder("flag")
 	public static final Block flag = null;
 }

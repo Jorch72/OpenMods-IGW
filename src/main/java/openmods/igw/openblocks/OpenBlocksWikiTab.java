@@ -103,8 +103,11 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
 
 	private final Map<String, ItemStack> defaultIcons;
+	private final Map<String, Class<? extends Entity>> defaultEntities;
 
-	public OpenBlocksWikiTab(List<Pair<String, ItemStack>> stacks, Map<String, ItemStack> allClaimedPages) {
+	public OpenBlocksWikiTab(final List<Pair<String, ItemStack>> stacks,
+							 final Map<String, ItemStack> allClaimedPages,
+							 final Map<String, Class<? extends Entity>> allClaimedEntities) {
 		staticPageFactories.add(createStaticPageFactory("about"));
 		staticPageFactories.add(createStaticPageFactory("credits"));
 		staticPageFactories.add(createStaticPageFactory("obUtils"));
@@ -116,6 +119,7 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 			itemPageFactories.add(createItemPageFactory(e.getLeft(), e.getRight()));
 
 		this.defaultIcons = allClaimedPages;
+		this.defaultEntities = allClaimedEntities;
 	}
 
 	@Override
@@ -126,7 +130,8 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 	@Override
 	public List<IReservedSpace> getReservedSpaces() {
 		final List<IReservedSpace> reservedSpaces = Lists.newArrayList();
-		final ResourceLocation textureLocation = new ResourceLocation("openmods-igw", "textures/gui/wiki/shorterItemGrid.png");
+		final ResourceLocation textureLocation = new ResourceLocation("openmods-igw",
+				"textures/gui/wiki/shorterItemGrid.png");
 		reservedSpaces.add(new LocatedTexture(textureLocation, 40, 110, 36, 108));
 		return reservedSpaces;
 	}
@@ -218,8 +223,9 @@ public final class OpenBlocksWikiTab implements IWikiTab {
 			stack = entity == null? createFallbackItemStack() : null;
 		} else if (metadata.length == 0) {
 			final ItemStack defaultStack = defaultIcons.get(pageName);
-			stack = defaultStack != null? defaultStack : createFallbackItemStack();
-			entity = null;
+			final Class<? extends Entity> defaultEntity = this.defaultEntities.get(pageName);
+			stack = defaultStack != null? defaultStack : defaultEntity != null? null : createFallbackItemStack();
+			entity = stack == null? getEntity(defaultEntity) : null;
 		} else {
 			Log.warn("Reached fallback code. This should never happen!");
 			stack = createFallbackItemStack();

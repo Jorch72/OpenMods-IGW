@@ -3,7 +3,7 @@ package openmods.igw.utils;
 /**
  * @author TheSilkMiner
  */
-public class Constants {
+public final class Constants {
 
 	public static final String MOD_ID = "OpenMods-IGW";
 	public static final String NAME = "OpenMods-IGW";
