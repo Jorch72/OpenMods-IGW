@@ -1,12 +1,12 @@
 package openmods.igw.proxies;
 
 import igwmod.api.WikiRegistry;
+import igwmod.gui.tabs.IWikiTab;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Map;
 
-import igwmod.gui.tabs.IWikiTab;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -30,18 +30,18 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {
-		if (!cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) abort = true;
+		if (!cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
 		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
 	}
 
 	@Override
 	public void init(final FMLInitializationEvent evt) {
-		if (abort) WarningGui.markShow();
+		if (this.abort) WarningGui.markShow();
 	}
 
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
-		if (abort) return;
+		if (this.abort) return;
 
 		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class);
 	}

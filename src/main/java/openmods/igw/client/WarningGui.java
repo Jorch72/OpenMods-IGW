@@ -1,5 +1,6 @@
 package openmods.igw.client;
 
+import com.google.common.collect.Lists;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiYesNo;
 
@@ -11,6 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class WarningGui extends GuiYesNo {
@@ -64,5 +66,26 @@ public class WarningGui extends GuiYesNo {
 			default:
 				throw new IllegalStateException("Invalid button ID in WarningGui @ OpenMods-IGW");
 		}
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void drawScreen(final int mouseX, final int mouseY, final float renderPartialTicks) {
+		// We want to add a tooltip to the INSTALL button because it opens
+		// a web page: I think it is better to warn the user.
+		super.drawScreen(mouseX, mouseY, renderPartialTicks);
+
+		final Object btnObj = this.buttonList.get(INSTALL);
+
+		if (!(btnObj instanceof GuiButton)) return;
+
+		final GuiButton btn = (GuiButton) btnObj;
+
+		if (!btn.func_146115_a()) return;
+
+		final List text = Lists.newArrayList();
+		text.add(TranslationUtilities.translate("button.install.warning"));
+		text.add(IGW_URL);
+		this.drawHoveringText(text, mouseX, mouseY, this.fontRendererObj);
 	}
 }

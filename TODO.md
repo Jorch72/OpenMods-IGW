@@ -1,7 +1,7 @@
 # TODO
 List of things to complete before version **1.0**
 
-- [X] **FIX: Entityes not showing when clicking on link in wiki page**
+- [X] **FIX: Entities not showing when clicking on link in wiki page**
 - [ ] Checkstyle (maybe?)
 - [X] Language updater script
 - [ ] Add block documentation

@@ -2,7 +2,8 @@
 openmods.igw.missing.title=IGW-Mod not found!
 openmods.igw.missing.text=We suggest you to install the mod to experience the full features of OpenMods-IGW.
 openmods.igw.button.continue=Continue without IGW
-openmods.igw.button.install=Install IGW (Opens browser)
+openmods.igw.button.install=Install IGW
+openmods.igw.button.install.warning=Opens a new web page pointing to
 
 # OpenBlocks Tab Pages
 wiki.openblocks.tab=OpenBlocks
