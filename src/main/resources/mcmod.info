@@ -1,17 +1,30 @@
+{
+"modListVersion": "2",
+"modList":
 [
 {
-  "modid" : "OpenMods-IGW",
-  "name" : "OpenMods-IGW integration",
-  "version" : "${version}",
-  "url" : "http://openmods.info/",
-  "credits" : "",
-  "authors": [
+  "modid": "OpenMods-IGW",
+  "name": "OpenMods-IGW integration",
+  "description": "Integration between OpenMods and InGameWiki Mod",
+  "version": "${version}",
+  "mcversion": "${MCVersion}",
+  "url": "http://openmods.info/",
+  "updateUrl": "",
+  "authorList": [
     "TheSilkMiner"
   ],
-  "description": "Integration between OpenMods and InGameWiki",
-  "logoFile" : "",
-  "updateUrl" : "",
-  "parent" : "",
+  "credits": "",
+  "logoFile": "",
   "screenshots": [
-  ]
-}]
+  ],
+  "parent": "",
+  "requiredMods": [
+  ],
+  "dependencies": [
+  ],
+  "dependants": [
+  ],
+  "useDependencyInformation": "false"
+}
+]
+}
