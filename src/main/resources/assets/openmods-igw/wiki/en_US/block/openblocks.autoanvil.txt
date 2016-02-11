@@ -83,7 +83,7 @@ If the target is damaged, you will pay for the repair as well as the transfer.
 Transferring high-level enchantments is more expensive.
 Differently, from the vanilla anvil, the automatic version does not have any level limit.
 In exchange, the amount of XP juice stored in the anvil represents the limit of experience after which the anvil will not repair any further.
-Since the automatic version, performs the operation as soon as enough XP Juice is stored, without checking the player's game mode, the limit is present even in creative mode.
+Since the automatic version performs the operation as soon as enough XP Juice is stored, without checking the player's game mode, the limit is present even in creative mode.
 
 [prefix{l}]GUI [prefix{}]
 [image{200, 1325, openmods-igw:wiki/worldwide/images/block/autoanvil/gui.png}]
@@ -130,12 +130,12 @@ The GUI can be divided into three zones: the top one, the right one and the bott
 
 On this part of the GUI you can find four slots, as you can see in the above image.
 
-The first slot, rounded of red in the above image, is the place where the tool which needs repairing must be placed.
+The first slot, circled in red in the above image, is the place where the tool which needs repairing must be placed.
 Exactly like the vanilla anvil, you can also place an enchanted book in this slot, in order to combine enchantments.
 
 The second slot, rounded of yellow, is the place where the material which will be used to repair needs to be placed.
 This slot also accepts other tools, which will be sacrificed in order to repair the one placed in the first slot.
-If this tools have enchantments, they will be transferred to the repaired tool.
+If these tools have enchantments, they will be transferred to the repaired tool.
 [prefix{o}]See also: Repairing in the previous sections [prefix{}]
 
 The third slot, rounded of blue, is the slot where the repaired tool or the new enchanted book will appear.

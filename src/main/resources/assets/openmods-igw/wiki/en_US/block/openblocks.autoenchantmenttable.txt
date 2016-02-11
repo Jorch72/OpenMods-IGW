@@ -208,7 +208,7 @@ This is a structure which we like to call "Classic Automation".
 It allows for a completely automated process of repairing and/or enchanting.
 It consists of a tank running down the bottom of the table.
 No [link{openmods-igw:block/openblocks.xpdrain}]XP Drains [link{}] are needed since the refill of XP Juice will be done through [link{openmods-igw:item/openblocks.xpbucket}]XP Buckets [link{}].
-This because the enchanting at level from 27 to 30 require a full tank to be processed, which equals to 10 XP Buckets.
+This because the enchanting at level from 27 to 30 requires a full tank to be processed, which equals to 10 XP Buckets.
 I think using Buckets is an easier way to keep track of the inserted XP.
 The table is then surrounded by chests, with the left one being either the tool input or output and the right one the opposite of the left.
 
