@@ -11,7 +11,7 @@ List of things to complete before version **1.0**
   - [X] Big Button
   - [X] Block Breaker
   - [X] Block Placer
-  - [ ] Builder Guide (should be the enhanced one)
+  - [X] Builder Guide --> Enhanced Building Guide
   - [ ] Cannon
   - [ ] Canvas
   - [ ] Donation Station

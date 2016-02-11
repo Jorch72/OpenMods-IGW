@@ -1,16 +1,233 @@
-[crafting{200,15,key=block/openblocks.builder_guide}]
+[prefix{l}][prefix{1}]ENHANCED BUILDING GUIDE [prefix{}] [prefix{}]
 
+"[prefix{o}]Feature: enhanced building guide (can place blocks in survival) [prefix{}]"
+- The Feature mentioned on OpenBlocks's changelog page (openmods.info).
 
+The Enhanced Building Guide is an enhanced version of the [link{openmods-igw:block/openblocks.guide}]normal Building Guide [link{}].
+Its main feature is being able to place actual blocks in survival.
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 This enhanced version of [link{openmods-igw:block/openblocks.guide}]building guide [link{}]not only displays ghost blocks to make building easier, but also allows you to place actual blocks.
 Just click central block with any block stack!
 
 When in creative mode you can place an [link{block/obsidian}]obsidian [link{}]block above, then hit the building guide with any block you like to automatically create the shape.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]8
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:builder_guide
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Enhanced Building Guide can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,545,key=block/openblocks.builder_guide}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+Like the "normal" building guide, the Enhanced version is able to show with ghost blocks the requested shape and color it via [link{item/dyePowder.black}]dyes [link{}].
+The shown shape can also be edited with the buttons on the building guide.
+In addition, the Enhanced Building Guide can also place blocks, both with survival and creative mechanics.
+
+[prefix{2}]Shape showing [prefix{}]
+As soon as an Enhanced Building Guide is placed for the first time, it will automatically apply its default settings, shown in the image that follows.
+[image{200, 805, openmods-igw:wiki/worldwide/images/block/builder_guide/usage_default_settings.png}]
+
+
+
+
+
+
+
+When powered with [link{item/redstone}]redstone [link{}], or if [prefix{o}]guide.redstoneSensivity [prefix{}] is on false, the building guide will activate and show ghost blocks forming the stored form.
+
+[prefix{2}]Ghost blocks colouring [prefix{}]
+The ghost blocks can be colored by right clicking on the central part of the Enhanced Building Guide with a [link{item/dyePowder.black}]dye [link{}].
+When the guide is right clicked, all the ghost blocks will immediately turn to the dye's color.
+There is no way to undo this operation, apart from using [link{item/dyePowder.white}]bone meal [link{}] to reset the color to white.
+
+[prefix{o}]See also Gallery [prefix{}]
+
+[prefix{2}]Shape editing [prefix{}]
+You can edit the shape shown by the Enhanced Building Guide with the various buttons on its faces.
+In particular, using the buttons on the sides, you can edit the dimension of the shape and its location.
+
+[image{200, 1100, openmods-igw:wiki/worldwide/images/block/builder_guide/usage_guide_side_new_drawings.png}]
+Using the buttons circled in red, you can augment or diminish by one the size of the shape on that particular direction.
+E.g., if we consider the image representing the north side of the building guide, using the buttons on the left side, you can augment or diminish the positive height (considering the block as 0, 0) of the build.
+Using the ones on the right side, you can augment or diminish the negative height, while with the buttons on top or bottom, you can vary the value of the length of the construction.
+
+With the arrows in centre (circled in green), you can set the value of the quantity on the selected side to the opposite.
+E.g., if the current settings are (-3, 0, -3) and (3, 3, 3), clicking the top arrow will set them to (-3, -3, -3) and (3, 3, 3).
+
+Using the buttons on the top, you can rotate the block and set the shape it should outline.
+
+[image{200, 1380, openmods-igw:wiki/worldwide/images/block/builder_guide/usage_guide_top_new_drawings.png}]
+With the yellow-circled arrows, you are able to completely rotate the block, like when using a [link{openmods-igw:item/openblocks.wrench}]Wrench [link{}].
+With the blue-circled ones, you can change the shape the building guide should outline.
+The shape will change in a loop, meaning that you can go forward (up arrow) and backward (down arrow), but you cannot skip directly to the desired shape.
+The order of the shapes is the following:
+[prefix{o}]Sphere, Cylinder, Cuboid, Full Cuboid, Dome, Triangle, Pentagon, Hexagon, Octagon, Axes, Planes [prefix{}]
+
+[prefix{2}]Block placing [prefix{}]
+Differently from [link{openmods-igw:block/openblocks.guide}]her parent [link{}], the Enhanced Building Guide is able to place actual blocks in both survival and creative game mode, with different mechanics.
+
+[prefix{5}]Survival mechanics [prefix{}]
+The survival mechanics are available in both game modes.
+When right-clicked with a block, the building guide will start placing blocks from the most north-western block and then will follow a clockwise path.
+In case the location where the next block should be placed is not air (empty), the building guide will simply skip that location.
+
+[prefix{5}]Creative mechanics [prefix{}]
+The creative mechanics are available just in creative mode and need the Enhanced Building Guide to be configured in "Fill mode".
+To do this, you need to place an [link{block/obsidian}]obsidian block [link{}] on top, otherwise the survival mechanics will be used.
+When in "Fill mode" and in creative mode, the full shape will immediately be filled with the specified block, replacing every other block in the process.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place down an Enhanced Building Guide with a [link{block/lever}]Lever [link{}] near it.
+Flip the lever and then use the buttons on the building guide to set the shape and the bounds of the outline.
+Last, but not least, prepare some stacks of building material, depending on the shape chosen, and start right-clicking the block with the stack in your hand.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:builder_guide [prefix{}]
+Allows to enable (true) or disable (false) the Enhanced Building Guide.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{2}]"guide" category [prefix{}]
+[prefix{5}]I:redstoneSensitivity=1 [prefix{}]
+Allows to set the sensitivity to redstone of the Enhanced Building Guide.
+The possibile values are 0 (not sensitive), 1 (on when powered), -1 (off when powered).
+[prefix{o}]Default value: [prefix{}] 1
+[prefix{5}]D:renderDistanceSq=65536.0 [prefix{}]
+Allows to set the maximum render distance of the Enhanced Building Guide and its outline.
+[prefix{o}]Default value: [prefix{}] 65536.0
+
+[prefix{l}]Tutorials [prefix{}]
+A YouTube tutorial made by boq is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
+Link: [prefix{n}] [prefix{1}]https://youtu.be/zUf_p8zvovM [prefix{}] [prefix{}]
+
+[prefix{l}]Useful structures [prefix{}]
+There are no featured structures for this block.
+Creating structures is the goal of this block, so...
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Enhanced Building Guide (Up-South)
+[prefix{o}]1: [prefix{}] Enhanced Building Guide (Up-North)
+[prefix{o}]2: [prefix{}] Enhanced Building Guide (Up-West)
+[prefix{o}]3: [prefix{}] Enhanced Building Guide (Up-East)
+[prefix{o}]4: [prefix{}] Enhanced Building Guide (East-South)
+[prefix{o}]5: [prefix{}] Enhanced Building Guide (East-North)
+[prefix{o}]6: [prefix{}] Enhanced Building Guide (East-Down)
+[prefix{o}]7: [prefix{}] Enhanced Building Guide (East-Up)
+[prefix{o}]8: [prefix{}] Enhanced Building Guide (South-Up)
+[prefix{o}]9: [prefix{}] Enhanced Building Guide (South-Down)
+[prefix{o}]10: [prefix{}] Enhanced Building Guide (South-West)
+[prefix{o}]11: [prefix{}] Enhanced Building Guide (South-East)
+
+Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will simply place the Enhanced Building Guide with the default facing (Up-South).
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.5.0: [prefix{}]Enhanced Building Guide added.
+[prefix{2}]1.5.1: [prefix{}]Fixed Enhanced Building Guide not storing its settings on drop.
+
+[prefix{l}]Trivia [prefix{}]
+- Both the Enhanced Building Guide and the Building Guide share the same texture. The only visual difference is the "core" and its flame (green for the former, red for the latter).
+- If you watch the Enhanced Building Guide closely (maybe with Optifine's zoom), you can see some little blocks orbiting around the building guide core.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2539, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_example_usage_TSM_submit.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A practical usage example of the Enhanced Building Guide: the guide is currently on and its outlining the shape of a sphere with radius 8.
+The outline has been colored of blue for ease of identification. [prefix{}]
+
+[image{200, 2739, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_fill_mode.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]An Enhanced Building Guide in "Fill" mode. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.guide}]Building Guide [link{}]
+[link{openmods-igw:item/openblocks.wrench}]Wrench [link{}]
