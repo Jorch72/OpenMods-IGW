@@ -42,7 +42,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
 		if (this.abort) return;
-
 		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class);
 	}
 

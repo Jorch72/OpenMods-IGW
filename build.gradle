@@ -1,5 +1,5 @@
 /*
- * OpenBlock-IGW build file.
+ * OpenMods-IGW build file.
  * @author Arkan <arkan@emberwalker.cc>
  */
 
@@ -52,6 +52,20 @@ repositories {
 		name "ProfMobius"
 		url "http://mobiusstrip.eu/maven"
 	}
+}
+
+buildscript {
+  repositories {
+    maven {
+      name 'OpenMods Third Party'
+      url 'http://repo.openmods.info/artifactory/simple/thirdparty'
+    }
+  }
+  dependencies {
+    classpath group: 'net.thesilkminer.gradle.translationchecker',
+              name: 'TranslationChecker',
+              version: '1.0'
+  }
 }
 
 apply plugin: 'forge'
@@ -170,4 +184,13 @@ task deobfJar(type: Jar) {
 
 artifacts {
     archives deobfJar
+}
+
+//================================================
+// Misc tasks
+
+// Check and update all language files
+task translationCheck(type: net.thesilkminer.gradle.plugin.languagechecker.TranslationCheckTask) {
+    langDir = file("src/main/resources/assets/openmods-igw/lang") // Substitute with following line after 1.1
+	// modid = 'openmods-igw'
 }
