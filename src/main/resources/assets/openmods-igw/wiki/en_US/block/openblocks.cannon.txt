@@ -1,4 +1,44 @@
-[crafting{200,15,key=block/openblocks.cannon}]
+[prefix{l}][prefix{1}]ITEM CANNON [prefix{}] [prefix{}]
+
+"[prefix{o}]It only took almost 2 years, but at least it's done right!? [prefix{}]"
+- nevercast on the commit which fixed the cannon aiming algorithm
+
+The Item Cannon is a block which will shoot every item it finds in an adjacent inventory.
+The Item Cannon can be aimed with the [link{openmods-igw:item/openblocks.pointer}]Pointer [link{}].
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Non-solid block
+[prefix{4}]Physics: [prefix{}]No. It breaks instead
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:cannon
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Item Cannon can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.05 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.61 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.40 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.29 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.21 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,451,key=block/openblocks.cannon}]
 
 
 
@@ -10,5 +50,97 @@
 
 
 
-When given a [link{item/redstone}]redstone [link{}]signal, the item cannon will shoot items that it finds in an adjacent inventory.
-Use the '[link{openmods-igw:item/openblocks.pointer}]pointer [link{}]' item to aim the cannon.
+[prefix{l}]Usage [prefix{}]
+The Item Cannon can be used to launch items from a nearby inventory to a location determined by the user.
+
+Its usage is really simple: place it down near an inventory (could be a [link{block/chest}]Chest [link{}], a [link{block/dispenser}]Dispenser [link{}]...), then power them.
+It will immediately start shooting towards the default direction (south, pitch of 0).
+
+To aim the cannon you can use a [link{item/openblocks.pointer}]Pointer [link{}] (more information on its wiki page).
+
+When shooting, the cannon will emit a sound and will recoil for a moment, before shooting once again or stopping in case no other item is present in the nearby inventories.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place it down, near an inventory-holding block.
+Using the pointer, aim the cannon to the block you want the item to land onto.
+Power the Item Cannon with a power source, such as a [link{block/lever}]Lever [link{}].
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:cannon [prefix{}]
+Allows to enable (true) or disable (false) the Item Cannon.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+[prefix{2}]Test environment [prefix{}]
+This structure has been set up buy nevercast while he was trying to fix the cannon aiming system.
+Even if it does not have a real functionality, it is still in the list as an example of use of the Item Cannon.
+[image{200, 1025, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Item Cannon added.
+[prefix{2}]1.2.5: [prefix{}]Item Cannon can now target in every direction.
+[prefix{2}]1.4.0: [prefix{}]Item Cannon now works with world ticks disabled.
+[prefix{2}]1.5.0: [prefix{}](Finally) Fixed Item Cannon aiming system.
+
+[prefix{l}]Trivia [prefix{}]
+- Even if activated in different times, all the Item Cannons currently loaded will shoot the items at the same moment.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1345, openmods-igw:wiki/worldwide/images/block/cannon/gallery_cannon_recoil.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Item Cannon recoiling after shooting an item. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{item/openblocks.pointer}]Pointer [link{}]
+[link{item/openblocks.vacuumhopper}]Vacuum Hopper [link{}]
