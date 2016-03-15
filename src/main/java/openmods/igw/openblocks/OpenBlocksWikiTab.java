@@ -40,9 +40,6 @@ import cpw.mods.fml.client.FMLClientHandler;
  * pagesPerTab() (where you need to edit the amount of items shown, usually diminishing by 2 every time)
  * getReservedSpaces() (where the y of the located texture must be edited to allow for a design-compatible number).
  */
-/**
- * @author TheSilkMiner
- */
 public final class OpenBlocksWikiTab implements IWikiTab {
 
 	private static RenderItem renderer = new RenderItem();

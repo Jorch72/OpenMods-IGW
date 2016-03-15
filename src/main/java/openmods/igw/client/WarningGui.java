@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiYesNo;
 
+import openmods.igw.config.Config;
 import openmods.igw.utils.TranslationUtilities;
 
 import cpw.mods.fml.relauncher.Side;
@@ -37,6 +38,8 @@ public class WarningGui extends GuiYesNo {
 	}
 
 	public static void markShow() {
+		if (!Config.enableMissingModWarningMessage) return;
+
 		shouldShow = true;
 	}
 

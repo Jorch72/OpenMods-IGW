@@ -8,10 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
 import openmods.Log;
 import openmods.Mods;
+import openmods.config.game.ModStartupHelper;
+import openmods.config.properties.ConfigProcessing;
+import openmods.igw.config.Config;
+import openmods.igw.utils.Constants;
 import openmods.igw.utils.IPageInit;
 import openmods.igw.utils.PageRegistryHelper;
 import openmods.igw.client.GuiOpenEventHandler;
@@ -32,6 +37,13 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	public void preInit(final FMLPreInitializationEvent evt) {
 		if (!cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
 		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
+
+		new ModStartupHelper(Constants.MOD_ID) {
+			@Override
+			protected void populateConfig(final Configuration config) {
+				ConfigProcessing.processAnnotations(Constants.MOD_ID, config, Config.class);
+			}
+		}.preInit(evt.getSuggestedConfigurationFile());
 	}
 
 	@Override
@@ -47,8 +59,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public boolean mustRegister(final String modId) {
-		// TODO Config options because mod pack makers are crazy
-		return true;
+		// DONE Config options because mod pack makers are crazy (It seems)
+		return Config.isEnabled(modId);
 	}
 
 	@Override
