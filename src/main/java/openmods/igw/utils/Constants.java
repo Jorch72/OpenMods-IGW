@@ -8,6 +8,7 @@ public final class Constants {
 	public static final String MOD_ID = "OpenMods-IGW";
 	public static final String NAME = "OpenMods-IGW";
 	public static final String VERSION = "$VERSION$";
+	public static final String FACTORY_CLASS = "openmods.igw.client.GuiFactory";
 	/*
 	public static final DepBuilder DEPENDENCIES = new DepBuilder()
 			.addDep(DepBuilder.Type.AFTER, Mods.IGW)

@@ -5,6 +5,8 @@ import openmods.config.properties.ConfigProperty;
 
 import java.lang.annotation.Annotation;
 
+@SuppressWarnings("unused")
+// Access via reflection
 public class Config {
 
 	private static final String WIKI_INTEGRATION_CATEGORY = "integration.wiki";

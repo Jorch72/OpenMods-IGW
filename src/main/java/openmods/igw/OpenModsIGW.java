@@ -12,7 +12,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 /**
  * @author boq
  */
-@Mod(modid = Constants.MOD_ID, name = Constants.NAME, version = Constants.VERSION, dependencies = Constants.DEPS)
+@Mod(modid = Constants.MOD_ID, name = Constants.NAME, version = Constants.VERSION, dependencies = Constants.DEPS,
+		guiFactory = Constants.FACTORY_CLASS)
 public class OpenModsIGW {
 
 	@Mod.Instance(Constants.MOD_ID)
