@@ -1,5 +1,7 @@
 package openmods.igw.proxies;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import igwmod.api.WikiRegistry;
 import igwmod.gui.tabs.IWikiTab;
 
@@ -15,6 +17,7 @@ import openmods.Log;
 import openmods.Mods;
 import openmods.config.game.ModStartupHelper;
 import openmods.config.properties.ConfigProcessing;
+import openmods.igw.common.OpenModsCommonTab;
 import openmods.igw.config.Config;
 import openmods.igw.utils.Constants;
 import openmods.igw.utils.IPageInit;
@@ -54,6 +57,10 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
 		if (this.abort) return;
+		if (Config.useUniqueWikiTab) {
+			this.handleUniqueWikiTab();
+			return;
+		}
 		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class);
 	}
 
@@ -94,5 +101,27 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		} else {
 			Log.warn("Failed to find items, blocks and entities for " + modId);
 		}
+	}
+
+	private void handleUniqueWikiTab() {
+		final List<Pair<String, String>> entitiesEntries = Lists.newArrayList();
+		final List<Pair<String, ItemStack>> itemsBlocksEntries = Lists.newArrayList();
+		final Map<String, ItemStack> allClaimedPages = Maps.newHashMap();
+		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = Maps.newHashMap();
+
+		for (final String modId : Constants.CURRENTLY_SUPPORTED_MODS) {
+			if (!this.mustRegister(modId)) continue;
+
+			final PageRegistryHelper helper = new PageRegistryHelper();
+			helper.loadItems();
+			// Maybe this could be moved to outside foreach construct.
+
+			entitiesEntries.addAll(helper.claimEntities(modId));
+			itemsBlocksEntries.addAll(helper.claimModObjects(modId));
+			allClaimedEntities.putAll(helper.getAllClaimedEntitiesPages());
+			allClaimedPages.putAll(helper.getAllClaimedPages());
+		}
+
+		WikiRegistry.registerWikiTab(new OpenModsCommonTab(itemsBlocksEntries, allClaimedPages, allClaimedEntities));
 	}
 }

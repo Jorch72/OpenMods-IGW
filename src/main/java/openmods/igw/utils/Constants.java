@@ -1,5 +1,7 @@
 package openmods.igw.utils;
 
+import openmods.Mods;
+
 /**
  * @author TheSilkMiner
  */
@@ -21,4 +23,8 @@ public final class Constants {
 
 	public static final String CLIENT_PROXY = "openmods.igw.proxies.ClientProxy";
 	public static final String COMMON_PROXY = "openmods.igw.proxies.CommonProxy";
+
+	public static final String[] CURRENTLY_SUPPORTED_MODS = new String[] {
+																			Mods.OPENBLOCKS,
+																		 };
 }
