@@ -59,7 +59,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public boolean mustRegister(final String modId) {
-		// DONE Config options because mod pack makers are crazy (It seems)
 		return Config.isEnabled(modId);
 	}
 
