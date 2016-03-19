@@ -95,8 +95,9 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				WikiRegistry.registerWikiTab(tab);
 			} catch (final NoSuchMethodException e) {
 				Log.warn(e, "Unable to instantiate specified tab class. Invalid constructor!");
-			} catch (final ReflectiveOperationException e) {
-				Log.warn(e, "Invalid constructor arguments.");
+			} catch (final Exception e) {
+				// So ReflectiveOperationException is only from Java 7 onwards...
+				Log.warn(e, "Invalid constructor arguments."); // I guess
 			}
 		} else {
 			Log.warn("Failed to find items, blocks and entities for " + modId);

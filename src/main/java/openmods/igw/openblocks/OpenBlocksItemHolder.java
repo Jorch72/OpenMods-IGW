@@ -5,6 +5,7 @@ import openmods.Mods;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder(Mods.OPENBLOCKS)
+@SuppressWarnings("WeakerAccess")
 public class OpenBlocksItemHolder {
 
 	@GameRegistry.ObjectHolder("flag")

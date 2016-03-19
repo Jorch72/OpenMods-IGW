@@ -13,6 +13,8 @@ public final class TranslationUtilities {
 		return TranslationUtilities.translate(Constants.MOD_ID.toLowerCase().replace('-', '.'), id);
 	}
 
+	@SuppressWarnings("WeakerAccess")
+	//@Explain("API method")
 	public static String translate(final String mod, final String id) {
 
 		return StatCollector.translateToLocal(String.format("%s.%s", mod, id.toLowerCase().trim()));

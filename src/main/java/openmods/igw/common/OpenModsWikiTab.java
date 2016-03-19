@@ -34,7 +34,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public abstract class OpenModsWikiTab implements IWikiTab {
 
-	private static RenderItem renderer = new RenderItem();
+	private static final RenderItem renderer = new RenderItem();
 
 	private ItemStack tabIcon;
 	private Entity tabEntity;
@@ -71,7 +71,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		};
 	}
 
-	protected static IPageLinkFactory createItemPageFactory(final String location, final ItemStack itemStack) {
+	private static IPageLinkFactory createItemPageFactory(final String location, final ItemStack itemStack) {
 		return new IPageLinkFactory() {
 			@Override
 			public IPageLink createPage(final LinkNumerator numerator) {
@@ -183,7 +183,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		return null;
 	}
 
-	protected final ItemStack createFallbackItemStack() {
+	private ItemStack createFallbackItemStack() {
 		return new ItemStack(OpenModsWikiTab.firstNonNull(this.getCandidates()));
 	}
 
@@ -205,6 +205,8 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		return toArray.toArray(new Item[toArray.size()]);
 	}
 
+	@SuppressWarnings("WeakerAccess")
+	//@Explain("Designed for extension")
 	protected Item[] getItemCandidates() {
 		return null;
 	}
@@ -217,8 +219,9 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		try {
 			return clazz.getConstructor(net.minecraft.world.World.class)
 					.newInstance(FMLClientHandler.instance().getClient().theWorld);
-		} catch (ReflectiveOperationException e) {
-			Log.warn(e, "The entity %s does not have a constructor with a single world parameter.", clazz);
+		} catch (Exception e) {
+			// So ReflectiveOperationException is only from Java 7 onwards...
+			Log.warn(e, "The entity %s does not have a constructor with a single world parameter.", clazz); // I guess
 			return null;
 		}
 	}

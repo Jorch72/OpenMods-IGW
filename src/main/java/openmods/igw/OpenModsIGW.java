@@ -20,7 +20,7 @@ public class OpenModsIGW {
 	public static OpenModsIGW instance;
 
 	@SidedProxy(modId = Constants.MOD_ID, clientSide = Constants.CLIENT_PROXY, serverSide = Constants.COMMON_PROXY)
-	public static IInitProxy proxy;
+	private static IInitProxy proxy;
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {

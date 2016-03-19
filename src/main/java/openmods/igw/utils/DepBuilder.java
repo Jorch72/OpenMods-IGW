@@ -1,8 +1,7 @@
 package openmods.igw.utils;
 
-/**
- * @author TheSilkMiner
- */
+@SuppressWarnings("WeakerAccess")
+//@Explain("Why??????? Utility class does not necessary mean only utils package!!!")
 public class DepBuilder {
 
 	public enum Type {
@@ -12,17 +11,17 @@ public class DepBuilder {
 		BEFORE(Order.BEFORE),
 		AFTER(Order.AFTER);
 
-		private boolean required;
+		private final boolean required;
 
-		private Order order;
+		private final Order order;
 
-		Type(boolean required, Order order) {
+		Type(final boolean required, final Order order) {
 
 			this.required = required;
 			this.order = order;
 		}
 
-		Type(Order order) {
+		Type(final Order order) {
 
 			this(false, order);
 		}
@@ -48,7 +47,7 @@ public class DepBuilder {
 		}
 	}
 
-	private StringBuilder builder;
+	private final StringBuilder builder;
 
 	public DepBuilder() {
 

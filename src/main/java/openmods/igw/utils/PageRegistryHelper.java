@@ -37,7 +37,8 @@ public class PageRegistryHelper {
 		void call(String modId, String name, T object);
 	}
 
-	private static <T> void iterateGameData(FMLControlledNamespacedRegistry<T> registry, Callback<T> callback) {
+	private static <T> void iterateGameData(final FMLControlledNamespacedRegistry<T> registry,
+											final Callback<T> callback) {
 
 		@SuppressWarnings("unchecked")
 		Set<String> ids = registry.getKeys();
@@ -67,7 +68,7 @@ public class PageRegistryHelper {
 	private final Map<String, ItemStack> claimedPages = Maps.newHashMap();
 	private final Map<String, Class<? extends Entity>> claimedEntities = Maps.newHashMap();
 
-	private ModEntry getOrCreateModEntry(String modId) {
+	private ModEntry getOrCreateModEntry(final String modId) {
 		ModEntry result = mods.get(modId);
 		if (result == null) {
 			result = new ModEntry();
@@ -99,7 +100,7 @@ public class PageRegistryHelper {
 		});
 	}
 
-	protected void iterateEntities(Callback<Class<? extends Entity>> callback) {
+	private void iterateEntities(final Callback<Class<? extends Entity>> callback) {
 		@SuppressWarnings("unchecked")
 		final Set<Entry<Class<? extends Entity>, String>> entrySet = EntityList.classToStringMapping.entrySet();
 		for (Map.Entry<Class<? extends Entity>, String> entry : entrySet) {
@@ -111,7 +112,7 @@ public class PageRegistryHelper {
 		}
 	}
 
-	public List<Pair<String, ItemStack>> claimModObjects(String modId) {
+	public List<Pair<String, ItemStack>> claimModObjects(final String modId) {
 		final ModEntry entry = mods.get(modId);
 		if (entry == null) return null;
 
@@ -155,7 +156,7 @@ public class PageRegistryHelper {
 		return results;
 	}
 
-	private void claimPage(ItemStack stack, String page) {
+	private void claimPage(final ItemStack stack, final String page) {
 		WikiRegistry.registerBlockAndItemPageEntry(stack, page);
 		if (!claimedPages.containsKey(page)) claimedPages.put(page, stack);
 	}
@@ -164,7 +165,7 @@ public class PageRegistryHelper {
 		return ImmutableMap.copyOf(claimedPages);
 	}
 
-	public List<Pair<String, String>> claimEntities(String modId) {
+	public List<Pair<String, String>> claimEntities(final String modId) {
 		final List<Pair<String, String>> result = Lists.newArrayList();
 
 		final ModEntry entry = mods.get(modId);

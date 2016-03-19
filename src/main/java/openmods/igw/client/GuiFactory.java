@@ -11,6 +11,8 @@ import java.util.Set;
 
 public class GuiFactory implements IModGuiFactory {
 
+	@SuppressWarnings("WeakerAccess")
+	//@Explain("Forge wants it public...")
 	public static class ConfigGui extends OpenModsConfigScreen {
 
 		public ConfigGui(final GuiScreen parent) {
