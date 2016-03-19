@@ -39,7 +39,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	private ItemStack tabIcon;
 	private Entity tabEntity;
 
-	private static class LinkNumerator {
+	protected static class LinkNumerator {
 		private int staticEntries;
 		private int itemEntries;
 
@@ -47,7 +47,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			return this.staticEntries++;
 		}
 
-		private int getNextItemId() {
+		public int getNextItemId() {
 			return this.itemEntries++;
 		}
 	}
@@ -56,29 +56,85 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		IPageLink createPage(final LinkNumerator numerator);
 	}
 
-	protected static IPageLinkFactory createStaticPageFactory(final String id, final OpenModsWikiTab tab) {
+	protected interface IStaticPagePositionProvider {
+		int getX(final LinkNumerator numerator);
+		int getY(final LinkNumerator numerator);
+	}
+
+	protected interface IItemPositionProvider {
+		int getX(final int entryId);
+		int getY(final int entryId);
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	// It is getting annoying
+	protected static class CommonPositionProviders {
+		public static final IStaticPagePositionProvider STATIC_PAGES = new IStaticPagePositionProvider() {
+			@Override
+			public int getX(final LinkNumerator numerator) {
+				return 80;
+			}
+
+			@Override
+			public int getY(final LinkNumerator numerator) {
+				return 125 + 11 * numerator.getNextStaticId();
+			}
+		};
+
+		public static final IItemPositionProvider ITEMS_WITH_DEFAULT_STATIC_PAGES = new IItemPositionProvider() {
+
+			@Override
+			public int getX(final int entryId) {
+				return 41 + entryId % 2 * 18;
+			}
+
+			@Override
+			public int getY(final int entryId) {
+				return 111 + entryId / 2 * 18;
+			}
+		};
+
+		public static final IItemPositionProvider ITEMS_WITHOUT_STATIC_PAGES = new IItemPositionProvider() {
+
+			@Override
+			public int getX(final int entryId) {
+				return 41 + entryId % 2 * 18;
+			}
+
+			@Override
+			public int getY(final int entryId) {
+				return 75 + entryId / 2 * 18;
+			}
+		};
+	}
+
+	protected static IPageLinkFactory createStaticPageFactory(final String id,
+															  final OpenModsWikiTab tab,
+															  final IStaticPagePositionProvider provider) {
 		return new IPageLinkFactory() {
 			@Override
 			public IPageLink createPage(final LinkNumerator numerator) {
 				final String pageName = tab.getPageName().endsWith(".")? tab.getPageName() : (tab.getPageName() + ".");
 				final String localizedLinkName = StatCollector.translateToLocal(pageName + id);
 				return new LocatedString(localizedLinkName,
-						80,
-						125 + 11 * numerator.getNextStaticId(),
+						provider.getX(numerator),
+						provider.getY(numerator),
 						false,
 						"openmods-igw:tab/" + id);
 			}
 		};
 	}
 
-	private static IPageLinkFactory createItemPageFactory(final String location, final ItemStack itemStack) {
+	private static IPageLinkFactory createItemPageFactory(final String location,
+														  final ItemStack itemStack,
+														  final IItemPositionProvider provider) {
 		return new IPageLinkFactory() {
 			@Override
 			public IPageLink createPage(final LinkNumerator numerator) {
-				final int entryNumber = numerator.getNextItemId();
+				final int entryId = numerator.getNextItemId();
 				return new LocatedStack(itemStack,
-						41 + entryNumber % 2 * 18,
-						111 + entryNumber / 2 * 18) {
+						provider.getX(entryId),
+						provider.getY(entryId)) {
 					@Override
 					public String getLinkAddress() {
 						return location;
@@ -101,10 +157,13 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
 	public OpenModsWikiTab(final List<Pair<String, ItemStack>> stacks,
 							 final Map<String, ItemStack> allClaimedPages,
-							 final Map<String, Class<? extends Entity>> allClaimedEntities) {
+							 final Map<String, Class<? extends Entity>> allClaimedEntities,
+						     final IItemPositionProvider positionProvider) {
 
 		for (final Pair<String, ItemStack> e : stacks)
-			this.itemPageFactories.add(createItemPageFactory(e.getLeft(), e.getRight()));
+			this.itemPageFactories.add(createItemPageFactory(e.getLeft(),
+					e.getRight(),
+					positionProvider));
 
 		this.defaultIcons = allClaimedPages;
 		this.defaultEntities = allClaimedEntities;

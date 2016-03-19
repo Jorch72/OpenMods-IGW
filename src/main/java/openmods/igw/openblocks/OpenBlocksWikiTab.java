@@ -31,14 +31,24 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 							 final Map<String, ItemStack> allClaimedPages,
 							 final Map<String, Class<? extends Entity>> allClaimedEntities) {
 
-		super(stacks, allClaimedPages, allClaimedEntities);
+		super(stacks, allClaimedPages, allClaimedEntities, new IItemPositionProvider() {
+			@Override
+			public int getX(final int entryId) {
+				return 41 + entryId % 2 * 18;
+			}
 
-		this.addPageToStaticPages(createStaticPageFactory("about", this));
-		this.addPageToStaticPages(createStaticPageFactory("credits", this));
-		this.addPageToStaticPages(createStaticPageFactory("obUtils", this));
-		this.addPageToStaticPages(createStaticPageFactory("bKey", this));
-		this.addPageToStaticPages(createStaticPageFactory("enchantments", this));
-		this.addPageToStaticPages(createStaticPageFactory("changelogs", this));
+			@Override
+			public int getY(final int entryId) {
+				return 111 + entryId / 2 * 18;
+			}
+		});
+
+		this.addPageToStaticPages(createStaticPageFactory("about", this, CommonPositionProviders.STATIC_PAGES));
+		this.addPageToStaticPages(createStaticPageFactory("credits", this, CommonPositionProviders.STATIC_PAGES));
+		this.addPageToStaticPages(createStaticPageFactory("obUtils", this, CommonPositionProviders.STATIC_PAGES));
+		this.addPageToStaticPages(createStaticPageFactory("bKey", this, CommonPositionProviders.STATIC_PAGES));
+		this.addPageToStaticPages(createStaticPageFactory("enchantments", this, CommonPositionProviders.STATIC_PAGES));
+		this.addPageToStaticPages(createStaticPageFactory("changelogs", this, CommonPositionProviders.STATIC_PAGES));
 	}
 
 	@Override
