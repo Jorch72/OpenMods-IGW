@@ -1,9 +1,10 @@
 package openmods.igw.utils;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
 //@Explain("Why??????? Utility class does not necessary mean only utils package!!!")
 public class DepBuilder {
 
+	@SuppressWarnings("unused")
 	public enum Type {
 
 		REQUIRED_BEFORE(true, Order.BEFORE),
@@ -66,6 +67,8 @@ public class DepBuilder {
 		return this;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
+	//@Explain("API method")
 	public DepBuilder addDepWithVersion(Type type, String modId, String minVer, String maxVer) {
 
 		this.addDep(type, modId);

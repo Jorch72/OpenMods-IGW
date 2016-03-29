@@ -9,11 +9,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-/**
- * @author boq
- */
 @Mod(modid = Constants.MOD_ID, name = Constants.NAME, version = Constants.VERSION, dependencies = Constants.DEPS,
 		guiFactory = Constants.FACTORY_CLASS)
+@SuppressWarnings("unused")
+//@Explain("Forge")
 public class OpenModsIGW {
 
 	@Mod.Instance(Constants.MOD_ID)

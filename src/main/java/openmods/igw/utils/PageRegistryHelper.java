@@ -30,6 +30,7 @@ import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
 import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
 import cpw.mods.fml.common.registry.GameData;
 
+@SuppressWarnings("unused")
 public class PageRegistryHelper {
 
 	private interface Callback<T> {

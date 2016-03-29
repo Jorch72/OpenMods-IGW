@@ -15,6 +15,8 @@ import java.util.Map;
 
 public class OpenModsCommonTab extends OpenModsWikiTab {
 
+	@SuppressWarnings("unused")
+	//@Explain("??")
 	public OpenModsCommonTab(final List<Pair<String, ItemStack>> stacks,
 							 final Map<String, ItemStack> allClaimedPages,
 							 final Map<String, Class<? extends Entity>> allClaimedEntities) {

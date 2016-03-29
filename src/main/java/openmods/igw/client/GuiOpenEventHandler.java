@@ -12,6 +12,8 @@ public class GuiOpenEventHandler {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("unused")
+	//@Explain("Called by Forge, not by us")
 	public void onMainMenuOpen(final GuiOpenEvent event) {
 		if (!(event.gui instanceof GuiMainMenu)) return;
 		if (!WarningGui.shallShow()) return;

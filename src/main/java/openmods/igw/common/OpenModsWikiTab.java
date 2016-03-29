@@ -32,6 +32,8 @@ import openmods.Log;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
+@SuppressWarnings("SameReturnValue")
+//@Explain("Designed for extension")
 public abstract class OpenModsWikiTab implements IWikiTab {
 
 	private static final RenderItem renderer = new RenderItem();
@@ -39,6 +41,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	private ItemStack tabIcon;
 	private Entity tabEntity;
 
+	@SuppressWarnings("unused")
 	private static class LinkNumerator {
 		private int staticEntries;
 		private int itemEntries;
@@ -56,7 +59,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		IPageLink createPage(final LinkNumerator numerator);
 	}
 
-	@SuppressWarnings("WeakerAccess")
+	@SuppressWarnings({"WeakerAccess", "UnusedParameters"})
 	// I confirm the annoyances
 	protected interface IStaticPagePositionProvider {
 		int getX(final LinkNumerator numerator);
@@ -68,7 +71,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		int getY(final int entryId);
 	}
 
-	@SuppressWarnings("WeakerAccess")
+	@SuppressWarnings({"WeakerAccess", "unused"})
 	// It is getting annoying
 	protected static class CommonPositionProviders {
 		public static final IStaticPagePositionProvider STATIC_PAGES = new IStaticPagePositionProvider() {
@@ -112,6 +115,8 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		};
 	}
 
+	@SuppressWarnings("SameParameterValue")
+	//@Explain("provider is there in case someone wants to provide a custom one")
 	protected static IPageLinkFactory createStaticPageFactory(final String id,
 															  final OpenModsWikiTab tab,
 															  final IStaticPagePositionProvider provider) {
@@ -159,7 +164,9 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	private final Map<String, ItemStack> defaultIcons;
 	private final Map<String, Class<? extends Entity>> defaultEntities;
 
-	public OpenModsWikiTab(final List<Pair<String, ItemStack>> stacks,
+	@SuppressWarnings("unused")
+	//@Explain("??")
+	protected OpenModsWikiTab(final List<Pair<String, ItemStack>> stacks,
 							 final Map<String, ItemStack> allClaimedPages,
 							 final Map<String, Class<? extends Entity>> allClaimedEntities,
 						     final IItemPositionProvider positionProvider) {
@@ -178,12 +185,12 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		return this.getTabName();
 	}
 
-	public abstract String getTabName();
+	protected abstract String getTabName();
 
 	/*
 	 * Dot at the end is automatically appended
 	 */
-	public abstract String getPageName();
+	protected abstract String getPageName();
 
 	@Override
 	public abstract List<IReservedSpace> getReservedSpaces();

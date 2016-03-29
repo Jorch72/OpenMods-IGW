@@ -9,6 +9,7 @@ import openmods.igw.utils.Constants;
 
 import java.util.Set;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class GuiFactory implements IModGuiFactory {
 
 	@SuppressWarnings("WeakerAccess")

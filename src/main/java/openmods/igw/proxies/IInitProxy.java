@@ -4,9 +4,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-/**
- * @author boq
- */
+@SuppressWarnings("UnusedParameters")
+//@Explain("API methods")
 public interface IInitProxy {
 
 	void preInit(FMLPreInitializationEvent evt);

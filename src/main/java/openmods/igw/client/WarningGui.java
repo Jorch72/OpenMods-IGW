@@ -26,6 +26,7 @@ public class WarningGui extends GuiYesNo {
 	private static final int INSTALL = 1;
 	private static final int EXIT_CODE_INTERNAL = -101;
 
+	@SuppressWarnings({"WeakerAccess","unused"})
 	public WarningGui() {
 		super(null,
 				TITLE,
@@ -43,6 +44,7 @@ public class WarningGui extends GuiYesNo {
 		shouldShow = true;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	public static boolean shallShow() {
 		return shouldShow;
 	}

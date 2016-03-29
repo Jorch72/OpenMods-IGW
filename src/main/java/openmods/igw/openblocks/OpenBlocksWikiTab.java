@@ -27,6 +27,8 @@ import com.google.common.collect.Lists;
  */
 public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 
+	@SuppressWarnings("unused")
+	//@Explain("Accessed via reflection")
 	public OpenBlocksWikiTab(final List<Pair<String, ItemStack>> stacks,
 							 final Map<String, ItemStack> allClaimedPages,
 							 final Map<String, Class<? extends Entity>> allClaimedEntities) {
