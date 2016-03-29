@@ -2,6 +2,7 @@
 List of things to complete before version **1.0**
 
 - [X] **FIX: Entities not showing when clicking on link in wiki page**
+- [ ] **FEATURE: Current configuration option on wiki page (`[variable{name}]`)**
 - [ ] Checkstyle (maybe?)
 - [X] Language updater script
 - [ ] Add block documentation
@@ -11,9 +12,10 @@ List of things to complete before version **1.0**
   - [X] Big Button
   - [X] Block Breaker
   - [X] Block Placer
-  - [X] Builder Guide --> Enhanced Building Guide
-  - [ ] Cannon
-  - [ ] Canvas
+  - [X] Builder Guide (IGN: Enhanced Building Guide)
+  - [X] Cannon (IGN: Item Cannon)
+  - [X] Canvas
+  - [ ] Canvas - Glass version
   - [ ] Donation Station
   - [ ] Drawing Table
   - [ ] Elevator
@@ -115,5 +117,10 @@ List of things to complete before version **1.0**
   - [X] Notification in case of missing IGW Mod (not FML one, but custom)
     - [X] Removed IGW Mod dependency
   - [ ] Configuration
-    - [ ] Turn on and off every integration (modpack makers are crazy)
-	- [ ] Turn on and off separate tabs for every OpenMod
+    - [X] Turn on and off every integration (modpack makers are crazy)
+	- [ ] Turn on and off separate tabs for every OpenMod (WIP)
+	  - [X] Tab creation
+	  - [X] Config option
+	  - [X] Tab finalization
+	    - [X] Remove hardcoded values for `IPageFactory`ies
+	  - [ ] Static pages (?)

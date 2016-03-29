@@ -1,14 +1,164 @@
-[crafting{200,15,key=block/openblocks.canvas}]
+[prefix{l}][prefix{1}]CANVAS [prefix{}] [prefix{}]
 
+"[prefix{o}]A [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}]to paint white canvases and other blocks. [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Canvas is a completely white block where you can freely paint on, either completely or with the use of [link{openmods-igw:item/openblocks.stencil}]stencils [link{}].
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 The canvas is a perfectly white block that's perfect for painting.
 See the [link{openmods-igw:block/openblocks.paintmixer}]Paint Mixer [link{}]for information about making paints.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]Any tool
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:canvas
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Canvas can be mined with any type of tool, dropping itself in the process.
+The type of tool used does not affect the breaking speed.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or any tool: [prefix{}]1.58 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,456,key=block/openblocks.canvas}]
+
+
+
+
+
+
+
+
+
+
+
+[prefix{2}]Painting [prefix{}]
+A special version of canvas can be obtained through painting a supported block with a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
+The painted block will transform into a special version of the canvas, with its original texture as a background and the painted colors as an overlay.
+This special version of the canvas, also, won't drop itself when broken, but it will drop the block it was obtained from, e.g. [link{block/wood.oak}]Planks [link{}].
+
+If the painted block is a supported transparent block (e.g. [link{block/glass}]Glass [link{}]), you will obtain a [link{openmods-igw:block/openblocks.canvasglass}]Glass Canvas [link{}] instead.
+
+[prefix{o}]See also: Gallery [link{}]
+
+[prefix{l}]Usage [prefix{}]
+The only use of the Canvas is painting.
+You can paint directly on it with the use of a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
+You can also paint by placing [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}] and then right clicking the canvas spots with the paint brush, drawing the pattern on the canvas.
+
+Using a [link{openmods-igw:item/openblocks.squeegee}]Squeegee [link{}] you can clean the canvas from paint.
+Special canvases cleaned by paint will turn back to the original block.
+
+The blocks currently (1.5.1) natively supported are:
+- [prefix{n}]Cobblestone [prefix{}] (Minecraft)
+- [prefix{n}]Decoration Blocks [prefix{}] (Extra Utilities)
+- [prefix{n}]Decoration Bricks [prefix{}] (Tinkers' Construct)
+- [prefix{n}]Dirt [prefix{}] (Minecraft)
+- [prefix{n}]Emerald Block [prefix{}] (Minecraft)
+- [prefix{n}]End Stone [prefix{}] (Minecraft)
+- [prefix{n}]Fancy Decoration Bricks [prefix{}] (Tinkers' Construct)
+- [prefix{n}]Glass [prefix{}] (Minecraft)
+- [prefix{n}]Glass [prefix{}] (Tinkers' Construct)
+- [prefix{n}]Gold Block [prefix{}] (Minecraft)
+- [prefix{n}]Green Screen [prefix{}] (Extra Utilities)
+- [prefix{n}]Iron Block [prefix{}] (Minecraft)
+- [prefix{n}]Lapis Lazuli Block [prefix{}] (Minecraft)
+- [prefix{n}]Mossy Cobblestone [prefix{}] (Minecraft)
+- [prefix{n}]Quartz Block [prefix{}] (Minecraft)
+- [prefix{n}]Sandstone [prefix{}] (Minecraft)
+- [prefix{n}]Stone [prefix{}] (Minecraft)
+- [prefix{n}]Stone Bricks [prefix{}] (Minecraft)
+- [prefix{n}]Wood Log [prefix{}] (Minecraft)
+- [prefix{n}]Wooden Planks [prefix{}] (Biomes O' Plenty)
+- [prefix{n}]Wooden Planks [prefix{}] (Minecraft)
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Simply place down a Canvas block and then use a Paint Brush, with Stencils if needed, to paint it.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:canvas [prefix{}]
+Allows to enable (true) or disable (false) the Canvas.
+[prefix{o}]Default value: [prefix{}] true
+
+[prefix{l}]Tutorials [prefix{}]
+A YouTube tutorial made by mikeemoo (Mike) is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
+Link: [prefix{n}] [prefix{1}]https://youtu.be/M8LVLw-d100 [prefix{}] [prefix{}]
+
+[prefix{l}]Useful structures [prefix{}]
+There are no useful structures for this block.
+[prefix{o}]Reason: [link{}] It's up to your creativity.
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Canvas added.
+[prefix{2}]1.2.4: [prefix{}]Fixed Canvas crashing when clicking an empty side.
+[prefix{2}]1.2.5: [prefix{}]Fixed missing drops from Canvas.
+[prefix{2}]1.4.3: [prefix{}]Canvas can now be painted with other mods' paint brushes.
+[prefix{2}]1.4.3: [prefix{}]Disabled Canvas's Tile Entity ticking.
+[prefix{2}]1.4.4: [prefix{}]Fixed Canvas block breaking animation.
+
+[prefix{l}]Trivia [prefix{}]
+- Canvas blocks should be used for minimal builds: massive scale ones have been known to cause server disconnection.
+- Originally, every Canvas pixel was going to be paintable with a different colour. The idea has then been scrapped.
+- When a block is replaced by the Canvas, it will acquire all Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1575, openmods-igw:wiki/worldwide/images/block/canvas/gallery_blocks_painted.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]Two non-canvas blocks painted with Paint Brushes. These blocks have now become canvases. [prefix{}]
+
+[image{200, 1739, openmods-igw:wiki/worldwide/images/block/canvas/gallery_canvas_replacing_comparison.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The [link{block/blockIron}]Iron Block [link{}]inherits all the features of the Canvas it was replaced with. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:item/openblocks.paintbrush}]Paintbrush [link{}]
+[link{openmods-igw:item/openblocks.stencil}]Stencil [link{}]
+[link{openmods-igw:block/openblocks.paintmixer}]Paint Mixer [link{}]
+[link{openmods-igw:block/openblocks.canvasglass}]Glass Canvas [link{}]

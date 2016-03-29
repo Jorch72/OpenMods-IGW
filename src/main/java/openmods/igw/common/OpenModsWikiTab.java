@@ -39,7 +39,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	private ItemStack tabIcon;
 	private Entity tabEntity;
 
-	protected static class LinkNumerator {
+	private static class LinkNumerator {
 		private int staticEntries;
 		private int itemEntries;
 
@@ -47,7 +47,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			return this.staticEntries++;
 		}
 
-		public int getNextItemId() {
+		private int getNextItemId() {
 			return this.itemEntries++;
 		}
 	}
@@ -56,6 +56,8 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		IPageLink createPage(final LinkNumerator numerator);
 	}
 
+	@SuppressWarnings("WeakerAccess")
+	// I confirm the annoyances
 	protected interface IStaticPagePositionProvider {
 		int getX(final LinkNumerator numerator);
 		int getY(final LinkNumerator numerator);
@@ -81,6 +83,8 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			}
 		};
 
+		@SuppressWarnings("unused")
+		// This shouldn't even exist
 		public static final IItemPositionProvider ITEMS_WITH_DEFAULT_STATIC_PAGES = new IItemPositionProvider() {
 
 			@Override
