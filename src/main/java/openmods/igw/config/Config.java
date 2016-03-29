@@ -9,7 +9,7 @@ import java.lang.annotation.Annotation;
 // Access via reflection
 public class Config {
 
-	private static final String WIKI_INTEGRATION_CATEGORY = "integration.wiki";
+	private static final String MODS_WIKI_INTEGRATION_CATEGORY = "integration.wiki.mods";
 	private static final String TAB_WIKI_INTEGRATION_CATEGORY = "integration.wiki.tabs";
 	private static final String MOD_INTEGRATION_CATEGORY = "integration.mods";
 	private static final String WARNINGS_CATEGORY = "warnings";
@@ -20,7 +20,7 @@ public class Config {
 	public static boolean enableMissingModWarningMessage = true;
 
 	@ConfigProperty(name = Mods.OPENBLOCKS,
-			category = WIKI_INTEGRATION_CATEGORY,
+			category = MODS_WIKI_INTEGRATION_CATEGORY,
 			comment = "Enables the Wiki integration for OpenBlocks")
 	public static boolean enableOpenBlocksIntegration = true;
 
@@ -47,7 +47,7 @@ public class Config {
 
 			ConfigProperty configProperty = (ConfigProperty) annotation;
 
-			if (!configProperty.category().equals(WIKI_INTEGRATION_CATEGORY)) continue;
+			if (!configProperty.category().equals(MODS_WIKI_INTEGRATION_CATEGORY)) continue;
 			if (!configProperty.name().equals(modId)) continue;
 
 			try {
