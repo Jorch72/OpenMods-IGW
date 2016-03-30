@@ -18,6 +18,7 @@ import openmods.Mods;
 import openmods.config.game.ModStartupHelper;
 import openmods.config.properties.ConfigProcessing;
 import openmods.igw.common.OpenModsCommonTab;
+import openmods.igw.common.WikiEventHandler;
 import openmods.igw.config.Config;
 import openmods.igw.utils.Constants;
 import openmods.igw.utils.IPageInit;
@@ -63,6 +64,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			return;
 		}
 		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class);
+		MinecraftForge.EVENT_BUS.register(new WikiEventHandler());
 	}
 
 	@Override
