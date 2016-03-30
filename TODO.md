@@ -2,7 +2,7 @@
 List of things to complete before version **1.0**
 
 - [X] **FIX: Entities not showing when clicking on link in wiki page**
-- [ ] **FEATURE: Current configuration option on wiki page (`[variable{name}]`)**
+- [X] **FEATURE: Current configuration option on wiki page (`[variable{name}]`)**
 - [ ] Checkstyle (maybe?)
 - [X] Language updater script
 - [ ] Add block documentation
@@ -15,7 +15,7 @@ List of things to complete before version **1.0**
   - [X] Builder Guide (IGN: Enhanced Building Guide)
   - [X] Cannon (IGN: Item Cannon)
   - [X] Canvas
-  - [ ] Canvas - Glass version
+  - [ ] Canvas - Glass version (IGN: Glass Canvas)
   - [ ] Donation Station
   - [ ] Drawing Table
   - [ ] Elevator

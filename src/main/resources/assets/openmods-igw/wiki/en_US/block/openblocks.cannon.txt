@@ -73,6 +73,7 @@ Power the Item Cannon with a power source, such as a [link{block/lever}]Lever [l
 [prefix{5}]B:cannon [prefix{}]
 Allows to enable (true) or disable (false) the Item Cannon.
 [prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@cannon}]
 
 [prefix{l}]Tutorials [prefix{}]
 There are no tutorials for this block.
@@ -81,7 +82,7 @@ There are no tutorials for this block.
 [prefix{2}]Test environment [prefix{}]
 This structure has been set up buy nevercast while he was trying to fix the cannon aiming system.
 Even if it does not have a real functionality, it is still in the list as an example of use of the Item Cannon.
-[image{200, 1025, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
+[image{200, 1030, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
 
 
 
@@ -109,7 +110,7 @@ All Data Values from 0 to 15 represent the basic block.
 - Even if activated in different times, all the Item Cannons currently loaded will shoot the items at the same moment.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1345, openmods-igw:wiki/worldwide/images/block/cannon/gallery_cannon_recoil.png}]
+[image{200, 1350, openmods-igw:wiki/worldwide/images/block/cannon/gallery_cannon_recoil.png}]
 
 
 

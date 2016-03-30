@@ -114,6 +114,7 @@ Now the block placer should automatically place a block in front of him.
 [prefix{5}]B:blockPlacer [prefix{}]
 Allows to enable (true) or disable (false) the Block Placer.
 [prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@blockPlacer}]
 
 [prefix{l}]Tutorials [prefix{}]
 There are no tutorials for this block.
@@ -123,7 +124,7 @@ There are no tutorials for this block.
 This is a structure I built once because I had to mine some blocks ([link{block/oreRedstone}]Redstone Ores [link{}]), but I had only a Silk Touch pick.
 In fact, this structure is mainly thought for people whose only [link{item/pickaxeWood}]Pickaxe [link{}] is enchanted with Silk Touch and they have to mine some ores.
 
-[image{200, 1551, openmods-igw:wiki/worldwide/images/block/blockPlacer/structures_silkfixer_no_ref.png}]
+[image{200, 1561, openmods-igw:wiki/worldwide/images/block/blockPlacer/structures_silkfixer_no_ref.png}]
 
 
 
@@ -158,7 +159,7 @@ Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will si
 - Even if the block placer uses a fake player to place blocks, it still is unable to use items.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1931, openmods-igw:wiki/worldwide/images/block/blockPlacer/gallery_block_placer_item_use.png}]
+[image{200, 1941, openmods-igw:wiki/worldwide/images/block/blockPlacer/gallery_block_placer_item_use.png}]
 
 
 

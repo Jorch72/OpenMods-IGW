@@ -97,6 +97,7 @@ Simply place down a Canvas block and then use a Paint Brush, with Stencils if ne
 [prefix{5}]B:canvas [prefix{}]
 Allows to enable (true) or disable (false) the Canvas.
 [prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@canvas}]
 
 [prefix{l}]Tutorials [prefix{}]
 A YouTube tutorial made by mikeemoo (Mike) is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
@@ -123,7 +124,7 @@ All Data Values from 0 to 15 represent the basic block.
 - When a block is replaced by the Canvas, it will acquire all Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1575, openmods-igw:wiki/worldwide/images/block/canvas/gallery_blocks_painted.png}]
+[image{200, 1580, openmods-igw:wiki/worldwide/images/block/canvas/gallery_blocks_painted.png}]
 
 
 
@@ -140,7 +141,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]Two non-canvas blocks painted with Paint Brushes. These blocks have now become canvases. [prefix{}]
 
-[image{200, 1739, openmods-igw:wiki/worldwide/images/block/canvas/gallery_canvas_replacing_comparison.png}]
+[image{200, 1744, openmods-igw:wiki/worldwide/images/block/canvas/gallery_canvas_replacing_comparison.png}]
 
 
 
