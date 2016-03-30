@@ -115,8 +115,6 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		};
 	}
 
-	@SuppressWarnings("SameParameterValue")
-	//@Explain("provider is there in case someone wants to provide a custom one")
 	protected static IPageLinkFactory createStaticPageFactory(final String id,
 															  final OpenModsWikiTab tab,
 															  final IStaticPagePositionProvider provider) {

@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("SameParameterValue")
 public final class PackageScanner {
 
 	private PackageScanner() { }
@@ -24,6 +25,7 @@ public final class PackageScanner {
 		return SINGLETON;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public boolean registerPackage(@Nonnull final String packName) {
 
 		openmods.Log.info("Attempting registration of package " + packName);
@@ -35,6 +37,8 @@ public final class PackageScanner {
 		return pkg != null && !this.packages.contains(pkg) && this.packages.add(pkg) && this.invalidate();
 	}
 
+	@SuppressWarnings("SameReturnValue")
+	//@Explain("Returns always true so it can be added at the end of the chain @ line 37")
 	private boolean invalidate() {
 
 		openmods.Log.info("Registration successful");
@@ -42,11 +46,12 @@ public final class PackageScanner {
 		return true;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	public List<Class<?>> scan() {
 
-		openmods.Log.info("Scanning classes...");
-
 		if (!this.cache.isEmpty()) return this.cache;
+
+		openmods.Log.info("Scanning classes...");
 
 		final List<Class<?>> classes = Lists.newArrayList();
 
@@ -81,6 +86,11 @@ public final class PackageScanner {
 		}
 
 		this.cache.addAll(classes);
+
+		openmods.Log.info("Scanning completed.");
+		openmods.Log.info("Found %d classes with the specified requirements", this.cache.size());
+
+		for (Class<?> clazz : this.cache) openmods.Log.debug("    %s", clazz.getName());
 
 		return classes;
 	}

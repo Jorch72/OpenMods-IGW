@@ -9,5 +9,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class OpenBlocksItemHolder {
 
 	@GameRegistry.ObjectHolder("flag")
-	public static final Block flag = null;
+	public static final Block FLAG = null;
+
+	@GameRegistry.ObjectHolder("canvasglass")
+	public static final Block GLASS_CANVAS = null;
 }

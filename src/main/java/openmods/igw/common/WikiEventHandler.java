@@ -26,14 +26,15 @@ public class WikiEventHandler {
 
 		final List<Class<?>> classes = Lists.newArrayList();
 
+		PackageScanner.get().registerPackage("openmods.igw.openblocks");
 		// Insert other packages here
 		classes.addAll(PackageScanner.get().scanForAnnotations(CustomHandler.class));
 
 		for (final Class<?> clazz : classes) {
 
-			for (final Method method : clazz.getDeclaredMethods()) {
+			final Map<Method, String> map = Maps.newHashMap();
 
-				final Map<Method, String> map = Maps.newHashMap();
+			for (final Method method : clazz.getDeclaredMethods()) {
 
 				for (final Annotation annotation : method.getDeclaredAnnotations()) {
 
@@ -44,8 +45,9 @@ public class WikiEventHandler {
 
 					//break;
 				}
-				this.handlers.put(clazz, map);
 			}
+
+			this.handlers.put(clazz, map);
 		}
 	}
 

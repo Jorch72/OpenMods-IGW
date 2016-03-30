@@ -89,6 +89,6 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 
 	@Override
 	protected Block[] getBlockCandidates() {
-		return new Block[] {OpenBlocksItemHolder.flag, Blocks.sponge};
+		return new Block[] {OpenBlocksItemHolder.FLAG, Blocks.sponge};
 	}
 }

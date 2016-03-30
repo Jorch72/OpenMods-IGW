@@ -1,6 +1,6 @@
 package openmods.igw.utils;
 
-@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
+@SuppressWarnings({"WeakerAccess"})
 //@Explain("Why??????? Utility class does not necessary mean only utils package!!!")
 public class DepBuilder {
 
