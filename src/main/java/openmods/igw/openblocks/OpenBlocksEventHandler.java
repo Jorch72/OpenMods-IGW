@@ -6,9 +6,11 @@ import net.minecraft.item.ItemStack;
 
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
+import igwmod.gui.tabs.IWikiTab;
 
 import openmods.Mods;
 import openmods.igw.common.CustomHandler;
+import openmods.igw.common.OpenModsWikiTab;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -40,10 +42,14 @@ public class OpenBlocksEventHandler {
 
 		if (event.currentFile.contains("block/openblocks.canvasglass") && OpenBlocksItemHolder.GLASS_CANVAS != null) {
 
-			// Not working when event.associatedStack == null
-			// FIXME
 			openmods.Log.info("Associated Glass Canvas icon to page");
-			event.associatedStack = new ItemStack(OpenBlocksItemHolder.GLASS_CANVAS);
+			final ItemStack newIcon = new ItemStack(OpenBlocksItemHolder.GLASS_CANVAS);
+			event.associatedStack = newIcon;
+			// Since we can't be sure of it, we ask the tab to override the icon.
+			final OpenModsWikiTab tab = this.cast(
+					((openmods.igw.utils.IPageInit) openmods.igw.OpenModsIGW.proxy()) //cast because we know it's safe
+							.getTabForModId(openmods.Mods.OPENBLOCKS));
+			tab.askForIconOverride(newIcon);
 		}
 	}
 
@@ -137,6 +143,11 @@ public class OpenBlocksEventHandler {
 				cpw.mods.fml.common.registry.GameRegistry.findItem(Mods.OPENBLOCKS, configId) != null);
 
 		event.replacementValue = CACHE_ITEM.get(configId).toString();
+	}
+
+	private OpenModsWikiTab cast(final IWikiTab tab) {
+		if (!(tab instanceof OpenModsWikiTab)) throw new IllegalArgumentException();
+		return (OpenModsWikiTab) tab;
 	}
 
 	private boolean canApply(final String type, final String variable) {

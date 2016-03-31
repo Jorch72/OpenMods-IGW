@@ -156,11 +156,12 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	}
 
 	private final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
-
 	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
 
 	private final Map<String, ItemStack> defaultIcons;
 	private final Map<String, Class<? extends Entity>> defaultEntities;
+
+	private ItemStack iconRequest;
 
 	@SuppressWarnings("unused")
 	//@Explain("??")
@@ -176,6 +177,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
 		this.defaultIcons = allClaimedPages;
 		this.defaultEntities = allClaimedEntities;
+		this.iconRequest = null; // Useless, but hey!
 	}
 
 	@Override
@@ -294,6 +296,29 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		}
 	}
 
+	public final void askForIconOverride(final ItemStack newIcon) {
+
+		final StackTraceElement[] callStack = new Exception().getStackTrace();
+		boolean allowed = false;
+
+		for (int i = 0; i < callStack.length; ++i) {
+			if (i == 0) continue;
+			if (i > 2) break;
+			if (callStack[i].getClassName().startsWith("openmods.igw.")) allowed = true;
+		}
+
+		if (!allowed) {
+			Log.warn("Attempt of changing the icon of the tab stopped.");
+			Log.warn("Call stack:");
+			Log.warn(new Exception(), "");
+			return;
+		}
+
+		Log.info("Icon overridden. New icon: %s", newIcon.toString());
+		this.iconRequest = newIcon;
+		this.onPageChange(null, null);
+	}
+
 	@Override
 	public final ItemStack renderTabIcon(final GuiWiki gui) {
 		return this.createFallbackItemStack();
@@ -304,7 +329,12 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		final ItemStack stack;
 		final Entity entity;
 
-		if (metadata.length > 0 && metadata[0] instanceof ItemStack) {
+		if (this.iconRequest != null) {
+			Log.info("Overriding icon as per request.");
+			stack = this.iconRequest;
+			entity = null;
+			this.iconRequest = null;
+		} else if (metadata.length > 0 && metadata[0] instanceof ItemStack) {
 			stack = (ItemStack)metadata[0];
 			entity = null;
 		} else if (metadata.length > 0 && metadata[0] instanceof Entity) {

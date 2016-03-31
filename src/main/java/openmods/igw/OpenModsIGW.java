@@ -35,4 +35,8 @@ public class OpenModsIGW {
 	public void postInit(final FMLPostInitializationEvent evt) {
 		proxy.postInit(evt);
 	}
+
+	public static IInitProxy proxy() {
+		return proxy;
+	}
 }

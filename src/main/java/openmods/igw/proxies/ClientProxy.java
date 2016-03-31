@@ -2,16 +2,15 @@ package openmods.igw.proxies;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import igwmod.api.WikiRegistry;
-import igwmod.gui.tabs.IWikiTab;
-
-import java.lang.reflect.Constructor;
-import java.util.List;
-import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import igwmod.api.WikiRegistry;
+import igwmod.gui.tabs.IWikiTab;
 
 import openmods.Log;
 import openmods.Mods;
@@ -27,16 +26,19 @@ import openmods.igw.client.GuiOpenEventHandler;
 import openmods.igw.client.WarningGui;
 import openmods.igw.openblocks.OpenBlocksWikiTab;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
+import java.lang.reflect.Constructor;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("unused")
 public class ClientProxy implements IInitProxy, IPageInit {
 
 	private boolean abort;
+	private Map<String, IWikiTab> currentTabs = Maps.newHashMap();
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {
@@ -96,6 +98,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				Object tabInstance = constructor.newInstance(itemsBlocksEntries, allClaimedPages, allClaimedEntities);
 				IWikiTab tab = IWikiTab.class.cast(tabInstance);
 				WikiRegistry.registerWikiTab(tab);
+				currentTabs.put(modId, tab);
 			} catch (final NoSuchMethodException e) {
 				Log.warn(e, "Unable to instantiate specified tab class. Invalid constructor!");
 			} catch (final Exception e) {
@@ -105,6 +108,13 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		} else {
 			Log.warn("Failed to find items, blocks and entities for " + modId);
 		}
+	}
+
+	@Override
+	public IWikiTab getTabForModId(final String modId) {
+		if (Config.useUniqueWikiTab) return this.currentTabs.get("0");
+
+		return this.currentTabs.get(modId);
 	}
 
 	private void handleUniqueWikiTab() {
@@ -126,6 +136,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			allClaimedPages.putAll(helper.getAllClaimedPages());
 		}
 
-		WikiRegistry.registerWikiTab(new OpenModsCommonTab(itemsBlocksEntries, allClaimedPages, allClaimedEntities));
+		final IWikiTab tab = new OpenModsCommonTab(itemsBlocksEntries, allClaimedPages, allClaimedEntities);
+		currentTabs.put("0", tab);
+		WikiRegistry.registerWikiTab(tab);
 	}
 }
