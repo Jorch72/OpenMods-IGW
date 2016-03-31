@@ -8,8 +8,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import igwmod.api.PageChangeEvent;
-
 import igwmod.api.VariableRetrievalEvent;
+
+import openmods.igw.config.Config;
 import openmods.igw.utils.PackageScanner;
 
 import java.lang.annotation.Annotation;
@@ -26,8 +27,12 @@ public class WikiEventHandler {
 
 		final List<Class<?>> classes = Lists.newArrayList();
 
-		PackageScanner.get().registerPackage("openmods.igw.openblocks");
-		// Insert other packages here
+		if (Config.useUniqueWikiTab) {
+			PackageScanner.get().registerPackage("openmods.igw.common");
+		} else {
+			PackageScanner.get().registerPackage("openmods.igw.openblocks");
+			// Insert other packages here
+		}
 		classes.addAll(PackageScanner.get().scanForAnnotations(CustomHandler.class));
 
 		for (final Class<?> clazz : classes) {
