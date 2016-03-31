@@ -3,7 +3,6 @@ List of things to complete before version **1.0**
 
 - [X] **FIX: Entities not showing when clicking on link in wiki page**
 - [X] **FEATURE: Current configuration option on wiki page (`[variable{name}]`)**
-- [ ] Checkstyle (maybe?)
 - [X] Language updater script
 - [ ] Add block documentation
   - [X] Auto Anvil
