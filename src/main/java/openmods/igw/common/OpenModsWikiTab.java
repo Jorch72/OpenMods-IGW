@@ -296,6 +296,9 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		}
 	}
 
+	@SuppressWarnings("WeakerAccess")
+	// Let other people access it.
+	// Unless OpenMods gives them authorization, they can't do anything.
 	public final void askForIconOverride(final ItemStack newIcon) {
 
 		final StackTraceElement[] callStack = new Exception().getStackTrace();
