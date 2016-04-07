@@ -1,1 +1,138 @@
-[color{FF0000}] Missing data on Info-Book
+[prefix{l}][prefix{1}]GLASS CANVAS [prefix{}] [prefix{}]
+
+"[prefix{o}]A [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}]to paint [link{openmods-igw:block/openblocks.canvas}]white canvases [link{}]and other blocks. [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
+
+The Glass Canvas is an internal block which, just like the [link{openmods-igw:block/openblocks.canvas}]Canvas [link{}], can be painted.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]Any tool
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:canvasglass
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Painting [prefix{}]
+A special version of glass canvas can be obtained through painting a supported block with a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
+The painted block will transform into a special version of the canvas, with its original texture as a background and the painted colors as an overlay.
+This special version of the canvas, also, won't drop itself when broken, but it will drop the block it was obtained from, e.g. [link{block/glass}]Glass [link{}].
+
+If the painted block is a supported solid block (e.g. [link{block/wood.oak}]Planks [link{}]), you will obtain a [link{openmods-igw:block/openblocks.canvas}]Canvas [link{}] instead.
+
+[prefix{l}]Usage [prefix{}]
+The Glass Canvas cannot be obtained through usual means (for more information, see the [prefix{o}]Obtaining [prefix{}]section).
+When obtained through the use of commands or inventory editing, it renders as a [link{block/glass}]Glass Block [link{}].
+When placed in the world through commands, external tools or right-clicking with the previously obtained item, it renders as a simple canvas.
+Its behavior is pretty much the same as the normal canvas: the only way to distinguish a Glass Canvas from a Canvas, when directly placed, is by breaking them.
+In fact, the Glass Canvas makes the sound of breaking glass when mined, whereas the canvas just makes the default stone sound.
+
+As previously said, you can paint directly on it with the use of a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
+You can also paint by placing [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}] and then right clicking the canvas spots with the paint brush, drawing the pattern on the canvas.
+
+Using a [link{openmods-igw:item/openblocks.squeegee}]Squeegee [link{}] you can clean the canvas from paint.
+Special canvases cleaned by paint will turn back to the original block.
+
+The blocks currently (1.5.1) natively supported are:
+- [prefix{n}]Cobblestone [prefix{}] (Minecraft)
+- [prefix{n}]Decoration Blocks [prefix{}] (Extra Utilities)
+- [prefix{n}]Decoration Bricks [prefix{}] (Tinkers' Construct)
+- [prefix{n}]Dirt [prefix{}] (Minecraft)
+- [prefix{n}]Emerald Block [prefix{}] (Minecraft)
+- [prefix{n}]End Stone [prefix{}] (Minecraft)
+- [prefix{n}]Fancy Decoration Bricks [prefix{}] (Tinkers' Construct)
+- [prefix{n}]Glass [prefix{}] (Minecraft)
+- [prefix{n}]Glass [prefix{}] (Tinkers' Construct)
+- [prefix{n}]Gold Block [prefix{}] (Minecraft)
+- [prefix{n}]Green Screen [prefix{}] (Extra Utilities)
+- [prefix{n}]Iron Block [prefix{}] (Minecraft)
+- [prefix{n}]Lapis Lazuli Block [prefix{}] (Minecraft)
+- [prefix{n}]Mossy Cobblestone [prefix{}] (Minecraft)
+- [prefix{n}]Quartz Block [prefix{}] (Minecraft)
+- [prefix{n}]Sandstone [prefix{}] (Minecraft)
+- [prefix{n}]Stone [prefix{}] (Minecraft)
+- [prefix{n}]Stone Bricks [prefix{}] (Minecraft)
+- [prefix{n}]Wood Log [prefix{}] (Minecraft)
+- [prefix{n}]Wooden Planks [prefix{}] (Biomes O' Plenty)
+- [prefix{n}]Wooden Planks [prefix{}] (Minecraft)
+
+If the Glass Canvas is obtained through painting one of the above blocks, then the transparency will be kept.
+Otherwise, the Glass Canvas will render always as a Canvas.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Since this block is un-obtainable under normal conditions, no setup procedure is available.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:canvasglass [prefix{}]
+Allows to enable (true) or disable (false) the Glass Canvas.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@canvasglass}]
+
+[prefix{l}]Tutorials [prefix{}]
+A YouTube tutorial made by mikeemoo (Mike) is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
+Link: [prefix{n}] [prefix{1}]https://youtu.be/M8LVLw-d100 [prefix{}] [prefix{}]
+
+[prefix{l}]Useful structures [prefix{}]
+There are no useful structures for this block.
+[prefix{o}]Reason: [link{}] It's up to your creativity.
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Glass Canvas added.
+[prefix{2}]1.2.4: [prefix{}]Fixed Glass Canvas crashing when clicking an empty side.
+[prefix{2}]1.2.5: [prefix{}]Fixed missing drops from Glass Canvas.
+[prefix{2}]1.4.3: [prefix{}]Glass Canvas can now be painted with other mods' paint brushes.
+[prefix{2}]1.4.3: [prefix{}]Disabled Glass Canvas's Tile Entity ticking.
+[prefix{2}]1.4.4: [prefix{}]Fixed Glass Canvas block breaking animation.
+
+[prefix{l}]Trivia [prefix{}]
+- Originally, every Glass Canvas pixel was going to be paintable with a different colour. The idea has then been scrapped.
+- When a block is replaced by the Glass Canvas, it will acquire all Glass Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1500, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_placed_glass_canvas.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A placed glass canvas (obtained through commands). You can notice the default Canvas rendering. [prefix{}]
+
+[image{200, 1661, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_glass_canvas_inventory.png}]
+
+
+
+
+[prefix{o}]The rendering of the Glass Canvas when obtained in the inventory through commands. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.canvas}] Canvas [link{}]
+[link{openmods-igw:item/openblocks.paintbrush}]Paintbrush [link{}]
+[link{openmods-igw:item/openblocks.stencil}]Stencil [link{}]
+[link{openmods-igw:block/openblocks.paintmixer}]Paint Mixer [link{}]
