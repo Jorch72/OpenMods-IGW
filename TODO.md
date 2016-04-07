@@ -14,7 +14,7 @@ List of things to complete before version **1.0**
   - [X] Builder Guide (IGN: Enhanced Building Guide)
   - [X] Cannon (IGN: Item Cannon)
   - [X] Canvas
-  - [ ] Canvas - Glass version (IGN: Glass Canvas)
+  - [X] Canvas - Glass version (IGN: Glass Canvas)
   - [ ] Donation Station
   - [ ] Drawing Table
   - [ ] Elevator
@@ -115,11 +115,10 @@ List of things to complete before version **1.0**
 - [ ] Code changes (maybe?)
   - [X] Notification in case of missing IGW Mod (not FML one, but custom)
     - [X] Removed IGW Mod dependency
-  - [ ] Configuration
+  - [X] Configuration
     - [X] Turn on and off every integration (modpack makers are crazy)
-	- [ ] Turn on and off separate tabs for every OpenMod (WIP)
+	- [X] Turn on and off separate tabs for every OpenMod (WIP)
 	  - [X] Tab creation
 	  - [X] Config option
 	  - [X] Tab finalization
 	    - [X] Remove hardcoded values for `IPageFactory`ies
-	  - [ ] Static pages (?)

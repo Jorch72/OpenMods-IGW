@@ -8,8 +8,10 @@ jdk:
 sudo: required
 dist: trusty
 before_install:
-  - echo Setting up workspace...
   - echo Before install...
+  - echo Updating submodules...
+  - git submodule update --init --recursive
+  - echo Setting up workspace...
   - chmod +x gradlew
   - ls -a -l -h --color
   - echo Downloading Gradle...
@@ -62,3 +64,4 @@ notifications:
 #      - "[Travis] Message: %{message}"
 #      - "[Travis] Change view : %{compare_url}"
 #      - "[Travis] Build details : %{build_url}"
+#    use_notice: true
