@@ -50,6 +50,9 @@ The Item Cannon can be mined with any type of pickaxe. If mined without a pickax
 
 
 
+[prefix{2}]Spontaneous drop [prefix{}]
+The Item Cannon will also spontaneously drop itself if the block it is attached to is removed.
+
 [prefix{l}]Usage [prefix{}]
 The Item Cannon can be used to launch items from a nearby inventory to a location determined by the user.
 
@@ -82,7 +85,7 @@ There are no tutorials for this block.
 [prefix{2}]Test environment [prefix{}]
 This structure has been set up buy nevercast while he was trying to fix the cannon aiming system.
 Even if it does not have a real functionality, it is still in the list as an example of use of the Item Cannon.
-[image{200, 1030, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
+[image{200, 1075, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
 
 
 
@@ -110,7 +113,7 @@ All Data Values from 0 to 15 represent the basic block.
 - Even if activated in different times, all the Item Cannons currently loaded will shoot the items at the same moment.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1350, openmods-igw:wiki/worldwide/images/block/cannon/gallery_cannon_recoil.png}]
+[image{200, 1395, openmods-igw:wiki/worldwide/images/block/cannon/gallery_cannon_recoil.png}]
 
 
 

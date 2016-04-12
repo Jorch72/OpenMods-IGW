@@ -137,6 +137,10 @@ The possibile values are 0 (not sensitive), 1 (on when powered), -1 (off when po
 Allows to set the maximum render distance of the Enhanced Building Guide and its outline.
 [prefix{o}]Default value: [prefix{}] 65536.0
 [prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@guideRenderRangeSq}]
+[prefix{5}]B:useAdvancedRenderer [prefix{}]
+Enables (true) or disables (false) the use of advanced OpenGL features which improve performance.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@useAdvancedRenderer}]
 
 [prefix{l}]Tutorials [prefix{}]
 A YouTube tutorial made by boq is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
@@ -171,7 +175,7 @@ Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will s
 - If you watch the Enhanced Building Guide closely (maybe with Optifine's zoom), you can see some little blocks orbiting around the building guide core.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2569, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_example_usage_TSM_submit.png}]
+[image{200, 2630, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_example_usage_TSM_submit.png}]
 
 
 
@@ -189,7 +193,7 @@ Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will s
 [prefix{o}]A practical usage example of the Enhanced Building Guide: the guide is currently on and its outlining the shape of a sphere with radius 8.
 The outline has been colored of blue for ease of identification. [prefix{}]
 
-[image{200, 2769, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_fill_mode.png}]
+[image{200, 2830, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_fill_mode.png}]
 
 
 
