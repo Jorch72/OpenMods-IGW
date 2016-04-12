@@ -5,7 +5,8 @@ import igwmod.api.VariableRetrievalEvent;
 
 import openmods.igw.openblocks.OpenBlocksEventHandler;
 
-@CustomHandler
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 @SuppressWarnings("unused")
 //@Explain("Access via reflection")
 public class OpenModsCommonHandler extends OpenModsEventHandler {
@@ -17,7 +18,7 @@ public class OpenModsCommonHandler extends OpenModsEventHandler {
 		this.handlerForOpenBlocks = new OpenBlocksEventHandler();
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.PAGE_OPENED)
+	@SubscribeEvent
 	public void handleCustomBlocks(final PageChangeEvent event) {
 
 		if (event.currentFile.contains(openmods.Mods.OPENBLOCKS.toLowerCase())) {
@@ -28,7 +29,7 @@ public class OpenModsCommonHandler extends OpenModsEventHandler {
 		// Insert here others
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.PAGE_OPENED)
+	@SubscribeEvent
 	public void handleCustomIcons(final PageChangeEvent event) {
 
 		if (event.currentFile.contains(openmods.Mods.OPENBLOCKS.toLowerCase())) {
@@ -39,19 +40,19 @@ public class OpenModsCommonHandler extends OpenModsEventHandler {
 		// Insert here others
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.VARIABLE_SUBSTITUTION)
+	@SubscribeEvent
 	public void addCurrentBlockStatus(final VariableRetrievalEvent event) {
 		this.setModId(event);
 		this.replaceVariableWithBlockStatus(event);
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.VARIABLE_SUBSTITUTION)
+	@SubscribeEvent
 	public void addCurrentConfigValues(final VariableRetrievalEvent event) {
 		this.setModId(event);
 		this.replaceVariableWithConfigValue(event);
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.VARIABLE_SUBSTITUTION)
+	@SubscribeEvent
 	public void addCurrentItemStatus(final VariableRetrievalEvent event) {
 		this.setModId(event);
 		this.replaceVariableWithItemStatus(event);

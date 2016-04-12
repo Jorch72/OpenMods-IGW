@@ -16,15 +16,17 @@ import openmods.Log;
 import openmods.Mods;
 import openmods.config.game.ModStartupHelper;
 import openmods.config.properties.ConfigProcessing;
+
+import openmods.igw.client.GuiOpenEventHandler;
+import openmods.igw.client.WarningGui;
 import openmods.igw.common.OpenModsCommonTab;
-import openmods.igw.common.WikiEventHandler;
+import openmods.igw.common.OpenModsCommonHandler;
 import openmods.igw.config.Config;
+import openmods.igw.openblocks.OpenBlocksWikiTab;
+import openmods.igw.openblocks.OpenBlocksEventHandler;
 import openmods.igw.utils.Constants;
 import openmods.igw.utils.IPageInit;
 import openmods.igw.utils.PageRegistryHelper;
-import openmods.igw.client.GuiOpenEventHandler;
-import openmods.igw.client.WarningGui;
-import openmods.igw.openblocks.OpenBlocksWikiTab;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -65,8 +67,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			this.handleUniqueWikiTab();
 			return;
 		}
-		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class);
-		MinecraftForge.EVENT_BUS.register(new WikiEventHandler());
+		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class, OpenBlocksEventHandler.class);
 	}
 
 	@Override
@@ -75,7 +76,9 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	}
 
 	@Override
-	public void register(final String modId, final Class<? extends igwmod.gui.tabs.IWikiTab> tabClass) {
+	public void register(final String modId,
+						 final Class<? extends igwmod.gui.tabs.IWikiTab> tabClass,
+						 final Class<?> eventHandlerClass) {
 		if (!this.mustRegister(modId)) return;
 
 		final PageRegistryHelper helper = new PageRegistryHelper();
@@ -108,6 +111,15 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		} else {
 			Log.warn("Failed to find items, blocks and entities for " + modId);
 		}
+
+		try {
+			MinecraftForge.EVENT_BUS.register(eventHandlerClass.getConstructor().newInstance());
+		} catch (final NoSuchMethodException e) {
+			Log.warn(e, "Unable to instantiate specified event handler class. Invalid constructor!");
+		} catch (final Exception e) {
+			// So ReflectiveOperationException is only from Java 7 onwards...
+			Log.warn(e, "Invalid constructor arguments."); // I guess
+		}
 	}
 
 	@Override
@@ -139,5 +151,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		final IWikiTab tab = new OpenModsCommonTab(itemsBlocksEntries, allClaimedPages, allClaimedEntities);
 		currentTabs.put("0", tab);
 		WikiRegistry.registerWikiTab(tab);
+
+		MinecraftForge.EVENT_BUS.register(new OpenModsCommonHandler());
 	}
 }

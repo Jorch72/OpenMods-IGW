@@ -5,15 +5,15 @@ import net.minecraft.item.ItemStack;
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
 
-import openmods.igw.common.CustomHandler;
 import openmods.igw.common.OpenModsEventHandler;
 
-@CustomHandler
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 @SuppressWarnings("unused")
 //@Explain("Accessed via reflection")
 public class OpenBlocksEventHandler extends OpenModsEventHandler {
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.PAGE_OPENED)
+	@SubscribeEvent
 	public void handleCustomBlocks(final PageChangeEvent event) {
 
 		if (event.currentFile.equals("block/openblocks.canvasglass")) {
@@ -23,7 +23,7 @@ public class OpenBlocksEventHandler extends OpenModsEventHandler {
 		}
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.PAGE_OPENED)
+	@SubscribeEvent
 	@SuppressWarnings("ConstantConditions")
 	//@Explain("Field populated by Forge, so...")
 	public void handleCustomIcons(final PageChangeEvent event) {
@@ -35,19 +35,19 @@ public class OpenBlocksEventHandler extends OpenModsEventHandler {
 		}
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.VARIABLE_SUBSTITUTION)
+	@SubscribeEvent
 	public void addCurrentBlockStatus(final VariableRetrievalEvent event) {
 
 		this.replaceVariableWithBlockStatus(event);
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.VARIABLE_SUBSTITUTION)
+	@SubscribeEvent
 	public void addCurrentConfigValues(final VariableRetrievalEvent event) {
 
 		this.replaceVariableWithConfigValue(event);
 	}
 
-	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.VARIABLE_SUBSTITUTION)
+	@SubscribeEvent
 	public void addCurrentItemStatus(final VariableRetrievalEvent event) {
 
 		this.replaceVariableWithItemStatus(event);
