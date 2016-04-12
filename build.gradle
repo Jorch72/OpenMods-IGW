@@ -50,11 +50,11 @@ buildscript {
       url 'http://repo.openmods.info/artifactory/simple/thirdparty'
     }
   }
-    //noinspection GroovyAssignabilityCheck
-    dependencies {
+  //noinspection GroovyAssignabilityCheck
+  dependencies {
     classpath group: 'net.thesilkminer.gradle.translationchecker',
               name: 'TranslationChecker',
-              version: '1.0'
+              version: '1.1'
   }
 }
 
@@ -185,7 +185,6 @@ artifacts {
 // Misc tasks
 
 // Check and update all language files
-task translationCheck(type: net.thesilkminer.gradle.plugin.languagechecker.TranslationCheckTask) {
-    langDir = file("src/main/resources/assets/openmods-igw/lang") // Substitute with following line after 1.1
-	// modid = 'openmods-igw'
+task translationCheck(type: net.thesilkminer.gradle.plugin.translationchecker.tasks.TranslationCheckTask) {
+	modId = 'openmods-igw'
 }

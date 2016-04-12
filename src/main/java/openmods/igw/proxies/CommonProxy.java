@@ -19,6 +19,6 @@ public class CommonProxy implements IInitProxy {
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
 		Log.warn("This mod (%s) is currently not needed on server side.", Constants.NAME);
-		Log.warn("You can install it to force people to use it, though.");
+		Log.info("You can install it to force people to use it, though.");
 	}
 }

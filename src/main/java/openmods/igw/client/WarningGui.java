@@ -21,6 +21,8 @@ public class WarningGui extends GuiYesNo {
 	private static boolean shouldShow;
 	private static final String TITLE = TranslationUtilities.translate("missing.title");
 	private static final String MESSAGE = TranslationUtilities.translate("missing.text");
+	private static final String CONTINUE_BUTTON_LABEL = TranslationUtilities.translate("button.continue");
+	private static final String INSTALL_BUTTON_LABEL = TranslationUtilities.translate("button.install");
 	private static final String IGW_URL = "http://www.curse.com/mc-mods/minecraft/223815-in-game-wiki-mod";
 	private static final int CONTINUE = 0;
 	private static final int INSTALL = 1;
@@ -31,8 +33,8 @@ public class WarningGui extends GuiYesNo {
 		super(null,
 				TITLE,
 				MESSAGE,
-				TranslationUtilities.translate("button.continue"),
-				TranslationUtilities.translate("button.install"),
+				CONTINUE_BUTTON_LABEL,
+				INSTALL_BUTTON_LABEL,
 				0);
 		openmods.Log.info("IGW Mod not found. Gui constructed and shown");
 		shouldShow = false;
@@ -88,7 +90,7 @@ public class WarningGui extends GuiYesNo {
 
 		if (!btn.func_146115_a()) return;
 
-		final List text = Lists.newArrayList();
+		final List<String> text = Lists.newArrayList();
 		text.add(TranslationUtilities.translate("button.install.warning"));
 		text.add(IGW_URL);
 		this.drawHoveringText(text, mouseX, mouseY, this.fontRendererObj);

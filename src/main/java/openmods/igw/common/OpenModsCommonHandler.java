@@ -29,8 +29,6 @@ public class OpenModsCommonHandler extends OpenModsEventHandler {
 	}
 
 	@CustomHandler.HandlerMethod(event = CustomHandler.HandlerMethod.Events.PAGE_OPENED)
-	@SuppressWarnings("ConstantConditions")
-	//@Explain("Field populated by Forge, so...")
 	public void handleCustomIcons(final PageChangeEvent event) {
 
 		if (event.currentFile.contains(openmods.Mods.OPENBLOCKS.toLowerCase())) {

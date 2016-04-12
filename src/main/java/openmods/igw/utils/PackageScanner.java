@@ -12,7 +12,6 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-@SuppressWarnings("SameParameterValue")
 public final class PackageScanner {
 
 	private PackageScanner() { }
@@ -25,7 +24,6 @@ public final class PackageScanner {
 		return SINGLETON;
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
 	public boolean registerPackage(@Nonnull final String packName) {
 
 		openmods.Log.info("Attempting registration of package " + packName);

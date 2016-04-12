@@ -29,12 +29,6 @@ public class Config {
 			comment = "Set to \"true\" to display only one wiki tab for all the mods")
 	public static boolean useUniqueWikiTab = false;
 
-	/*
-	 * Just a little convenience method.
-	 * It uses pure reflection to guarantee compatibility.
-	 * Speed is not really important here: 1 or 2 more seconds
-	 * during mod loading is not a problem (right?).
-	 */
 	public static boolean isEnabled(final String modId) {
 
 		for (final java.lang.reflect.Field field : Config.class.getDeclaredFields()) {
@@ -56,15 +50,9 @@ public class Config {
 			}
 			catch (final Throwable throwable) {
 
-				openmods.Log.warn("Field %s is not a boolean. What?", field.getName());
+				openmods.Log.warn("Field %s is not a boolean. Please check your call!", field.getName());
 				throw openmods.utils.SneakyThrower.sneakyThrow(throwable);
 			}
-			/*
-			finally {
-
-				return false; // Do we want this?
-			}
-			*/
 		}
 
 		openmods.Log.warn(new Throwable("Thread stack"),

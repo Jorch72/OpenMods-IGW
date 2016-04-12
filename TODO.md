@@ -105,7 +105,7 @@ List of things to complete before version **1.0**
   - [ ] OB Utilities (rewrite)
   - [ ] Maybe pages
     - [ ] Changelogs (try to implement)
-	- [ ] Contacts (if boq wants, replace either Changelogs or B Key -> OB Utilities)
+	- [ ] Contacts (if **@boq** wants, replace either Changelogs or B Key -> OB Utilities)
 - [ ] Provide templates
   - [X] Block
   - [ ] Item

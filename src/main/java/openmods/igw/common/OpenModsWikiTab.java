@@ -41,7 +41,6 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	private ItemStack tabIcon;
 	private Entity tabEntity;
 
-	@SuppressWarnings("unused")
 	private static class LinkNumerator {
 		private int staticEntries;
 		private int itemEntries;
@@ -60,7 +59,6 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	}
 
 	@SuppressWarnings({"WeakerAccess", "UnusedParameters"})
-	// I confirm the annoyances
 	protected interface IStaticPagePositionProvider {
 		int getX(final LinkNumerator numerator);
 		int getY(final LinkNumerator numerator);
@@ -71,8 +69,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		int getY(final int entryId);
 	}
 
-	@SuppressWarnings({"WeakerAccess", "unused"})
-	// It is getting annoying
+	@SuppressWarnings({"WeakerAccess"})
 	protected static class CommonPositionProviders {
 		public static final IStaticPagePositionProvider STATIC_PAGES = new IStaticPagePositionProvider() {
 			@Override
@@ -83,21 +80,6 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			@Override
 			public int getY(final LinkNumerator numerator) {
 				return 125 + 11 * numerator.getNextStaticId();
-			}
-		};
-
-		@SuppressWarnings("unused")
-		// This shouldn't even exist
-		public static final IItemPositionProvider ITEMS_WITH_DEFAULT_STATIC_PAGES = new IItemPositionProvider() {
-
-			@Override
-			public int getX(final int entryId) {
-				return 41 + entryId % 2 * 18;
-			}
-
-			@Override
-			public int getY(final int entryId) {
-				return 111 + entryId / 2 * 18;
 			}
 		};
 
@@ -244,7 +226,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		GL11.glPopMatrix();
 	}
 
-	private static<T> T firstNonNull(final T[] list) {
+	private static<T> T firstNonNull(final T... list) {
 		for (final T obj : list) {
 
 			if (obj != null) return obj;

@@ -2,9 +2,6 @@ package openmods.igw.utils;
 
 import openmods.Mods;
 
-/**
- * @author TheSilkMiner
- */
 public final class Constants {
 
 	public static final String MOD_ID = "OpenMods-IGW";
