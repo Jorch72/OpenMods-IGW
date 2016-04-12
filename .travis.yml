@@ -4,9 +4,12 @@ jdk:
   - openjdk8
   - oraclejdk7
   - openjdk7
-  - openjdk6
+# Goodbye Java 6
+#  - openjdk6
 sudo: required
 dist: trusty
+addons:
+  hostname: OpenMods-Host
 before_install:
   - echo Before install...
   - echo Updating submodules...
