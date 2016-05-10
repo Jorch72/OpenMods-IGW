@@ -105,8 +105,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			} catch (final NoSuchMethodException e) {
 				Log.warn(e, "Unable to instantiate specified tab class. Invalid constructor!");
 			} catch (final Exception e) {
-				// So ReflectiveOperationException is only from Java 7 onwards...
-				Log.warn(e, "Invalid constructor arguments."); // I guess
+				Log.warn(e, "Invalid constructor arguments.");
 			}
 		} else {
 			Log.warn("Failed to find items, blocks and entities for " + modId);
@@ -117,8 +116,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		} catch (final NoSuchMethodException e) {
 			Log.warn(e, "Unable to instantiate specified event handler class. Invalid constructor!");
 		} catch (final Exception e) {
-			// So ReflectiveOperationException is only from Java 7 onwards...
-			Log.warn(e, "Invalid constructor arguments."); // I guess
+			Log.warn(e, "Invalid constructor arguments.");
 		}
 	}
 
@@ -140,7 +138,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 			final PageRegistryHelper helper = new PageRegistryHelper();
 			helper.loadItems();
-			// Maybe this could be moved to outside foreach construct.
 
 			entitiesEntries.addAll(helper.claimEntities(modId));
 			itemsBlocksEntries.addAll(helper.claimModObjects(modId));

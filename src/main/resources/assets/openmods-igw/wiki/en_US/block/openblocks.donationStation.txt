@@ -1,4 +1,43 @@
-[crafting{200,15,key=block/openblocks.donationStation}]
+[prefix{l}][prefix{1}]DONATION STATION [prefix{}] [prefix{}]
+
+"[prefix{o}]The Donation Station-- tells you which mod a block or item comes from, and lets you support the modder that created it [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
+
+The Donation Station is a block which allows the user to find out the mod a block or an item comes from and provides a link to the donation page of the mod.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:donationStation
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Donation Station can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.10 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.84 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.70 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.44 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.26 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,470,key=block/openblocks.donationStation}]
 
 
 
@@ -10,5 +49,176 @@
 
 
 
-Love a block or item and want to show the mod developer some appreciation?
-Drop it into the donation station and if we know the authors donation page we'll give you a link.
+
+[prefix{l}]Usage [prefix{}]
+The Donation Station allows the user to discover which mod a specific block or item is.
+If the object is supported, it also allows to donate to the mod developer via a button.
+
+You can perform the above actions through the GUI, opened with a right-click on the block.
+
+[prefix{o}]See also: GUI [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+[image{200, 713, openmods-igw:wiki/worldwide/images/block/donationStation/gui.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To the top of the GUI you can find a single slot with a button underneath.
+In the slot, you can place either a block or an item.
+Immediately the Donation Station will identify the mod which added the object in the slot and it will display it to the side of the slot.
+If the mod name is unable to be retrieved or if the item is from vanilla Minecraft, then the donation station will display an "error message".
+If the donation link is registered, the button will also activate and prompt the user the donation link of the mod (e.g. a Patreon page).
+If no link is provided by the mod, the button will stay deactivated.
+
+The bottom part of the GUI is simply the player inventory.
+
+[prefix{o}]See also: Gallery [prefix{}]
+
+[prefix{l}]Setup [prefix{}]
+Simply place down the Donation Station and then right-click it to use it.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:donationStation [prefix{}]
+Allows to enable (true) or disable (false) the Donation Station.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@donationStation}]
+
+[prefix{2}]"loot" category [prefix{}]
+[prefix{5}]B:donationStation [prefix{}]
+Allows to add (true) or remove (false) the Donation Station from the random loot found in dungeon chests.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@donationStationLoot}]
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+There are no suggested structures for this block.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Donation Station (South)
+[prefix{o}]1: [prefix{}] Donation Station (East)
+[prefix{o}]2: [prefix{}] Donation Station (North)
+[prefix{o}]3: [prefix{}] Donation Station (West)
+
+The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simply repetitions of the first four, so they are not listed here.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Donation Station added.
+[prefix{2}]1.4.1: [prefix{}]Fixed some Donation Station methods in OpenPeripheral not working.
+
+[prefix{l}]Trivia [prefix{}]
+- OpenBlocks supplies an API to allow developers to add donation links. This can be done through IMC messages with the key "donateUrl".
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1616, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_ob.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Donation Station with a supported mod item in it. In this case it is OpenBlocks' [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}]. [prefix{}]
+
+[image{200, 1898, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_silkcore.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Donation Station with an unsupported mod item in it. Note how the item is correctly recognized, but the donate button is disabled. [prefix{}]
+
+[image{200, 2189, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_vanilla.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Donation Station with a vanilla item in it. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:item/openblocks.info_book}]Info Book [link{}]
+[link{openmods-igw:block/openblocks.fan}]Fan [link{}]

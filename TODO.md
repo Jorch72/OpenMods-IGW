@@ -1,9 +1,6 @@
 # TODO
 List of things to complete before version **1.0**
 
-- [X] **FIX: Entities not showing when clicking on link in wiki page**
-- [X] **FEATURE: Current configuration option on wiki page (`[variable{name}]`)**
-- [X] Language updater script
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table
@@ -15,7 +12,7 @@ List of things to complete before version **1.0**
   - [X] Cannon (IGN: Item Cannon)
   - [X] Canvas
   - [X] Canvas - Glass version (IGN: Glass Canvas)
-  - [ ] Donation Station
+  - [X] Donation Station
   - [ ] Drawing Table
   - [ ] Elevator
   - [ ] Elevator (Rotating)
@@ -105,14 +102,14 @@ List of things to complete before version **1.0**
   - [ ] OB Utilities (rewrite)
   - [ ] Maybe pages
     - [ ] Changelogs (try to implement)
-	- [ ] Contacts (if **@boq** wants, replace either Changelogs or B Key -> OB Utilities)
+	- [ ] Contacts (if **@boq** wants, replace either Changelogs or B Key `->` OB Utilities)
 - [ ] Provide templates
   - [X] Block
   - [ ] Item
   - [ ] Fluid
   - [ ] Entity
   - [ ] Tab (?)
-- [ ] Code changes (maybe?)
+- [X] Code changes (maybe?)
   - [X] Notification in case of missing IGW Mod (not FML one, but custom)
     - [X] Removed IGW Mod dependency
   - [X] Configuration
@@ -122,3 +119,5 @@ List of things to complete before version **1.0**
 	  - [X] Config option
 	  - [X] Tab finalization
 	    - [X] Remove hardcoded values for `IPageFactory`ies
+- [ ] URL splitting on custom missing mod GUI
+- [ ] Supported mod version check (OB 1.5.1 `-->` warn if newer or older)
