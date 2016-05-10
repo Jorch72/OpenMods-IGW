@@ -1,11 +1,11 @@
 package openmods.igw.common;
 
-import igwmod.api.PageChangeEvent;
-import igwmod.api.VariableRetrievalEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 import openmods.igw.openblocks.OpenBlocksEventHandler;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import igwmod.api.PageChangeEvent;
+import igwmod.api.VariableRetrievalEvent;
 
 @SuppressWarnings("unused")
 //@Explain("Access via reflection")

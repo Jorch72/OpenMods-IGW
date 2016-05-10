@@ -1,9 +1,12 @@
 package openmods.igw.client;
 
 import com.google.common.collect.Sets;
-import cpw.mods.fml.client.IModGuiFactory;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+
+import cpw.mods.fml.client.IModGuiFactory;
+
 import openmods.config.gui.OpenModsConfigScreen;
 import openmods.igw.utils.Constants;
 

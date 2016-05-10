@@ -2,10 +2,10 @@ package openmods.igw.common;
 
 import com.google.common.collect.Maps;
 
-import igwmod.api.VariableRetrievalEvent;
 import net.minecraft.item.ItemStack;
 
 import igwmod.api.PageChangeEvent;
+import igwmod.api.VariableRetrievalEvent;
 
 import java.lang.reflect.Field;
 import java.util.Map;

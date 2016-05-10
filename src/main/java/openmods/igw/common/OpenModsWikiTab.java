@@ -1,15 +1,6 @@
 package openmods.igw.common;
 
-import igwmod.gui.GuiWiki;
-import igwmod.gui.IPageLink;
-import igwmod.gui.IReservedSpace;
-import igwmod.gui.LocatedStack;
-import igwmod.gui.LocatedString;
-import igwmod.gui.tabs.IWikiTab;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -26,11 +17,20 @@ import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 
-import com.google.common.collect.Lists;
+import cpw.mods.fml.client.FMLClientHandler;
+
+import igwmod.gui.GuiWiki;
+import igwmod.gui.IPageLink;
+import igwmod.gui.IReservedSpace;
+import igwmod.gui.LocatedStack;
+import igwmod.gui.LocatedString;
+import igwmod.gui.tabs.IWikiTab;
 
 import openmods.Log;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("SameReturnValue")
 //@Explain("Designed for extension")

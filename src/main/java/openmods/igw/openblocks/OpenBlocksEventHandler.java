@@ -2,12 +2,12 @@ package openmods.igw.openblocks;
 
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
 
 import openmods.igw.common.OpenModsEventHandler;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @SuppressWarnings("unused")
 //@Explain("Accessed via reflection")

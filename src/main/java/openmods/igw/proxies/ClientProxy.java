@@ -9,6 +9,10 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
 import igwmod.api.WikiRegistry;
 import igwmod.gui.tabs.IWikiTab;
 
@@ -16,7 +20,6 @@ import openmods.Log;
 import openmods.Mods;
 import openmods.config.game.ModStartupHelper;
 import openmods.config.properties.ConfigProcessing;
-
 import openmods.igw.client.GuiOpenEventHandler;
 import openmods.igw.client.WarningGui;
 import openmods.igw.common.OpenModsCommonTab;
@@ -27,10 +30,6 @@ import openmods.igw.openblocks.OpenBlocksEventHandler;
 import openmods.igw.utils.Constants;
 import openmods.igw.utils.IPageInit;
 import openmods.igw.utils.PageRegistryHelper;
-
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import java.lang.reflect.Constructor;
 import java.util.List;

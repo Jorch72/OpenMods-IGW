@@ -1,11 +1,11 @@
 package openmods.igw.proxies;
 
-import openmods.Log;
-import openmods.igw.utils.Constants;
-
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
+import openmods.Log;
+import openmods.igw.utils.Constants;
 
 @SuppressWarnings("unused")
 public class CommonProxy implements IInitProxy {

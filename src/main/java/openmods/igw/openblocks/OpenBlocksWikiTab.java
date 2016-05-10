@@ -1,10 +1,6 @@
 package openmods.igw.openblocks;
 
-import igwmod.gui.IReservedSpace;
-import igwmod.gui.LocatedTexture;
-
-import java.util.List;
-import java.util.Map;
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -12,10 +8,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import openmods.igw.common.OpenModsWikiTab;
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.google.common.collect.Lists;
+import igwmod.gui.IReservedSpace;
+import igwmod.gui.LocatedTexture;
+
+import openmods.igw.common.OpenModsWikiTab;
+
+import java.util.List;
+import java.util.Map;
 
 /*
  * WARNING!
