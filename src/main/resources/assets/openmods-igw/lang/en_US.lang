@@ -5,6 +5,14 @@ openmods.igw.button.continue=Continue without IGW
 openmods.igw.button.install=Install IGW
 openmods.igw.button.install.warning=Opens a new web page pointing to
 
+# Mismatching mod version GUI Texts & Buttons
+openmods.igw.mismatching.title=§lMismatching mod versions!
+openmods.igw.mismatching.message.first=The mod versions installed do not match the ones OpenMods-IGW was created with.
+openmods.igw.mismatching.message.second=We suggest you to update the mods below to the specified versions to avoid issues.
+openmods.igw.mismatching.entry.raw=For mod %s, the expected version was %s, but I got %s
+openmods.igw.mismatching.entry.more= §land more...§r
+openmods.igw.button.confirm=Continue to Main Menu
+
 # OpenBlocks Tab Pages
 wiki.openblocks.tab=OpenBlocks
 wiki.openblocks.page.credits=Credits

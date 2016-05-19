@@ -7,6 +7,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import openmods.igw.OpenModsIGW;
+
 @SideOnly(Side.CLIENT)
 public class GuiOpenEventHandler {
 
@@ -16,7 +18,14 @@ public class GuiOpenEventHandler {
 	//@Explain("Called by Forge, not by us")
 	public void onMainMenuOpen(final GuiOpenEvent event) {
 		if (!(event.gui instanceof GuiMainMenu)) return;
-		if (!WarningGui.shallShow()) return;
-		event.gui = new WarningGui();
+
+		if (WarningGui.shallShow()) {
+			event.gui = new WarningGui();
+			return;
+		}
+
+		if (MismatchingVersionsGui.shouldShow()) {
+			event.gui = new MismatchingVersionsGui(OpenModsIGW.proxy().getMismatchingMods());
+		}
 	}
 }

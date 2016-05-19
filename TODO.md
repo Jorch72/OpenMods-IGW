@@ -109,15 +109,5 @@ List of things to complete before version **1.0**
   - [ ] Fluid
   - [ ] Entity
   - [ ] Tab (?)
-- [X] Code changes (maybe?)
-  - [X] Notification in case of missing IGW Mod (not FML one, but custom)
-    - [X] Removed IGW Mod dependency
-  - [X] Configuration
-    - [X] Turn on and off every integration (modpack makers are crazy)
-	- [X] Turn on and off separate tabs for every OpenMod (WIP)
-	  - [X] Tab creation
-	  - [X] Config option
-	  - [X] Tab finalization
-	    - [X] Remove hardcoded values for `IPageFactory`ies
 - [ ] URL splitting on custom missing mod GUI
-- [ ] Supported mod version check (OB 1.5.1 `-->` warn if newer or older)
+- [X] Supported mod version check (OB 1.5.1 `-->` warn if newer or older)

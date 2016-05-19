@@ -21,7 +21,7 @@ public final class Constants {
 	public static final String CLIENT_PROXY = "openmods.igw.proxies.ClientProxy";
 	public static final String COMMON_PROXY = "openmods.igw.proxies.CommonProxy";
 
-	public static final String[] CURRENTLY_SUPPORTED_MODS = new String[] {
-																			Mods.OPENBLOCKS,
+	public static final ModEntry[] CURRENTLY_SUPPORTED_MODS = new ModEntry[] {
+																			ModEntry.of(Mods.OPENBLOCKS, "1.5.1"),
 																		 };
 }
