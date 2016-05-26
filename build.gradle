@@ -33,14 +33,6 @@ repositories {
         name "IGW"
         url "http://maven.k-4u.nl/"
     }
-	maven {
-		name "ChickenBones"
-		url "http://chickenbones.net/maven/"
-	}
-	maven {
-		name "ProfMobius"
-		url "http://mobiusstrip.eu/maven"
-	}
 }
 
 buildscript {
@@ -67,7 +59,6 @@ apply plugin: 'forge'
 dependencies {
     compile project(":OpenModsLib") // Load OpenModsLib from submodule
     compile "igwmod:IGW-Mod-1.7.10:1.1.9-29:userdev"
-	compile "mcp.mobius.waila:Waila:1.5.10_1.7.10"
 }
 
 //================================================
@@ -168,6 +159,21 @@ jar {
     }
 }
 
+// API jar
+task apiJar(type: Jar) {
+
+    from sourceSets.main.output
+    from sourceSets.main.java
+
+    include 'openmods/igw/api/**'
+
+	classifier = 'api'
+	
+    manifest {
+        from jenkinsManifest, gitManifest
+    }
+}
+
 // Dev jar
 task deobfJar(type: Jar) {
     from sourceSets.main.output
@@ -178,6 +184,7 @@ task deobfJar(type: Jar) {
 }
 
 artifacts {
+	archives apiJar
     archives deobfJar
 }
 
