@@ -47,6 +47,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
+// TODO Move some things to API (Remove direct implementation imports)
 public class ClientProxy implements IInitProxy, IPageInit {
 
 	/**
@@ -121,10 +122,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = helper
 				.getAllClaimedEntitiesPages();
 
-		if (entitiesEntries != null
-				&& itemsBlocksEntries != null
-				&& !entitiesEntries.isEmpty()
-				&& !itemsBlocksEntries.isEmpty()) {
+		if (!entitiesEntries.isEmpty() && !itemsBlocksEntries.isEmpty()) {
 
 			try {
 				Constructor<?> constructor = tabClass.getConstructor(List.class, Map.class, Map.class);
@@ -217,6 +215,24 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				Log.info("Skipping addition...");
 				if (!additionsSkipped) additionsSkipped = true;
 				continue;
+			}
+			if (container.getMod().getClass().getAnnotation(IMismatchingModEntry.VersionProvider.class) != null) {
+				IMismatchingModEntry.VersionProvider provider = container
+						.getMod()
+						.getClass()
+						.getAnnotation(IMismatchingModEntry.VersionProvider.class);
+				if (provider.value().equals(entry.version())) {
+					Log.info("The mod %s tells us its version is equivalent to the expected %s.",
+							container.getModId(), entry.version());
+					Log.info("This usually means that the version consists only of bug fixes");
+					Log.info("Since we trust the mod's developer, we skip the addition");
+					continue;
+				}
+				Log.info("Provided version was not the one we expected (%s instead of %s)",
+						provider.value(), entry.version());
+				Log.info("As such, we add the mod to the list anyway.");
+			} else {
+				Log.info("No alternative version provided");
 			}
 			Log.info("Adding to mismatching mod list.");
 			final IMismatchingModEntry mismatchingEntry = new MismatchingModEntry(entry, container.getVersion());
