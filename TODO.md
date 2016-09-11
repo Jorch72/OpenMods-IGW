@@ -1,6 +1,14 @@
 # TODO
 List of things to complete before version **1.0**
 
+- [ ] **FIX**: Wiki pages not using standard in "Usage" section
+  - [ ] Bear Trap
+  - [ ] Block Breaker
+  - [ ] Block Placer
+  - [ ] Cannon
+  - [ ] Canvas
+  - [ ] Canvas Glass
+  - [ ] Donation Station
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table
@@ -13,7 +21,7 @@ List of things to complete before version **1.0**
   - [X] Canvas
   - [X] Canvas - Glass version (IGN: Glass Canvas)
   - [X] Donation Station
-  - [ ] Drawing Table
+  - [X] Drawing Table
   - [ ] Elevator
   - [ ] Elevator (Rotating)
   - [ ] Fan
@@ -28,6 +36,8 @@ List of things to complete before version **1.0**
   - [ ] Paint Mixer
   - [ ] Path
   - [ ] Projector
+    - [ ] "Normal"
+    - [ ] Working
   - [ ] Rope Ladder
   - [ ] Scaffolding
   - [ ] Sky Block

@@ -1,14 +1,174 @@
-[crafting{200,15,key=block/openblocks.drawingtable}]
+[prefix{l}][prefix{1}]DRAWING TABLE [prefix{}] [prefix{}]
 
+"[prefix{o}] [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}]that are made using the Drawing Table to paint specific areas of blocks [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Drawing Table allows the user to draw [link{openmods-igw:item/openblocks.stencil}]stencils [link{}]which can then be used to paint certain shapes on the various blocks.
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 The drawing table is for creating [link{openmods-igw:item/openblocks.stencil}]stencils [link{}]which can be used while painting.
 Insert an [link{openmods-igw:item/openblocks.unprepared_stencil}]Unprepared Stencil [link{}]into the drawing table then use the arrows to select which stencil you want!
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]0
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]Any tool
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:drawingtable
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Drawing Table can be mined with any type of tool, dropping itself in the process.
+Using an [link{item/hatchetDiamond}]Axe [link{}] speeds up the process slightly
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-axe tool: [prefix{}]1.47 seconds
+[prefix{o}]Wooden axe: [prefix{}]0.95 seconds
+[prefix{o}]Stone axe: [prefix{}]0.53 seconds
+[prefix{o}]Iron axe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond axe: [prefix{}]0.31 seconds
+[prefix{o}]Gold axe: [prefix{}]0.30 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,495,key=block/openblocks.drawingtable}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Drawing Table only use is to draw [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}] on top of [link{openmods-igw:item/openblocks.unprepared_stencil}]unprepared ones [link{}].
+
+[prefix{2}]Stencil drawing [prefix{}]
+[prefix{o}]See also GUI [prefix{}]
+To draw stencils, the drawing table needs unprepared ones.
+Place one of them in the GUI, then select the image to draw on top of the stencil.
+You can do that with the left and right arrow buttons, available in the GUI.
+For a complete list of stencils, refer to the [link{openmods-igw:item/openblocks.stencil}]Stencil [link{}] page.
+When you have selected the shape, click the Draw button and then extract the new stencil from the GUI.
+
+The list of available stencils (as of OpenBlocks 1.5.1 for Minecraft 1.7.10) is:
+- [prefix{n}]Creeper Face [prefix{}]
+- [prefix{n}]Border [prefix{}]
+- [prefix{n}]Stripes [prefix{}]
+- [prefix{n}]Corner [prefix{}]
+- [prefix{n}]Corner 2 [prefix{}]
+- [prefix{n}]Corner 3 [prefix{}]
+- [prefix{n}]Hole [prefix{}]
+- [prefix{n}]Spiral [prefix{}]
+- [prefix{n}]Thick Stripes [prefix{}]
+- [prefix{n}]Splat [prefix{}]
+- [prefix{n}]Storage [prefix{}]
+- [prefix{n}]Heart [prefix{}]
+- [prefix{n}]Heart 2 [prefix{}]
+- [prefix{n}]Music [prefix{}]
+- [prefix{n}]Baloon [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+[image{200, 996, openmods-igw:wiki/worldwide/images/block/drawingtable/gui.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Drawing Table's GUI is extremely simple, but at the same time contains all the needed features.
+
+The top part of the GUI forms the "control panel" of the Donation Station.
+The slot at the top-center of the GUI is the place where the unprepared stencil must be placed in order to draw on it.
+The two arrow buttons at the left and at the right of it cycle through all the various available designs.
+The design itself is drawn as an overlay on top of the unprepared stencil.
+The "Draw" button at the bottom-center of the top part of the GUI finalizes the stencil, effectively drawing the selected image on top of the unprepared stencil.
+
+The bottom part is simply the player's inventory.
+
+[prefix{l}]Setup [prefix{}]
+Place the Drawing Table down and the right-click it to open the GUI.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:drawingtable [prefix{}]
+Allows to enable (true) or disable (false) the Drawing Table.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@drawingtable}]
+
+[prefix{l}]Tutorials [prefix{}]
+A YouTube tutorial made by mikeemoo (Mike) is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
+Link: [prefix{n}] [prefix{1}]https://youtu.be/M8LVLw-d100 [prefix{}] [prefix{}]
+
+[prefix{l}]Useful structures [prefix{}]
+There are no suggested structures for this block.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Drawing Table (North)
+[prefix{o}]1: [prefix{}] Drawing Table (West)
+[prefix{o}]2: [prefix{}] Drawing Table (South)
+[prefix{o}]3: [prefix{}] Drawing Table (East)
+
+The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simply repetitions of the first four, so they are not listed here.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Drawing Table added.
+
+[prefix{l}]Trivia [prefix{}]
+- Even if the Drawing Table's design resembles a Crafting Table, the inventory contents are not dropped when the GUI is exited.
+- The "Draw" text on the button is not localizable.
+- The overlay shown on top of the stencil is actually rendered on top of everything, even the tooltip.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1851, openmods-igw:wiki/worldwide/images/block/drawingtable/gallery_stencil_drawing.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A Stencil about to be drawn with the selected image (in this case, Heart). [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:item/openblocks.paintbrush}]Paintbrush [link{}]
+[link{openmods-igw:item/openblocks.stencil}]Stencil [link{}]
+[link{openmods-igw:block/openblocks.paintmixer}]Paint Mixer [link{}]
