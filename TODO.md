@@ -120,4 +120,8 @@ List of things to complete before version **1.0**
   - [ ] Entity
   - [ ] Tab (?)
 - [ ] URL splitting on custom missing mod GUI
+- [ ] Javadoc
+  - [ ] API
+  - [ ] Implementation (?)
+  - [ ] Prefab
 - [X] Supported mod version check (OB 1.5.1 `-->` warn if newer or older)

@@ -12,6 +12,7 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.lang3.tuple.Pair;
 
 import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.event.FMLConstructionEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -59,6 +60,9 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	private boolean abort;
 	private Map<String, IWikiTab> currentTabs = Maps.newHashMap();
 	private List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
+
+	@Override
+	public void construct(final FMLConstructionEvent event) {}
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {

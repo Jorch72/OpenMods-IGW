@@ -2,6 +2,7 @@ package openmods.igw.impl.proxy;
 
 import com.google.common.collect.Lists;
 
+import cpw.mods.fml.common.event.FMLConstructionEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -18,6 +19,9 @@ import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
 public class CommonProxy implements IInitProxy {
+
+	@Override
+	public void construct(final FMLConstructionEvent event) {}
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {}

@@ -1,5 +1,6 @@
 package openmods.igw.api.init;
 
+import cpw.mods.fml.common.event.FMLConstructionEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -18,6 +19,16 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  * @since 1.0
  */
 public interface IInit {
+
+	/**
+	 * Constructs the mod instance, before any other event is called.
+	 *
+	 * @param event
+	 * 		The construction event provided by FML.
+	 *
+	 * @since 1.0
+	 */
+	void construct(final FMLConstructionEvent event);
 
 	/**
 	 * Loads the mod through the phase of pre-initialization.
