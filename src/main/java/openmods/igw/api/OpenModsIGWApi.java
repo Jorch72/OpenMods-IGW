@@ -1,8 +1,12 @@
 package openmods.igw.api;
 
+import com.google.common.base.Optional;
+
 import openmods.igw.api.cache.IgnoreCache;
 import openmods.igw.api.init.IInit;
 import openmods.igw.api.proxy.IInitProxy;
+import openmods.igw.api.service.IService;
+import openmods.igw.api.service.ITranslationService;
 import openmods.igw.api.service.ServiceManager;
 
 import java.lang.reflect.Constructor;
@@ -90,6 +94,62 @@ public final class OpenModsIGWApi {
 	@Nonnull
 	public ServiceManager serviceManager() {
 		return ServiceManager.IT;
+	}
+
+	/**
+	 * Gets an {@link Optional} containing the service registered
+	 * for the specified class, if available.
+	 *
+	 * <p>This is an helper method, which can be used as a quicker way
+	 * to access the one in {@link ServiceManager}. Calling this
+	 * method or {@link ServiceManager#obtainService(Class)} yields
+	 * the exact same result.</p>
+	 *
+	 * @param clazz
+	 * 		The class the service implementation is for.
+	 * @param <T>
+	 *     	The type of the service implementation. Refer to
+	 *     	{@link IService} javadoc for more information.
+	 * @return
+	 * 		An {@link Optional} containing the service, if available
+	 * 		or {@link Optional#absent()} if none is found.
+	 *
+	 * @since 1.0
+	 */
+	@Nonnull
+	public <T> Optional<IService<T>> obtainService(@Nonnull final Class<? extends IService<T>> clazz) {
+		return this.serviceManager().obtainService(clazz);
+	}
+
+	/**
+	 * Attempts to translate the given translation ID.
+	 *
+	 * <p>This method should add to the translation ID a default
+	 * mod ID, either visible to the end-user or only available
+	 * internally.</p>
+	 *
+	 * <p>This is a wrapper method, which can be used to translate
+	 * a sentence in a quicker way. Using this method or the one in
+	 * {@link ITranslationService}
+	 * ({@link ITranslationService#translate(String)}) is exactly
+	 * the same.</p>
+	 *
+	 * @param translationId
+	 * 		The ID of the translation.
+	 * @return
+	 * 		A String containing the translated keyword or the given
+	 * 		{@code translationId} if none is available.
+	 *
+	 * @since 1.0
+	 */
+	@Nonnull
+	public String translate(@Nonnull final String translationId) {
+		final Optional<IService<ITranslationService>> optionalService = this.obtainService(ITranslationService.class);
+		if (!optionalService.isPresent()) {
+			throw new RuntimeException(new IllegalStateException("Translation service unavailable"));
+		}
+		final ITranslationService service = optionalService.get().cast();
+		return service.translate(translationId);
 	}
 
 	/* *

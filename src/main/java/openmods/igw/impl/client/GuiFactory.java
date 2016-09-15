@@ -1,5 +1,6 @@
 package openmods.igw.impl.client;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Sets;
 
 import net.minecraft.client.Minecraft;
@@ -9,7 +10,11 @@ import cpw.mods.fml.client.IModGuiFactory;
 
 import openmods.config.gui.OpenModsConfigScreen;
 import openmods.igw.api.OpenModsIGWApi;
+import openmods.igw.api.service.IConstantRetrieverService;
+import openmods.igw.api.service.IService;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Set;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -18,15 +23,24 @@ public class GuiFactory implements IModGuiFactory {
 	public static class ConfigGui extends OpenModsConfigScreen {
 
 		public ConfigGui(final GuiScreen parent) {
-			// Don't remove generics unless you work in Java 8 - TSM
 			super(parent,
-					OpenModsIGWApi.get().<String>constant("MODID"),
-					OpenModsIGWApi.get().<String>constant("NAME"));
+					constant("MOD_ID"),
+					constant("NAME"));
+		}
+
+		@Nullable // Dem static hax tho
+		private static String constant(@Nonnull final String name) {
+			final Optional<IService<IConstantRetrieverService>> service = OpenModsIGWApi.get()
+					.obtainService(IConstantRetrieverService.class);
+			if (!service.isPresent()) {
+				throw new RuntimeException(new IllegalStateException("Constant retriever service unavailable"));
+			}
+			return service.get().cast().<String>getConstant(name).orNull();
 		}
 	}
 
 	@Override
-	public void initialize(final Minecraft mcInstance) { }
+	public void initialize(final Minecraft mcInstance) {}
 
 	@Override
 	public Class<? extends GuiScreen> mainConfigGuiClass() {

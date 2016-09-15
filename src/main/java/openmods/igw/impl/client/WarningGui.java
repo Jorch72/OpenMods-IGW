@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import openmods.igw.api.OpenModsIGWApi;
+import openmods.igw.api.service.IConstantRetrieverService;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -41,9 +42,11 @@ public class WarningGui extends GuiYesNo {
 		shouldShow = false;
 	}
 
+	@SuppressWarnings("OptionalGetWithoutIsPresent")
 	public static void markShow() {
-		if (OpenModsIGWApi.get().configValueNonNull("enableMissingModWarningMessage", true)) return;
-
+		//if (OpenModsIGWApi.get().configValueNonNull("enableMissingModWarningMessage", true)) return;
+		if (OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get()
+				.cast().getBooleanConfigConstant("enableMissingModWarningMessage").get()) return;
 		shouldShow = true;
 	}
 

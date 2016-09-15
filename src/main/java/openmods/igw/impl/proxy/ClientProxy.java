@@ -29,6 +29,8 @@ import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
 import openmods.igw.api.record.mod.IMismatchingModEntry;
 import openmods.igw.api.record.mod.IModEntry;
+import openmods.igw.api.service.IConstantRetrieverService;
+import openmods.igw.api.service.IService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
 import openmods.igw.impl.client.MismatchingVersionsGui;
 import openmods.igw.impl.client.WarningGui;
@@ -60,19 +62,31 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	private boolean abort;
 	private Map<String, IWikiTab> currentTabs = Maps.newHashMap();
 	private List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
+	private IConstantRetrieverService constantRetrieverService;
 
 	@Override
-	public void construct(final FMLConstructionEvent event) {}
+	public void construct(final FMLConstructionEvent event) {
+		final Optional<IService<IConstantRetrieverService>> service = OpenModsIGWApi.get()
+				.obtainService(IConstantRetrieverService.class);
+		if (!service.isPresent()) {
+			throw new RuntimeException(new IllegalStateException("Constant retriever service unavailable"));
+		}
+		this.constantRetrieverService = service.get().cast();
+	}
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {
 		if (!cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
 		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
 
-		new ModStartupHelper(OpenModsIGWApi.get().<String>constant("MOD_ID")) {
+		new ModStartupHelper(this.constantRetrieverService.<String>getConstant("MOD_ID").orNull()) {
 			@Override
 			protected void populateConfig(final Configuration cfg) {
-				ConfigProcessing.processAnnotations(OpenModsIGWApi.get().<String>constant("MOD_ID"), cfg, Config.class);
+				ConfigProcessing.processAnnotations(
+						ClientProxy.this.constantRetrieverService.<String>getConstant("MOD_ID").orNull(),
+						cfg,
+						Config.class
+				);
 			}
 		}.preInit(evt.getSuggestedConfigurationFile());
 	}
@@ -85,7 +99,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
 		if (this.abort) return;
-		if (OpenModsIGWApi.get().configValueNonNull("useUniqueWikiTab", false)) {
+		if (this.constantRetrieverService.getBooleanConfigConstant("useUniqueWikiTab").get()) {
 			this.handleUniqueWikiTab();
 			return;
 		}
@@ -155,17 +169,21 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	@Nullable
 	@Override
 	public IWikiTab getTabForModId(@Nonnull final String modId) {
-		if (OpenModsIGWApi.get().configValueNonNull("useUniqueWikiTab", false)) return this.currentTabs.get("0");
+		if (this.constantRetrieverService.getBooleanConfigConstant("useUniqueWikiTab").get()) {
+			return this.currentTabs.get("0");
+		}
 
 		return this.currentTabs.get(modId);
 	}
 
+	@SuppressWarnings("ConstantConditions") // Idea marks a "orNull" call as "never null". Why?
 	private void handleUniqueWikiTab() {
 		final List<Pair<String, String>> entitiesEntries = Lists.newArrayList();
 		final List<Pair<String, ItemStack>> itemsBlocksEntries = Lists.newArrayList();
 		final Map<String, ItemStack> allClaimedPages = Maps.newHashMap();
 		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = Maps.newHashMap();
-		final IModEntry[] currentlySupportedMods = OpenModsIGWApi.get().constant("CURRENTLY_SUPPORTED_MODS");
+		final IModEntry[] currentlySupportedMods = this.constantRetrieverService.
+				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orNull();
 		if (currentlySupportedMods == null) throw new RuntimeException("currentlySupportedMods == null");
 
 		for (final IModEntry entry : currentlySupportedMods) {
@@ -188,10 +206,11 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		MinecraftForge.EVENT_BUS.register(new OpenModsCommonHandler());
 	}
 
+	@SuppressWarnings("ConstantConditions") // Idea marks a "orNull" call as "never null". Why?
 	private void checkModVersions() {
 		if (System.getProperty("openmods.igw.controls.modVersions.debug", "false").equals("true")
 				|| MISMATCHING_GUI_DEBUG
-				|| ("Windows 8.1".equals(System.getProperty("os.name"))
+				|| ("Windows 10".equals(System.getProperty("os.name"))
 				    && "E:/GitHub/OpenMods-IGW/run".equals(System.getProperty("user.dir").replace('\\', '/')))
 					&& System.getProperty("openmods.igw.controls.modVersions.userDebug", "true").equals("true")) {
 			this.debug$checkModVersions();
@@ -199,7 +218,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		}
 
 		boolean additionsSkipped = false;
-		final IModEntry[] currentlySupportedMods = OpenModsIGWApi.get().constant("CURRENTLY_SUPPORTED_MODS");
+		final IModEntry[] currentlySupportedMods = this.constantRetrieverService.
+				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orNull();
 		if (currentlySupportedMods == null) throw new RuntimeException("currentlySupportedMods == null");
 
 		for (final IModEntry entry : currentlySupportedMods) {
@@ -230,6 +250,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 							container.getModId(), entry.version());
 					Log.info("This usually means that the version consists only of bug fixes");
 					Log.info("Since we trust the mod's developer, we skip the addition");
+					if (!additionsSkipped) additionsSkipped = true;
 					continue;
 				}
 				Log.info("Provided version was not the one we expected (%s instead of %s)",

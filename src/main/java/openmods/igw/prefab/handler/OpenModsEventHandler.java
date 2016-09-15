@@ -1,5 +1,6 @@
 package openmods.igw.prefab.handler;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,8 @@ import openmods.igw.api.cache.IgnoreCache;
 import openmods.igw.api.handler.IEventHandler;
 import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
+import openmods.igw.api.service.IClassProviderService;
+import openmods.igw.api.service.IService;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -100,7 +103,10 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 
 		event.associatedStack = newIcon;
 		// Since we can't be sure of it, we ask the tab to override the icon.
-		final IInitProxy proxy = OpenModsIGWApi.get().proxy();
+		final Optional<IService<IClassProviderService>> serviceOptional = OpenModsIGWApi.get()
+				.obtainService(IClassProviderService.class);
+		if (!serviceOptional.isPresent()) throw new IllegalStateException("Class Provider Service unavailable");
+		final IInitProxy proxy = serviceOptional.get().cast().proxy();
 		if (proxy == null) {
 			openmods.Log.severe("Unable to find proxy. Crashing...");
 			throw new IllegalStateException("Proxy unavailable");

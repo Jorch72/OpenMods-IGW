@@ -12,6 +12,7 @@ import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
 import openmods.igw.api.record.mod.IMismatchingModEntry;
+import openmods.igw.api.service.IConstantRetrieverService;
 
 import java.util.List;
 import javax.annotation.Nonnull;
@@ -21,7 +22,10 @@ import javax.annotation.Nullable;
 public class CommonProxy implements IInitProxy {
 
 	@Override
-	public void construct(final FMLConstructionEvent event) {}
+	public void construct(final FMLConstructionEvent event) {
+		// Force load services
+		OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class);
+	}
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {}
@@ -30,8 +34,10 @@ public class CommonProxy implements IInitProxy {
 	public void init(final FMLInitializationEvent evt) {}
 
 	@Override
+	@SuppressWarnings("OptionalGetWithoutIsPresent")
 	public void postInit(final FMLPostInitializationEvent evt) {
-		Log.warn("This mod (%s) is currently not needed on server side.", OpenModsIGWApi.get().<String>constant("NAME"));
+		Log.warn("This mod (%s) is currently not needed on server side.",
+				OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME"));
 		Log.info("You can install it to force people to use it, though.");
 	}
 
