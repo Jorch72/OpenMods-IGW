@@ -1,9 +1,13 @@
 package openmods.igw.impl.utils;
 
+import com.google.common.collect.ImmutableMap;
 import openmods.Mods;
 
 import openmods.igw.api.record.mod.IModEntry;
+import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.prefab.record.mod.ModEntry;
+
+import java.util.Map;
 
 public final class Constants {
 
@@ -28,4 +32,19 @@ public final class Constants {
 	public static final IModEntry[] CURRENTLY_SUPPORTED_MODS = new IModEntry[] {
 																			ModEntry.of(Mods.OPENBLOCKS, "1.5.1"),
 																		 };
+
+	@SuppressWarnings("unused")
+	public static final Map<ISystemIdentifierService.SystemDetails, ISystemIdentifierService.SystemType> SYSTEMS =
+			ImmutableMap.<ISystemIdentifierService.SystemDetails, ISystemIdentifierService.SystemType>builder()
+					.put(new ISystemIdentifierService.SystemDetails() {
+						{
+							// TSM
+							this.os = "Windows 10";
+							this.architecture = "amd64";
+							this.runDir = "E:/GitHub/OpenMods-IGW/run";
+							this.diskSpace = 119559680000L;
+							this.processors = 4;
+						}
+					}, ISystemIdentifierService.SystemType.DEVELOPER)
+					.build();
 }

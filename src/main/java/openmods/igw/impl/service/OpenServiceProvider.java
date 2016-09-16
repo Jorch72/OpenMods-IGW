@@ -5,6 +5,7 @@ import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IService;
+import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.api.service.ITranslationService;
 
 import javax.annotation.Nonnull;
@@ -28,6 +29,7 @@ public final class OpenServiceProvider {
 	private static void initializeServices() {
 		registerService(IClassProviderService.class, new ClassProviderService());
 		registerService(IConstantRetrieverService.class, ConstantRetrieverService.get());
+		registerService(ISystemIdentifierService.class, SystemIdentifierService.get());
 		registerService(ITranslationService.class, TranslationService.get());
 
 		Log.info("Successfully loaded and registered %d services out of %d total services",
