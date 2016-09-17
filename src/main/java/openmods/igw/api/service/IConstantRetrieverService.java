@@ -77,10 +77,13 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 		 *
 		 * @since 1.0
 		 */
-		@SuppressWarnings("ConstantConditions")
 		@Nullable
 		public T orNull() {
-			return this.orElse(null);
+			try {
+				return this.get();
+			} catch (final IllegalStateException exception) {
+				return null;
+			}
 		}
 
 		/**

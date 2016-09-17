@@ -31,6 +31,7 @@ import openmods.igw.api.record.mod.IMismatchingModEntry;
 import openmods.igw.api.record.mod.IModEntry;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IService;
+import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
 import openmods.igw.impl.client.MismatchingVersionsGui;
 import openmods.igw.impl.client.WarningGui;
@@ -208,15 +209,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@SuppressWarnings("ConstantConditions") // Idea marks a "orNull" call as "never null". Why?
 	private void checkModVersions() {
-		if (System.getProperty("openmods.igw.controls.modVersions.debug", "false").equals("true")
-				|| MISMATCHING_GUI_DEBUG
-				|| ("Windows 10".equals(System.getProperty("os.name"))
-				    && "E:/GitHub/OpenMods-IGW/run".equals(System.getProperty("user.dir").replace('\\', '/')))
-					&& System.getProperty("openmods.igw.controls.modVersions.userDebug", "true").equals("true")) {
-			this.debug$checkModVersions();
-			return;
-		}
-
 		boolean additionsSkipped = false;
 		final IModEntry[] currentlySupportedMods = this.constantRetrieverService.
 				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orNull();
@@ -231,7 +223,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				Log.info("Mod %s found: version matches", entry.modId());
 				continue;
 			}
-			Log.info("Identified mod %s, but gotten different version than expected (%s instead of %s)",
+			Log.info("Identified mod %s, but got different version than expected (%s instead of %s)",
 					entry.modId(), container.getVersion(), entry.version());
 			if (container.getVersion().equals("$VERSION$")) {
 				Log.info("The mod %s installed version (%s) equals the development environment string",
@@ -241,6 +233,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				continue;
 			}
 			if (container.getMod().getClass().getAnnotation(IMismatchingModEntry.VersionProvider.class) != null) {
+				Log.info("Mod provides @VersionProvider annotation. Analyzing data");
 				IMismatchingModEntry.VersionProvider provider = container
 						.getMod()
 						.getClass()
@@ -266,10 +259,21 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		}
 
 		if (this.mismatchingMods.isEmpty() && !additionsSkipped) Log.info("No mismatching mod versions found");
+
+		// Make sure to open the GUI if we are running in debug mode
+		// And also, let's add some more entries to the list.
+		final Optional<IService<ISystemIdentifierService>> id = OpenModsIGWApi.get()
+				.obtainService(ISystemIdentifierService.class);
+		if (!id.isPresent()) throw new IllegalStateException("ISystemIdentifierService");
+		final ISystemIdentifierService it = id.get().cast();
+		if (MISMATCHING_GUI_DEBUG || it.getSystemType(it.populate()) == ISystemIdentifierService.SystemType.DEVELOPER) {
+			this.debug$checkModVersions();
+			Log.warn("Added debug entries to Mismatching Mods GUI");
+		}
 	}
 
 	private void debug$checkModVersions() {
-		MismatchingVersionsGui.show();
+		if (!MismatchingVersionsGui.shouldShow()) MismatchingVersionsGui.show();
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test1", "1.0"), "1.1"));
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test2", "0.0"), "0.1"));
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test3", "v1.0"), "v1.1"));
