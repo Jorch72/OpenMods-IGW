@@ -19,6 +19,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 	private static final SystemIdentifierService IT = new SystemIdentifierService();
 
 	private final Map<SystemDetails, SystemType> systems = Maps.newHashMap();
+	private boolean silent;
 
 	private SystemIdentifierService() {}
 
@@ -32,14 +33,16 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 			throw new IllegalStateException(String.format("System %s already known", details));
 		}
 		this.systems.put(details, type);
-		Log.info("Registered system %s as a %s", details, type);
+		if (!this.silent) Log.info("Registered system %s as a %s", details, type);
 	}
 
 	@Override
 	public void switchType(@Nonnull final SystemDetails details, @Nonnull final SystemType newType) {
 		final SystemType oldType = this.getSystemType(details);
+		this.silent = true;
 		this.unRegister(details);
 		this.registerSystem(details, newType);
+		this.silent = false;
 		Log.info("Switched system %s type from %s to %s", details, oldType, newType);
 	}
 
@@ -49,7 +52,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 			throw new IllegalStateException(String.format("System %s not known yet", details));
 		}
 		this.systems.remove(details);
-		Log.info("Unregistered system %s", details);
+		if (!this.silent) Log.info("Unregistered system %s", details);
 	}
 
 	@Override
