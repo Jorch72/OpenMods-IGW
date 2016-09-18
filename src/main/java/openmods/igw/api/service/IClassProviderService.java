@@ -1,5 +1,6 @@
 package openmods.igw.api.service;
 
+import openmods.igw.api.config.IConfig;
 import openmods.igw.api.init.IInit;
 import openmods.igw.api.proxy.IInitProxy;
 
@@ -71,4 +72,19 @@ public interface IClassProviderService extends IService<IClassProviderService> {
 	 */
 	@Nullable
 	IInitProxy proxy();
+
+	/**
+	 * Gets the main configuration class.
+	 *
+	 * <p>At the moment, you need to rely on services and/or implementation
+	 * to do something with config values. Have a look at
+	 * {@link IConstantRetrieverService} for more information.</p>
+	 *
+	 * @return
+	 * 		The mod's config class.
+	 *
+	 * @since 1.0
+	 */
+	@Nonnull
+	Class<? extends IConfig> config();
 }

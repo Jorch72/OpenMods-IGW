@@ -29,15 +29,14 @@ import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
 import openmods.igw.api.record.mod.IMismatchingModEntry;
 import openmods.igw.api.record.mod.IModEntry;
+import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IConstantRetrieverService;
+import openmods.igw.api.service.IGuiService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
-import openmods.igw.impl.client.MismatchingVersionsGui;
-import openmods.igw.impl.client.WarningGui;
 import openmods.igw.impl.common.OpenModsCommonTab;
 import openmods.igw.impl.common.OpenModsCommonHandler;
-import openmods.igw.impl.config.Config;
 import openmods.igw.impl.openblocks.OpenBlocksWikiTab;
 import openmods.igw.impl.openblocks.OpenBlocksEventHandler;
 import openmods.igw.prefab.init.PageRegistryHelper;
@@ -64,6 +63,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	private Map<String, IWikiTab> currentTabs = Maps.newHashMap();
 	private List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
 	private IConstantRetrieverService constantRetrieverService;
+	private IGuiService guiService;
 
 	@Override
 	public void construct(final FMLConstructionEvent event) {
@@ -73,6 +73,10 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			throw new RuntimeException(new IllegalStateException("Constant retriever service unavailable"));
 		}
 		this.constantRetrieverService = service.get().cast();
+
+		final Optional<IService<IGuiService>> guiService = OpenModsIGWApi.get().obtainService(IGuiService.class);
+		if (!guiService.isPresent()) throw new RuntimeException(new IllegalStateException("GUI service unavailable"));
+		this.guiService = guiService.get().cast();
 	}
 
 	@Override
@@ -82,11 +86,12 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 		new ModStartupHelper(this.constantRetrieverService.<String>getConstant("MOD_ID").orNull()) {
 			@Override
+			@SuppressWarnings("OptionalGetWithoutIsPresent")
 			protected void populateConfig(final Configuration cfg) {
 				ConfigProcessing.processAnnotations(
 						ClientProxy.this.constantRetrieverService.<String>getConstant("MOD_ID").orNull(),
 						cfg,
-						Config.class
+						OpenModsIGWApi.get().obtainService(IClassProviderService.class).get().cast().config()
 				);
 			}
 		}.preInit(evt.getSuggestedConfigurationFile());
@@ -94,7 +99,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public void init(final FMLInitializationEvent evt) {
-		if (this.abort) WarningGui.markShow();
+		if (this.abort) this.guiService.show(IGuiService.GUIs.WARNING);
 	}
 
 	@Override
@@ -122,7 +127,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public boolean mustRegister(@Nonnull final String modId) {
-		return Config.isEnabled(modId);
+		return this.constantRetrieverService.isEnabled(modId);
 	}
 
 	@Override
@@ -177,7 +182,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		return this.currentTabs.get(modId);
 	}
 
-	@SuppressWarnings("ConstantConditions") // Idea marks a "orNull" call as "never null". Why?
 	private void handleUniqueWikiTab() {
 		final List<Pair<String, String>> entitiesEntries = Lists.newArrayList();
 		final List<Pair<String, ItemStack>> itemsBlocksEntries = Lists.newArrayList();
@@ -207,7 +211,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		MinecraftForge.EVENT_BUS.register(new OpenModsCommonHandler());
 	}
 
-	@SuppressWarnings("ConstantConditions") // Idea marks a "orNull" call as "never null". Why?
 	private void checkModVersions() {
 		boolean additionsSkipped = false;
 		final IModEntry[] currentlySupportedMods = this.constantRetrieverService.
@@ -255,7 +258,9 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			Log.info("Adding to mismatching mod list.");
 			final IMismatchingModEntry mismatchingEntry = new MismatchingModEntry(entry, container.getVersion());
 			this.mismatchingMods.add(mismatchingEntry);
-			if (!MismatchingVersionsGui.shouldShow()) MismatchingVersionsGui.show();
+			if (!this.guiService.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
+				this.guiService.show(IGuiService.GUIs.MISMATCHING_MODS);
+			}
 		}
 
 		if (this.mismatchingMods.isEmpty() && !additionsSkipped) Log.info("No mismatching mod versions found");
@@ -268,12 +273,14 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		final ISystemIdentifierService it = id.get().cast();
 		if (MISMATCHING_GUI_DEBUG || it.getSystemType(it.populate()) == ISystemIdentifierService.SystemType.DEVELOPER) {
 			this.debug$checkModVersions();
-			Log.warn("Added debug entries to Mismatching Mods GUI");
+			Log.warn("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
 		}
 	}
 
 	private void debug$checkModVersions() {
-		if (!MismatchingVersionsGui.shouldShow()) MismatchingVersionsGui.show();
+		if (!this.guiService.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
+			this.guiService.show(IGuiService.GUIs.MISMATCHING_MODS);
+		}
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test1", "1.0"), "1.1"));
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test2", "0.0"), "0.1"));
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test3", "v1.0"), "v1.1"));
@@ -281,5 +288,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test5", ""), "0.7"));
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test6", "v0.0-stable"), "v0.0-beta"));
 		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test7", "v1.0-stable"), "v0.0-beta"));
+		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test8", "$version$"), "$version$"));
 	}
 }

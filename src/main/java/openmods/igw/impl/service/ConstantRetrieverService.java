@@ -10,7 +10,6 @@ import java.lang.reflect.Modifier;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@SuppressWarnings("WeakerAccess")
 public final class ConstantRetrieverService implements IConstantRetrieverService {
 
 	private static final ConstantRetrieverService IT = new ConstantRetrieverService();

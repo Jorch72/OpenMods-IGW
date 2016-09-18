@@ -80,7 +80,6 @@ public class WarningGui extends GuiYesNo {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void drawScreen(final int mouseX, final int mouseY, final float renderPartialTicks) {
 		// We want to add a tooltip to the INSTALL button because it opens
 		// a web page: I think it is better to warn the user.

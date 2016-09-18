@@ -1,10 +1,12 @@
 package openmods.igw.impl.service;
 
 import openmods.igw.OpenModsIGW;
+import openmods.igw.api.config.IConfig;
 import openmods.igw.api.init.IInit;
 import openmods.igw.api.proxy.IInitProxy;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IService;
+import openmods.igw.impl.config.Config;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -41,6 +43,12 @@ public final class ClassProviderService implements IClassProviderService {
 	@Override
 	public IClassProviderService cast() {
 		return this;
+	}
+
+	@Nonnull
+	@Override
+	public Class<? extends IConfig> config() {
+		return Config.class;
 	}
 
 	@Override

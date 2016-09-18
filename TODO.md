@@ -111,8 +111,8 @@ List of things to complete before version **1.0**
   - [ ] Enchantments (rewrite)
   - [ ] OB Utilities (rewrite)
   - [ ] Maybe pages
-    - [ ] Changelogs (try to implement)
-	- [ ] Contacts (if **@boq** wants, replace either Changelogs or B Key `->` OB Utilities)
+    - [ ] Changelog (try to implement)
+	- [ ] Contacts (if **@boq** wants, replace either Changelog or B Key `->` OB Utilities)
 - [ ] Provide templates
   - [X] Block
   - [ ] Item
@@ -124,4 +124,4 @@ List of things to complete before version **1.0**
   - [ ] API
   - [ ] Implementation (?)
   - [ ] Prefab
-- [X] Supported mod version check (OB 1.5.1 `-->` warn if newer or older)
+- [ ] More logging (?)

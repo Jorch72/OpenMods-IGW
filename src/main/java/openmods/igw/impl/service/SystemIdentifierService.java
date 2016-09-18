@@ -116,10 +116,10 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 
 		try {
 			this.registerSystem(this.populate(), SystemType.USER);
-		} catch (final IllegalStateException ignored) {
+		} catch (final IllegalStateException e) {
 			// The system we are currently running on may be
 			// already registered due to being a developer computer.
-			Log.info(ignored, "Current system already known: skipping addition.");
+			Log.info(e, "Current system already known as %s: skipping addition.", this.getSystemType(this.populate()));
 		}
 	}
 

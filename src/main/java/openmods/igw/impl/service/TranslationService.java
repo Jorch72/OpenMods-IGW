@@ -15,7 +15,6 @@ import javax.annotation.Nullable;
  * Utility class representing the default translation service provided
  * by this mod.
  */
-@SuppressWarnings("WeakerAccess")
 public final class TranslationService implements ITranslationService {
 
 	private static final TranslationService IT = new TranslationService();

@@ -4,6 +4,7 @@ import openmods.Log;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IConstantRetrieverService;
+import openmods.igw.api.service.IGuiService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.api.service.ITranslationService;
@@ -29,6 +30,7 @@ public final class OpenServiceProvider {
 	private static void initializeServices() {
 		registerService(IClassProviderService.class, new ClassProviderService());
 		registerService(IConstantRetrieverService.class, ConstantRetrieverService.get());
+		registerService(IGuiService.class, new GuiService());
 		registerService(ISystemIdentifierService.class, SystemIdentifierService.get());
 		registerService(ITranslationService.class, TranslationService.get());
 
