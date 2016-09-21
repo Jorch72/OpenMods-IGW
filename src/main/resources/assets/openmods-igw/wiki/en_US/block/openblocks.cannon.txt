@@ -56,12 +56,14 @@ The Item Cannon will also spontaneously drop itself if the block it is attached 
 [prefix{l}]Usage [prefix{}]
 The Item Cannon can be used to launch items from a nearby inventory to a location determined by the user.
 
-Its usage is really simple: place it down near an inventory (could be a [link{block/chest}]Chest [link{}], a [link{block/dispenser}]Dispenser [link{}]...), then power them.
+[prefix{2}]Item shooting [prefix{}]
+Place the Item Cannon down near an inventory (e.g. a [link{block/chest}]Chest [link{}], a [link{block/dispenser}]Dispenser [link{}]...), then power it.
 It will immediately start shooting towards the default direction (south, pitch of 0).
+When shooting, the cannon will emit a sound and will recoil for a moment, before shooting again or stopping in case no other item is present in the nearby inventories.
 
-To aim the cannon you can use a [link{item/openblocks.pointer}]Pointer [link{}] (more information on its wiki page).
-
-When shooting, the cannon will emit a sound and will recoil for a moment, before shooting once again or stopping in case no other item is present in the nearby inventories.
+[prefix{2}]Cannon aiming [prefix{}]
+To aim the cannon you can use a [link{item/openblocks.pointer}]Pointer [link{}].
+For more information refer to the Pointer's Wiki page.
 
 [prefix{l}]GUI [prefix{}]
 This block has no GUI.

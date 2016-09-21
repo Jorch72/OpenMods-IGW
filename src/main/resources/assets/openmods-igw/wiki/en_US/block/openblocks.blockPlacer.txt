@@ -51,7 +51,9 @@ The Block Placer can be mined with any type of pickaxe. If mined without a picka
 
 [prefix{l}]Usage [prefix{}]
 The Block Placer, as the name implies, places a block from its internal inventory in front of it.
-On every redstone input, the Block Placer will activate.
+
+[prefix{2}]Block placing [prefix{}]
+The Block Placer will activate everytime it receives a redstone pulse.
 Differently from the [link{openmods-igw:block/openblocks.blockbreaker}]Block Breaker [link{}], it will activate once per redstone input.
 In other words, if the input is not a pulse, like with a [link{block/lever}]Lever [link{}], the block placer will place a block just one time.
 The input will have to be turned off and then on again to place another block.
@@ -60,7 +62,7 @@ Blocks placed by Block Placers still follow the same placement rules of the play
 E.g., [link{openmods-igw:block/openblocks.ropeladder}]Rope Ladders [link{}]will still unroll themselves to the ground, consuming one item per block placed (if enabled).
 
 [prefix{l}]GUI [prefix{}]
-[image{200, 795, openmods-igw:wiki/worldwide/images/block/blockPlacer/gui.png}]
+[image{200, 818, openmods-igw:wiki/worldwide/images/block/blockPlacer/gui.png}]
 
 
 
@@ -91,7 +93,7 @@ The Block Placer's GUI is very similar to the [link{block/dropper}]Dropper's [li
 The top part of the GUI is dominated by nine slots, placed on a 3 by 3 grid.
 In here you can place the items you want the machine to place.
 If more than one slot is occupied, then the block which will be placed will be chosen according to the following pattern:
-[image{200, 1143, openmods-igw:/wiki/worldwide/images/block/blockPlacer/gui_choose_pattern_cropped.png}]
+[image{200, 1159, openmods-igw:/wiki/worldwide/images/block/blockPlacer/gui_choose_pattern_cropped.png}]
 
 
 
@@ -124,7 +126,7 @@ There are no tutorials for this block.
 This is a structure I built once because I had to mine some blocks ([link{block/oreRedstone}]Redstone Ores [link{}]), but I had only a Silk Touch pick.
 In fact, this structure is mainly thought for people whose only [link{item/pickaxeWood}]Pickaxe [link{}] is enchanted with Silk Touch and they have to mine some ores.
 
-[image{200, 1561, openmods-igw:wiki/worldwide/images/block/blockPlacer/structures_silkfixer_no_ref.png}]
+[image{200, 1576, openmods-igw:wiki/worldwide/images/block/blockPlacer/structures_silkfixer_no_ref.png}]
 
 
 
@@ -159,7 +161,7 @@ Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will si
 - Even if the block placer uses a fake player to place blocks, it still is unable to use items.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1941, openmods-igw:wiki/worldwide/images/block/blockPlacer/gallery_block_placer_item_use.png}]
+[image{200, 1959, openmods-igw:wiki/worldwide/images/block/blockPlacer/gallery_block_placer_item_use.png}]
 
 
 

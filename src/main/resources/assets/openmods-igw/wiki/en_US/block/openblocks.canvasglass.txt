@@ -38,11 +38,9 @@ When placed in the world through commands, external tools or right-clicking with
 Its behavior is pretty much the same as the normal canvas: the only way to distinguish a Glass Canvas from a Canvas, when directly placed, is by breaking them.
 In fact, the Glass Canvas makes the sound of breaking glass when mined, whereas the canvas just makes the default stone sound.
 
-As previously said, you can paint directly on it with the use of a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
+[prefix{2}]Painting [prefix{}]
+You can paint directly on the Glass Canvas with the use of a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
 You can also paint by placing [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}] and then right clicking the canvas spots with the paint brush, drawing the pattern on the canvas.
-
-Using a [link{openmods-igw:item/openblocks.squeegee}]Squeegee [link{}] you can clean the canvas from paint.
-Special canvases cleaned by paint will turn back to the original block.
 
 The blocks currently (1.5.1) natively supported are:
 - [prefix{n}]Cobblestone [prefix{}] (Minecraft)
@@ -68,7 +66,11 @@ The blocks currently (1.5.1) natively supported are:
 - [prefix{n}]Wooden Planks [prefix{}] (Minecraft)
 
 If the Glass Canvas is obtained through painting one of the above blocks, then the transparency will be kept.
-Otherwise, the Glass Canvas will render always as a Canvas.
+Otherwise, the Glass Canvas will always render as a Canvas.
+
+[prefix{2}]Cleaning [prefix{}]
+Using a [link{openmods-igw:item/openblocks.squeegee}]Squeegee [link{}] you can clean the canvas from paint.
+Special canvases cleaned by paint will turn back to the original block.
 
 [prefix{l}]GUI [prefix{}]
 This block has no GUI.
@@ -107,7 +109,7 @@ All Data Values from 0 to 15 represent the basic block.
 - When a block is replaced by the Glass Canvas, it will acquire all Glass Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1500, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_placed_glass_canvas.png}]
+[image{200, 1525, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_placed_glass_canvas.png}]
 
 
 
@@ -124,7 +126,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]A placed glass canvas (obtained through commands). You can notice the default Canvas rendering. [prefix{}]
 
-[image{200, 1661, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_glass_canvas_inventory.png}]
+[image{200, 1683, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_glass_canvas_inventory.png}]
 
 
 

@@ -52,10 +52,10 @@ The Bear Trap can be mined with any type of pickaxe. If mined without a pickaxe,
 [prefix{l}]Usage [prefix{}]
 The Bear Trap can be used to block all mobs, either peaceful or hostile.
 
-Its usage is extremely simple: place them down and then wait for mobs to walk over it.
+[prefix{2}]Mob trapping [prefix{}]
+Place a Bear Trap down and then wait for a mob to walk over it.
 They will be trapped until they despawn or you kill them.
-
-Hostile mobs are still able to damage you, though.
+Hostile mobs can still deal damage to the various entities, though.
 
 [prefix{l}]GUI [prefix{}]
 This block has no GUI.
@@ -80,7 +80,7 @@ The following list is made of unofficial structures.
 This is a structure that I, TheSilkMiner, used in my Agrarian Skies let's play.
 It serves as a protection against mobs who are able to evade the first barrier of pistons during its closing (opened in the image) and avoid them to wander away on the island.
 The design can also provide a second barrier of pistons to avoid that mobs that are not trapped in the bear traps (it can happen) can leave the mob spawner.
-[image{200, 980, openmods-igw:wiki/worldwide/images/block/beartrap/structures_spawner_agrarian.png}]
+[image{200, 990, openmods-igw:wiki/worldwide/images/block/beartrap/structures_spawner_agrarian.png}]
 
 
 
@@ -101,7 +101,7 @@ The two barriers can be raised using the buttons, which are connected to a Flick
 [prefix{2}]Trading system [prefix{}]
 Another neat "structure" I use.
 It is simply a way to trap [link{entity/Villager}]Villagers [link{}] and use them for trades.
-[image{200, 1237, openmods-igw:wiki/worldwide/images/block/beartrap/structures_trading_survival.png}]
+[image{200, 1246, openmods-igw:wiki/worldwide/images/block/beartrap/structures_trading_survival.png}]
 
 
 
@@ -137,7 +137,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - After 1.4.4, right-clicking on the bear trap to open it is no more needed.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1668, openmods-igw:wiki/worldwide/images/block/beartrap/gallery_closed_beartrap_thx_pig.png}]
+[image{200, 1678, openmods-igw:wiki/worldwide/images/block/beartrap/gallery_closed_beartrap_thx_pig.png}]
 
 
 

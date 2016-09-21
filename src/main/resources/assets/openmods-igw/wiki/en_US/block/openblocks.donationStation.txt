@@ -51,15 +51,19 @@ The Donation Station can be mined with any type of pickaxe. If mined without a p
 
 
 [prefix{l}]Usage [prefix{}]
-The Donation Station allows the user to discover which mod a specific block or item is.
-If the object is supported, it also allows to donate to the mod developer via a button.
+All the actions allowed by the Donation Station must be performed through the GUI, opened with a right-click on the block.
 
-You can perform the above actions through the GUI, opened with a right-click on the block.
+[prefix{2}]Mod discovering [prefix{}]
+The Donation Station allows the user to discover which mod a specific block or item is.
+Placing an item in the GUI shows the mod the placed object is from.
+
+[prefix{2}]Donating [prefix{}]
+If the inserted object is supported, the Donation Station also allows to donate to the mod developer via a button.
 
 [prefix{o}]See also: GUI [prefix{}]
 
 [prefix{l}]GUI [prefix{}]
-[image{200, 713, openmods-igw:wiki/worldwide/images/block/donationStation/gui.png}]
+[image{200, 783, openmods-igw:wiki/worldwide/images/block/donationStation/gui.png}]
 
 
 
@@ -134,7 +138,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - OpenBlocks supplies an API to allow developers to add donation links. This can be done through IMC messages with the key "donateUrl".
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1616, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_ob.png}]
+[image{200, 1686, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_ob.png}]
 
 
 
@@ -163,7 +167,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Donation Station with a supported mod item in it. In this case it is OpenBlocks' [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}]. [prefix{}]
 
-[image{200, 1898, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_silkcore.png}]
+[image{200, 1969, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_silkcore.png}]
 
 
 
@@ -191,7 +195,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Donation Station with an unsupported mod item in it. Note how the item is correctly recognized, but the donate button is disabled. [prefix{}]
 
-[image{200, 2189, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_vanilla.png}]
+[image{200, 2255, openmods-igw:wiki/worldwide/images/block/donationStation/gallery_vanilla.png}]
 
 
 

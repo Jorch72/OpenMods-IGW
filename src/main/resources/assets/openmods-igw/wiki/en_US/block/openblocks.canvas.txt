@@ -57,11 +57,10 @@ If the painted block is a supported transparent block (e.g. [link{block/glass}]G
 
 [prefix{l}]Usage [prefix{}]
 The only use of the Canvas is painting.
-You can paint directly on it with the use of a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
-You can also paint by placing [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}] and then right clicking the canvas spots with the paint brush, drawing the pattern on the canvas.
 
-Using a [link{openmods-igw:item/openblocks.squeegee}]Squeegee [link{}] you can clean the canvas from paint.
-Special canvases cleaned by paint will turn back to the original block.
+[prefix{2}]Painting [prefix{}]
+You can paint directly on the Canvas with the use of a [link{openmods-igw:item/openblocks.paintbrush}]paint brush [link{}].
+You can also paint by placing [link{openmods-igw:item/openblocks.stencil}]Stencils [link{}] and then right clicking the canvas spots with the paint brush, drawing the pattern on the canvas.
 
 The blocks currently (1.5.1) natively supported are:
 - [prefix{n}]Cobblestone [prefix{}] (Minecraft)
@@ -85,6 +84,10 @@ The blocks currently (1.5.1) natively supported are:
 - [prefix{n}]Wood Log [prefix{}] (Minecraft)
 - [prefix{n}]Wooden Planks [prefix{}] (Biomes O' Plenty)
 - [prefix{n}]Wooden Planks [prefix{}] (Minecraft)
+
+[prefix{2}]Cleaning [prefix{}]
+Using a [link{openmods-igw:item/openblocks.squeegee}]Squeegee [link{}] you can clean the canvas from paint.
+Special canvases cleaned by paint will turn back to the original block.
 
 [prefix{l}]GUI [prefix{}]
 This block has no GUI.
@@ -124,7 +127,7 @@ All Data Values from 0 to 15 represent the basic block.
 - When a block is replaced by the Canvas, it will acquire all Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1580, openmods-igw:wiki/worldwide/images/block/canvas/gallery_blocks_painted.png}]
+[image{200, 1616, openmods-igw:wiki/worldwide/images/block/canvas/gallery_blocks_painted.png}]
 
 
 
@@ -141,8 +144,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]Two non-canvas blocks painted with Paint Brushes. These blocks have now become canvases. [prefix{}]
 
-[image{200, 1744, openmods-igw:wiki/worldwide/images/block/canvas/gallery_canvas_replacing_comparison.png}]
-
+[image{200, 1771, openmods-igw:wiki/worldwide/images/block/canvas/gallery_canvas_replacing_comparison.png}]
 
 
 

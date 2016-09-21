@@ -51,15 +51,15 @@ The Block Breaker can be mined with any type of pickaxe. If mined without a pick
 
 [prefix{l}]Usage [prefix{}]
 The Block Breaker, as the name says, breaks the block in front of it.
-On every redstone input, the block breaker will activate for half a second.
-If the input is not a pulse, like with a [link{block/lever}]Lever [link{}], then the Block Breaker will reactivate when updated.
 
-The maximum harvest level of a Block Breaker corresponds to the [link{item/pickaxeDiamond}]Diamond Pickaxe [link{}].
+[prefix{2}]Block breaking[prefix{}]
+Everytime it receives a redstone current, the block breaker will activate for half a second.
+If the input is not a pulse, like with a [link{block/lever}]Lever [link{}], then the Block Breaker will reactivate only when updated.
+The maximum harvest level of a Block Breaker corresponds to the [link{item/pickaxeDiamond}]Diamond Pickaxe [link{}] harvest level.
 
 When breaking a block, the front texture of the Block Breaker changes to an activated state.
 
-The output of the broken block is on the back of the Block Breaker.
-You can connect also pipes from other mods to it, e.g. BuildCraft ones.
+The Block Breaker then outputs the broken block from the back side, where you can also connect pipes from other mods, e.g. BuildCraft.
 
 [prefix{l}]GUI [prefix{}]
 This block has no GUI.
