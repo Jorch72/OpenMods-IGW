@@ -40,6 +40,7 @@ public final class ConstantRetrieverService implements IConstantRetrieverService
 			}
 			throw new NoSuchFieldException(name);
 		} catch (final Exception e) {
+			openmods.Log.warn(e, "Exception thrown while attempting to retrieve configuration constant " + name);
 			return new ConfigConstantWrapper<T>(null);
 		}
 	}
@@ -48,9 +49,20 @@ public final class ConstantRetrieverService implements IConstantRetrieverService
 	@Override
 	public ConfigConstantWrapper<Boolean> getBooleanConfigConstant(@Nonnull final String name) {
 		try {
-			return this.getConfigConstant(name);
-		} catch (final ClassCastException e) {
-			return new ConfigConstantWrapper<Boolean>(null);
+			final ConfigConstantWrapper<?> it = this.getConfigConstant(name);
+			if (!it.isPresent()) throw new IllegalArgumentException("Specified value not found in config file");
+			if (!(it.get() instanceof Boolean)) {
+				throw new IllegalArgumentException(
+						"Specified value is not a valid boolean config property",
+						new ClassCastException(String.format("Cannot cast %s to Boolean", it.get().getClass().getName()))
+				);
+			}
+			return new ConfigConstantWrapper<Boolean>((Boolean) it.get());
+		} catch (final IllegalArgumentException e) {
+			throw new RuntimeException(
+					"Unexpected exception in ConstantRetrieverService",
+					new IllegalStateException("Invalid service state: invalid argument passed in", e)
+			);
 		}
 	}
 
@@ -79,6 +91,7 @@ public final class ConstantRetrieverService implements IConstantRetrieverService
 			}
 			throw new NoSuchFieldException(name);
 		} catch (final Exception e) {
+			openmods.Log.warn(e, "Exception thrown while attempting to retrieve constant " + name);
 			return new ConfigConstantWrapper<T>(null);
 		}
 	}

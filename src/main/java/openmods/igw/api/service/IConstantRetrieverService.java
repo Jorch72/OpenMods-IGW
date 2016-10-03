@@ -119,7 +119,7 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 	 * Gets a boolean config constant with the specified name.
 	 *
 	 * <p>Differently from {@link #getConfigConstant(String)},
-	 * this method should thrown an exception if a boolean
+	 * this method should throw an exception if a boolean
 	 * constant with the given name is not found.</p>
 	 *
 	 * @param name
