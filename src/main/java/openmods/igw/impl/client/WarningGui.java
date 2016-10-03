@@ -28,7 +28,7 @@ public class WarningGui extends GuiYesNo {
 	private static final String IGW_URL = "http://www.curse.com/mc-mods/minecraft/223815-in-game-wiki-mod";
 	private static final int CONTINUE = 0;
 	private static final int INSTALL = 1;
-	private static final int EXIT_CODE_INTERNAL = -101;
+	private static final int EXIT_CODE_INTERNAL = "IGW-Hot-Load".hashCode();
 
 	@SuppressWarnings({"WeakerAccess","unused"})
 	public WarningGui() {

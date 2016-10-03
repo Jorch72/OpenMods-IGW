@@ -1,14 +1,6 @@
 # TODO
 List of things to complete before version **1.0**
 
-- [X] **FIX**: Wiki pages not following standard in "Usage" section
-  - [X] Bear Trap
-  - [X] Block Breaker
-  - [X] Block Placer
-  - [X] Cannon
-  - [X] Canvas
-  - [X] Canvas Glass
-  - [X] Donation Station
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table

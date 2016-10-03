@@ -41,7 +41,6 @@ import openmods.igw.impl.openblocks.OpenBlocksWikiTab;
 import openmods.igw.impl.openblocks.OpenBlocksEventHandler;
 import openmods.igw.prefab.init.PageRegistryHelper;
 import openmods.igw.prefab.record.mod.MismatchingModEntry;
-import openmods.igw.prefab.record.mod.ModEntry;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
@@ -236,7 +235,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				continue;
 			}
 			if (container.getMod().getClass().getAnnotation(IMismatchingModEntry.VersionProvider.class) != null) {
-				Log.info("Mod provides @VersionProvider annotation. Analyzing data");
+				Log.info("Mod provides @VersionProvider annotation. Analyzing data...");
 				IMismatchingModEntry.VersionProvider provider = container
 						.getMod()
 						.getClass()
@@ -253,10 +252,10 @@ public class ClientProxy implements IInitProxy, IPageInit {
 						provider.value(), entry.version());
 				Log.info("As such, we add the mod to the list anyway.");
 			} else {
-				Log.info("No alternative version provided");
+				Log.info("No alternative version provided.");
 			}
 			Log.info("Adding to mismatching mod list.");
-			final IMismatchingModEntry mismatchingEntry = new MismatchingModEntry(entry, container.getVersion());
+			final IMismatchingModEntry mismatchingEntry = MismatchingModEntry.of(entry, container.getVersion());
 			this.mismatchingMods.add(mismatchingEntry);
 			if (!this.guiService.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
 				this.guiService.show(IGuiService.GUIs.MISMATCHING_MODS);
@@ -272,22 +271,22 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		if (!id.isPresent()) throw new IllegalStateException("ISystemIdentifierService");
 		final ISystemIdentifierService it = id.get().cast();
 		if (MISMATCHING_GUI_DEBUG || it.getSystemType(it.populate()) == ISystemIdentifierService.SystemType.DEVELOPER) {
-			this.debug$checkModVersions();
+			this.debugModVersionsCheck();
 			Log.warn("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
 		}
 	}
 
-	private void debug$checkModVersions() {
+	private void debugModVersionsCheck() {
 		if (!this.guiService.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
 			this.guiService.show(IGuiService.GUIs.MISMATCHING_MODS);
 		}
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test1", "1.0"), "1.1"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test2", "0.0"), "0.1"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test3", "v1.0"), "v1.1"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test4", "v1.0-stable"), "v1.0-beta"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test5", ""), "0.7"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test6", "v0.0-stable"), "v0.0-beta"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test7", "v1.0-stable"), "v0.0-beta"));
-		this.mismatchingMods.add(new MismatchingModEntry(ModEntry.of("test8", "$version$"), "$version$"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test1", "1.0", "1.1"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test2", "0.0", "0.1"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test3", "v1.0", "v1.1"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test4", "v1.0-stable", "v1.0-beta"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test5", "", "0.7"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test6", "v0.0-stable", "v0.0-beta"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test7", "v1.0-stable", "v0.0-beta"));
+		this.mismatchingMods.add(MismatchingModEntry.of("test8", "$version$", "$version$"));
 	}
 }

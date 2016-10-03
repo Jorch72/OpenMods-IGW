@@ -7,6 +7,7 @@ import openmods.igw.impl.openblocks.OpenBlocksEventHandler;
 
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
+
 import openmods.igw.prefab.handler.OpenModsEventHandler;
 
 import javax.annotation.Nonnull;
@@ -24,7 +25,6 @@ public final class OpenModsCommonHandler extends OpenModsEventHandler {
 
 	@SubscribeEvent
 	public void handleCustomBlocks(final PageChangeEvent event) {
-
 		if (event.currentFile.contains(openmods.Mods.OPENBLOCKS.toLowerCase())) {
 			this.currentMod = openmods.Mods.OPENBLOCKS;
 			this.handlerForOpenBlocks.handleCustomBlocks(event);
@@ -35,7 +35,6 @@ public final class OpenModsCommonHandler extends OpenModsEventHandler {
 
 	@SubscribeEvent
 	public void handleCustomIcons(final PageChangeEvent event) {
-
 		if (event.currentFile.contains(openmods.Mods.OPENBLOCKS.toLowerCase())) {
 			this.currentMod = openmods.Mods.OPENBLOCKS;
 			this.handlerForOpenBlocks.handleCustomIcons(event);

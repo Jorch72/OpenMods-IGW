@@ -122,7 +122,6 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
 
 	@Nonnull
 	private String format(final IMismatchingModEntry entry) {
-
 		return String.format(
 				ENTRY_RAW,
 				entry.modId(),

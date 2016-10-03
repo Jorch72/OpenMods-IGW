@@ -48,6 +48,7 @@ public final class OpenServiceProvider {
 			Log.warn("Registration failed for pair %s -> %s. This can lead to errors!",
 					serviceClassName,
 					newServiceClassName);
+			Log.info("Skipping ID " + totalServices);
 		}
 		++registeredServices;
 		Log.info("Registered implementation class %s for service %s (id: %d)", newServiceClassName,

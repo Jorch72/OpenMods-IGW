@@ -58,7 +58,7 @@ public final class ModEntry implements IModEntry {
 	 * @since 1.0
 	 */
 	@Nonnull
-	public static ModEntry of(final String modId, final String version) {
+	public static ModEntry of(@Nonnull final String modId, @Nonnull final String version) {
 		Preconditions.checkNotNull(modId, "Mod ID must not be null");
 		Preconditions.checkNotNull(version, "Mod version must not be null");
 		Preconditions.checkArgument(!modId.isEmpty(), "Mod ID must not be an empty string");
