@@ -27,6 +27,39 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 	 */
 	final class ConfigConstantWrapper<T> {
 
+		/**
+		 * Interface used to supply data to a method.
+		 *
+		 * <p>The data type may be a factory, an object, an exception
+		 * or every other possible choice. The contract of this
+		 * interface does not restrict the possible implementations.</p>
+		 *
+		 * <p>This interface is similar to the one provided
+		 * by Guava ({@link com.google.common.base.Supplier}), but
+		 * it is specifically designed to not rely on external
+		 * libraries and for internal use only.</p>
+		 *
+		 * @param <T>
+		 *     The type to return.
+		 *
+		 * @author TheSilkMiner
+		 * @since 1.0
+		 */
+		@SuppressWarnings("WeakerAccess")
+		public interface Supplier<T> {
+
+			/**
+			 * Gets an instance of the appropriate type.
+			 *
+			 * @return
+			 * 		An instance of the appropriate type.
+			 *
+			 * @since 1.0
+			 */
+			@Nullable
+			T get();
+		}
+
 		private final T constant;
 
 		public ConfigConstantWrapper(@Nullable final T value) {
@@ -84,6 +117,59 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 			} catch (final IllegalStateException exception) {
 				return null;
 			}
+		}
+
+		/**
+		 * Gets the constant value, if available, or else throws
+		 * an exception.
+		 *
+		 * <p>By default, the thrown exception is an
+		 * {@link IllegalStateException}, wrapped in a
+		 * {@link RuntimeException}.</p>
+		 *
+		 * @return
+		 * 		The constant value, if available.
+		 * @throws RuntimeException
+		 * 		If the constant's value is not present.
+		 *
+		 * @since 1.0
+		 */
+		@Nonnull
+		public T orElseThrow() {
+			return this.orElseThrow(new Supplier<Throwable>() {
+				@Override
+				public Throwable get() {
+					return new RuntimeException(new IllegalStateException("Value not present"));
+				}
+			});
+		}
+
+		/**
+		 * Gets the constant value, if available, or else
+		 * throws the specified exception.
+		 *
+		 * @param throwableSupplier
+		 * 		A {@link Supplier} used to provide the
+		 * 		exception type. You only have to construct
+		 * 		the exception instance: throwing is done
+		 * 		automatically by the method if needed.
+		 * @return
+		 * 		The constant value, if available.
+		 * @throws NullPointerException
+		 * 		If the provided supplier is {@code null}.
+		 * @throws RuntimeException
+		 * 		If the constant value is not present.
+		 * 		<strong>NOTE: this exception can be any
+		 * 		superclass or subclass of {@link Throwable},
+		 * 		so handle it accordingly.</strong>
+		 *
+		 * @since 1.0
+		 */
+		@Nonnull
+		@SuppressWarnings("WeakerAccess") // Can be removed later, if IDE doesn't complain
+		public T orElseThrow(@Nonnull final Supplier<? extends Throwable> throwableSupplier) {
+			if (!this.isPresent()) throw throwableSupplier.get();
+			return this.get();
 		}
 
 		/**
