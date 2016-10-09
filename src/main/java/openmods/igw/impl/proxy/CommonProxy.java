@@ -37,7 +37,8 @@ public class CommonProxy implements IInitProxy {
 	@SuppressWarnings("OptionalGetWithoutIsPresent")
 	public void postInit(final FMLPostInitializationEvent evt) {
 		Log.warn("This mod (%s) is currently not needed on server side.",
-				OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME"));
+				OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME")
+						.orNull());
 		Log.info("You can install it to force people to use it, though.");
 	}
 

@@ -1,6 +1,7 @@
 package openmods.igw.impl.proxy;
 
 import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -61,21 +62,11 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	private boolean abort;
 	private Map<String, IWikiTab> currentTabs = Maps.newHashMap();
 	private List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
-	private IConstantRetrieverService constantRetrieverService;
-	private IGuiService guiService;
 
 	@Override
 	public void construct(final FMLConstructionEvent event) {
-		final Optional<IService<IConstantRetrieverService>> service = OpenModsIGWApi.get()
-				.obtainService(IConstantRetrieverService.class);
-		if (!service.isPresent()) {
-			throw new RuntimeException(new IllegalStateException("Constant retriever service unavailable"));
-		}
-		this.constantRetrieverService = service.get().cast();
-
-		final Optional<IService<IGuiService>> guiService = OpenModsIGWApi.get().obtainService(IGuiService.class);
-		if (!guiService.isPresent()) throw new RuntimeException(new IllegalStateException("GUI service unavailable"));
-		this.guiService = guiService.get().cast();
+		// Hot load services
+		this.constantService();
 	}
 
 	@Override
@@ -83,12 +74,12 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		if (!cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
 		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
 
-		new ModStartupHelper(this.constantRetrieverService.<String>getConstant("MOD_ID").orNull()) {
+		new ModStartupHelper(this.constantService().<String>getConstant("MOD_ID").orNull()) {
 			@Override
 			@SuppressWarnings("OptionalGetWithoutIsPresent")
 			protected void populateConfig(final Configuration cfg) {
 				ConfigProcessing.processAnnotations(
-						ClientProxy.this.constantRetrieverService.<String>getConstant("MOD_ID").orNull(),
+						ClientProxy.this.constantService().<String>getConstant("MOD_ID").orNull(),
 						cfg,
 						OpenModsIGWApi.get().obtainService(IClassProviderService.class).get().cast().config()
 				);
@@ -98,13 +89,13 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public void init(final FMLInitializationEvent evt) {
-		if (this.abort) this.guiService.show(IGuiService.GUIs.WARNING);
+		if (this.abort) this.guiService().show(IGuiService.GUIs.WARNING);
 	}
 
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
 		if (this.abort) return;
-		if (this.constantRetrieverService.getBooleanConfigConstant("useUniqueWikiTab").get()) {
+		if (this.constantService().getBooleanConfigConstant("useUniqueWikiTab").get()) {
 			this.handleUniqueWikiTab();
 			return;
 		}
@@ -126,7 +117,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public boolean mustRegister(@Nonnull final String modId) {
-		return this.constantRetrieverService.isEnabled(modId);
+		return this.constantService().isEnabled(modId);
 	}
 
 	@Override
@@ -174,7 +165,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	@Nullable
 	@Override
 	public IWikiTab getTabForModId(@Nonnull final String modId) {
-		if (this.constantRetrieverService.getBooleanConfigConstant("useUniqueWikiTab").get()) {
+		if (this.constantService().getBooleanConfigConstant("useUniqueWikiTab").orElseThrow()) {
 			return this.currentTabs.get("0");
 		}
 
@@ -186,9 +177,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		final List<Pair<String, ItemStack>> itemsBlocksEntries = Lists.newArrayList();
 		final Map<String, ItemStack> allClaimedPages = Maps.newHashMap();
 		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = Maps.newHashMap();
-		final IModEntry[] currentlySupportedMods = this.constantRetrieverService.
-				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orNull();
-		if (currentlySupportedMods == null) throw new RuntimeException("currentlySupportedMods == null");
+		final IModEntry[] currentlySupportedMods = this.constantService().
+				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orElseThrow();
 
 		for (final IModEntry entry : currentlySupportedMods) {
 			final String modId = entry.modId();
@@ -212,9 +202,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	private void checkModVersions() {
 		boolean additionsSkipped = false;
-		final IModEntry[] currentlySupportedMods = this.constantRetrieverService.
-				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orNull();
-		if (currentlySupportedMods == null) throw new RuntimeException("currentlySupportedMods == null");
+		final IModEntry[] currentlySupportedMods = this.constantService().
+				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orElseThrow();
 
 		for (final IModEntry entry : currentlySupportedMods) {
 			final Optional<ModContainer> optionalContainer = entry.modContainer();
@@ -257,8 +246,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			Log.info("Adding to mismatching mod list.");
 			final IMismatchingModEntry mismatchingEntry = MismatchingModEntry.of(entry, container.getVersion());
 			this.mismatchingMods.add(mismatchingEntry);
-			if (!this.guiService.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
-				this.guiService.show(IGuiService.GUIs.MISMATCHING_MODS);
+			if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
+				this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 			}
 		}
 
@@ -277,8 +266,8 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	}
 
 	private void debugModVersionsCheck() {
-		if (!this.guiService.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
-			this.guiService.show(IGuiService.GUIs.MISMATCHING_MODS);
+		if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
+			this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 		}
 		this.mismatchingMods.add(MismatchingModEntry.of("test1", "1.0", "1.1"));
 		this.mismatchingMods.add(MismatchingModEntry.of("test2", "0.0", "0.1"));
@@ -288,5 +277,19 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		this.mismatchingMods.add(MismatchingModEntry.of("test6", "v0.0-stable", "v0.0-beta"));
 		this.mismatchingMods.add(MismatchingModEntry.of("test7", "v1.0-stable", "v0.0-beta"));
 		this.mismatchingMods.add(MismatchingModEntry.of("test8", "$version$", "$version$"));
+	}
+
+	@Nonnull
+	private IConstantRetrieverService constantService() {
+		return Preconditions.checkNotNull(
+				OpenModsIGWApi.get().serviceManager().obtainAndCastService(IConstantRetrieverService.class)
+		);
+	}
+
+	@Nonnull
+	private IGuiService guiService() {
+		return Preconditions.checkNotNull(
+				OpenModsIGWApi.get().serviceManager().obtainAndCastService(IGuiService.class)
+		);
 	}
 }
