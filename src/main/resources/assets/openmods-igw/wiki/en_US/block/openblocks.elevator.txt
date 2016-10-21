@@ -1,4 +1,45 @@
-[crafting{200,15,key=block/openblocks.elevator}]
+[prefix{l}][prefix{1}]ELEVATOR [prefix{}] [prefix{}]
+
+"[prefix{o}]Colorable elevator blocks to quickly travel between floors. [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page.
+
+Elevators allow the player to move up or down various floors of a building in a quicker and easier way.
+Elevators can only interface with ones colored with the same [link{item/dyePowder.black}]dye [link{}].
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+Place one elevator directly three or more blocks above another with no blocks  in between and you'll be able to either 'jump' to move up, or 'crouch' to move down.
+Elevators can be dyed by clicking on them with [link{item/dyePowder.black}]dye [link{}], however, you can only teleport between elevators of the same color.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]0
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:elevator
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Elevator can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,535,key=block/openblocks.elevator}]
 
 
 
@@ -10,7 +51,167 @@
 
 
 
-Place one elevator directly three or more blocks above another with no blocks in between and you'll be able to either 'jump' to move up, or 'crouch' to move down.
-Elevators can be dyed by clicking on them with [link{item/dyePowder}]dye [link{}], however, you can only teleport between elevators of the same color.
 
-Elevators can also rotate the player, but to be able to do that, you need to use a [link{openmods-igw:block/openblocks.elevator_rotating}]Rotating Elevator [link{}].
+[prefix{l}]Usage [prefix{}]
+The Elevator can be used as an alternative and quicker way of travel between various floors of a building.
+
+[prefix{2}]Elevating players [prefix{}]
+In order to teleport players between floors, the two elevator blocks must be vertically on top of each other and have no "forbidden" blocks in between.
+They also have to be of the same color, otherwise the research will fail.
+
+Once all the initial conditions are met, the player can move up and down the various elevators by jumping or crouching, respectively, while on an elevator block.
+The player will instantly be teleported to the upper or lower level of elevators.
+If enabled in the configuration file, this will cost the player a certain amount of experience points, according to the distance of the two elevator blocks.
+The destination elevator will also play a "teleportation sound".
+
+The player can avoid teleportation while jumping or sneaking by starting the jump or crouch action before stepping on the elevator block.
+In this case the elevator will act as a normal block.
+
+When multiple elevator blocks are used in conjuction (such as in a 2x2 square pattern), the elevator can try to center the player in the middle of the shape.
+This behaviour is configurable and disabled by default.
+
+[prefix{2}]Dying [prefix{}]
+Elevator blocks can be dyed in order to distinguish them from other elevator blocks above or below.
+To dye an Elevator block, right-click it with a [link{item/dyePowder.black}]dye (e.g. an ink sack) [link{}].
+The Elevator block will be dyed, but the dye will not be consumed in the process.
+
+When the elevator block is broken, the given item will have the same block color.
+When placed back, the elevator loses the previous colors, though.
+It is currently unknown whether this is a feature or a bug.
+
+[prefix{2}]Crafting [prefix{}]
+The Elevator can be used to craft the [link{openmods-igw:block/openblocks.elevator_rotating}]Rotating Elevator [link{}].
+
+Shapeless Crafting
+[crafting{200,1200,block/openblocks.elevator_rotating,eix,ixx,xxx,e=block/openblocks.elevator,i=item/ingotIron}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place down at least a pair of elevator blocks within the maximum distance (configurable).
+Make sure there is room for a player to fit in in both spots.
+If needed, dye the pair of elevators.
+Then simply either jump or sneak to go up or down, according to your desire.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:elevator [prefix{}]
+Allows to enable (true) or disable (false) the Elevator.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@elevator}]
+
+[prefix{2}]"dropblock" category [prefix{}]
+[prefix{5}]B:centerOnBlock [prefix{}]
+Specifies if the player should be centered (true) or not (false) when teleported between elevators.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorCenter}]
+[prefix{5}]D:elevatorXpDrainRatio [prefix{}]
+Specifies the ratio of XP that is consumed everytime an elevator is used.
+The formula used to calculate the total XP consumed is [prefix{o}]total = distance * ratio [prefix{}]
+[prefix{o}]Default value: [prefix{}] 0.0
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorXpDrainRatio}]
+[prefix{5}]B:ignoreAllBlocks [prefix{}]
+If enabled (true), the elevator doesn't search for blocks in-between the starting point and the ending one.
+Setting this value to true is the same as using a positive infinity value for [prefix{o}]maxPassThrough [prefix{}]
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorIgnoreBlocks}]
+[prefix{5}]B:ignoreHalfBlocks [prefix{}]
+If enabled (true), the elevator won't consider half blocks (e.g. [link{block/stoneSlab.stone}]Slabs [link{}]) when counting the amount of blocks it can pass through.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorIgnoreHalfBlocks}]
+[prefix{5}]B:irregularBlocksArePassable [prefix{}]
+If enabled (true), the elevator will attempt to pass through blocks which have custom collision boxes, or, in other words, are not a full block.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@irregularBlocksArePassable}]
+[prefix{5}]I:maxPassThrough [prefix{}]
+Specifies the amount of blocks the elevator can pass through before the teleportation fails.
+The value is considered as the maximum bound and, as such, excluded from the check.
+[prefix{o}]Default value: [prefix{}] 4
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorMaxBlockPassCount}]
+[prefix{5}]I:searchDistance [prefix{}]
+Specifies the maximum distance there can be between two elevator blocks before the teleportation fails.
+[prefix{o}]Default value: [prefix{}] 20
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorTravelDistance}]
+[prefix{5}]S:specialBlockRules [prefix{}]
+Specifies custom rules for specific blocks which have to be respected by elevators.
+The rules must be written in the format [prefix{o}]<modId>:<blockName>:<action> [prefix{}] or [prefix{o}]id:<blockId>:<action> [prefix{}]
+The valid actions are [prefix{o}]abort [prefix{}](the elevator will abort the teleportation process), [prefix{o}]increment [prefix{}](the block is counted in the limit) and [prefix{o}]ignore [prefix{}] (the block is ignored completely).
+[prefix{o}]Default value: [prefix{}] 
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorRules}]
+
+[prefix{l}]Tutorials [prefix{}]
+A YouTube tutorial made by mikeemoo is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
+Link: [prefix{n}] [prefix{1}]https://youtu.be/bCfhJCkox5g [prefix{}] [prefix{}]
+
+[prefix{l}]Useful structures [prefix{}]
+There are no useful or suggested structures for this block.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Elevator (White)
+[prefix{o}]1: [prefix{}] Elevator (Orange)
+[prefix{o}]2: [prefix{}] Elevator (Magenta)
+[prefix{o}]3: [prefix{}] Elevator (Light Blue)
+[prefix{o}]4: [prefix{}] Elevator (Dandelion Yellow)
+[prefix{o}]5: [prefix{}] Elevator (Lime)
+[prefix{o}]6: [prefix{}] Elevator (Pink)
+[prefix{o}]7: [prefix{}] Elevator (Gray)
+[prefix{o}]8: [prefix{}] Elevator (Light Gray)
+[prefix{o}]9: [prefix{}] Elevator (Cyan)
+[prefix{o}]10: [prefix{}] Elevator (Purple)
+[prefix{o}]11: [prefix{}] Elevator (Lapis Lazuli Blue)
+[prefix{o}]12: [prefix{}] Elevator (Cocoa Beans Brown)
+[prefix{o}]13: [prefix{}] Elevator (Cactus Green)
+[prefix{o}]14: [prefix{}] Elevator (Rose Red)
+[prefix{o}]15: [prefix{}] Elevator (Ink Sac Black)
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Elevator added.
+[prefix{2}]1.2.5: [prefix{}]Added a way to specify special rules for Elevator blocks to follow.
+[prefix{2}]1.2.5: [prefix{}]Fixed Elevator not working when high jump boost effect levels or other jump helpers are used.
+[prefix{2}]1.3.0: [prefix{}]Colored Elevators are now available in the creative inventory.
+[prefix{2}]1.3.0: [prefix{}]Elevators are no more a tile entity, so they can now be moved by pistons etc.
+[prefix{2}]1.3.0: [prefix{}]Fixed pick block so that it returns the correctly colored Elevator when used on dyed blocks.
+[prefix{2}]1.3.0: [prefix{}]Fixed Elevator not considering actual player height.
+[prefix{2}]1.4.1: [prefix{}]Added separate config option to specify the amount of blocks to ignore when teleporting between elevators.
+[prefix{2}]1.4.2: [prefix{}]Elevators now do not drain XP when used by default. The behaviour can still be changed in the config file.
+[prefix{2}]1.5.0: [prefix{}]Elevators doesn't change the player's coordinates after teleportation. The behaviour can be configured in the config file.
+
+[prefix{l}]Trivia [prefix{}]
+- By default, the Elevator uses a custom packet to check if the player is jumping. In case Player API is installed, the detection is reverted to a fallback approach, though.
+- There is a (currently open) feature request which allows Elevator blocks to be disguised as normal floor blocks. It is unknown if this will ever be implemented.
+- The metadata for the various Elevator colors matches the exact order of the various vanilla dyes, but reversed.
+- Colored Elevator blocks can be useful to create secret access rooms: using certain colors you can access certain floors of a building, while you can't with other ones.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2785, openmods-igw:wiki/worldwide/images/block/elevator/gallery_variousColors_yeah_i_always_take_photos_at_night_ok.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]Panoramic of all the various possible elevator colors. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/elevator_rotating}]Rotating Elevator [link{}]
+[link{openmods-igw:item/sonicglasses}]Sonic Glasses [link{}]

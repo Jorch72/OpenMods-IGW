@@ -1,6 +1,12 @@
 # TODO
-List of things to complete before version **1.0**
+List of things to complete before version **1.0**<br />
+**Note:** the items on this list are ordered by priority.<br />
+**Note:** could this be moved to "Projects" on GitHub?
 
+- [ ] Javadoc
+  - [ ] API
+  - [ ] Implementation (?)
+  - [ ] Prefab
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table
@@ -14,7 +20,7 @@ List of things to complete before version **1.0**
   - [X] Canvas - Glass version (IGN: Glass Canvas)
   - [X] Donation Station
   - [X] Drawing Table
-  - [ ] Elevator
+  - [X] Elevator
   - [ ] Elevator (Rotating)
   - [ ] Fan
   - [ ] Flag
@@ -103,7 +109,7 @@ List of things to complete before version **1.0**
   - [ ] Enchantments (rewrite)
   - [ ] OB Utilities (rewrite)
   - [ ] Maybe pages
-    - [ ] Changelog (try to implement)
+    - [ ] Changelog (try to implement) (maybe just for beta testers and higher, for now)
 	- [ ] Contacts (if **@boq** wants, replace either Changelog or B Key `->` OB Utilities)
 - [ ] Provide templates
   - [X] Block
@@ -111,9 +117,25 @@ List of things to complete before version **1.0**
   - [ ] Fluid
   - [ ] Entity
   - [ ] Tab (?)
+- [ ] Remove references to external APIs
+  - [ ] `com.google.common.base.Optional` `-->` `openmods.igw.api.util[.base].Optional`
+  - [ ] `com.google.common.base.Objects` `-->` `openmods.igw.util[.base].Objects`
+  - [ ] `com.google.common.collect.Maps` `-->` `null` (self made instantiation)
+  - [ ] `openmods.igw.api.service.IConstantRetrieverService.ConfigConstantWrapper.Supplier` `-->` `openmods.igw.api.util[.function].Supplier`
+  - [ ] ...
+- [ ] **FIX**: Some config types not displayed correctly (service or **utility class**)
+  - [ ] Arrays
 - [ ] URL splitting on custom missing mod GUI
-- [ ] Javadoc
-  - [ ] API
-  - [ ] Implementation (?)
-  - [ ] Prefab
 - [ ] More logging (?)
+- [ ] Throw events on service editing (?)
+  - [ ] Event thrower service (various platforms could be supported)
+  - [ ] Events (API and implementation)
+    - [ ] `ServiceEvent` (probably never thrown)
+    - [ ] `ServiceEvent.Registration`
+    - [ ] `ServiceEvent.Substitution`
+    - [ ] `ServiceEvent.Unregistration` (?)
+  - [ ] Allow events to be canceled to stop service editing (? feels like a bad idea)
+- [ ] Allow to pass from custom `Optional`s to default ones (reflection)
+  - [ ] `com.google.common.base.Optional`
+  - [ ] `java.util.Optional`
+- [ ] Use `@Fixed` annotation to set a service as not replaceable (?)
