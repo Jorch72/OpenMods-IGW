@@ -3,6 +3,11 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
+**Current progress (including sub-tasks):** `14`/135 (`10`%)<br />
+**Current progress (excluding sub-tasks):** `0`/14 (`0`%)<br />
+**Current progress (wiki entries):** `13`/103 (`13`%)<br />
+**Current progress (personal judgement):** Early alpha - way behind schedule
+
 - [ ] Javadoc
   - [ ] API
   - [ ] Implementation (?)

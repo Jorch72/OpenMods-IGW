@@ -135,13 +135,22 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 		 * @since 1.0
 		 */
 		@Nonnull
-		public T orElseThrow() {
-			return this.orElseThrow(new Supplier<Throwable>() {
-				@Override
-				public Throwable get() {
-					return new RuntimeException(new IllegalStateException("Value not present"));
-				}
-			});
+		public T orElseThrow() throws RuntimeException {
+			// OMG!
+			// The amount of hacks used in this method is extreme!
+			// This is so awful...
+			// TODO Find a better way to implement this........ thing
+			try {
+				return this.orElseThrow(new Supplier<Throwable>() {
+					@Override
+					public Throwable get() {
+						return new RuntimeException(new IllegalStateException("Value not present"));
+					}
+				});
+			} catch (final Throwable t) {
+				if (t instanceof RuntimeException) throw (RuntimeException) t;
+				else throw new RuntimeException("Exception shadowing: " + t.getMessage(), t);
+			}
 		}
 
 		/**
@@ -157,17 +166,14 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 		 * 		The constant value, if available.
 		 * @throws NullPointerException
 		 * 		If the provided supplier is {@code null}.
-		 * @throws RuntimeException
+		 * @throws Throwable
 		 * 		If the constant value is not present.
-		 * 		<strong>NOTE: this exception can be any
-		 * 		superclass or subclass of {@link Throwable},
-		 * 		so handle it accordingly.</strong>
 		 *
 		 * @since 1.0
 		 */
 		@Nonnull
 		@SuppressWarnings("WeakerAccess") // Can be removed later, if IDE doesn't complain
-		public T orElseThrow(@Nonnull final Supplier<? extends Throwable> throwableSupplier) {
+		public T orElseThrow(@Nonnull final Supplier<? extends Throwable> throwableSupplier) throws Throwable {
 			if (!this.isPresent()) throw throwableSupplier.get();
 			return this.get();
 		}
