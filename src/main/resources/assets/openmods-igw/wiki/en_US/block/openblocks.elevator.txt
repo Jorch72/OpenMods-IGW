@@ -213,5 +213,5 @@ There are no useful or suggested structures for this block.
 [prefix{o}]Panoramic of all the various possible elevator colors. [prefix{}]
 
 [prefix{l}]Related features [prefix{}]
-[link{openmods-igw:block/elevator_rotating}]Rotating Elevator [link{}]
-[link{openmods-igw:item/sonicglasses}]Sonic Glasses [link{}]
+[link{openmods-igw:block/openblocks.elevator_rotating}]Rotating Elevator [link{}]
+[link{openmods-igw:item/openblocks.sonicglasses}]Sonic Glasses [link{}]

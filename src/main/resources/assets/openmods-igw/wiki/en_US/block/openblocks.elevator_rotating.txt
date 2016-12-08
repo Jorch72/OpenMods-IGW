@@ -1,4 +1,44 @@
-[crafting{200,15,key=block/openblocks.elevator_rotating}]
+[prefix{l}][prefix{1}]ROTATING ELEVATOR [prefix{}] [prefix{}]
+
+"[prefix{o}]Colorable elevator blocks to quickly travel between floors. [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page.
+
+Rotating Elevators allow the player to move up or down various floors of a building in a quicker and easier way, rotating the player in the process.
+Rotating Elevators can only interface with ones colored with the same [link{item/dyePowder.black}]dye [link{}].
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]0
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:elevator_rotating
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Rotating Elevator can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,475,key=block/openblocks.elevator_rotating}]
 
 
 
@@ -10,6 +50,148 @@
 
 
 
-Place one elevator directly three or more blocks above another with no blocks in between and you'll be able to either 'jump' to move up, or 'crouch' to move down.
-Elevators can be dyed by clicking on them with [link{item/dyePowder}]dye [link{}], however, you can only teleport between elevators of the same color.
-On teleport, these types of elevator also rotate the player. To disable this functionality, you need to use a [link{openmods-igw:block/openblocks.elevator}]Normal Elevator [link{}].
+Shapeless Crafting
+[crafting{200,603,block/openblocks.elevator_rotating,eix,ixx,xxx,e=block/openblocks.elevator,i=item/ingotIron}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Rotating Elevator can be used as an alternative and quicker way of travel between various floors of a building.
+
+[prefix{2}]Elevating players [prefix{}]
+In order to teleport players between floors, the two elevator blocks must be vertically on top of each other and have no "forbidden" blocks in between.
+They also have to be of the same color, otherwise the research will fail.
+
+Once all the initial conditions are met, the player can move up and down the various elevators by jumping or crouching, respectively, while on an elevator block.
+The player will instantly be teleported to the upper or lower level of elevators and rotated towards the direction specified when placing the elevator.
+If enabled in the configuration file, this will cost the player a certain amount of experience points, according to the distance of the two elevator blocks.
+The destination elevator will also play a "teleportation sound".
+
+The player can avoid teleportation while jumping or sneaking by starting the jump or crouch action before stepping on the elevator block.
+In this case the elevator will act as a normal block.
+
+When multiple elevator blocks are used in conjuction (such as in a 2x2 square pattern), the elevator can try to center the player in the middle of the shape.
+This behaviour is configurable and disabled by default.
+
+[prefix{2}]Rotating players [prefix{}]
+When elevating players, Rotating Elevators also rotate the player towards the direction specified when placing the block.
+The direction can be identified thanks to the arrows on top of the elevator blocks.
+When the player teleports between the various elevators, its rotation will be set according to the arrows.
+In other words, the player is going to look where the top-most arrow is pointing.
+
+[prefix{2}]Dying [prefix{}]
+Rotating Elevator blocks can be dyed in order to distinguish them from other elevator blocks above or below.
+To dye a Rotating Elevator block, right-click it with a [link{item/dyePowder.black}]dye (e.g. an ink sack) [link{}].
+The Rotating Elevator block will be dyed, but the dye will not be consumed in the process.
+
+When the elevator block is broken, the given item will have the same block color.
+When placed back, the elevator will keep the previous color, differently from its [link{openmods-igw:block/openblocks.elevator}]"normal" counterpart [link{}].
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI
+
+[prefix{l}]Setup [prefix{}]
+Place down at least a pair of elevator blocks within the maximum distance (configurable), rotated according to preference.
+Make sure there is room for a player to fit in in both spots.
+If needed, dye the pair of elevators.
+Then simply either jump or sneak to go up or down, according to your desire.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:elevator_rotating [prefix{}]
+Allows to enable (true) or disable (false) the Rotating Elevator.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@elevator_rotating}]
+
+[prefix{2}]"dropblock" category [prefix{}]
+[prefix{5}]B:centerOnBlock [prefix{}]
+Specifies if the player should be centered (true) or not (false) when teleported between elevators.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorCenter}]
+[prefix{5}]D:elevatorXpDrainRatio [prefix{}]
+Specifies the ratio of XP that is consumed everytime an elevator is used.
+The formula used to calculate the total XP consumed is [prefix{o}]total = distance * ratio [prefix{}]
+[prefix{o}]Default value: [prefix{}] 0.0
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorXpDrainRatio}]
+[prefix{5}]B:ignoreAllBlocks [prefix{}]
+If enabled (true), the elevator doesn't search for blocks in-between the starting point and the ending one.
+Setting this value to true is the same as using a positive infinity value for [prefix{o}]maxPassThrough [prefix{}]
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorIgnoreBlocks}]
+[prefix{5}]B:ignoreHalfBlocks [prefix{}]
+If enabled (true), the elevator won't consider half blocks (e.g. [link{block/stoneSlab.stone}]Slabs [link{}]) when counting the amount of blocks it can pass through.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorIgnoreHalfBlocks}]
+[prefix{5}]B:irregularBlocksArePassable [prefix{}]
+If enabled (true), the elevator will attempt to pass through blocks which have custom collision boxes, or, in other words, are not a full block.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@irregularBlocksArePassable}]
+[prefix{5}]I:maxPassThrough [prefix{}]
+Specifies the amount of blocks the elevator can pass through before the teleportation fails.
+The value is considered as the maximum bound and, as such, excluded from the check.
+[prefix{o}]Default value: [prefix{}] 4
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorMaxBlockPassCount}]
+[prefix{5}]I:searchDistance [prefix{}]
+Specifies the maximum distance there can be between two elevator blocks before the teleportation fails.
+[prefix{o}]Default value: [prefix{}] 20
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorTravelDistance}]
+[prefix{5}]S:specialBlockRules [prefix{}]
+Specifies custom rules for specific blocks which have to be respected by elevators.
+The rules must be written in the format [prefix{o}]<modId>:<blockName>:<action> [prefix{}] or [prefix{o}]id:<blockId>:<action> [prefix{}]
+The valid actions are [prefix{o}]abort [prefix{}](the elevator will abort the teleportation process), [prefix{o}]increment [prefix{}](the block is counted in the limit) and [prefix{o}]ignore [prefix{}] (the block is ignored completely).
+[prefix{o}]Default value: [prefix{}] 
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@elevatorRules}]
+
+
+[prefix{l}]Tutorials [prefix{}]
+There are no useful tutorials available for this block
+
+[prefix{l}]Useful structures [prefix{}]
+There are no useful or suggested structures for this block.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Rotating Elevator (South)
+[prefix{o}]1: [prefix{}] Rotating Elevator (East)
+[prefix{o}]2: [prefix{}] Rotating Elevator (North)
+[prefix{o}]3: [prefix{}] Rotating Elevator (West)
+
+The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simply repetitions of the first four, so they are not listed here.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.5.0: [prefix{}]Rotating Elevator added.
+
+[prefix{l}]Trivia [prefix{}]
+- By default, the Rotating Elevator uses a custom packet to check if the player is jumping. In case Player API is installed, the detection is reverted to a fallback approach, though.
+- Strangely enough, the Rotating Elevator stores the current rotation in the metadata instead of the colour, which is stored in the Tile Entity instead.
+- Colored Rotating Elevator blocks can be useful to create secret access rooms: using certain colors you can access certain floors of a building, while you can't with other ones.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2451, openmods-igw:wiki/worldwide/images/block/elevator_rotating/gallery_colours.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]Panoramic of all the various possible elevator colors. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.elevator}]Elevator [link{}]
+[link{openmods-igw:item/openblocks.sonicglasses}]Sonic Glasses [link{}]

@@ -3,9 +3,9 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
-**Current progress (including sub-tasks):** `14`/135 (`10`%)<br />
-**Current progress (excluding sub-tasks):** `0`/14 (`0`%)<br />
-**Current progress (wiki entries):** `13`/103 (`13`%)<br />
+**Current progress (including sub-tasks):** `15`/139 (`11`%)<br />
+**Current progress (excluding sub-tasks):** `0`/16 (`0`%)<br />
+**Current progress (wiki entries):** `14`/103 (`14`%)<br />
 **Current progress (personal judgement):** Early alpha - way behind schedule
 
 - [ ] Javadoc
@@ -26,7 +26,7 @@ List of things to complete before version **1.0**<br />
   - [X] Donation Station
   - [X] Drawing Table
   - [X] Elevator
-  - [ ] Elevator (Rotating)
+  - [X] Elevator (Rotating)
   - [ ] Fan
   - [ ] Flag
   - [ ] Golden Egg
@@ -130,7 +130,11 @@ List of things to complete before version **1.0**<br />
   - [ ] ...
 - [ ] **FIX**: Some config types not displayed correctly (service or **utility class**)
   - [ ] Arrays
+- [ ] Utility methods on System Identifier Service to allow for easier testing
 - [ ] URL splitting on custom missing mod GUI
+- [ ] Mismatching mod GUI tweaks
+  - [ ] Better gradient (from yellow to red, maybe?)
+  - [ ] Switching gradient (from completely color 1 to completely color 2 and vice versa) (?)
 - [ ] More logging (?)
 - [ ] Throw events on service editing (?)
   - [ ] Event thrower service (various platforms could be supported)
