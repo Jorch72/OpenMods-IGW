@@ -28,12 +28,22 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 	}
 
 	@Override
+	public void registerCurrentSystem(@Nonnull final SystemType type) {
+		this.registerSystem(this.populate(), type);
+	}
+
+	@Override
 	public void registerSystem(@Nonnull final SystemDetails details, @Nonnull final SystemType type) {
 		if (this.isKnownSystem(details)) {
 			throw new IllegalStateException(String.format("System %s already known", details));
 		}
 		this.systems.put(details, type);
 		if (!this.silent) Log.info("Registered system %s as a %s", details, type);
+	}
+
+	@Override
+	public void switchCurrentType(@Nonnull final SystemType newType) {
+		this.switchType(this.populate(), newType);
 	}
 
 	@Override
@@ -47,6 +57,11 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 	}
 
 	@Override
+	public void unRegisterCurrent() {
+		this.unRegister(this.populate());
+	}
+
+	@Override
 	public void unRegister(@Nonnull final SystemDetails details) {
 		if (!this.isKnownSystem(details)) {
 			throw new IllegalStateException(String.format("System %s not known yet", details));
@@ -56,8 +71,30 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 	}
 
 	@Override
+	public boolean isCurrentSystemKnown() {
+		return this.isKnownSystem(this.populate());
+	}
+
+	@Override
 	public boolean isKnownSystem(@Nonnull final SystemDetails details) {
 		return this.systems.containsKey(details);
+	}
+
+	@Override
+	public boolean isCurrentSystemLevelEnough(@Nonnull final SystemType type) {
+		return this.isSystemLevelEnough(this.populate(), type);
+	}
+
+	@Override
+	public boolean isSystemLevelEnough(@Nonnull final SystemDetails details, @Nonnull final SystemType type) {
+		final SystemType currentType = this.getSystemType(details);
+		return currentType != null && currentType.ordinal() >= type.ordinal();
+	}
+
+	@Nullable
+	@Override
+	public SystemType getSystemType() {
+		return this.getSystemType(this.populate());
 	}
 
 	@Nullable
@@ -119,6 +156,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 		} catch (final IllegalStateException e) {
 			// The system we are currently running on may be
 			// already registered due to being a developer computer.
+			// Beta tester systems are switched to during configuration loading
 			Log.info(e, "Current system already known as %s: skipping addition.", this.getSystemType(this.populate()));
 		}
 	}

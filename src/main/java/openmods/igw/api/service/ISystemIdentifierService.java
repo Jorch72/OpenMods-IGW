@@ -126,6 +126,15 @@ public interface ISystemIdentifierService extends IService<ISystemIdentifierServ
 	}
 
 	/**
+	 * Registers the current system in memory.
+	 *
+	 * @param type
+	 * 		The type of the system.
+	 * @since 1.0
+	 */
+	void registerCurrentSystem(@Nonnull final SystemType type);
+
+	/**
 	 * Registers the given system in memory.
 	 *
 	 * @param details
@@ -138,16 +147,33 @@ public interface ISystemIdentifierService extends IService<ISystemIdentifierServ
 	void registerSystem(@Nonnull final SystemDetails details, @Nonnull final SystemType type);
 
 	/**
+	 * Switches the type of the current system to the specified one.
+	 *
+	 * @param newType
+	 * 		The new type of the system.
+	 *
+	 * @since 1.0
+	 */
+	void switchCurrentType(@Nonnull final SystemType newType);
+
+	/**
 	 * Switches the type of the given system to the specified one.
 	 *
 	 * @param details
 	 * 		The system details.
 	 * @param newType
-	 * 		The type of the system.
+	 * 		The new type of the system.
 	 *
 	 * @since 1.0
 	 */
 	void switchType(@Nonnull final SystemDetails details, @Nonnull final SystemType newType);
+
+	/**
+	 * Unregisters the current system.
+	 *
+	 * @since 1.0
+	 */
+	void unRegisterCurrent();
 
 	/**
 	 * Unregisters the given system.
@@ -160,6 +186,16 @@ public interface ISystemIdentifierService extends IService<ISystemIdentifierServ
 	void unRegister(@Nonnull final SystemDetails details);
 
 	/**
+	 * Gets if the current system is known to this service.
+
+	 * @return
+	 * 		If the system is known to the service.
+	 *
+	 * @since 1.0
+	 */
+	boolean isCurrentSystemKnown();
+
+	/**
 	 * Gets if the system provided is currently known to this service.
 	 *
 	 * @param details
@@ -170,6 +206,43 @@ public interface ISystemIdentifierService extends IService<ISystemIdentifierServ
 	 * @since 1.0
 	 */
 	boolean isKnownSystem(@Nonnull final SystemDetails details);
+
+	/**
+	 * Gets if the current system can be considered of the specified type.
+	 *
+	 * @param type
+	 * 		The minimum system type.
+	 * @return
+	 * 		If the current system can be considered of the specified type.
+	 *
+	 * @since 1.0
+	 */
+	boolean isCurrentSystemLevelEnough(@Nonnull final SystemType type);
+
+	/**
+	 * Gets if the system provided can be considered of the specified type.
+	 *
+	 * @param details
+	 * 		The system details.
+	 * @param type
+	 * 		The minimum system type.
+	 * @return
+	 * 		If the system can be considered of the specified type.
+	 *
+	 * @since 1.0
+	 */
+	boolean isSystemLevelEnough(@Nonnull final SystemDetails details, @Nonnull final SystemType type);
+
+	/**
+	 * Gets the system type of the current system.
+	 *
+	 * @return
+	 * 		The system type.
+	 *
+	 * @since 1.0
+	 */
+	@Nullable
+	SystemType getSystemType();
 
 	/**
 	 * Gets the system type of the given system.

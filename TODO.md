@@ -3,8 +3,8 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
-**Current progress (including sub-tasks):** `15`/139 (`11`%)<br />
-**Current progress (excluding sub-tasks):** `0`/16 (`0`%)<br />
+**Current progress (including sub-tasks):** `16`/139 (`12`%)<br />
+**Current progress (excluding sub-tasks):** `1`/16 (`6`%)<br />
 **Current progress (wiki entries):** `14`/103 (`14`%)<br />
 **Current progress (personal judgement):** Early alpha - way behind schedule
 
@@ -130,7 +130,7 @@ List of things to complete before version **1.0**<br />
   - [ ] ...
 - [ ] **FIX**: Some config types not displayed correctly (service or **utility class**)
   - [ ] Arrays
-- [ ] Utility methods on System Identifier Service to allow for easier testing
+- [X] Utility methods on System Identifier Service to allow for easier testing
 - [ ] URL splitting on custom missing mod GUI
 - [ ] Mismatching mod GUI tweaks
   - [ ] Better gradient (from yellow to red, maybe?)

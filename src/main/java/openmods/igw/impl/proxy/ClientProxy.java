@@ -259,7 +259,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				.obtainService(ISystemIdentifierService.class);
 		if (!id.isPresent()) throw new IllegalStateException("ISystemIdentifierService");
 		final ISystemIdentifierService it = id.get().cast();
-		if (MISMATCHING_GUI_DEBUG || it.getSystemType(it.populate()) == ISystemIdentifierService.SystemType.DEVELOPER) {
+		if (MISMATCHING_GUI_DEBUG || it.isSystemLevelEnough(it.populate(), ISystemIdentifierService.SystemType.DEVELOPER)) {
 			this.debugModVersionsCheck();
 			Log.warn("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
 		}
