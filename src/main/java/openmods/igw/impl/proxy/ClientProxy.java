@@ -85,6 +85,18 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				);
 			}
 		}.preInit(evt.getSuggestedConfigurationFile());
+
+		if (this.constantService().getBooleanConfigConstant("joinBetaProgram").get()) {
+			final ISystemIdentifierService service = Preconditions.checkNotNull(
+					OpenModsIGWApi.get().serviceManager().obtainAndCastService(ISystemIdentifierService.class)
+			);
+
+			// If the current system is a developer one, skip the addition: that would be pretty dumb otherwise
+			if (service.getSystemType() == ISystemIdentifierService.SystemType.DEVELOPER) return;
+
+			service.switchCurrentType(ISystemIdentifierService.SystemType.BETA_TESTER);
+			openmods.Log.info("Successfully joined beta program for OpenMods-IGW");
+		}
 	}
 
 	@Override

@@ -6,13 +6,11 @@ import openmods.igw.api.config.IConfig;
 
 import java.lang.annotation.Annotation;
 
-@SuppressWarnings("unused")
-// Access via reflection
 public class Config implements IConfig {
 
 	private static final String MODS_WIKI_INTEGRATION_CATEGORY = "integration.wiki.mods";
 	private static final String TAB_WIKI_INTEGRATION_CATEGORY = "integration.wiki.tabs";
-	private static final String MOD_INTEGRATION_CATEGORY = "integration.mods";
+	private static final String TESTING_CATEGORY = "testing";
 	private static final String WARNINGS_CATEGORY = "warnings";
 
 	@ConfigProperty(name = "missingIgwMod",
@@ -29,6 +27,11 @@ public class Config implements IConfig {
 			category = TAB_WIKI_INTEGRATION_CATEGORY,
 			comment = "Set to \"true\" to display only one wiki tab for all the mods")
 	public static boolean useUniqueWikiTab = false;
+
+	@ConfigProperty(name = "joinBetaProgram",
+			category = TESTING_CATEGORY,
+			comment = "Set to \"true\" to access various untested features. WARNING: They may contain bugs and/or crash the game")
+	public static boolean joinBetaProgram = false;
 
 	public static boolean isEnabled(final String modId) {
 
