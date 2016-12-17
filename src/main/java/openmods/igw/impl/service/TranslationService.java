@@ -36,22 +36,34 @@ public final class TranslationService implements ITranslationService {
 	@Nonnull
 	@Override
 	public String translate(@Nonnull final String modId, @Nonnull final String translationId) {
-		return this.translate(modId, translationId, IGNORE_ERROR);
+		return this.translate(modId, translationId, ErrorBehaviour.IGNORE);
+	}
+
+	@Deprecated
+	@Nonnull
+	@Override
+	public String translate(@Nonnull final String modId, @Nonnull final String translationId, final boolean report) {
+		return this.translate(modId, translationId, ErrorBehaviour.fromBoolean(report));
 	}
 
 	@Nonnull
 	@Override
-	public String translate(@Nonnull final String modId, @Nonnull final String translationId, final boolean report) {
+	public String translate(@Nonnull final String modId, @Nonnull final String translationId, @Nonnull final ErrorBehaviour behaviour) {
 		final String translation = StatCollector.translateToLocal(
 				String.format("%s.%s", modId, translationId.toLowerCase(Locale.ENGLISH).trim())
 		);
-		if (report && translation.equals(translationId)) {
+		if (behaviour == ErrorBehaviour.REPORT && translation.equals(translationId)) {
 			try {
 				return this.translate("service.translation.missing");
 			} catch (final StackOverflowError error) {
 				// In case of broken implementation, return untranslated string
-				Log.severe(error, "Unable to translate internal error message. Broken implementation?");
-				return "An error has occurred while trying to translate the specified string.";
+				try {
+					Log.severe("Unable to translate internal error message. Broken implementation?");
+				} catch (final StackOverflowError ignored) {
+					// Probably we have not enough stack space to log a message
+					// Simply fail silently and don't care about it
+				}
+				return "An error has occurred while trying to translate the given string: " + error.getMessage();
 			}
 		}
 		return translation;

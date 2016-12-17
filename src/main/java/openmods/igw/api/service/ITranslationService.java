@@ -11,19 +11,83 @@ import javax.annotation.Nonnull;
 public interface ITranslationService extends IService<ITranslationService> {
 
 	/**
+	 * Enum used to indicate whether to report a translation error
+	 * or not.
+	 *
+	 * <p>The use of this enum is strongly encouraged, over the
+	 * previously used contants {@link #REPORT_ERROR} and
+	 * {@link #IGNORE_ERROR}. You can use the {@link #fromBoolean(boolean)}
+	 * method to convert from one to the other system.</p>
+	 *
+	 * @author TheSilkMiner
+	 * @since 1.0
+	 */
+	enum ErrorBehaviour {
+
+		/**
+		 * Used to indicate that the error should be reported to the user
+		 * with a default message.
+		 *
+		 * @since 1.0
+		 */
+		REPORT,
+		/**
+		 * Used to indicate that the error should be silently suppressed.
+		 *
+		 * <p>The returned string is completely implementation-dependent.
+		 * Refer to {@link #translate(String, String, ErrorBehaviour)} for more information</p>
+		 *
+		 * @since 1.0
+		 */
+		IGNORE;
+
+		/**
+		 * Factory method that can be used to convert from a previously used
+		 * constant value (e.g., {@link #REPORT_ERROR}) to the correspondent
+		 * enum value.
+		 *
+		 * <p>This method is purely provided as a convenience one. You should
+		 * not use this in production code: before releasing a new version of
+		 * your software, please use enum constants directly.</p>
+		 *
+		 * @param b
+		 * 		The boolean to convert. It should be either {@link #REPORT_ERROR}
+		 * 		or {@link #IGNORE_ERROR}.
+		 * @return
+		 * 		The enum constant which represents the given boolean.
+		 * 		The contract guarantees the behaviour will be the same, but the
+		 * 		actual implementation details are not enforced nor specified.
+		 *
+		 * @since 1.0
+		 */
+		@Nonnull
+		public static ErrorBehaviour fromBoolean(final boolean b) {
+			return b? REPORT : IGNORE;
+		}
+	}
+
+	/**
 	 * Indicates to report the error to the user, with
 	 * a default message.
 	 *
+	 * @deprecated Use {@link ErrorBehaviour#REPORT} instead.
+	 *
 	 * @since 1.0
 	 */
+	@Deprecated
+	@SuppressWarnings("DeprecatedIsStillUsed")
 	boolean REPORT_ERROR = true;
 
 	/**
 	 * Indicates to ignore translation errors, returning
 	 * the untranslated string.
 	 *
+	 * @deprecated Use {@link ErrorBehaviour#IGNORE} instead.
+	 *
 	 * @since 1.0
 	 */
+	@Deprecated
+	@SuppressWarnings("DeprecatedIsStillUsed")
 	boolean IGNORE_ERROR = false;
 
 	/**
@@ -82,8 +146,35 @@ public interface ITranslationService extends IService<ITranslationService> {
 	 * 		{@code report} flag is {@link #IGNORE_ERROR} or an error
 	 * 		message if it is {@link #REPORT_ERROR}.
 	 *
+	 * @deprecated Use {@link #translate(String, String, ErrorBehaviour)} instead.
+	 *
+	 * @since 1.0
+	 */
+	// TODO Default implementation (Java 8 needed)
+	@Deprecated
+	@Nonnull
+	String translate(@Nonnull final String modId, @Nonnull final String translationId, final boolean report);
+
+	/**
+	 * Attempts to translate the given translation ID, prefixing it
+	 * with the given mod ID and returning an error message if the
+	 * translation fails and the caller asks us to do so.
+	 *
+	 * @param modId
+	 * 		The mod ID to use.
+	 * @param translationId
+	 * 		The ID of the translation.
+	 * @param behaviour
+	 * 		Whether to return an error message or not. Refer to the
+	 * 		specific Javadoc for more information.
+	 * @return
+	 * 		A String containing the translated keyword if no errors
+	 * 		are encountered, otherwise a String respecting the
+	 * 		specified {@code behaviour}. Implementation details are
+	 * 		not discussed here, nor enforced.
+	 *
 	 * @since 1.0
 	 */
 	@Nonnull
-	String translate(@Nonnull final String modId, @Nonnull final String translationId, final boolean report);
+	String translate(@Nonnull final String modId, @Nonnull final String translationId, @Nonnull final ErrorBehaviour behaviour);
 }
