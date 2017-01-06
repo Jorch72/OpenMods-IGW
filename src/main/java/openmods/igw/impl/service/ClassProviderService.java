@@ -24,13 +24,13 @@ public final class ClassProviderService implements IClassProviderService {
 	@Nonnull
 	@Override
 	public Object mainClass() {
-		return OpenModsIGW.instance;
+		return this.mainClassAsInit();
 	}
 
 	@Nonnull
 	@Override
 	public IInit mainClassAsInit() {
-		return (IInit) this.mainClass();
+		return OpenModsIGW.getInstance();
 	}
 
 	@Nullable

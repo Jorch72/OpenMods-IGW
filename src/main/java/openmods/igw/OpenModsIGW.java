@@ -15,9 +15,9 @@ import openmods.igw.impl.utils.Constants; // Can't use services due to annotatio
 		guiFactory = Constants.FACTORY_CLASS)
 public final class OpenModsIGW implements IInit {
 
-	// Should this value be encapsulated?
 	@Mod.Instance(Constants.MOD_ID)
-	public static OpenModsIGW instance;
+	@SuppressWarnings("unused")
+	private static OpenModsIGW instance;
 
 	@SuppressWarnings("unused")
 	@SidedProxy(modId = Constants.MOD_ID, clientSide = Constants.CLIENT_PROXY, serverSide = Constants.COMMON_PROXY)
@@ -49,5 +49,9 @@ public final class OpenModsIGW implements IInit {
 
 	public static IInitProxy proxy() {
 		return proxy;
+	}
+
+	public static OpenModsIGW getInstance() {
+		return instance;
 	}
 }

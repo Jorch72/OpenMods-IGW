@@ -3,10 +3,10 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
-**Current progress (including sub-tasks):** `17`/139 (`12`%)<br />
-**Current progress (excluding sub-tasks):** `1`/16 (`6`%)<br />
+**Current progress (including sub-tasks):** `17`/140 (`12`%)<br />
+**Current progress (excluding sub-tasks):** `1`/17 (`6`%)<br />
 **Current progress (wiki entries):** `15`/103 (`15`%)<br />
-**Current progress (personal judgement):** Early alpha - way behind schedule
+**Current progress (personal judgement):** Early alpha - Wondering if 1.10.X is a valid move right now
 
 - [ ] Javadoc
   - [ ] API
@@ -135,6 +135,7 @@ List of things to complete before version **1.0**<br />
 - [ ] Mismatching mod GUI tweaks
   - [ ] Better gradient (from yellow to red, maybe?)
   - [ ] Switching gradient (from completely color 1 to completely color 2 and vice versa) (?)
+- [ ] Logging service (By default calls `openmods.Log`)
 - [ ] More logging (?)
 - [ ] Post events on service editing (?)
   - [ ] Event posting service (various platforms could be supported)
