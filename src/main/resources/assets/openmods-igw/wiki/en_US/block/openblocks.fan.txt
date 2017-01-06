@@ -1,13 +1,222 @@
-[crafting{200,15,key=block/openblocks.fan}]
+[prefix{l}][prefix{1}]FAN [prefix{}] [prefix{}]
 
+"[prefix{o}]Fans -- the power of an industrial fan in the size of a desk fan [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page.
 
+Fans are redstone-activated blocks which blow entities away from the direction they are facing.
 
-
-
-
-
-
-
-
-
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
 The fan will blow players, mobs or entities in the direction it's facing.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]No tool required
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:fan
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Fan can be mined with any tool. It can also be mined with bare hands.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand and every other tools: [prefix{}]1.59 seconds
+
+[prefix{2}]Crafting [prefix{}]
+[crafting{200,403,key=block/openblocks.fan}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{2}]Spontaneous drop [prefix{}]
+The Fan will also spontaneously drop itself if water or lava flows into its space or a piston tries to push or moves a block into its space.
+Be wary, though, that lava destroys the drop instantaneously.
+
+Differently from buttons, the fan doesn't drop if the block it is attached to is removed.
+It is currently unknown if this is a bug or a design decision.
+
+[prefix{l}]Usage [prefix{}]
+The Fan can be used as a way to push away entities, such as mobs or other players.
+
+[prefix{2}]Placement [prefix{}]
+To place the Fan, use the "Use Item/Place Block" control (right-click, by default) while aiming at the top of the block you want to place the fan on.
+A fan can be attached only to the top of any solid or transparent block, provided their top side is considered solid.
+When placed, the fan will always face the player who placed it.
+
+[prefix{2}]Activation [prefix{}]
+The Fan, when placed, is in an inactive state, but can be activated by players.
+To activate a placed fan, provide redstone power to the block itself or one of the nearby blocks using a power source such as [link{item/redstone}]redstone dust [link{}] or [link{block/lever}]a lever [link{}].
+
+It can also be configured to be always active, though.
+
+[prefix{2}]Behavior [prefix{}]
+When the fan is activated, it will immediately push all entities away from it in the direction it is facing, provided they are in a spherical cone area in front of the fan.
+It is not necessary to have a clear line of sight: the fan can push even through full blocks.
+
+All the entities in the fan range (configurable) are affected by the fan, with a force directly proportional to the distance between the entity and the fan itself and the amount of power provided to the fan.
+Creative mode players are excluded by the "pushable" entities, mainly to allow server owners to shut down problematic fan walls.
+
+Every fan acts on every entity indipendently form all the others.
+This means that every entity is subjected to the force of every in-range fan, without exceptions.
+If one fan doesn't apply a lot of force by itself (e.g. a player walking speed is unaffected), a wall of fans can quickly become a real obstacle to overcome.
+[prefix{o}]See also: Gallery [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI
+
+[prefix{l}]Setup [prefix{}]
+Place down one or more fans in the direction you want them to push entities.
+Then provide a redstone current and watch all the entities being pushed away
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:fan [prefix{}]
+Allows to enable (true) or disable (false) the Fan.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@elevator_rotating}]
+
+[prefix{2}]"fan" category [prefix{}]
+[prefix{5}]D:fanForce [prefix{}]
+Specifies the maximum force to be applied to every entity every tick.
+This value decays linearly based on distance.
+[prefix{o}]Default value: [prefix{}] 0.05
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@fanForce}]
+[prefix{5}]D:fanRange [prefix{}]
+Specifies the range of action of the fan in blocks.
+[prefix{o}]Default value: [prefix{}] 10.0
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@fanRange}]
+[prefix{5}]B:isRedstoneActivated [prefix{}]
+Indicates if the force applied is proportional to the redstone power given (true) or not (false).
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@redstoneActivatedFan}]
+
+[prefix{l}]Tutorials [prefix{}]
+No tutorials available for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+[prefix{2}]Mob Spawner 0.1 [prefix{}]
+[image{200, 1515, openmods-igw:wiki/worldwide/images/block/fan/structures_mob_spawner_untested_brightened.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This structure, which I call "Mob Spawner 0.1", can be considered an alternative to a traditional mob spawner.
+The various mobs, in the image represented by [link{entity/Villager}]Villagers [link{}], are forced by various fans on a water stream.
+The water stream then takes the various mobs and brings them to the sides, allowing the player to easily kill them.
+
+This setup has not been completely tested in all edge cases, hence the "0.1" diciture.
+Its functionality is not completely guaranteed, but it should work in the 90% of cases (as of 01/06/2017 on my machine).
+
+The image above has also been brightened, for ease of use.
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Fan added.
+[prefix{2}]1.2.6: [prefix{}]Fan strength can now be controlled by redstone.
+[prefix{2}]1.3.0: [prefix{}]Fixed Fan not working with more redstone cables.
+
+[prefix{l}]Trivia [prefix{}]
+- Even if the Fan requires a block to be placed on, it does not drop if the block under it is removed, much like beds. It is unknown if this is a bug or a feature.
+- One fan powered directly by a redstone block generates enough force to push a still player away, but when the player is walking or sprinting, the effect is almost noticeable.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2063, openmods-igw:wiki/worldwide/images/block/fan/gallery_fans.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A comparison between an inactive fan (left) and an active one (right). [prefix{}]
+[prefix{5}]Warning! The following photos have been taken with "Quake Pro" FOV [prefix{}]
+[image{200, 2244, openmods-igw:wiki/worldwide/images/block/fan/gallery_a_wall_of_fans_0_quake_pro.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]If two fans like this are not that much of an issue... [prefix{}]
+
+[image{200, 2393, openmods-igw:wiki/worldwide/images/block/fan/gallery_a_wall_of_fans_1_quake_pro.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]...a wall like this may quickly become a problem... [prefix{}]
+
+[image{200, 2552, openmods-igw:wiki/worldwide/images/block/fan/gallery_a_wall_of_fans_2_quake_pro.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]...for a normal survival player. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.beartrap}]Bear Trap [link{}]
+[link{openmods-igw:block/openblocks.projector}]Projector [link{}]

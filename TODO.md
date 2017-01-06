@@ -3,9 +3,9 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
-**Current progress (including sub-tasks):** `16`/139 (`12`%)<br />
+**Current progress (including sub-tasks):** `17`/139 (`12`%)<br />
 **Current progress (excluding sub-tasks):** `1`/16 (`6`%)<br />
-**Current progress (wiki entries):** `14`/103 (`14`%)<br />
+**Current progress (wiki entries):** `15`/103 (`15`%)<br />
 **Current progress (personal judgement):** Early alpha - way behind schedule
 
 - [ ] Javadoc
@@ -27,7 +27,7 @@ List of things to complete before version **1.0**<br />
   - [X] Drawing Table
   - [X] Elevator
   - [X] Elevator (Rotating)
-  - [ ] Fan
+  - [X] Fan
   - [ ] Flag
   - [ ] Golden Egg
   - [ ] Grave
@@ -136,10 +136,10 @@ List of things to complete before version **1.0**<br />
   - [ ] Better gradient (from yellow to red, maybe?)
   - [ ] Switching gradient (from completely color 1 to completely color 2 and vice versa) (?)
 - [ ] More logging (?)
-- [ ] Throw events on service editing (?)
-  - [ ] Event thrower service (various platforms could be supported)
+- [ ] Post events on service editing (?)
+  - [ ] Event posting service (various platforms could be supported)
   - [ ] Events (API and implementation)
-    - [ ] `ServiceEvent` (probably never thrown)
+    - [ ] `ServiceEvent` (probably never posted)
     - [ ] `ServiceEvent.Registration`
     - [ ] `ServiceEvent.Substitution`
     - [ ] `ServiceEvent.Unregistration` (?)
