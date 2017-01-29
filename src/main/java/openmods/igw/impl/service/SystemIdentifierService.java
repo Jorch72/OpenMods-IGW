@@ -4,7 +4,6 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
-import openmods.Log;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IService;
@@ -38,7 +37,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 			throw new IllegalStateException(String.format("System %s already known", details));
 		}
 		this.systems.put(details, type);
-		if (!this.silent) Log.info("Registered system %s as a %s", details, type);
+		if (!this.silent) OpenModsIGWApi.get().log().info("Registered system %s as a %s", details, type);
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 		this.unRegister(details);
 		this.registerSystem(details, newType);
 		this.silent = false;
-		Log.info("Switched system %s type from %s to %s", details, oldType, newType);
+		OpenModsIGWApi.get().log().info("Switched system %s type from %s to %s", details, oldType, newType);
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 			throw new IllegalStateException(String.format("System %s not known yet", details));
 		}
 		this.systems.remove(details);
-		if (!this.silent) Log.info("Unregistered system %s", details);
+		if (!this.silent) OpenModsIGWApi.get().log().info("Unregistered system %s", details);
 	}
 
 	@Override
@@ -157,7 +156,7 @@ public final class SystemIdentifierService implements ISystemIdentifierService {
 			// The system we are currently running on may be
 			// already registered due to being a developer computer.
 			// Beta tester systems are switched to during configuration loading
-			Log.info(e, "Current system already known as %s: skipping addition.", this.getSystemType(this.populate()));
+			OpenModsIGWApi.get().log().warning(e, "Current system already known as %s: skipping addition.", this.getSystemType(this.populate()));
 		}
 	}
 

@@ -2,6 +2,8 @@ package openmods.igw.api;
 
 import com.google.common.base.Optional;
 
+import com.google.common.base.Preconditions;
+import openmods.igw.api.service.ILoggingService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ITranslationService;
 import openmods.igw.api.service.ServiceManager;
@@ -133,6 +135,24 @@ public final class OpenModsIGWApi {
 		}
 		final ITranslationService service = optionalService.get().cast();
 		return service.translate(translationId);
+	}
+
+	/**
+	 * Gets the current logging service implementation.
+	 *
+	 * <p>Since logging is extensively used in an application, this
+	 * method is provided here for convenience. Using the {@link
+	 * ServiceManager} yields the exact same result.</p>
+	 *
+	 * @return
+	 * 		The current logging service implementation.
+	 * @see ILoggingService
+	 *
+	 * @since 1.0
+	 */
+	@Nonnull
+	public ILoggingService log() {
+		return Preconditions.checkNotNull(this.serviceManager().obtainAndCastService(ILoggingService.class));
 	}
 
 	private static void log(@Nonnull final String message,

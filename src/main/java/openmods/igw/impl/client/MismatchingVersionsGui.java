@@ -53,9 +53,9 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
 		super(TITLE, MESSAGE_FIRST_PART + "\n" + MESSAGE_SECOND_PART);
 		show = false;
 		this.mismatchingMods.addAll(mismatchingMods);
-		openmods.Log.warn("Identified mismatching mods. Gui constructed and shown.");
-		openmods.Log.warn("    Mismatching mods: ");
-		openmods.Log.warn("    " + this.mismatchingMods.toString());
+		OpenModsIGWApi.get().log().warning("Identified mismatching mods. Gui constructed and shown.");
+		OpenModsIGWApi.get().log().warning("    Mismatching mods: ");
+		OpenModsIGWApi.get().log().warning("    " + this.mismatchingMods.toString());
 	}
 
 	@Override

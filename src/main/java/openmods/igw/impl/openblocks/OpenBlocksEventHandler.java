@@ -7,6 +7,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
 
+import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.prefab.handler.OpenModsEventHandler;
 
 import javax.annotation.Nonnull;
@@ -18,7 +19,7 @@ public final class OpenBlocksEventHandler extends OpenModsEventHandler {
 	@SubscribeEvent
 	public void handleCustomBlocks(final PageChangeEvent event) {
 		if (event.currentFile.equals("block/openblocks.canvasglass")) {
-			openmods.Log.info("Redirected Glass Canvas page from default to OpenMods-IGW");
+			OpenModsIGWApi.get().log().info("Redirected Glass Canvas page from default to OpenMods-IGW");
 			this.redirectToIgwTab(event);
 		}
 	}
@@ -28,7 +29,7 @@ public final class OpenBlocksEventHandler extends OpenModsEventHandler {
 	//@Explain("Field populated by Forge, so...")
 	public void handleCustomIcons(final PageChangeEvent event) {
 		if (event.currentFile.contains("block/openblocks.canvasglass") && OpenBlocksItemHolder.GLASS_CANVAS != null) {
-			openmods.Log.info("Associated Glass Canvas icon to page");
+			OpenModsIGWApi.get().log().info("Associated Glass Canvas icon to page");
 			this.askTabForNewIcon(event, new ItemStack(OpenBlocksItemHolder.GLASS_CANVAS));
 		}
 	}
@@ -56,6 +57,7 @@ public final class OpenBlocksEventHandler extends OpenModsEventHandler {
 
 	@Nonnull
 	@Override
+	@SuppressWarnings("SpellCheckingInspection")
 	public String configClass() {
 		return "openblocks.Config";
 	}

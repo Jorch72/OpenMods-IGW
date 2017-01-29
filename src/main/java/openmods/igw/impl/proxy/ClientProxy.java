@@ -21,7 +21,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import igwmod.api.WikiRegistry;
 import igwmod.gui.tabs.IWikiTab;
 
-import openmods.Log;
 import openmods.Mods;
 import openmods.config.game.ModStartupHelper;
 import openmods.config.properties.ConfigProcessing;
@@ -95,7 +94,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			if (service.getSystemType() == ISystemIdentifierService.SystemType.DEVELOPER) return;
 
 			service.switchCurrentType(ISystemIdentifierService.SystemType.BETA_TESTER);
-			openmods.Log.info("Successfully joined beta program for OpenMods-IGW");
+			OpenModsIGWApi.get().log().info("Successfully joined beta program for OpenMods-IGW");
 		}
 	}
 
@@ -157,20 +156,20 @@ public class ClientProxy implements IInitProxy, IPageInit {
 				WikiRegistry.registerWikiTab(tab);
 				currentTabs.put(modId, tab);
 			} catch (final NoSuchMethodException e) {
-				Log.warn(e, "Unable to instantiate specified tab class. Invalid constructor!");
+				OpenModsIGWApi.get().log().warning(e, "Unable to instantiate specified tab class. Invalid constructor!");
 			} catch (final Exception e) {
-				Log.warn(e, "Invalid constructor arguments.");
+				OpenModsIGWApi.get().log().warning(e, "Invalid constructor arguments.");
 			}
 		} else {
-			Log.warn("Failed to find items, blocks and entities for " + modId);
+			OpenModsIGWApi.get().log().warning("Failed to find items, blocks and entities for %s", modId);
 		}
 
 		try {
 			MinecraftForge.EVENT_BUS.register(eventHandlerClass.getConstructor().newInstance());
 		} catch (final NoSuchMethodException e) {
-			Log.warn(e, "Unable to instantiate specified event handler class. Invalid constructor!");
+			OpenModsIGWApi.get().log().warning(e, "Unable to instantiate specified event handler class. Invalid constructor!");
 		} catch (final Exception e) {
-			Log.warn(e, "Invalid constructor arguments.");
+			OpenModsIGWApi.get().log().warning(e, "Invalid constructor arguments.");
 		}
 	}
 
@@ -223,39 +222,39 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			final ModContainer container = optionalContainer.get();
 			if (!container.getModId().equals(entry.modId())) continue;
 			if (container.getVersion().equals(entry.version())) {
-				Log.info("Mod %s found: version matches", entry.modId());
+				OpenModsIGWApi.get().log().info("Mod %s found: version matches", entry.modId());
 				continue;
 			}
-			Log.info("Identified mod %s, but got different version than expected (%s instead of %s)",
+			OpenModsIGWApi.get().log().info("Identified mod %s, but got different version than expected (%s instead of %s)",
 					entry.modId(), container.getVersion(), entry.version());
 			if (container.getVersion().equals("$VERSION$")) {
-				Log.info("The mod %s installed version (%s) equals the development environment string",
+				OpenModsIGWApi.get().log().info("The mod %s installed version (%s) equals the development environment string",
 						container.getModId(), container.getVersion());
-				Log.info("Skipping addition...");
+				OpenModsIGWApi.get().log().info("Skipping addition...");
 				if (!additionsSkipped) additionsSkipped = true;
 				continue;
 			}
 			if (container.getMod().getClass().getAnnotation(IMismatchingModEntry.VersionProvider.class) != null) {
-				Log.info("Mod provides @VersionProvider annotation. Analyzing data...");
+				OpenModsIGWApi.get().log().info("Mod provides @VersionProvider annotation. Analyzing data...");
 				IMismatchingModEntry.VersionProvider provider = container
 						.getMod()
 						.getClass()
 						.getAnnotation(IMismatchingModEntry.VersionProvider.class);
 				if (provider.value().equals(entry.version())) {
-					Log.info("The mod %s tells us its version is equivalent to the expected %s.",
+					OpenModsIGWApi.get().log().info("The mod %s tells us its version is equivalent to the expected %s.",
 							container.getModId(), entry.version());
-					Log.info("This usually means that the version consists only of bug fixes");
-					Log.info("Since we trust the mod's developer, we skip the addition");
+					OpenModsIGWApi.get().log().info("This usually means that the version consists only of bug fixes");
+					OpenModsIGWApi.get().log().info("Since we trust the mod's developer, we skip the addition");
 					if (!additionsSkipped) additionsSkipped = true;
 					continue;
 				}
-				Log.info("Provided version was not the one we expected (%s instead of %s)",
+				OpenModsIGWApi.get().log().info("Provided version was not the one we expected (%s instead of %s)",
 						provider.value(), entry.version());
-				Log.info("As such, we add the mod to the list anyway.");
+				OpenModsIGWApi.get().log().info("As such, we add the mod to the list anyway.");
 			} else {
-				Log.info("No alternative version provided.");
+				OpenModsIGWApi.get().log().info("No alternative version provided.");
 			}
-			Log.info("Adding to mismatching mod list.");
+			OpenModsIGWApi.get().log().info("Adding to mismatching mod list.");
 			final IMismatchingModEntry mismatchingEntry = MismatchingModEntry.of(entry, container.getVersion());
 			this.mismatchingMods.add(mismatchingEntry);
 			if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
@@ -263,7 +262,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			}
 		}
 
-		if (this.mismatchingMods.isEmpty() && !additionsSkipped) Log.info("No mismatching mod versions found");
+		if (this.mismatchingMods.isEmpty() && !additionsSkipped) OpenModsIGWApi.get().log().info("No mismatching mod versions found");
 
 		// Make sure to open the GUI if we are running in debug mode
 		// And also, let's add some more entries to the list.
@@ -273,7 +272,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		final ISystemIdentifierService it = id.get().cast();
 		if (MISMATCHING_GUI_DEBUG || it.isSystemLevelEnough(it.populate(), ISystemIdentifierService.SystemType.DEVELOPER)) {
 			this.debugModVersionsCheck();
-			Log.warn("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
+			OpenModsIGWApi.get().log().warning("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
 		}
 	}
 

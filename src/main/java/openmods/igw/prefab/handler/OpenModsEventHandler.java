@@ -95,9 +95,9 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 		}
 
 		if (!allowed) {
-			openmods.Log.warn("Attempt of changing the icon of the tab stopped.");
-			openmods.Log.warn("Call stack:");
-			openmods.Log.warn(new Exception(), "");
+			OpenModsIGWApi.get().log().warning("Attempt of changing the icon of the tab stopped.");
+			OpenModsIGWApi.get().log().warning("Call stack:");
+			OpenModsIGWApi.get().log().warning(new Exception(), "");
 			return;
 		}
 
@@ -108,12 +108,12 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 		if (!serviceOptional.isPresent()) throw new IllegalStateException("Class Provider Service unavailable");
 		final IInitProxy proxy = serviceOptional.get().cast().proxy();
 		if (proxy == null) {
-			openmods.Log.severe("Unable to find proxy. Crashing...");
+			OpenModsIGWApi.get().log().severe("Unable to find proxy. Crashing...");
 			throw new IllegalStateException("Proxy unavailable");
 		}
 		final IPageInit pageInit = proxy.asPageInit();
 		if (pageInit == null) {
-			openmods.Log.severe("Unable to obtain proxy instance as an IPageInit. Aborting...");
+			OpenModsIGWApi.get().log().severe("Unable to obtain proxy instance as an IPageInit. Aborting...");
 			return;
 		}
 		final OpenModsWikiTab tab = this.cast(pageInit.getTabForModId(this.modId()));
@@ -133,11 +133,11 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 		final String configId = variable.substring(this.getPrefix(type).length());
 
 		if (configId.contains("@")) {
-			openmods.Log.warn("Malformed variable name (%s): could not match block name %s", variable, configId);
+			OpenModsIGWApi.get().log().warning("Malformed variable name (%s): could not match block name %s", variable, configId);
 			return;
 		}
 
-		openmods.Log.info("Replacing variable (%s) with status of block", variable);
+		OpenModsIGWApi.get().log().info("Replacing variable (%s) with status of block", variable);
 
 		if (CACHE_BLOCK.containsKey(configId)) {
 			event.replacementValue = CACHE_BLOCK.get(configId).toString();
@@ -158,11 +158,11 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 		final String configId = variable.substring(this.getPrefix(type).length());
 
 		if (configId.contains("@")) {
-			openmods.Log.warn("Malformed variable name (%s): could not match item name %s", variable, configId);
+			OpenModsIGWApi.get().log().warning("Malformed variable name (%s): could not match item name %s", variable, configId);
 			return;
 		}
 
-		openmods.Log.info("Replacing variable (%s) with status of block", variable);
+		OpenModsIGWApi.get().log().info("Replacing variable (%s) with status of block", variable);
 
 		if (CACHE_ITEM.containsKey(configId)) {
 			event.replacementValue = CACHE_ITEM.get(configId).toString();
@@ -184,11 +184,11 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 		String configId = variable.substring(this.getPrefix(type).length());
 
 		if (configId.contains("@")) {
-			openmods.Log.warn("Malformed variable name (%s): could not match config name %s", variable, configId);
+			OpenModsIGWApi.get().log().warning("Malformed variable name (%s): could not match config name %s", variable, configId);
 			return;
 		}
 
-		openmods.Log.info("Replacing variable (%s) with config value", variable);
+		OpenModsIGWApi.get().log().info("Replacing variable (%s) with config value", variable);
 
 		if (CACHE_CONFIG.containsKey(configId)) {
 			event.replacementValue = CACHE_CONFIG.get(configId).toString();
@@ -202,12 +202,11 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 			if (fSpecified.getAnnotation(IgnoreCache.class) == null) CACHE_CONFIG.put(configId, fieldValue);
 			event.replacementValue = fieldValue.toString();
 		} catch (final Exception e) {
-			openmods.Log.severe(e, "Could not substitute variable value. See exception for more information.");
+			OpenModsIGWApi.get().log().severe(e, "Could not substitute variable value. See exception for more information.");
 		}
 	}
 
 	private String getPrefix(final VariableType varType) {
-
 		return String.format(OM_VARIABLE_PREFIX_RAW, this.modId(), varType.id());
 	}
 }

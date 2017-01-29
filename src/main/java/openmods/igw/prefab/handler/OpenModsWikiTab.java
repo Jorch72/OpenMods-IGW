@@ -14,6 +14,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
+import openmods.igw.api.OpenModsIGWApi;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
 
@@ -25,8 +26,6 @@ import igwmod.gui.IReservedSpace;
 import igwmod.gui.LocatedStack;
 import igwmod.gui.LocatedString;
 import igwmod.gui.tabs.IWikiTab;
-
-import openmods.Log;
 
 import java.util.Arrays;
 import java.util.List;
@@ -275,7 +274,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 					.newInstance(FMLClientHandler.instance().getClient().theWorld);
 		} catch (Exception e) {
 			// So ReflectiveOperationException is only from Java 7 onwards...
-			Log.warn(e, "The entity %s does not have a constructor with a single world parameter.", clazz); // I guess
+			OpenModsIGWApi.get().log().warning(e, "The entity %s does not have a constructor with a single world parameter.", clazz); // I guess
 			return null;
 		}
 	}
@@ -295,13 +294,13 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		}
 
 		if (!allowed) {
-			Log.warn("Attempt of changing the icon of the tab stopped.");
-			Log.warn("Call stack:");
-			Log.warn(new Exception(), "");
+			OpenModsIGWApi.get().log().warning("Attempt of changing the icon of the tab stopped.");
+			OpenModsIGWApi.get().log().warning("Call stack:");
+			OpenModsIGWApi.get().log().warning(new Exception(), "");
 			return;
 		}
 
-		Log.info("Icon overridden. New icon: %s", newIcon.toString());
+		OpenModsIGWApi.get().log().info("Icon overridden. New icon: %s", newIcon.toString());
 		this.iconRequest = newIcon;
 		this.onPageChange(null, null);
 	}
@@ -317,7 +316,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		final Entity entity;
 
 		if (this.iconRequest != null) {
-			Log.info("Overriding icon as per request.");
+			OpenModsIGWApi.get().log().info("Overriding icon as per request.");
 			stack = this.iconRequest;
 			entity = null;
 			this.iconRequest = null;
@@ -333,7 +332,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			stack = defaultStack != null? defaultStack : defaultEntity != null? null : createFallbackItemStack();
 			entity = stack == null? getEntity(defaultEntity) : null;
 		} else {
-			Log.warn("Reached fallback code. This should never happen!");
+			OpenModsIGWApi.get().log().warning("Reached fallback code. This should never happen!");
 			stack = createFallbackItemStack();
 			entity = null;
 		}

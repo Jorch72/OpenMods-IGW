@@ -2,6 +2,7 @@ package openmods.igw.impl.config;
 
 import openmods.Mods;
 import openmods.config.properties.ConfigProperty;
+import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.config.IConfig;
 
 import java.lang.annotation.Annotation;
@@ -34,9 +35,7 @@ public class Config implements IConfig {
 	public static boolean joinBetaProgram = false;
 
 	public static boolean isEnabled(final String modId) {
-
 		for (final java.lang.reflect.Field field : Config.class.getDeclaredFields()) {
-
 			if (field.getAnnotations().length == 0) continue;
 
 			Annotation annotation = field.getAnnotation(ConfigProperty.class);
@@ -49,17 +48,16 @@ public class Config implements IConfig {
 			if (!configProperty.name().equals(modId)) continue;
 
 			try {
-
 				return field.getBoolean(null);
 			}
 			catch (final Throwable throwable) {
-
-				openmods.Log.warn("Field %s is not a boolean. Please check your call!", field.getName());
-				throw openmods.utils.SneakyThrower.sneakyThrow(throwable);
+				OpenModsIGWApi.get().log().warning("Field %s is not a boolean. Please check your call!", field.getName());
+				// Dereference of "SneakyThrower.sneakyThrow(throwable)" may produce java.lang.NullPointerException
+				throw com.google.common.base.Preconditions.checkNotNull(openmods.utils.SneakyThrower.sneakyThrow(throwable));
 			}
 		}
 
-		openmods.Log.warn(new Throwable("Thread stack"),
+		OpenModsIGWApi.get().log().warning(new Throwable("Thread stack"),
 				"Attempted call with un-recognized mod ID %s. Please check your call.",
 				modId);
 		return false;

@@ -38,7 +38,7 @@ public class WarningGui extends GuiYesNo {
 				CONTINUE_BUTTON_LABEL,
 				INSTALL_BUTTON_LABEL,
 				0);
-		openmods.Log.info("IGW Mod not found. Gui constructed and shown");
+		OpenModsIGWApi.get().log().info("IGW Mod not found. Gui constructed and shown");
 		shouldShow = false;
 	}
 
@@ -68,7 +68,7 @@ public class WarningGui extends GuiYesNo {
 				} catch (final URISyntaxException e) {
 					throw new RuntimeException(e);
 				} catch (final IOException e) {
-					openmods.Log.warn("Why would you run a client in a headless environment?");
+					OpenModsIGWApi.get().log().severe("Why would you run a client in a headless environment?");
 				}
 				// Hot loading is not possible, so...
 				cpw.mods.fml.common.FMLCommonHandler.instance().exitJava(EXIT_CODE_INTERNAL, false);

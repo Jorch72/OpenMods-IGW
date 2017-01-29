@@ -7,7 +7,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-import openmods.Log;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
@@ -36,10 +35,10 @@ public class CommonProxy implements IInitProxy {
 	@Override
 	@SuppressWarnings("OptionalGetWithoutIsPresent")
 	public void postInit(final FMLPostInitializationEvent evt) {
-		Log.warn("This mod (%s) is currently not needed on server side.",
+		OpenModsIGWApi.get().log().warning("This mod (%s) is currently not needed on server side.",
 				OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME")
 						.orNull());
-		Log.info("You can install it to force people to use it, though.");
+		OpenModsIGWApi.get().log().info("You can install it to force people to use it, though.");
 	}
 
 	@Nonnull

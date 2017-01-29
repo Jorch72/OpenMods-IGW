@@ -2,7 +2,7 @@ package openmods.igw.impl.service;
 
 import net.minecraft.util.StatCollector;
 
-import openmods.Log;
+import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ITranslationService;
 import openmods.igw.impl.utils.Constants;
@@ -58,7 +58,7 @@ public final class TranslationService implements ITranslationService {
 			} catch (final StackOverflowError error) {
 				// In case of broken implementation, return untranslated string
 				try {
-					Log.severe("Unable to translate internal error message. Broken implementation?");
+					OpenModsIGWApi.get().log().severe("Unable to translate internal error message. Broken implementation?");
 				} catch (final StackOverflowError ignored) {
 					// Probably we have not enough stack space to log a message
 					// Simply fail silently and don't care about it

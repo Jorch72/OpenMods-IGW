@@ -19,8 +19,8 @@ public final class OpenModsIGW implements IInit {
 	@SuppressWarnings("unused")
 	private static OpenModsIGW instance;
 
-	@SuppressWarnings("unused")
 	@SidedProxy(modId = Constants.MOD_ID, clientSide = Constants.CLIENT_PROXY, serverSide = Constants.COMMON_PROXY)
+	@SuppressWarnings("unused")
 	private static IInitProxy proxy;
 
 	@Mod.EventHandler

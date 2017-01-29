@@ -1,10 +1,11 @@
 package openmods.igw.impl.service;
 
-import openmods.Log;
+import openmods.Log; // Not using service otherwise we could create a circular dependency: log needs service which needs this which needs log...
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IGuiService;
+import openmods.igw.api.service.ILoggingService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.api.service.ITranslationService;
@@ -31,6 +32,7 @@ public final class OpenServiceProvider {
 		registerService(IClassProviderService.class, new ClassProviderService());
 		registerService(IConstantRetrieverService.class, ConstantRetrieverService.get());
 		registerService(IGuiService.class, new GuiService());
+		registerService(ILoggingService.class, LoggingService.get());
 		registerService(ISystemIdentifierService.class, SystemIdentifierService.get());
 		registerService(ITranslationService.class, TranslationService.get());
 

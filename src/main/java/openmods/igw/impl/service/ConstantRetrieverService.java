@@ -1,5 +1,6 @@
 package openmods.igw.impl.service;
 
+import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IService;
 import openmods.igw.impl.config.Config;
@@ -40,7 +41,7 @@ public final class ConstantRetrieverService implements IConstantRetrieverService
 			}
 			throw new NoSuchFieldException(name);
 		} catch (final Exception e) {
-			openmods.Log.warn(e, "Exception thrown while attempting to retrieve configuration constant " + name);
+			OpenModsIGWApi.get().log().warning(e, "Exception thrown while attempting to retrieve configuration constant " + name);
 			return new ConfigConstantWrapper<T>(null);
 		}
 	}
@@ -91,7 +92,7 @@ public final class ConstantRetrieverService implements IConstantRetrieverService
 			}
 			throw new NoSuchFieldException(name);
 		} catch (final Exception e) {
-			openmods.Log.warn(e, "Exception thrown while attempting to retrieve constant " + name);
+			OpenModsIGWApi.get().log().warning(e, "Exception thrown while attempting to retrieve constant " + name);
 			return new ConfigConstantWrapper<T>(null);
 		}
 	}

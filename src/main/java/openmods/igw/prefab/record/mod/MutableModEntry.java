@@ -7,7 +7,7 @@ import com.google.common.collect.Maps;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 
-import openmods.Log;
+import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.record.Cached;
 import openmods.igw.api.record.mod.IModEntry;
 import openmods.igw.api.record.mod.IMutableModEntry;
@@ -95,14 +95,14 @@ public final class MutableModEntry implements IMutableModEntry {
 	@Override
 	public Optional<ModContainer> modContainer() {
 		if (!Loader.isModLoaded(this.modId())) {
-			Log.warn("Attempted to get mod container for an unavailable mod.");
+			OpenModsIGWApi.get().log().warning("Attempted to get mod container for an unavailable mod.");
 			return Optional.absent();
 		}
 
 		for (final ModContainer container : Loader.instance().getModList()) {
 			if (!container.getModId().equals(this.modId())) continue;
 			if (!container.getVersion().equals(this.version())) {
-				Log.warn("Found container for mod %s, but version does not match (%s instead of %s). Returning anyway",
+				OpenModsIGWApi.get().log().warning("Found container for mod %s, but version does not match (%s instead of %s). Returning anyway",
 						this.modId(),
 						container.getVersion(),
 						this.version());
