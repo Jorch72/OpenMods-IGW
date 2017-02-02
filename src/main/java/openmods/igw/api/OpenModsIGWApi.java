@@ -33,6 +33,32 @@ public final class OpenModsIGWApi {
 		}
 
 		try {
+			// Mainly done just to annoy users and discourage them to use this
+			// service: it's only internal! kek
+
+			// noinspection SpellCheckingInspection
+			final Class<?> theServiceClass = Class.forName("openmods.igw.prefab.service.fallback.SystemLoggingService");
+			final Object service = theServiceClass.getDeclaredMethod("getTheLoggingService").invoke(null);
+			final Method register = theServiceClass.getDeclaredMethod("register");
+			register.setAccessible(true);
+			register.invoke(service);
+			register.setAccessible(false);
+		} catch (final Throwable thr) {
+			// Log that default logging service could not be
+			// loaded (wow, that's so weird to type), so nobody
+			// blames us.
+			// And why would they, anyway?
+			log("Unable to load default logging service. This may lead to future errors.", thr);
+
+			if (thr.getCause() instanceof SecurityException) {
+				// But, if the ancestor is a security exception, then
+				// notify and rethrow.
+				log("Ancestor was a SecurityException. Rethrowing!", new Throwable());
+				throw new RuntimeException(thr);
+			}
+		}
+
+		try {
 			// noinspection SpellCheckingInspection
 			final Method m = Class.forName("openmods.igw.impl.service.OpenServiceProvider")
 					.getDeclaredMethod("initializeServices");

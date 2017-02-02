@@ -1,6 +1,5 @@
 package openmods.igw.impl.service;
 
-import openmods.Log; // Not using service otherwise we could create a circular dependency: log needs service which needs this which needs log...
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IConstantRetrieverService;
@@ -36,7 +35,7 @@ public final class OpenServiceProvider {
 		registerService(ISystemIdentifierService.class, SystemIdentifierService.get());
 		registerService(ITranslationService.class, TranslationService.get());
 
-		Log.info("Successfully loaded and registered %d services out of %d total services",
+		log().info("Successfully loaded and registered %d services out of %d total services",
 				registeredServices,
 				totalServices);
 	}
@@ -47,14 +46,19 @@ public final class OpenServiceProvider {
 		final String serviceClassName = serviceClass.getName();
 		final String newServiceClassName = newService.getClass().getName();
 		if (!OpenModsIGWApi.get().serviceManager().registerService(serviceClass, newService)) {
-			Log.warn("Registration failed for pair %s -> %s. This can lead to errors!",
+			log().warning("Registration failed for pair %s -> %s. This can lead to errors!",
 					serviceClassName,
 					newServiceClassName);
-			Log.info("Skipping ID " + totalServices);
+			log().info("Skipping ID " + totalServices);
 		}
 		++registeredServices;
-		Log.info("Registered implementation class %s for service %s (id: %d)", newServiceClassName,
+		log().info("Registered implementation class %s for service %s (id: %d)", newServiceClassName,
 				serviceClassName,
 				totalServices);
+	}
+
+	@Nonnull
+	private static ILoggingService log() {
+		return OpenModsIGWApi.get().log();
 	}
 }
