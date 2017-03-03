@@ -169,13 +169,15 @@ Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will s
 [prefix{l}]History [prefix{}]
 [prefix{2}]1.5.0: [prefix{}]Enhanced Building Guide added.
 [prefix{2}]1.5.1: [prefix{}]Fixed Enhanced Building Guide not storing its settings on drop.
+[prefix{2}]1.6.0: [prefix{}]Improved Enhanced Building Guide rendering performance.
+[prefix{2}]1.6.0: [prefix{}]Tweaked Enhanced Building Guide rotation to allow more dome template orientations.
 
 [prefix{l}]Trivia [prefix{}]
 - Both the Enhanced Building Guide and the Building Guide share the same texture. The only visual difference is the "core" and its flame (green for the former, red for the latter).
 - If you watch the Enhanced Building Guide closely (maybe with Optifine's zoom), you can see some little blocks orbiting around the building guide core.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2630, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_example_usage_TSM_submit.png}]
+[image{200, 2670, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_example_usage_TSM_submit.png}]
 
 
 
@@ -193,7 +195,7 @@ Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will s
 [prefix{o}]A practical usage example of the Enhanced Building Guide: the guide is currently on and its outlining the shape of a sphere with radius 8.
 The outline has been colored of blue for ease of identification. [prefix{}]
 
-[image{200, 2830, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_fill_mode.png}]
+[image{200, 2870, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_fill_mode.png}]
 
 
 

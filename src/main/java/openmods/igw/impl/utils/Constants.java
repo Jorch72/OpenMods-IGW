@@ -30,7 +30,7 @@ public final class Constants {
 
 	@SuppressWarnings("unused")
 	public static final IModEntry[] CURRENTLY_SUPPORTED_MODS = new IModEntry[] {
-																			ModEntry.of(Mods.OPENBLOCKS, "1.5.1"),
+																			ModEntry.of(Mods.OPENBLOCKS, "1.6"),
 																		 };
 
 	@SuppressWarnings("unused")
@@ -38,7 +38,7 @@ public final class Constants {
 			ImmutableMap.<ISystemIdentifierService.SystemDetails, ISystemIdentifierService.SystemType>builder()
 					.put(new ISystemIdentifierService.SystemDetails() {
 						{
-							// TSM
+							// TSM - Development Environment
 							this.os = "Windows 10";
 							this.architecture = "amd64";
 							this.runDir = "E:/GitHub/OpenMods-IGW/run";
