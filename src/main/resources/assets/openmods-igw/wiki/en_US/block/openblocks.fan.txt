@@ -89,7 +89,7 @@ Then provide a redstone current and watch all the entities being pushed away
 [prefix{5}]B:fan [prefix{}]
 Allows to enable (true) or disable (false) the Fan.
 [prefix{o}]Default value: [prefix{}] true
-[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@elevator_rotating}]
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@fan}]
 
 [prefix{2}]"fan" category [prefix{}]
 [prefix{5}]D:fanForce [prefix{}]

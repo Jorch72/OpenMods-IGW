@@ -28,7 +28,7 @@ List of things to complete before version **1.0**<br />
   - [X] Elevator
   - [X] Elevator (Rotating)
   - [X] Fan
-  - [ ] Flag
+  - [X] Flag
   - [ ] Golden Egg
   - [ ] Grave
   - [ ] Guide (the normal one)

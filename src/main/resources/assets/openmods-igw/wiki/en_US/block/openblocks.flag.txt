@@ -1,4 +1,37 @@
-[crafting{200,15,key=block/openblocks.flag}]
+[prefix{l}][prefix{1}]FLAG [prefix{}] [prefix{}]
+
+"[prefix{o}]Colored flags for various purposes [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page.
+
+The Flag is a block in the shape of, literally, a flag that can be used to mark paths and/or as a decoration item.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Non-solid block
+[prefix{4}]Physics: [prefix{}]No. It breaks instead.
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]No tool required
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:flag
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Flag can be mined with any tool. It can also be mined with bare hands.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand and every other tools: [prefix{}]1.59 seconds
+
+[prefix{2}]Crafting [prefix{}]
+[crafting{200,395,key=block/openblocks.flag}]
 
 
 
@@ -10,7 +43,82 @@
 
 
 
-Flags can be used for decoration or for marking the way back out of a cave you've ventured in to.
-The flag will point in the direction that you placed it, or you can put it on walls.
 
-If you shift-click with a flag in your hand it will change color.
+[prefix{2}]Spontaneous drop [prefix{}]
+The Flag will also spontaneously drop itself if water or lava flows into its space or a piston tries to push or moves a block into its space.
+Be wary, though, that lava destroys the drop instantaneously.
+
+[prefix{l}]Usage [prefix{}]
+The Flag can be used as a decorative block for various structures or to mark pathways.
+
+[prefix{2}]Placement [prefix{}]
+To place the Flag, use the "Use Item/Place Block" control (right-click, by default) while aiming at the block you want to place the fan on.
+If the block's clicked side is the top one, then the Flag will be placed on top facing west and will be rotatable.
+If the block's clicked side is any other side, then the Flag will be attached to that side and will hang from the "wall", without being able to be rotated.
+
+[prefix{2}]Rotation setting [prefix{}]
+The Flag can be rotated only when it is in its standing position.
+To rotate, use the "Use Item/Place Block" control on the Flag's pole.
+The flag will rotate of about 10 degrees clockwise each time.
+
+[prefix{2}]Dying [prefix{}]
+The flag must be in its item form to be dyed.
+While holding the flag item in the main hand, use the item while crouching (shift-right-click, by default).
+This will cycle the flag through all the various available colors.
+The change of color is depicted with a change in the color of the flag item.
+The available colors cycle as follows:
+[prefix{o}]Green, Blue, Dark Red, Light Orange, Light Brown, Lime, Cyan, Magenta, Yellow, Orange, Red, Lilac, Light Gray, Purple, Black, White [prefix{}]
+
+When the dyed flag is placed and then broken again, the color resets itself to green.
+It is currently unknown if this is intended or is a bug.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+After obtaining the flag item, shift-right-click as many times as needed to reach the desired colour.
+Right-click then the flag on the wall or on the ground where you want to place it.
+Last, rotate the block in order to face the desired direction.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{5}]B:flag [prefix{}]
+Allows to enable (true) or disable (false) the Flag.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@flag}]
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+There are no suggested structures for this block.
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Flag added.
+
+[prefix{l}]Trivia [prefix{}]
+- Flags can also be placed on top of vanilla fences.
+- The color of the flag is not preserved when breaking it. It is unknown whether this is a bug or not.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1345, openmods-igw:wiki/worldwide/images/block/flag/gallery_all_the_flags.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A panoramic of all the possible flag colors [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.beartrap}]Bear Trap [link{}]
