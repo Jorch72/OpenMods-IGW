@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class LoggingService implements ILoggingService {
+public final class LoggingService implements ILoggingService {
 
 	private static class InvalidLevelException extends RuntimeException {
 		private InvalidLevelException(final String message, final Throwable cause) {

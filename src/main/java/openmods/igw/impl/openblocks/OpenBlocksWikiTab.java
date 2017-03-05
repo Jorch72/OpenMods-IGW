@@ -17,6 +17,7 @@ import openmods.igw.prefab.handler.OpenModsWikiTab;
 
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nonnull;
 
 /*
  * WARNING!
@@ -28,8 +29,6 @@ import java.util.Map;
  */
 public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 
-	@SuppressWarnings("unused")
-	//@Explain("Accessed via reflection")
 	public OpenBlocksWikiTab(final List<Pair<String, ItemStack>> stacks,
 							 final Map<String, ItemStack> allClaimedPages,
 							 final Map<String, Class<? extends Entity>> allClaimedEntities) {
@@ -51,7 +50,7 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 		this.addPageToStaticPages(createStaticPageFactory("obUtils", this, CommonPositionProviders.STATIC_PAGES));
 		this.addPageToStaticPages(createStaticPageFactory("bKey", this, CommonPositionProviders.STATIC_PAGES));
 		this.addPageToStaticPages(createStaticPageFactory("enchantments", this, CommonPositionProviders.STATIC_PAGES));
-		this.addPageToStaticPages(createStaticPageFactory("changelogs", this, CommonPositionProviders.STATIC_PAGES));
+		this.addPageToStaticPages(createStaticPageFactory("changelog", this, CommonPositionProviders.STATIC_PAGES));
 	}
 
 	@Override
@@ -68,7 +67,7 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 	public List<IReservedSpace> getReservedSpaces() {
 		final List<IReservedSpace> reservedSpaces = Lists.newArrayList();
 		final ResourceLocation textureLocation = new ResourceLocation("openmods-igw",
-				"textures/gui/wiki/shorterItemGrid.png");
+				"textures/gui/wiki/6x2.png");
 		reservedSpaces.add(new LocatedTexture(textureLocation, 40, 110, 36, 108));
 		return reservedSpaces;
 	}
@@ -88,8 +87,9 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 		return 2;
 	}
 
+	@Nonnull
 	@Override
-	protected Block[] getBlockCandidates() {
-		return new Block[] {OpenBlocksItemHolder.FLAG, Blocks.sponge};
+	protected List<Block> getBlockCandidates() {
+		return Lists.newArrayList(OpenBlocksItemHolder.FLAG, Blocks.sponge);
 	}
 }

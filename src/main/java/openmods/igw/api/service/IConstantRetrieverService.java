@@ -172,7 +172,7 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 		 * @since 1.0
 		 */
 		@Nonnull
-		@SuppressWarnings("WeakerAccess") // Can be removed later, if IDE doesn't complain
+		@SuppressWarnings({"ConstantConditions", "WeakerAccess"}) // Can be removed later, if IDE doesn't complain
 		public T orElseThrow(@Nonnull final Supplier<? extends Throwable> throwableSupplier) throws Throwable {
 			if (!this.isPresent()) throw throwableSupplier.get();
 			return this.get();

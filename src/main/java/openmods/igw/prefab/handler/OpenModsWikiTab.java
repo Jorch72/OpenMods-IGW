@@ -27,21 +27,15 @@ import igwmod.gui.LocatedStack;
 import igwmod.gui.LocatedString;
 import igwmod.gui.tabs.IWikiTab;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nonnull;
 
-@SuppressWarnings("SameReturnValue")
-//@Explain("Designed for extension")
-// TODO Api entries
+@SuppressWarnings("SpellCheckingInspection")
 public abstract class OpenModsWikiTab implements IWikiTab {
 
-	private static final RenderItem renderer = new RenderItem();
-
-	private ItemStack tabIcon;
-	private Entity tabEntity;
-
 	private static class LinkNumerator {
+
 		private int staticEntries;
 		private int itemEntries;
 
@@ -55,22 +49,24 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	}
 
 	private interface IPageLinkFactory {
+
 		IPageLink createPage(final LinkNumerator numerator);
 	}
 
-	@SuppressWarnings({"WeakerAccess", "UnusedParameters"})
 	protected interface IStaticPagePositionProvider {
+
 		int getX(final LinkNumerator numerator);
 		int getY(final LinkNumerator numerator);
 	}
 
 	protected interface IItemPositionProvider {
+
 		int getX(final int entryId);
 		int getY(final int entryId);
 	}
 
-	@SuppressWarnings({"WeakerAccess"})
 	protected static class CommonPositionProviders {
+
 		public static final IStaticPagePositionProvider STATIC_PAGES = new IStaticPagePositionProvider() {
 			@Override
 			public int getX(final LinkNumerator numerator) {
@@ -95,6 +91,30 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 				return 75 + entryId / 2 * 18;
 			}
 		};
+	}
+
+	private static final RenderItem RENDERER = new RenderItem();
+
+	private final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
+	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
+	private final Map<String, ItemStack> defaultIcons;
+	private final Map<String, Class<? extends Entity>> defaultEntities;
+
+	private ItemStack tabIcon;
+	private Entity tabEntity;
+	private ItemStack iconRequest;
+
+	protected OpenModsWikiTab(final List<Pair<String, ItemStack>> stacks,
+							  final Map<String, ItemStack> allClaimedPages,
+							  final Map<String, Class<? extends Entity>> allClaimedEntities,
+							  final IItemPositionProvider positionProvider) {
+
+		for (final Pair<String, ItemStack> e : stacks) {
+			this.itemPageFactories.add(createItemPageFactory(e.getLeft(), e.getRight(),	positionProvider));
+		}
+
+		this.defaultIcons = allClaimedPages;
+		this.defaultEntities = allClaimedEntities;
 	}
 
 	protected static IPageLinkFactory createStaticPageFactory(final String id,
@@ -137,31 +157,6 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		this.staticPageFactories.add(factory);
 	}
 
-	private final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
-	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
-
-	private final Map<String, ItemStack> defaultIcons;
-	private final Map<String, Class<? extends Entity>> defaultEntities;
-
-	private ItemStack iconRequest;
-
-	@SuppressWarnings("unused")
-	//@Explain("??")
-	protected OpenModsWikiTab(final List<Pair<String, ItemStack>> stacks,
-							 final Map<String, ItemStack> allClaimedPages,
-							 final Map<String, Class<? extends Entity>> allClaimedEntities,
-						     final IItemPositionProvider positionProvider) {
-
-		for (final Pair<String, ItemStack> e : stacks)
-			this.itemPageFactories.add(createItemPageFactory(e.getLeft(),
-					e.getRight(),
-					positionProvider));
-
-		this.defaultIcons = allClaimedPages;
-		this.defaultEntities = allClaimedEntities;
-		this.iconRequest = null; // Useless, but hey!
-	}
-
 	@Override
 	public final String getName() {
 		return this.getTabName();
@@ -169,9 +164,6 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
 	protected abstract String getTabName();
 
-	/*
-	 * Dot at the end is automatically appended
-	 */
 	protected abstract String getPageName();
 
 	@Override
@@ -194,7 +186,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		}
 
 		// always append static ones, otherwise it looks weird when scrolling
-		// also, must be last to prevent empty spaces (still,
+		// also, must be last to prevent empty spaces (still, some of them are present)
 		for (final IPageLinkFactory factory : staticPageFactories)
 			pages.add(factory.createPage(numerator));
 
@@ -222,92 +214,24 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		GL11.glPushMatrix();
 		GL11.glTranslated(49, 20, 0);
 		GL11.glScaled(2.2, 2.2, 2.2);
-		renderer.renderItemAndEffectIntoGUI(gui.getFontRenderer(), gui.mc.getTextureManager(), this.tabIcon, 0, 0);
+		RENDERER.renderItemAndEffectIntoGUI(gui.getFontRenderer(), gui.mc.getTextureManager(), this.tabIcon, 0, 0);
 		GL11.glPopMatrix();
-	}
-
-	private static<T> T firstNonNull(final T... list) {
-		for (final T obj : list) {
-
-			if (obj != null) return obj;
-		}
-
-		return null;
-	}
-
-	private ItemStack createFallbackItemStack() {
-		return new ItemStack(OpenModsWikiTab.firstNonNull(this.getCandidates()));
-	}
-
-	//No lists are used because they do not support nulls or duplicate entries
-	private Item[] getCandidates() {
-		final List<Item> toArray = Lists.newArrayList();
-
-		if (this.getItemCandidates() != null) toArray.addAll(Arrays.asList(this.getItemCandidates()));
-
-		if (this.getBlockCandidates() != null) {
-
-			for (final Block block : this.getBlockCandidates()) {
-
-				toArray.add(Item.getItemFromBlock(block));
-			}
-		}
-
-		toArray.add(Items.compass);
-
-		return toArray.toArray(new Item[toArray.size()]);
-	}
-
-	@SuppressWarnings("WeakerAccess")
-	//@Explain("Designed for extension")
-	protected Item[] getItemCandidates() {
-		return null;
-	}
-
-	protected Block[] getBlockCandidates() {
-		return null;
-	}
-
-	private static Entity getEntity(final Class<? extends Entity> clazz) {
-		try {
-			return clazz.getConstructor(net.minecraft.world.World.class)
-					.newInstance(FMLClientHandler.instance().getClient().theWorld);
-		} catch (Exception e) {
-			// So ReflectiveOperationException is only from Java 7 onwards...
-			OpenModsIGWApi.get().log().warning(e, "The entity %s does not have a constructor with a single world parameter.", clazz); // I guess
-			return null;
-		}
-	}
-
-	@SuppressWarnings("WeakerAccess")
-	// Let other people access it.
-	// Unless OpenMods gives them authorization, they can't do anything.
-	public final void askForIconOverride(final ItemStack newIcon) {
-
-		final StackTraceElement[] callStack = new Exception().getStackTrace();
-		boolean allowed = false;
-
-		for (int i = 0; i < callStack.length; ++i) {
-			if (i == 0) continue;
-			if (i > 2) break;
-			if (callStack[i].getClassName().startsWith("openmods.igw.")) allowed = true;
-		}
-
-		if (!allowed) {
-			OpenModsIGWApi.get().log().warning("Attempt of changing the icon of the tab stopped.");
-			OpenModsIGWApi.get().log().warning("Call stack:");
-			OpenModsIGWApi.get().log().warning(new Exception(), "");
-			return;
-		}
-
-		OpenModsIGWApi.get().log().info("Icon overridden. New icon: %s", newIcon.toString());
-		this.iconRequest = newIcon;
-		this.onPageChange(null, null);
 	}
 
 	@Override
 	public final ItemStack renderTabIcon(final GuiWiki gui) {
 		return this.createFallbackItemStack();
+	}
+
+	@Nonnull
+	@SuppressWarnings("WeakerAccess")
+	protected List<Item> getItemCandidates() {
+		return Lists.newArrayList();
+	}
+
+	@Nonnull
+	protected List<Block> getBlockCandidates() {
+		return Lists.newArrayList();
 	}
 
 	@Override
@@ -376,4 +300,64 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
 	@Override
 	public void onMouseClick(final GuiWiki gui, final int mouseX, final int mouseY, final int mouseKey) {}
+
+	final void askForIconOverride(final ItemStack newIcon) {
+		final StackTraceElement[] callStack = new Exception().getStackTrace();
+		boolean allowed = false;
+
+		for (int i = 0; i < callStack.length; ++i) {
+			if (i == 0) continue;
+			if (i > 2) break;
+			if (callStack[i].getClassName().startsWith("openmods.igw.")) allowed = true;
+		}
+
+		if (!allowed) {
+			OpenModsIGWApi.get().log().warning("Attempt of changing the icon of the tab stopped.");
+			OpenModsIGWApi.get().log().warning("Call stack:");
+			OpenModsIGWApi.get().log().warning(new Exception(), "");
+			return;
+		}
+
+		OpenModsIGWApi.get().log().info("Icon overridden. New icon: %s", newIcon.toString());
+		this.iconRequest = newIcon;
+		this.onPageChange(null, null);
+	}
+
+	// TODO Move to custom utility class
+	private static<T> T firstNonNull(final List<T> list) {
+		for (final T obj : list) {
+			if (obj != null) return obj;
+		}
+
+		return null;
+	}
+
+	private ItemStack createFallbackItemStack() {
+		return new ItemStack(OpenModsWikiTab.firstNonNull(this.getCandidates()));
+	}
+
+	private List<Item> getCandidates() {
+		final List<Item> candidates = Lists.newArrayList();
+
+		candidates.addAll(this.getItemCandidates());
+
+		for (final Block block : this.getBlockCandidates()) {
+			candidates.add(Item.getItemFromBlock(block));
+		}
+
+		candidates.add(Items.compass);
+
+		return candidates;
+	}
+
+	private static Entity getEntity(final Class<? extends Entity> clazz) {
+		try {
+			return clazz.getConstructor(net.minecraft.world.World.class)
+					.newInstance(FMLClientHandler.instance().getClient().theWorld);
+		} catch (Exception e) {
+			// So ReflectiveOperationException is only from Java 7 onwards...
+			OpenModsIGWApi.get().log().warning(e, "The entity %s does not have a constructor with a single world parameter.", clazz); // I guess
+			return null;
+		}
+	}
 }

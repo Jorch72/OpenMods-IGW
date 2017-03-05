@@ -31,22 +31,22 @@ public final class SystemLoggingService implements ILoggingService {
 	@SuppressWarnings("SpellCheckingInspection")
 	public static SystemLoggingService getTheLoggingService() {
 		final StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-		if (!isValidCall(stackTrace[0], "openmods.igw.prefab.service.fallback.SystemLoggingService.getTheLoggingService")
-				|| !isValidCall(stackTrace[3], "sun.reflect.DelegatingMethodAccessorImpl.invoke")
-				|| !isValidCall(stackTrace[5], "openmods.igw.api.OpenModsIGWApi.<clinit>")
-				|| !isValidCall(stackTrace[7], "openmods.igw.impl.proxy.ClientProxy.construct")
-				|| !isValidCall(stackTrace[13], "cpw.mods.fml.common.FMLModContainer.handleModStateEvent"))
+		if (isInvalidCall(stackTrace[0], "openmods.igw.prefab.service.fallback.SystemLoggingService.getTheLoggingService")
+				|| isInvalidCall(stackTrace[3], "sun.reflect.DelegatingMethodAccessorImpl.invoke")
+				|| isInvalidCall(stackTrace[5], "openmods.igw.api.OpenModsIGWApi.<clinit>")
+				|| isInvalidCall(stackTrace[7], "openmods.igw.impl.proxy.ClientProxy.construct")
+				|| isInvalidCall(stackTrace[13], "cpw.mods.fml.common.FMLModContainer.handleModStateEvent"))
 			throw new SecurityException("Unsafe call to " + SystemLoggingService.class);
 		return THE_LOGGING_SERVICE;
 	}
 
-	private static boolean isValidCall(@Nonnull final StackTraceElement ele, @Nonnull final String call) {
+	private static boolean isInvalidCall(@Nonnull final StackTraceElement ele, @Nonnull final String call) {
 		final String actualCall = ele.getClassName() + "." + ele.getMethodName();
 		if (!call.equals(actualCall)) {
 			System.out.println("Expected " + call + ", got " + actualCall);
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	private void register() {
