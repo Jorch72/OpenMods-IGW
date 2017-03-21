@@ -16,9 +16,12 @@ import javax.annotation.Nonnull;
 //@Explain("Accessed via reflection")
 public final class OpenBlocksEventHandler extends OpenModsEventHandler {
 
+	@SuppressWarnings("SpellCheckingInspection")
+	private static final String GLASS_CANVAS_PAGE_NAME = "block/openblocks.canvasglass";
+
 	@SubscribeEvent
 	public void handleCustomBlocks(final PageChangeEvent event) {
-		if (event.currentFile.equals("block/openblocks.canvasglass")) {
+		if (GLASS_CANVAS_PAGE_NAME.equals(event.currentFile)) {
 			OpenModsIGWApi.get().log().info("Redirected Glass Canvas page from default to OpenMods-IGW");
 			this.redirectToIgwTab(event);
 		}
@@ -28,7 +31,8 @@ public final class OpenBlocksEventHandler extends OpenModsEventHandler {
 	@SuppressWarnings("ConstantConditions")
 	//@Explain("Field populated by Forge, so...")
 	public void handleCustomIcons(final PageChangeEvent event) {
-		if (event.currentFile.contains("block/openblocks.canvasglass") && OpenBlocksItemHolder.GLASS_CANVAS != null) {
+		// TODO Wouldn't this be a "equals" check?
+		if (event.currentFile.contains(GLASS_CANVAS_PAGE_NAME) && OpenBlocksItemHolder.GLASS_CANVAS != null) {
 			OpenModsIGWApi.get().log().info("Associated Glass Canvas icon to page");
 			this.askTabForNewIcon(event, new ItemStack(OpenBlocksItemHolder.GLASS_CANVAS));
 		}

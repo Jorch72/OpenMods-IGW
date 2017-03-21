@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 
 public final class LoggingService implements ILoggingService {
 
-	private static class InvalidLevelException extends RuntimeException {
+	private static final class InvalidLevelException extends RuntimeException {
 		private InvalidLevelException(final String message, final Throwable cause) {
 			super(message, cause);
 		}

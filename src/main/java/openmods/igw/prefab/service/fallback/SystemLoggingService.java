@@ -142,11 +142,12 @@ public final class SystemLoggingService implements ILoggingService {
 		if (level == Level.TRACE || level == Level.DEBUG) return;
 
 		final Calendar cal = Calendar.getInstance();
+		//noinspection MagicConstant
 		final String toLog = String.format("[%02d:%02d:%02d %s] [%s/%s] [OpenMods-IGW/Fallback Logger]: %s%n",
 				cal.get(Calendar.HOUR),
 				cal.get(Calendar.MINUTE),
 				cal.get(Calendar.SECOND),
-				cal.get(Calendar.AM_PM) == Calendar.PM? "PM" : "AM",
+				cal.get(Calendar.AM_PM) == Calendar.PM? "PM" : "AM", // So... I should compare with Sunday... whatever...
 				Thread.currentThread().getName(),
 				level.name().toUpperCase(Locale.ENGLISH),
 				String.format(message, data));

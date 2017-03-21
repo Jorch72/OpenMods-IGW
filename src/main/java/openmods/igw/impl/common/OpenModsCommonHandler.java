@@ -16,8 +16,9 @@ import javax.annotation.Nonnull;
 //@Explain("Access via reflection")
 public final class OpenModsCommonHandler extends OpenModsEventHandler {
 
+	private final OpenBlocksEventHandler handlerForOpenBlocks;
+
 	private String currentMod;
-	private OpenBlocksEventHandler handlerForOpenBlocks;
 
 	public OpenModsCommonHandler() {
 		this.handlerForOpenBlocks = new OpenBlocksEventHandler();
@@ -86,6 +87,7 @@ public final class OpenModsCommonHandler extends OpenModsEventHandler {
 	}
 
 	@Nonnull
+	@SuppressWarnings("SpellCheckingInspection")
 	private String getConfigClass(final String modId) {
 		// Hardcoding...
 		if (modId.equals(openmods.Mods.OPENBLOCKS)) return "openblocks.Config";

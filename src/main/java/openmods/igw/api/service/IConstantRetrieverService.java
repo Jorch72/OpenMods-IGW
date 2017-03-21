@@ -186,6 +186,7 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 		 *
 		 * @since 1.0
 		 */
+		@SuppressWarnings("BooleanMethodIsAlwaysInverted") // I have to see if this is applicable or not
 		public boolean isPresent() {
 			return this.constant != null;
 		}

@@ -58,9 +58,11 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	 */
 	private static final boolean MISMATCHING_GUI_DEBUG = false;
 
+	private static final String DEVELOPMENT_ENVIRONMENT_VERSION = "$VERSION$";
+
 	private boolean abort;
-	private Map<String, IWikiTab> currentTabs = Maps.newHashMap();
-	private List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
+	private final Map<String, IWikiTab> currentTabs = Maps.newHashMap();
+	private final List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
 
 	@Override
 	public void construct(final FMLConstructionEvent event) {
@@ -218,45 +220,61 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 		for (final IModEntry entry : currentlySupportedMods) {
 			final Optional<ModContainer> optionalContainer = entry.modContainer();
+
 			if (!optionalContainer.isPresent()) continue;
+
 			final ModContainer container = optionalContainer.get();
+
 			if (!container.getModId().equals(entry.modId())) continue;
+
 			if (container.getVersion().equals(entry.version())) {
 				OpenModsIGWApi.get().log().info("Mod %s found: version matches", entry.modId());
 				continue;
 			}
+
 			OpenModsIGWApi.get().log().info("Identified mod %s, but got different version than expected (%s instead of %s)",
 					entry.modId(), container.getVersion(), entry.version());
-			if (container.getVersion().equals("$VERSION$")) {
+
+			if (DEVELOPMENT_ENVIRONMENT_VERSION.equals(container.getVersion())) {
 				OpenModsIGWApi.get().log().info("The mod %s installed version (%s) equals the development environment string",
 						container.getModId(), container.getVersion());
 				OpenModsIGWApi.get().log().info("Skipping addition...");
+
 				if (!additionsSkipped) additionsSkipped = true;
+
 				continue;
 			}
+
 			if (container.getMod().getClass().getAnnotation(IMismatchingModEntry.VersionProvider.class) != null) {
 				OpenModsIGWApi.get().log().info("Mod provides @VersionProvider annotation. Analyzing data...");
 				IMismatchingModEntry.VersionProvider provider = container
 						.getMod()
 						.getClass()
 						.getAnnotation(IMismatchingModEntry.VersionProvider.class);
+
 				if (provider.value().equals(entry.version())) {
 					OpenModsIGWApi.get().log().info("The mod %s tells us its version is equivalent to the expected %s.",
 							container.getModId(), entry.version());
 					OpenModsIGWApi.get().log().info("This usually means that the version consists only of bug fixes");
 					OpenModsIGWApi.get().log().info("Since we trust the mod's developer, we skip the addition");
+
 					if (!additionsSkipped) additionsSkipped = true;
+
 					continue;
 				}
+
 				OpenModsIGWApi.get().log().info("Provided version was not the one we expected (%s instead of %s)",
 						provider.value(), entry.version());
 				OpenModsIGWApi.get().log().info("As such, we add the mod to the list anyway.");
 			} else {
 				OpenModsIGWApi.get().log().info("No alternative version provided.");
 			}
+
 			OpenModsIGWApi.get().log().info("Adding to mismatching mod list.");
+
 			final IMismatchingModEntry mismatchingEntry = MismatchingModEntry.of(entry, container.getVersion());
 			this.mismatchingMods.add(mismatchingEntry);
+
 			if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
 				this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 			}

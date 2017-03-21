@@ -42,9 +42,9 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 
 			final String[] parts = from.substring(1).split(java.util.regex.Pattern.quote("@"));
 
-			if (parts[2].equals("block")) return VariableType.BLOCK;
-			else if (parts[2].equals("item")) return VariableType.ITEM;
-			else if (parts[2].equals("config")) return VariableType.CONFIG;
+			if ("block".equals(parts[2])) return VariableType.BLOCK;
+			else if ("item".equals(parts[2])) return VariableType.ITEM;
+			else if ("config".equals(parts[2])) return VariableType.CONFIG;
 			else throw new IllegalArgumentException("Unrecognized variable type.");
 		}
 	}
