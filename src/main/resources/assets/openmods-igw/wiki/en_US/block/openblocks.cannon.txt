@@ -85,7 +85,7 @@ There are no tutorials for this block.
 
 [prefix{l}]Useful structures [prefix{}]
 [prefix{2}]Test environment [prefix{}]
-This structure has been set up buy nevercast while he was trying to fix the cannon aiming system.
+This structure has been set up by nevercast while he was trying to fix the cannon aiming system.
 Even if it does not have a real functionality, it is still in the list as an example of use of the Item Cannon.
 [image{200, 1075, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
 

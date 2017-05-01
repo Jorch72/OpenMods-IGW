@@ -1,4 +1,38 @@
-[crafting{200,15,key=block/openblocks.goldenegg}]
+[prefix{l}][prefix{1}]GOLDEN EGG [prefix{}] [prefix{}]
+
+"[prefix{o}]Fix: golden egg leaving floating blocks when broken [prefix{}]"
+- The Feature mentioned on OpenBlocks's changelog page (openmods.info).
+
+The Golden Egg is a special block in OpenBlocks: it is the only block that can give birth to a new creature.
+After some time after its placement, the egg hatches and a [link{openmods-igw:entity/OpenBlocks.MiniMe}]Mini Me [link{}] spawns.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]No tool required
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]OpenBlocks:goldenegg
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Golden Egg can be mined with any tool. It can also be mined with bare hands.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand and every other tools: [prefix{}]1.59 seconds
+
+[prefix{2}]Crafting [prefix{}]
+[crafting{200,415,key=block/openblocks.goldenegg}]
 
 
 
@@ -10,4 +44,160 @@
 
 
 
-[color{FF0000}] Missing data on Info-Book
+
+[prefix{l}]Usage [prefix{}]
+The Golden Egg goal is spawn a [link{openmods-igw:entity/OpenBlocks.MiniMe}]Mini Me [link{}], whose appearance resembles the one of the placer.
+
+[prefix{2}]Placement [prefix{}]
+To place the Golden Egg, use the "Use Item/Place Block" control (right-click, by default) while aiming at the block you want to place the egg on.
+The Egg will be idle.
+
+[prefix{2}]States [prefix{}]
+The Golden Egg can be in one of seven states and can only switch from one to the next.
+For the first four ones, the passage of state happens randomly.
+The passage of state of the other ones is controlled by the block itself.
+Every passage can be aborted by simply mining the block.
+
+The seven states in order are: Inert, Slow Rotation, Medium Rotation, Fast Rotation, Floating, Falling and Exploding.
+[prefix{o}]See also: Gallery [prefix{}]
+
+[prefix{2}]Idle [prefix{}]
+When the Golden Egg is first placed it is idle, i.e. it does nothing apart from waiting in order to enter the pre-hatching phase.
+The only state of the golden egg in this phase is Inert.
+
+[prefix{2}]Pre-hatching [prefix{}]
+After some time that the Golden Egg has been placed, the block enters the pre-hatching phase.
+The amount of time needed to enter this phase is random.
+During this phase the egg goes through the Slow Rotation, Medium Rotation and Fast Rotation states sequently.
+The passage of state is, again, random.
+
+During all three states, the egg will rotate around its axis with speed corresponding to the specific state.
+More precisely, during the Slow Rotation, the egg will rotate slowly. Its speed will then increase during Medium Rotation and then reach its maximum during Fast Rotation.
+
+[prefix{2}]Hatching [prefix{}]
+The hatching phase starts after a random amount of time.
+The only state the egg can assume during this phase is Floating.
+During this period, the egg will start rising and, if enabled, will pick up some random blocks from the ground and float them as well.
+For a list of all the blocks that can be picked up by the egg, refer to the [link{openmods-igw:item/openblocks.crane_magnet}]Crane Magnet [link{}]wiki page.
+While floating in mid-air, the Golden Egg will also emit light cones spreading in all directions.
+
+[prefix{2}]Post-hatching [prefix{}]
+Following the hatching phase, the post-hatching phase begins as soon as the other finishes.
+In this phase, the Golden Egg assumes the Falling and, subsequently, the Exploding state.
+
+During the Falling state, the egg falls to the ground together with all the blocks that it picked up.
+As soon as it touches the ground, the egg enters the Exploding state, where it explodes with a small-radius explosion and spawns a [link{openmods-igw:entity/OpenBlocks.MiniMe}]Mini Me [link{}].
+
+When the Golden Egg explodes, the block is removed from the world and it isn't dropped as an item.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI
+
+[prefix{l}]Setup [prefix{}]
+Place down the Golden Egg in an open space, not near any valuable buildings and/or structures, and then wait.
+Be wary to exit the radius of the explosion, though.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:goldenegg [prefix{}]
+Allows to enable (true) or disable (false) the Golden Egg.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@goldenegg}]
+
+[prefix{2}]"egg" category [prefix{}]
+[prefix{5}]B:pickBlocks [prefix{}]
+Controls if the egg should pick up blocks during the hatching phase. Enabling this option may lead to various in-game glitches.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@eggCanPickBlocks}]
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block
+
+[prefix{l}]Useful structures [prefix{}]
+Actually, I guess it would be better to place it as away from any structure as possible...
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Golden Egg added.
+[prefix{2}]1.2.9: [prefix{}]Fixed Golden Egg leaving some blocks floating when broken.
+[prefix{2}]1.2.9: [prefix{}]Fixed random crash with Golden Egg placement.
+
+[prefix{l}]Trivia [prefix{}]
+- The Mini Me spawning doesn't happen until the block is removed from the world, i.e. in Post-hatching phase.
+- The entire process can be aborted at any time by breaking the egg. This also applies to the floating egg.
+- If, for whatever reason, the blocks don't fall back to the ground, you can simply punch them to turn them into falling blocks.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1824, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_just_placed.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A Golden Egg after being placed on the ground [prefix{}]
+
+[image{200, 1977, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_slowly_rotating.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The same Golden Egg after entering the pre-hatching phase [prefix{}]
+
+[image{200, 2149, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_it_s_hatching.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The Golden Egg just before hatching. Note the light cones coming from it [prefix{}]
+
+[image{200, 2314, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_dem_explosions.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The explosion caused by the Golden Egg and the newly-born Mini Me [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:entity/OpenBlocks.MiniMe}]Mini Me [link{}]
+[link{openmods-igw:item/openblocks.crane_magnet}]Crane Magnet [link{}]

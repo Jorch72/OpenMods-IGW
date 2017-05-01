@@ -81,6 +81,7 @@ Right-click then the flag on the wall or on the ground where you want to place i
 Last, rotate the block in order to face the desired direction.
 
 [prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
 [prefix{5}]B:flag [prefix{}]
 Allows to enable (true) or disable (false) the Flag.
 [prefix{o}]Default value: [prefix{}] true
