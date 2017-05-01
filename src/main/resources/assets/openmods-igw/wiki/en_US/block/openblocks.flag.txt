@@ -104,7 +104,7 @@ All Data Values from 0 to 15 represent the basic block.
 - The color of the flag is not preserved when breaking it. It is unknown whether this is a bug or not.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1345, openmods-igw:wiki/worldwide/images/block/flag/gallery_all_the_flags.png}]
+[image{200, 1345, openmods-igw:wiki/worldwide/images/block/openblocks/flag/gallery_all_the_flags.png}]
 
 
 

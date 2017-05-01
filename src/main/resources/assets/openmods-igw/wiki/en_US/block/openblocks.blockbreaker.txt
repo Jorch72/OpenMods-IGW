@@ -87,7 +87,7 @@ An unofficial structure, useful for quick mining.
 As you can see in the following image, the structure is really simple, but requires a lot of resources, so it is mostly a mid-game structure.
 But cobblestone is never enough...
 
-[image{200, 1087, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_cobblestone_farm.png}]
+[image{200, 1087, openmods-igw:wiki/worldwide/images/block/openblocks/blockbreaker/structures_cobblestone_farm.png}]
 
 
 
@@ -112,7 +112,7 @@ In fact, this structure is mainly thought for people whose only [link{item/picka
 This structure can also be simplified, by removing the whole [link{openmods-igw:block/openblocks.blockPlacer}]Block Placer [link{}] and [link{openmods-igw:block/openblocks.vacuumhopper}]Vacuum Hopper [link{}]parts.
 In the advanced type the Block Breaker is powered by a [link{block/lever}]Lever [link{}] and acts as a BUD switch.
 
-[image{200, 1428, openmods-igw:wiki/worldwide/images/block/blockbreaker/structures_silkfixer_no_ref.png}]
+[image{200, 1428, openmods-igw:wiki/worldwide/images/block/openblocks/blockbreaker/structures_silkfixer_no_ref.png}]
 
 
 
@@ -151,7 +151,7 @@ Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will si
 - Differently from other blocks, the Block Breaker doesn't store the activated state in a data value, but as a boolean value in its Block Entity.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1894, openmods-igw:wiki/worldwide/images/block/blockbreaker/gallery_activated_bb.png}]
+[image{200, 1894, openmods-igw:wiki/worldwide/images/block/openblocks/blockbreaker/gallery_activated_bb.png}]
 
 
 

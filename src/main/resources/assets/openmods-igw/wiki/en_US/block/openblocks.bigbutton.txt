@@ -81,7 +81,7 @@ E.g. to replicate a stone button, you would need to place 10 items.
 [prefix{o}]See also: Gallery [prefix{}]
 
 [prefix{l}]GUI [prefix{}]
-[image{200, 1242, openmods-igw:wiki/worldwide/images/block/bigbutton/gui.png}]
+[image{200, 1242, openmods-igw:wiki/worldwide/images/block/openblocks/bigbutton/gui.png}]
 
 
 
@@ -135,7 +135,7 @@ This structure is simply another way to make a T Flip-Flop circuit.
 As you can see in the image, the structure is really simple: a [link{block/pistonStickyBase}]sticky piston [link{}]facing a solid block connected via another block to a Big Button.
 Under the block the piston is facing, there is a simple [link{block/notGate}]redstone torch [link{}].
 The output line starts from the block just above the torch and goes all the way to where you want it to be.
-[image{200, 1915, openmods-igw:wiki/worldwide/images/block/bigbutton/structures_flip_flop.png}]
+[image{200, 1915, openmods-igw:wiki/worldwide/images/block/openblocks/bigbutton/structures_flip_flop.png}]
 
 
 
@@ -168,7 +168,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - Differently from the [link{block/button}]normal button [link{}], you cannot walk through the Big Button
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2270, openmods-igw:wiki/worldwide/images/block/bigbutton/gallery_comparison.png}]
+[image{200, 2270, openmods-igw:wiki/worldwide/images/block/openblocks/bigbutton/gallery_comparison.png}]
 
 
 

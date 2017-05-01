@@ -175,7 +175,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - Colored Rotating Elevator blocks can be useful to create secret access rooms: using certain colors you can access certain floors of a building, while you can't with other ones.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2451, openmods-igw:wiki/worldwide/images/block/elevator_rotating/gallery_colours.png}]
+[image{200, 2451, openmods-igw:wiki/worldwide/images/block/openblocks/elevator_rotating/gallery_colours.png}]
 
 
 

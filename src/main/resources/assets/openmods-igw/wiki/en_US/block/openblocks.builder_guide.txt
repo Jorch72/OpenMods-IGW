@@ -61,7 +61,7 @@ In addition, the Enhanced Building Guide can also place blocks, both with surviv
 
 [prefix{2}]Shape showing [prefix{}]
 As soon as an Enhanced Building Guide is placed for the first time, it will automatically apply its default settings, shown in the image that follows.
-[image{200, 805, openmods-igw:wiki/worldwide/images/block/builder_guide/usage_default_settings.png}]
+[image{200, 805, openmods-igw:wiki/worldwide/images/block/openblocks/builder_guide/usage_default_settings.png}]
 
 
 
@@ -82,7 +82,7 @@ There is no way to undo this operation, apart from using [link{item/dyePowder.wh
 You can edit the shape shown by the Enhanced Building Guide with the various buttons on its faces.
 In particular, using the buttons on the sides, you can edit the dimension of the shape and its location.
 
-[image{200, 1100, openmods-igw:wiki/worldwide/images/block/builder_guide/usage_guide_side_new_drawings.png}]
+[image{200, 1100, openmods-igw:wiki/worldwide/images/block/openblocks/builder_guide/usage_guide_side_new_drawings.png}]
 Using the buttons circled in red, you can augment or diminish by one the size of the shape on that particular direction.
 E.g., if we consider the image representing the north side of the building guide, using the buttons on the left side, you can augment or diminish the positive height (considering the block as 0, 0) of the build.
 Using the ones on the right side, you can augment or diminish the negative height, while with the buttons on top or bottom, you can vary the value of the length of the construction.
@@ -92,7 +92,7 @@ E.g., if the current settings are (-3, 0, -3) and (3, 3, 3), clicking the top ar
 
 Using the buttons on the top, you can rotate the block and set the shape it should outline.
 
-[image{200, 1380, openmods-igw:wiki/worldwide/images/block/builder_guide/usage_guide_top_new_drawings.png}]
+[image{200, 1380, openmods-igw:wiki/worldwide/images/block/openblocks/builder_guide/usage_guide_top_new_drawings.png}]
 With the yellow-circled arrows, you are able to completely rotate the block, like when using a [link{openmods-igw:item/openblocks.wrench}]Wrench [link{}].
 With the blue-circled ones, you can change the shape the building guide should outline.
 The shape will change in a loop, meaning that you can go forward (up arrow) and backward (down arrow), but you cannot skip directly to the desired shape.
@@ -177,7 +177,7 @@ Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will s
 - If you watch the Enhanced Building Guide closely (maybe with Optifine's zoom), you can see some little blocks orbiting around the building guide core.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2670, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_example_usage_TSM_submit.png}]
+[image{200, 2670, openmods-igw:wiki/worldwide/images/block/openblocks/builder_guide/gallery_example_usage_TSM_submit.png}]
 
 
 
@@ -195,7 +195,7 @@ Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will s
 [prefix{o}]A practical usage example of the Enhanced Building Guide: the guide is currently on and its outlining the shape of a sphere with radius 8.
 The outline has been colored of blue for ease of identification. [prefix{}]
 
-[image{200, 2870, openmods-igw:wiki/worldwide/images/block/builder_guide/gallery_fill_mode.png}]
+[image{200, 2870, openmods-igw:wiki/worldwide/images/block/openblocks/builder_guide/gallery_fill_mode.png}]
 
 
 

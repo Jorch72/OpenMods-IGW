@@ -82,7 +82,7 @@ The list of available stencils (as of OpenBlocks 1.5.1 for Minecraft 1.7.10) is:
 - [prefix{n}]Baloon [prefix{}]
 
 [prefix{l}]GUI [prefix{}]
-[image{200, 996, openmods-igw:wiki/worldwide/images/block/drawingtable/gui.png}]
+[image{200, 996, openmods-igw:wiki/worldwide/images/block/openblocks/drawingtable/gui.png}]
 
 
 
@@ -153,7 +153,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - The overlay shown on top of the stencil is actually rendered on top of everything, even the tooltip.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1851, openmods-igw:wiki/worldwide/images/block/drawingtable/gallery_stencil_drawing.png}]
+[image{200, 1851, openmods-igw:wiki/worldwide/images/block/openblocks/drawingtable/gallery_stencil_drawing.png}]
 
 
 

@@ -195,7 +195,7 @@ There are no useful or suggested structures for this block.
 - Colored Elevator blocks can be useful to create secret access rooms: using certain colors you can access certain floors of a building, while you can't with other ones.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2785, openmods-igw:wiki/worldwide/images/block/elevator/gallery_variousColors_yeah_i_always_take_photos_at_night_ok.png}]
+[image{200, 2785, openmods-igw:wiki/worldwide/images/block/openblocks/elevator/gallery_variousColors_yeah_i_always_take_photos_at_night_ok.png}]
 
 
 

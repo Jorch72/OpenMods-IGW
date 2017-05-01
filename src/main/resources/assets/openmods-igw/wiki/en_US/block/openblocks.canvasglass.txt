@@ -109,7 +109,7 @@ All Data Values from 0 to 15 represent the basic block.
 - When a block is replaced by the Glass Canvas, it will acquire all Glass Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1525, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_placed_glass_canvas.png}]
+[image{200, 1525, openmods-igw:wiki/worldwide/images/block/openblocks/canvasglass/gallery_placed_glass_canvas.png}]
 
 
 
@@ -126,7 +126,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]A placed glass canvas (obtained through commands). You can notice the default Canvas rendering. [prefix{}]
 
-[image{200, 1683, openmods-igw:wiki/worldwide/images/block/canvasglass/gallery_glass_canvas_inventory.png}]
+[image{200, 1683, openmods-igw:wiki/worldwide/images/block/openblocks/canvasglass/gallery_glass_canvas_inventory.png}]
 
 
 

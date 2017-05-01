@@ -76,7 +76,7 @@ You can only see them if Particles are turned on (which means the setting is not
 [prefix{o}]See also: Gallery [prefix{}]
 
 [prefix{l}]GUI [prefix{}]
-[image{200, 1095, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gui.png}]
+[image{200, 1095, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gui.png}]
 
 
 
@@ -104,7 +104,7 @@ You can only see them if Particles are turned on (which means the setting is not
 The GUI can be divided into three zones: the top one, the right one and the bottom one.
 
 [prefix{2}]Top zone [prefix{}]
-[image{200, 1385, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gui_top.png}]
+[image{200, 1385, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gui_top.png}]
 
 
 
@@ -136,7 +136,7 @@ The fifth and last section, marked with purple, displays the maximum level curre
 Sometimes, though, the field won't be updated and, as such, the only way to actually know the maximum enchanting level is simply by chance.
 
 [prefix{2}]Right zone [prefix{}]
-[image{200, 1866, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gui_right.png}]
+[image{200, 1866, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gui_right.png}]
 
 The right zone, also known as the "tab" zone holds various tabs that allow to configure the various aspects of the Auto Enchantment Table.
 
@@ -162,7 +162,7 @@ As a suggestion, you could also tick Auto Drink to always have XP in the buffer.
 If you want to automate everything, you can also place two [link{block/chest}]chests [link{}]around the Auto Enchantment Table and then set those sides as auto extract or auto eject.
 
 The following is an image of a completely automated setup, as a suggestion:
-[image{200, 2373, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/setup_suggestion.png}]
+[image{200, 2373, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/setup_suggestion.png}]
 
 
 
@@ -190,7 +190,7 @@ No tutorials available for this block.
 [prefix{l}]Useful structures [prefix{}]
 [prefix{2}]Classic automation [prefix{}]
 A really useful structure is represented in the above image, here reported for reference.
-[image{200, 2666, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/setup_suggestion.png}]
+[image{200, 2666, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/setup_suggestion.png}]
 
 
 
@@ -228,7 +228,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - All the inputs and outputs operation can be mapped to be done on the same side.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 3165, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tab_tool.png}]
+[image{200, 3165, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_tab_tool.png}]
 
 
 
@@ -252,7 +252,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Tool Tab in the GUI. Notice the rotated Enchantment Table and the selected side. [prefix{}]
 
-[image{200, 3395, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tab_juice.png}]
+[image{200, 3395, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_tab_juice.png}]
 
 
 
@@ -276,7 +276,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The XP Juice Tab in the GUI. Notice how the Auto Enchantment Table has been rotated to reach the bottom side of it. [prefix{}]
 
-[image{200, 3655, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tab_output.png}]
+[image{200, 3655, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_tab_output.png}]
 
 
 
@@ -300,7 +300,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Output Tab in the GUI, with a side selected and the check-box ticked. [prefix{}]
 
-[image{200, 3886, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tutorial_almostInEnchant.png}]
+[image{200, 3886, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_tutorial_almostInEnchant.png}]
 
 
 
@@ -326,7 +326,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]This and the following images will show the process of auto enchanting a tool (e.g. a [link{item/pickaxeDiamond}]diamond pickaxe [link{}]). In here the tool is about to be placed in the first slot. [prefix{o}]
 
-[image{200, 4160, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tutorial_enchanted.png}]
+[image{200, 4160, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_tutorial_enchanted.png}]
 
 
 
@@ -352,7 +352,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The enchanted tool. Notice how the buffer is refilling itself up after the enchanting process has been performed. [prefix{o}]
 
-[image{200, 4430, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_tutorial_enchantments.png}]
+[image{200, 4430, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_tutorial_enchantments.png}]
 
 
 
@@ -364,7 +364,7 @@ The data values from [prefix{o}]1 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]As you can see, the applied enchantments are still random. [prefix{}]
 
-[image{200, 4554, openmods-igw:wiki/worldwide/images/block/autoenchantmenttable/gallery_comparison.png}]
+[image{200, 4554, openmods-igw:wiki/worldwide/images/block/openblocks/autoenchantmenttable/gallery_comparison.png}]
 
 
 

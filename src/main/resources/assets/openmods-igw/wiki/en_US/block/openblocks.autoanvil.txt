@@ -86,7 +86,7 @@ In exchange, the amount of XP juice stored in the anvil represents the limit of 
 Since the automatic version performs the operation as soon as enough XP Juice is stored, without checking the player's game mode, the limit is present even in creative mode.
 
 [prefix{l}]GUI [prefix{}]
-[image{200, 1325, openmods-igw:wiki/worldwide/images/block/autoanvil/gui.png}]
+[image{200, 1325, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gui.png}]
 
 
 
@@ -115,7 +115,7 @@ Since the automatic version performs the operation as soon as enough XP Juice is
 The GUI can be divided into three zones: the top one, the right one and the bottom one.
 
 [prefix{2}]Top zone [prefix{}]
-[image{200, 1618, openmods-igw:wiki/worldwide/images/block/autoanvil/gui_top.png}]
+[image{200, 1618, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gui_top.png}]
 
 
 
@@ -145,7 +145,7 @@ The last slot, rounded of green, is simply an indicator of how much XP Juice is 
 It is a sort of buffer where the juice is kept, waiting to be used.
 
 [prefix{2}]Right zone [prefix{}]
-[image{200, 2070, openmods-igw:wiki/worldwide/images/block/autoanvil/gui_right.png}]
+[image{200, 2070, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gui_right.png}]
 
 This part of the GUI, also known as the "tab" part, is the place where all the aspects of the Auto Anvil can be configured.
 
@@ -172,7 +172,7 @@ As a suggestion, you could also tick Auto Drink to always have XP in the buffer.
 If you want to automate everything, you can also place three [link{block/chest}]chests [link{}]around the Auto Anvil and then set those sides as auto extract or auto eject.
 
 The following is an image of a completely automated setup, as a suggestion:
-[image{200, 2574, openmods-igw:wiki/worldwide/images/block/autoanvil/setup_suggestion.png}]
+[image{200, 2574, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/setup_suggestion.png}]
 
 
 
@@ -201,7 +201,7 @@ No Tutorial is available for this block.
 [prefix{l}]Useful structures [prefix{}]
 [prefix{2}]Classic automation [prefix{}]
 A really useful structure is represented in the above image, here reported for reference.
-[image{200, 2874, openmods-igw:wiki/worldwide/images/block/autoanvil/setup_suggestion.png}]
+[image{200, 2874, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/setup_suggestion.png}]
 
 
 
@@ -239,7 +239,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 - All the inputs and outputs operation can be mapped to be done on the same side.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 3333, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_tool_tab.png}]
+[image{200, 3333, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_tool_tab.png}]
 
 
 
@@ -263,7 +263,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Tool Tab in the GUI, just right after its opening. [prefix{}]
 
-[image{200, 3567, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_modifier_tab.png}]
+[image{200, 3567, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_modifier_tab.png}]
 
 
 
@@ -287,7 +287,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Modifier Tab in the GUI. Notice the selected side on the right and the check-box. [prefix{}]
 
-[image{200, 3795, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_xp_tab.png}]
+[image{200, 3795, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_xp_tab.png}]
 
 
 
@@ -311,7 +311,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The XP Juice Tab in the GUI. Notice how the Auto Anvil has been rotated to reach the bottom side of it. [prefix{}]
 
-[image{200, 4036, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_output_tab.png}]
+[image{200, 4036, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_output_tab.png}]
 
 
 
@@ -335,7 +335,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]The Output Tab in the GUI. Notice how the check-box is ticked, but no side is selected. [prefix{}]
 
-[image{200, 4279, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickInSlot.png}]
+[image{200, 4279, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_repair_step_pickInSlot.png}]
 
 
 
@@ -361,7 +361,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 [prefix{o}]A series of screen-shots which show the repairing process of an item. Notice in the last the diminished XP Level. [prefix{}]
 
-[image{200, 4548, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickToolTip.png}]
+[image{200, 4548, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_repair_step_pickToolTip.png}]
 
 
 
@@ -385,7 +385,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 
 
-[image{200, 4789, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickAlmostInSecondSlot.png}]
+[image{200, 4789, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_repair_step_pickAlmostInSecondSlot.png}]
 
 
 
@@ -409,7 +409,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 
 
-[image{200, 5030, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_repair_step_pickRepaired.png}]
+[image{200, 5030, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_repair_step_pickRepaired.png}]
 
 
 
@@ -433,7 +433,7 @@ The data values from [prefix{o}]4 [prefix{}]to [prefix{o}]15 [prefix{}]are simpl
 
 
 
-[image{200, 5268, openmods-igw:wiki/worldwide/images/block/autoanvil/gallery_comparison.png}]
+[image{200, 5268, openmods-igw:wiki/worldwide/images/block/openblocks/autoanvil/gallery_comparison.png}]
 
 
 

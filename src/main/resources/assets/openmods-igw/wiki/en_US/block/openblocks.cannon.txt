@@ -87,7 +87,7 @@ There are no tutorials for this block.
 [prefix{2}]Test environment [prefix{}]
 This structure has been set up by nevercast while he was trying to fix the cannon aiming system.
 Even if it does not have a real functionality, it is still in the list as an example of use of the Item Cannon.
-[image{200, 1075, openmods-igw:wiki/worldwide/images/block/cannon/structures_oLHKakf.png}]
+[image{200, 1075, openmods-igw:wiki/worldwide/images/block/openblocks/cannon/structures_oLHKakf.png}]
 
 
 
@@ -115,7 +115,7 @@ All Data Values from 0 to 15 represent the basic block.
 - Even if activated in different times, all the Item Cannons currently loaded will shoot the items at the same moment.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1395, openmods-igw:wiki/worldwide/images/block/cannon/gallery_cannon_recoil.png}]
+[image{200, 1395, openmods-igw:wiki/worldwide/images/block/openblocks/cannon/gallery_cannon_recoil.png}]
 
 
 

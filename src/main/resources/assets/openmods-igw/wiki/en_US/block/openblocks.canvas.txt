@@ -127,7 +127,7 @@ All Data Values from 0 to 15 represent the basic block.
 - When a block is replaced by the Canvas, it will acquire all Canvas properties, so it will become non-flammable, its blast resistance and hardness will become 1.0... 
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1616, openmods-igw:wiki/worldwide/images/block/canvas/gallery_blocks_painted.png}]
+[image{200, 1616, openmods-igw:wiki/worldwide/images/block/openblocks/canvas/gallery_blocks_painted.png}]
 
 
 
@@ -144,7 +144,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]Two non-canvas blocks painted with Paint Brushes. These blocks have now become canvases. [prefix{}]
 
-[image{200, 1771, openmods-igw:wiki/worldwide/images/block/canvas/gallery_canvas_replacing_comparison.png}]
+[image{200, 1771, openmods-igw:wiki/worldwide/images/block/openblocks/canvas/gallery_canvas_replacing_comparison.png}]
 
 
 

@@ -111,7 +111,7 @@ No tutorials available for this block.
 
 [prefix{l}]Useful structures [prefix{}]
 [prefix{2}]Mob Spawner 0.1 [prefix{}]
-[image{200, 1515, openmods-igw:wiki/worldwide/images/block/fan/structures_mob_spawner_untested_brightened.png}]
+[image{200, 1515, openmods-igw:wiki/worldwide/images/block/openblocks/fan/structures_mob_spawner_untested_brightened.png}]
 
 
 
@@ -149,7 +149,7 @@ All Data Values from 0 to 15 represent the basic block.
 - One fan powered directly by a redstone block generates enough force to push a still player away, but when the player is walking or sprinting, the effect is almost noticeable.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 2063, openmods-igw:wiki/worldwide/images/block/fan/gallery_fans.png}]
+[image{200, 2063, openmods-igw:wiki/worldwide/images/block/openblocks/fan/gallery_fans.png}]
 
 
 
@@ -166,7 +166,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]A comparison between an inactive fan (left) and an active one (right). [prefix{}]
 [prefix{5}]Warning! The following photos have been taken with "Quake Pro" FOV [prefix{}]
-[image{200, 2244, openmods-igw:wiki/worldwide/images/block/fan/gallery_a_wall_of_fans_0_quake_pro.png}]
+[image{200, 2244, openmods-igw:wiki/worldwide/images/block/openblocks/fan/gallery_a_wall_of_fans_0_quake_pro.png}]
 
 
 
@@ -183,7 +183,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]If two fans like this are not that much of an issue... [prefix{}]
 
-[image{200, 2393, openmods-igw:wiki/worldwide/images/block/fan/gallery_a_wall_of_fans_1_quake_pro.png}]
+[image{200, 2393, openmods-igw:wiki/worldwide/images/block/openblocks/fan/gallery_a_wall_of_fans_1_quake_pro.png}]
 
 
 
@@ -200,7 +200,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]...a wall like this may quickly become a problem... [prefix{}]
 
-[image{200, 2552, openmods-igw:wiki/worldwide/images/block/fan/gallery_a_wall_of_fans_2_quake_pro.png}]
+[image{200, 2552, openmods-igw:wiki/worldwide/images/block/openblocks/fan/gallery_a_wall_of_fans_2_quake_pro.png}]
 
 
 

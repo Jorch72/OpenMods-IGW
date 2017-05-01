@@ -130,7 +130,7 @@ All Data Values from 0 to 15 represent the basic block.
 - If, for whatever reason, the blocks don't fall back to the ground, you can simply punch them to turn them into falling blocks.
 
 [prefix{l}]Gallery [prefix{}]
-[image{200, 1824, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_just_placed.png}]
+[image{200, 1824, openmods-igw:wiki/worldwide/images/block/openblocks/goldenegg/gallery_just_placed.png}]
 
 
 
@@ -147,7 +147,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]A Golden Egg after being placed on the ground [prefix{}]
 
-[image{200, 1977, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_slowly_rotating.png}]
+[image{200, 1977, openmods-igw:wiki/worldwide/images/block/openblocks/goldenegg/gallery_slowly_rotating.png}]
 
 
 
@@ -164,7 +164,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]The same Golden Egg after entering the pre-hatching phase [prefix{}]
 
-[image{200, 2149, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_it_s_hatching.png}]
+[image{200, 2149, openmods-igw:wiki/worldwide/images/block/openblocks/goldenegg/gallery_it_s_hatching.png}]
 
 
 
@@ -181,7 +181,7 @@ All Data Values from 0 to 15 represent the basic block.
 
 [prefix{o}]The Golden Egg just before hatching. Note the light cones coming from it [prefix{}]
 
-[image{200, 2314, openmods-igw:wiki/worldwide/images/block/goldenegg/gallery_dem_explosions.png}]
+[image{200, 2314, openmods-igw:wiki/worldwide/images/block/openblocks/goldenegg/gallery_dem_explosions.png}]
 
 
 
