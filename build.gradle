@@ -52,6 +52,12 @@ buildscript {
 
 apply plugin: 'forge'
 
+idea {
+	module {
+		inheritOutputDirs = true
+	}
+}
+
 //================================================
 // Dependencies
 
