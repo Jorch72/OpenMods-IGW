@@ -3,9 +3,9 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
-**Current progress (including sub-tasks):** `18`/138 (`13`%)<br />
+**Current progress (including sub-tasks):** `19`/138 (`14`%)<br />
 **Current progress (excluding sub-tasks):** `2`/17 (`12`%)<br />
-**Current progress (wiki entries):** `15`/101 (`15`%)<br />
+**Current progress (wiki entries):** `16`/101 (`16`%)<br />
 **Current progress (personal judgement):** Early alpha - Wondering if 1.10.X is a valid move right now
 
 - [ ] Javadoc
@@ -29,7 +29,7 @@ List of things to complete before version **1.0**<br />
   - [X] Elevator (Rotating)
   - [X] Fan
   - [X] Flag
-  - [ ] Golden Egg
+  - [X] Golden Egg
   - [ ] Grave
   - [ ] Guide (the normal one)
   - [ ] Healer

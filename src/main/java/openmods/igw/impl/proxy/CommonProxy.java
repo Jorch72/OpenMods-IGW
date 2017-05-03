@@ -33,7 +33,7 @@ public class CommonProxy implements IInitProxy {
 	public void init(final FMLInitializationEvent evt) {}
 
 	@Override
-	@SuppressWarnings("OptionalGetWithoutIsPresent")
+	@SuppressWarnings("ConstantConditions")
 	public void postInit(final FMLPostInitializationEvent evt) {
 		OpenModsIGWApi.get().log().warning("This mod (%s) is currently not needed on server side.",
 				OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME")

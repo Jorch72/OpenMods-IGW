@@ -77,7 +77,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 		new ModStartupHelper(this.constantService().<String>getConstant("MOD_ID").orNull()) {
 			@Override
-			@SuppressWarnings("OptionalGetWithoutIsPresent")
+			@SuppressWarnings("ConstantConditions")
 			protected void populateConfig(final Configuration cfg) {
 				ConfigProcessing.processAnnotations(
 						ClientProxy.this.constantService().<String>getConstant("MOD_ID").orNull(),
@@ -108,6 +108,9 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	@Override
 	public void postInit(final FMLPostInitializationEvent evt) {
 		if (this.abort) return;
+
+		this.registerOwnWikiTab();
+
 		if (this.constantService().getBooleanConfigConstant("useUniqueWikiTab").get()) {
 			this.handleUniqueWikiTab();
 			return;
@@ -173,20 +176,30 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		} catch (final Exception e) {
 			OpenModsIGWApi.get().log().warning(e, "Invalid constructor arguments.");
 		}
+
+		OpenModsIGWApi.get().log().info("Successfully loaded integration for mod " + modId);
 	}
 
 	@Nullable
 	@Override
 	public IWikiTab getTabForModId(@Nonnull final String modId) {
-		if (this.constantService().getBooleanConfigConstant("useUniqueWikiTab").orElseThrow()) {
+		final IWikiTab tab = this.currentTabs.get(modId);
+
+		if (tab == null && this.constantService().getBooleanConfigConstant("useUniqueWikiTab").orElseThrow()) {
 			return this.currentTabs.get("0");
 		}
 
-		return this.currentTabs.get(modId);
+		return tab;
+	}
+
+	private void registerOwnWikiTab() {
+		final IWikiTab tab = new openmods.igw.impl.client.wiki.OpenModsIgwWikiTab();
+		this.currentTabs.put(this.constantService().<String>getConstant("MOD_ID").orElseThrow(), tab);
+		WikiRegistry.registerWikiTab(tab);
 	}
 
 	private void handleUniqueWikiTab() {
-		final List<Pair<String, String>> entitiesEntries = Lists.newArrayList();
+		//final List<Pair<String, String>> entitiesEntries = Lists.newArrayList();
 		final List<Pair<String, ItemStack>> itemsBlocksEntries = Lists.newArrayList();
 		final Map<String, ItemStack> allClaimedPages = Maps.newHashMap();
 		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = Maps.newHashMap();
@@ -200,7 +213,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			final PageRegistryHelper helper = new PageRegistryHelper();
 			helper.loadItems();
 
-			entitiesEntries.addAll(helper.claimEntities(modId));
+			//entitiesEntries.addAll(helper.claimEntities(modId));
 			itemsBlocksEntries.addAll(helper.claimModObjects(modId));
 			allClaimedEntities.putAll(helper.getAllClaimedEntitiesPages());
 			allClaimedPages.putAll(helper.getAllClaimedPages());

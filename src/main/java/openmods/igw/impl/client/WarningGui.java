@@ -42,7 +42,7 @@ public class WarningGui extends GuiYesNo {
 		shouldShow = false;
 	}
 
-	@SuppressWarnings("OptionalGetWithoutIsPresent")
+	@SuppressWarnings("ConstantConditions")
 	public static void markShow() {
 		if (!OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get()
 				.cast().getBooleanConfigConstant("enableMissingModWarningMessage").get()) return;
