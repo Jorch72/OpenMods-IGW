@@ -13,11 +13,8 @@ package openmods.igw.api.integration;
  * checking for their existence: the checks have already been
  * performed before calling this interface's implementation.</p>
  *
- * <p>This is a {@linkplain FunctionalInterface functional interface}.</p>
- *
  * @since 1.0
  */
-@FunctionalInterface
 public interface IIntegrationExecutor {
 
 	/**
@@ -51,10 +48,7 @@ public interface IIntegrationExecutor {
 	 * <p>Implementations should use this method to perform cleanup or other tasks
 	 * that must be executed in a secondary moment.</p>
 	 *
-	 * <p>The default implementation of this method is a {@code NO-OP} and it is
-	 * encouraged to leave it in this state.</p>
-	 *
 	 * @since 1.0
 	 */
-	default void andThen() {}
+	void andThen();
 }

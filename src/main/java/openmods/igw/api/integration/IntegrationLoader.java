@@ -120,7 +120,9 @@ public class IntegrationLoader {
 	public boolean load() {
 		Preconditions.checkState(this.state, INTEGRATIONS_LOADED);
 		this.state = false;
-		this.providers.forEach(this::load0);
+
+		for (final IIntegrationProvider provider : this.providers) this.load0(provider);
+
 		return !this.exceptions.isEmpty();
 	}
 

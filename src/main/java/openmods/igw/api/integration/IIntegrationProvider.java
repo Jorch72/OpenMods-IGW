@@ -112,11 +112,9 @@ public interface IIntegrationProvider {
 	 *
 	 * <p>You should perform any cleanup or notification operations in here.</p>
 	 *
-	 * <p>By default this method does nothing.</p>
-	 *
 	 * @since 1.0
 	 */
-	default void onLoaded() {}
+	void onLoaded();
 
 	/**
 	 * Executes a certain operation iff the environment has been found non-perfectly
@@ -130,11 +128,9 @@ public interface IIntegrationProvider {
 	 * this method: you should return a value that marks impossibility to load the
 	 * integration when {@link #getAbilityToLoadIntegration()} is called instead.</p>
 	 *
-	 * <p>By default this method has an empty body.</p>
-	 *
 	 * @since 1.0
 	 */
-	default void onEnvironmentMismatch() {}
+	void onEnvironmentMismatch();
 
 	/**
 	 * Executes a certain operation if the integration failed to load.
