@@ -26,10 +26,10 @@ import javax.annotation.Nonnull;
  * integration should happen without any exceptions thrown.</p>
  *
  * <p>The flow of an integration loading concerning the provider is
- * really simple. First, {@link #canLoadIntegration()} is called and,
- * if the returned value is {@code true}, the executor is obtained
- * via {@link #getExecutor()} and then run. If the method completes
- * normally, then the {@link IIntegrationExecutor#andThen()}
+ * really simple. First, {@link #getAbilityToLoadIntegration()} is called
+ * and, if the returned value reports that the integration is loadable,
+ * the executor is obtained via {@link #getExecutor()} and then run.
+ * If the method completes normally, then the {@link IIntegrationExecutor#andThen()}
  * is called first and {@link #onLoaded()} immediately after. If the
  * integration loading throws an exception, {@link #onException(Exception)}
  * is called instead.</p>
@@ -39,19 +39,59 @@ import javax.annotation.Nonnull;
 public interface IIntegrationProvider {
 
 	/**
-	 * Gets if the integration represented by this provider can be
-	 * loaded without errors.
+	 * Represents the result of the current environment scan.
+	 *
+	 * @since 1.0
+	 */
+	enum ScanResult {
+
+		/**
+		 * Identifies an environment that matches all the various conditions
+		 * needed to successfully load the integration.
+		 *
+		 * @since 1.0
+		 */
+		SAFE_TO_LOAD,
+		/**
+		 * Identifies an environment that doesn't perfectly match all the
+		 * various conditions, but would still be able to load the integration
+		 * without any errors.
+		 *
+		 * <p>E.g., an environment where an annotation whose retention policy
+		 * is not runtime is not present may classify as a candidate for this
+		 * value.</p>
+		 *
+		 * @since 1.0
+		 */
+		MAY_CAUSE_ERRORS,
+		/**
+		 * Identifies an environment where loading the integration will result
+		 * most surely in a crash and, as such, the integration must not be
+		 * loaded at all.
+		 *
+		 * @since 1.0
+		 */
+		UNSAFE_TO_LOAD
+	}
+
+	/**
+	 * Gets the ability for the current environment to load the
+	 * integration represented by this provider.
 	 *
 	 * <p>This method <b>must</b> check for all the various conditions
 	 * needed to successfully load the integration. Assumptions are
 	 * allowed iff they are always verified.</p>
 	 *
+	 * <p>Refer to the various constants in {@link ScanResult} for more
+	 * information.</p>
+	 *
 	 * @return
-	 * 		If the integration can be loaded.
+	 * 		The ability for the current environment to load the integration.
 	 *
 	 * @since 1.0
 	 */
-	boolean canLoadIntegration();
+	@Nonnull
+	ScanResult getAbilityToLoadIntegration();
 
 	/**
 	 * Gets the executor for this provider.
@@ -79,11 +119,32 @@ public interface IIntegrationProvider {
 	default void onLoaded() {}
 
 	/**
+	 * Executes a certain operation iff the environment has been found non-perfectly
+	 * complaint with the various constraints.
+	 *
+	 * <p>Usually you would want to log the probable incompatibility in case something
+	 * goes wrong during loading. It is also safe to leave this method as a
+	 * {@code NO-OP} method.</p>
+	 *
+	 * <p>It is illegal to throw <b>voluntarily</b> exceptions during the execution of
+	 * this method: you should return a value that marks impossibility to load the
+	 * integration when {@link #getAbilityToLoadIntegration()} is called instead.</p>
+	 *
+	 * <p>By default this method has an empty body.</p>
+	 *
+	 * @since 1.0
+	 */
+	default void onEnvironmentMismatch() {}
+
+	/**
 	 * Executes a certain operation if the integration failed to load.
 	 *
-	 * <p>Even if all the checks in place in {@link #canLoadIntegration()}
+	 * <p>Even if all the checks in place in {@link #getAbilityToLoadIntegration()}
 	 * succeeded but the integration loading failed anyway, this method is
 	 * called.</p>
+	 *
+	 * <p>You are not allowed to <b>voluntarily</b> throw exceptions in this
+	 * method.</p>
 	 *
 	 * @param e
 	 * 		The exception that caused the failure. It is never going to be

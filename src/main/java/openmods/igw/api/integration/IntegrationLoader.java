@@ -125,15 +125,23 @@ public class IntegrationLoader {
 	}
 
 	private void load0(final IIntegrationProvider provider) {
-		if (!provider.canLoadIntegration()) return;
+		final IIntegrationProvider.ScanResult environmentStatus = provider.getAbilityToLoadIntegration();
+
+		if (environmentStatus == IIntegrationProvider.ScanResult.UNSAFE_TO_LOAD) return;
+		if (environmentStatus == IIntegrationProvider.ScanResult.MAY_CAUSE_ERRORS) provider.onEnvironmentMismatch();
+
 		try {
-			provider.getExecutor().integrate();
-			provider.getExecutor().andThen();
-			provider.onLoaded();
+			this.loadImpl(provider);
 		} catch (final Exception e) {
 			this.exceptions.add(new IntegrationFailedException(e));
 			provider.onException(e);
 		}
+	}
+
+	private void loadImpl(final IIntegrationProvider provider) throws Exception {
+		provider.getExecutor().integrate();
+		provider.getExecutor().andThen();
+		provider.onLoaded();
 	}
 
 	/**
