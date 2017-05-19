@@ -37,8 +37,8 @@ import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
 import openmods.igw.impl.common.OpenModsCommonTab;
 import openmods.igw.impl.common.OpenModsCommonHandler;
-import openmods.igw.impl.openblocks.OpenBlocksWikiTab;
-import openmods.igw.impl.openblocks.OpenBlocksEventHandler;
+import openmods.igw.impl.integration.openblocks.OpenBlocksWikiTab;
+import openmods.igw.impl.integration.openblocks.OpenBlocksEventHandler;
 import openmods.igw.prefab.init.PageRegistryHelper;
 import openmods.igw.prefab.record.mod.MismatchingModEntry;
 

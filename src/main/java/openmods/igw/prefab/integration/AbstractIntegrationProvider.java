@@ -251,4 +251,17 @@ public abstract class AbstractIntegrationProvider implements IIntegrationProvide
 	public void onException(@Nonnull final Exception e) {
 		OpenModsIGWApi.get().log().warning(e, INTEGRATION_FAILED_DUE_TO_EXCEPTION, this.mod.modId(), e.getClass(), e.getMessage());
 	}
+
+	/**
+	 * Gets the mod entry used to instantiate this provider.
+	 *
+	 * @return
+	 * 		The mod entry used to instantiate this provider.
+	 *
+	 * @since 1.0
+	 */
+	@Nonnull
+	protected IModEntry getModEntry() {
+		return this.mod;
+	}
 }

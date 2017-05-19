@@ -29,7 +29,7 @@ import java.util.Map;
  * @author TheSilkMiner
  * @since 1.0
  */
-public class AbstractIntegrationExecutor implements IIntegrationExecutor {
+public abstract class AbstractIntegrationExecutor implements IIntegrationExecutor {
 
 	private static final String ATTEMPTING_INTEGRATION = "Attempting integration with mod %s";
 	private static final String ATTEMPTING_WIKI_INTEGRATION = "Attempting to register wiki page (1/2)";
@@ -45,12 +45,26 @@ public class AbstractIntegrationExecutor implements IIntegrationExecutor {
 	private final Class<? extends IWikiTab> tabClass;
 	private final Class<?> eventHandlerClass;
 
+	/**
+	 * Constructs an instance of this integration executor.
+	 *
+	 * <p>No parameter can be {@code null}.</p>
+	 *
+	 * @param mod
+	 * 		The mod entry this executor is for.
+	 * @param tabClass
+	 * 		The class of the wiki tab that should be instantiated.
+	 * @param eventHandlerClass
+	 * 		The class of the event handler.
+	 *
+	 * @since 1.0
+	 */
 	protected AbstractIntegrationExecutor(@Nonnull final IModEntry mod,
-									   @Nonnull final Class<? extends IWikiTab> tabClass,
-									   @Nonnull final Class<?> eventHandlerClass) {
+										  @Nonnull final Class<? extends IWikiTab> tabClass,
+										  @Nonnull final Class<?> eventHandlerClass) {
 		this.mod = Preconditions.checkNotNull(mod);
 		this.tabClass = Preconditions.checkNotNull(tabClass);
-		this.eventHandlerClass = eventHandlerClass;
+		this.eventHandlerClass = Preconditions.checkNotNull(eventHandlerClass);
 	}
 
 	/**

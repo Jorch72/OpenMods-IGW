@@ -3,7 +3,7 @@ package openmods.igw.impl.common;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 // Unable to remove implementation imports
-import openmods.igw.impl.openblocks.OpenBlocksEventHandler;
+import openmods.igw.impl.integration.openblocks.OpenBlocksEventHandler;
 
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
