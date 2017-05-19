@@ -48,7 +48,6 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@SuppressWarnings("unused")
 // TODO Move some things to API (Remove direct implementation imports)
 public class ClientProxy implements IInitProxy, IPageInit {
 
@@ -195,6 +194,13 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		}
 
 		return tab;
+	}
+
+	@Override
+	public void addTabForModId(@Nonnull final String modId, @Nonnull final IWikiTab tab) {
+		Preconditions.checkNotNull(modId, "Mod ID must not be null");
+		Preconditions.checkNotNull(tab, "Tab must not be null");
+		this.currentTabs.put(modId, tab);
 	}
 
 	private void registerOwnWikiTab() {

@@ -63,4 +63,16 @@ public interface IPageInit {
 	 */
 	@Nullable
 	igwmod.gui.tabs.IWikiTab getTabForModId(@Nonnull final String modId);
+
+	/**
+	 * Registers the specified wiki tab for the specified mod id.
+	 *
+	 * @param modId
+	 * 		The mod id. It must not be {@code null}.
+	 * @param tab
+	 * 		The tab to register. It must not be {@code null}.
+	 *
+	 * @since 1.0
+	 */
+	void addTabForModId(@Nonnull final String modId, @Nonnull final igwmod.gui.tabs.IWikiTab tab);
 }

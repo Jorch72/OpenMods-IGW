@@ -1,11 +1,11 @@
 package openmods.igw.impl.integration;
 
-import com.google.common.collect.Sets;
 import openmods.Mods;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.integration.IIntegrationProvider;
 import openmods.igw.api.integration.IntegrationFailedException;
 import openmods.igw.api.integration.IntegrationLoader;
+import openmods.igw.impl.integration.openblocks.OpenBlocksIntegrationProvider;
 
 public enum IntegrationHandler {
 	IT;
@@ -19,7 +19,8 @@ public enum IntegrationHandler {
 	public void register() {
 		OpenModsIGWApi.get().log().info("Registering provided mod integrations");
 
-		this.register(Mods.OPENBLOCKS, null); // TODO
+		this.register(Mods.OPENBLOCKS, new OpenBlocksIntegrationProvider());
+		// Add other mod support here
 
 		OpenModsIGWApi.get().log().info("Successfully registered integrations");
 	}
