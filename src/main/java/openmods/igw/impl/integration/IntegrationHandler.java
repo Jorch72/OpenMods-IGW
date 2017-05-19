@@ -33,7 +33,7 @@ public enum IntegrationHandler {
 	public void load() {
 		OpenModsIGWApi.get().log().info("Loading external mod integrations");
 
-		if (this.loader.load()) {
+		if (!this.loader.load()) {
 			OpenModsIGWApi.get().log().info("Successfully loaded all integrations");
 		} else {
 			OpenModsIGWApi.get().log().warning("Some errors have occurred while registering integrations");

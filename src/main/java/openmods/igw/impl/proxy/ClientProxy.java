@@ -6,13 +6,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
-import org.apache.commons.lang3.tuple.Pair;
+import openmods.igw.impl.integration.IntegrationHandler;
 
-import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.event.FMLConstructionEvent;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -28,19 +26,14 @@ import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
 import openmods.igw.api.record.mod.IMismatchingModEntry;
-import openmods.igw.api.record.mod.IModEntry;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IGuiService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
-import openmods.igw.impl.integration.openblocks.OpenBlocksWikiTab;
-import openmods.igw.impl.integration.openblocks.OpenBlocksEventHandler;
-import openmods.igw.prefab.init.PageRegistryHelper;
 import openmods.igw.prefab.record.mod.MismatchingModEntry;
 
-import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
@@ -54,8 +47,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	 * mismatching versions GUI.
 	 */
 	private static final boolean MISMATCHING_GUI_DEBUG = false;
-
-	private static final String DEVELOPMENT_ENVIRONMENT_VERSION = "$VERSION$";
 
 	private boolean abort;
 	private final Map<String, IWikiTab> currentTabs = Maps.newHashMap();
@@ -84,6 +75,9 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			}
 		}.preInit(evt.getSuggestedConfigurationFile());
 
+		// Register all the various integrations and get ready to load them
+		IntegrationHandler.IT.register();
+
 		if (this.constantService().getBooleanConfigConstant("joinBetaProgram").get()) {
 			final ISystemIdentifierService service = Preconditions.checkNotNull(
 					OpenModsIGWApi.get().serviceManager().obtainAndCastService(ISystemIdentifierService.class)
@@ -108,8 +102,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 		this.registerOwnWikiTab();
 
-		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class, OpenBlocksEventHandler.class);
-		this.checkModVersions();
+		this.handleRegistration();
 	}
 
 	@Nonnull
@@ -138,44 +131,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	public void register(@Nonnull final String modId,
 						 @Nonnull final Class<? extends igwmod.gui.tabs.IWikiTab> tabClass,
 						 @Nonnull final Class<?> eventHandlerClass) {
-		if (!this.mustRegister(modId)) return;
-
-		final PageRegistryHelper helper = new PageRegistryHelper();
-		helper.loadItems();
-
-		final List<Pair<String, String>> entitiesEntries = helper.claimEntities(modId);
-		final List<Pair<String, ItemStack>> itemsBlocksEntries = helper.claimModObjects(modId);
-
-		final Map<String, ItemStack> allClaimedPages = helper.getAllClaimedPages();
-		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = helper
-				.getAllClaimedEntitiesPages();
-
-		if (!entitiesEntries.isEmpty() && !itemsBlocksEntries.isEmpty()) {
-
-			try {
-				Constructor<?> constructor = tabClass.getConstructor(List.class, Map.class, Map.class);
-				Object tabInstance = constructor.newInstance(itemsBlocksEntries, allClaimedPages, allClaimedEntities);
-				IWikiTab tab = IWikiTab.class.cast(tabInstance);
-				WikiRegistry.registerWikiTab(tab);
-				currentTabs.put(modId, tab);
-			} catch (final NoSuchMethodException e) {
-				OpenModsIGWApi.get().log().warning(e, "Unable to instantiate specified tab class. Invalid constructor!");
-			} catch (final Exception e) {
-				OpenModsIGWApi.get().log().warning(e, "Invalid constructor arguments.");
-			}
-		} else {
-			OpenModsIGWApi.get().log().warning("Failed to find items, blocks and entities for %s", modId);
-		}
-
-		try {
-			MinecraftForge.EVENT_BUS.register(eventHandlerClass.getConstructor().newInstance());
-		} catch (final NoSuchMethodException e) {
-			OpenModsIGWApi.get().log().warning(e, "Unable to instantiate specified event handler class. Invalid constructor!");
-		} catch (final Exception e) {
-			OpenModsIGWApi.get().log().warning(e, "Invalid constructor arguments.");
-		}
-
-		OpenModsIGWApi.get().log().info("Successfully loaded integration for mod " + modId);
+		throw new UnsupportedOperationException("Use IntegrationHandler instead");
 	}
 
 	@Nullable
@@ -203,74 +159,16 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		WikiRegistry.registerWikiTab(tab);
 	}
 
+	private void handleRegistration() {
+		// Load all the integrations registered previously
+		IntegrationHandler.IT.load();
+
+		this.checkModVersions();
+	}
+
 	private void checkModVersions() {
-		boolean additionsSkipped = false;
-		final IModEntry[] currentlySupportedMods = this.constantService().
-				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orElseThrow();
-
-		for (final IModEntry entry : currentlySupportedMods) {
-			final Optional<ModContainer> optionalContainer = entry.modContainer();
-
-			if (!optionalContainer.isPresent()) continue;
-
-			final ModContainer container = optionalContainer.get();
-
-			if (!container.getModId().equals(entry.modId())) continue;
-
-			if (container.getVersion().equals(entry.version())) {
-				OpenModsIGWApi.get().log().info("Mod %s found: version matches", entry.modId());
-				continue;
-			}
-
-			OpenModsIGWApi.get().log().info("Identified mod %s, but got different version than expected (%s instead of %s)",
-					entry.modId(), container.getVersion(), entry.version());
-
-			if (DEVELOPMENT_ENVIRONMENT_VERSION.equals(container.getVersion())) {
-				OpenModsIGWApi.get().log().info("The mod %s installed version (%s) equals the development environment string",
-						container.getModId(), container.getVersion());
-				OpenModsIGWApi.get().log().info("Skipping addition...");
-
-				if (!additionsSkipped) additionsSkipped = true;
-
-				continue;
-			}
-
-			if (container.getMod().getClass().getAnnotation(IMismatchingModEntry.VersionProvider.class) != null) {
-				OpenModsIGWApi.get().log().info("Mod provides @VersionProvider annotation. Analyzing data...");
-				IMismatchingModEntry.VersionProvider provider = container
-						.getMod()
-						.getClass()
-						.getAnnotation(IMismatchingModEntry.VersionProvider.class);
-
-				if (provider.value().equals(entry.version())) {
-					OpenModsIGWApi.get().log().info("The mod %s tells us its version is equivalent to the expected %s.",
-							container.getModId(), entry.version());
-					OpenModsIGWApi.get().log().info("This usually means that the version consists only of bug fixes");
-					OpenModsIGWApi.get().log().info("Since we trust the mod's developer, we skip the addition");
-
-					if (!additionsSkipped) additionsSkipped = true;
-
-					continue;
-				}
-
-				OpenModsIGWApi.get().log().info("Provided version was not the one we expected (%s instead of %s)",
-						provider.value(), entry.version());
-				OpenModsIGWApi.get().log().info("As such, we add the mod to the list anyway.");
-			} else {
-				OpenModsIGWApi.get().log().info("No alternative version provided.");
-			}
-
-			OpenModsIGWApi.get().log().info("Adding to mismatching mod list.");
-
-			final IMismatchingModEntry mismatchingEntry = MismatchingModEntry.of(entry, container.getVersion());
-			this.mismatchingMods.add(mismatchingEntry);
-
-			if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
-				this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
-			}
-		}
-
-		if (this.mismatchingMods.isEmpty() && !additionsSkipped) OpenModsIGWApi.get().log().info("No mismatching mod versions found");
+		if (this.mismatchingMods.isEmpty()) OpenModsIGWApi.get().log().info("No mismatching mod versions found");
+		else if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 
 		// Make sure to open the GUI if we are running in debug mode
 		// And also, let's add some more entries to the list.
