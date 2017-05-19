@@ -28,6 +28,18 @@ public interface IInitProxy extends IInit {
 	List<IMismatchingModEntry> getMismatchingMods();
 
 	/**
+	 * Adds the given {@code entry} to the list of mismatching
+	 * mods. See {@link IMismatchingModEntry} and
+	 * {@link #getMismatchingMods()} for more information.
+	 *
+	 * @param entry
+	 * 		The entry to add. It must not be {@code null}.
+	 *
+	 * @since 1.0
+	 */
+	void addMismatchingMod(@Nonnull final IMismatchingModEntry entry);
+
+	/**
 	 * Gets the current proxy instance as an instance of
 	 * {@link IPageInit}, if applicable.
 	 *

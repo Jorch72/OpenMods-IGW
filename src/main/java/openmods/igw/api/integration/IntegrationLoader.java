@@ -33,7 +33,7 @@ import java.util.List;
  *
  * @since 1.0
  */
-public class IntegrationLoader {
+public final class IntegrationLoader {
 
 	private static final String MUST_NOT_BE_NULL = "%s must not be null";
 	private static final String INTEGRATIONS_LOADED = "The integrations have already been loaded";

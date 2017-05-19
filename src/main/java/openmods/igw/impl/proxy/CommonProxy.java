@@ -52,4 +52,7 @@ public class CommonProxy implements IInitProxy {
 	public IPageInit asPageInit() {
 		return null;
 	}
+
+	@Override
+	public void addMismatchingMod(@Nonnull final IMismatchingModEntry entry) {}
 }

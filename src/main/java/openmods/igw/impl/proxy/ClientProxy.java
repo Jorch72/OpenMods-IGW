@@ -132,6 +132,11 @@ public class ClientProxy implements IInitProxy, IPageInit {
 	}
 
 	@Override
+	public void addMismatchingMod(@Nonnull final IMismatchingModEntry entry) {
+		this.mismatchingMods.add(entry);
+	}
+
+	@Override
 	public boolean mustRegister(@Nonnull final String modId) {
 		return this.constantService().isEnabled(modId);
 	}
