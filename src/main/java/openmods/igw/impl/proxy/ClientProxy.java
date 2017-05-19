@@ -35,8 +35,6 @@ import openmods.igw.api.service.IGuiService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
-import openmods.igw.impl.common.OpenModsCommonTab;
-import openmods.igw.impl.common.OpenModsCommonHandler;
 import openmods.igw.impl.integration.openblocks.OpenBlocksWikiTab;
 import openmods.igw.impl.integration.openblocks.OpenBlocksEventHandler;
 import openmods.igw.prefab.init.PageRegistryHelper;
@@ -110,10 +108,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 		this.registerOwnWikiTab();
 
-		if (this.constantService().getBooleanConfigConstant("useUniqueWikiTab").get()) {
-			this.handleUniqueWikiTab();
-			return;
-		}
 		this.register(Mods.OPENBLOCKS, OpenBlocksWikiTab.class, OpenBlocksEventHandler.class);
 		this.checkModVersions();
 	}
@@ -207,34 +201,6 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		final IWikiTab tab = new openmods.igw.impl.client.wiki.OpenModsIgwWikiTab();
 		this.currentTabs.put(this.constantService().<String>getConstant("MOD_ID").orElseThrow(), tab);
 		WikiRegistry.registerWikiTab(tab);
-	}
-
-	private void handleUniqueWikiTab() {
-		//final List<Pair<String, String>> entitiesEntries = Lists.newArrayList();
-		final List<Pair<String, ItemStack>> itemsBlocksEntries = Lists.newArrayList();
-		final Map<String, ItemStack> allClaimedPages = Maps.newHashMap();
-		final Map<String, Class<? extends net.minecraft.entity.Entity>> allClaimedEntities = Maps.newHashMap();
-		final IModEntry[] currentlySupportedMods = this.constantService().
-				<IModEntry[]>getConstant("CURRENTLY_SUPPORTED_MODS").orElseThrow();
-
-		for (final IModEntry entry : currentlySupportedMods) {
-			final String modId = entry.modId();
-			if (!this.mustRegister(modId)) continue;
-
-			final PageRegistryHelper helper = new PageRegistryHelper();
-			helper.loadItems();
-
-			//entitiesEntries.addAll(helper.claimEntities(modId));
-			itemsBlocksEntries.addAll(helper.claimModObjects(modId));
-			allClaimedEntities.putAll(helper.getAllClaimedEntitiesPages());
-			allClaimedPages.putAll(helper.getAllClaimedPages());
-		}
-
-		final IWikiTab tab = new OpenModsCommonTab(itemsBlocksEntries, allClaimedPages, allClaimedEntities);
-		currentTabs.put("0", tab);
-		WikiRegistry.registerWikiTab(tab);
-
-		MinecraftForge.EVENT_BUS.register(new OpenModsCommonHandler());
 	}
 
 	private void checkModVersions() {

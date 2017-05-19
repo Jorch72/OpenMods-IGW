@@ -9,8 +9,7 @@ import java.lang.annotation.Annotation;
 
 public class Config implements IConfig {
 
-	private static final String MODS_WIKI_INTEGRATION_CATEGORY = "integration.wiki.mods";
-	private static final String TAB_WIKI_INTEGRATION_CATEGORY = "integration.wiki.tabs";
+	private static final String MODS_WIKI_INTEGRATION_CATEGORY = "integration.mods";
 	private static final String TESTING_CATEGORY = "testing";
 	private static final String WARNINGS_CATEGORY = "warnings";
 
@@ -23,11 +22,6 @@ public class Config implements IConfig {
 			category = MODS_WIKI_INTEGRATION_CATEGORY,
 			comment = "Enables the Wiki integration for OpenBlocks")
 	public static boolean enableOpenBlocksIntegration = true;
-
-	@ConfigProperty(name = "uniqueWikiTab",
-			category = TAB_WIKI_INTEGRATION_CATEGORY,
-			comment = "Set to \"true\" to display only one wiki tab for all the mods")
-	public static boolean useUniqueWikiTab = false;
 
 	@ConfigProperty(name = "joinBetaProgram",
 			category = TESTING_CATEGORY,
