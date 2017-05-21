@@ -47,10 +47,16 @@ buildscript {
     classpath group: 'net.thesilkminer.gradle.translationchecker',
               name: 'TranslationChecker',
               version: '1.1'
+    classpath group: 'com.autoscout24.gradle',
+              name: 'gradle-todo-plugin',
+              version: '1.0'
   }
 }
 
 apply plugin: 'forge'
+apply plugin: 'com.autoscout24.gradle.todo'
+
+compileJava.dependsOn checkTodo
 
 idea {
 	module {
@@ -196,6 +202,11 @@ artifacts {
 
 //================================================
 // Misc tasks
+
+// Configure todo finder plugin
+todo {
+    todoPattern = '\\/(\\/|\\*)(( )|())[\\\\t\\\\s]*(TODO|FIXME)(.*)'
+}
 
 // Check and update all language files
 task translationCheck(type: net.thesilkminer.gradle.plugin.translationchecker.tasks.TranslationCheckTask) {
