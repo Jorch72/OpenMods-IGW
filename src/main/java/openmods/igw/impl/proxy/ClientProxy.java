@@ -75,9 +75,17 @@ public class ClientProxy implements IInitProxy, IPageInit {
 			}
 		}.preInit(evt.getSuggestedConfigurationFile());
 
+		// Join beta program before handling registration: some integrations may, in fact, be supported
+		// only in a beta stage
+		this.attemptToJoinBetaProgram();
+
 		// Register all the various integrations and get ready to load them
 		IntegrationHandler.IT.register();
+	}
 
+	// This allows us to use return statements without the possibility to see our
+	// code not run because of special conditions (aka Developer system)
+	private void attemptToJoinBetaProgram() {
 		if (this.constantService().getBooleanConfigConstant("joinBetaProgram").get()) {
 			final ISystemIdentifierService service = Preconditions.checkNotNull(
 					OpenModsIGWApi.get().serviceManager().obtainAndCastService(ISystemIdentifierService.class)
@@ -101,8 +109,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		if (this.abort) return;
 
 		this.registerOwnWikiTab();
-
-		this.handleRegistration();
+		this.handleModIntegrations();
 	}
 
 	@Nonnull
@@ -122,28 +129,10 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		this.mismatchingMods.add(entry);
 	}
 
-	@Override
-	public boolean mustRegister(@Nonnull final String modId) {
-		return this.constantService().isEnabled(modId);
-	}
-
-	@Override
-	public void register(@Nonnull final String modId,
-						 @Nonnull final Class<? extends igwmod.gui.tabs.IWikiTab> tabClass,
-						 @Nonnull final Class<?> eventHandlerClass) {
-		throw new UnsupportedOperationException("Use IntegrationHandler instead");
-	}
-
 	@Nullable
 	@Override
 	public IWikiTab getTabForModId(@Nonnull final String modId) {
-		final IWikiTab tab = this.currentTabs.get(modId);
-
-		if (tab == null && this.constantService().getBooleanConfigConstant("useUniqueWikiTab").orElseThrow()) {
-			return this.currentTabs.get("0");
-		}
-
-		return tab;
+		return this.currentTabs.get(modId);
 	}
 
 	@Override
@@ -159,14 +148,15 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		WikiRegistry.registerWikiTab(tab);
 	}
 
-	private void handleRegistration() {
+	private void handleModIntegrations() {
 		// Load all the integrations registered previously
 		IntegrationHandler.IT.load();
 
-		this.checkModVersions();
+		// Show mismatching mod screen if some integrations have reported mismatching versions
+		this.checkForReportedMismatchingMods();
 	}
 
-	private void checkModVersions() {
+	private void checkForReportedMismatchingMods() {
 		if (this.mismatchingMods.isEmpty()) OpenModsIGWApi.get().log().info("No mismatching mod versions found");
 		else if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 
