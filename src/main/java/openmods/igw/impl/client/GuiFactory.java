@@ -5,17 +5,16 @@ import com.google.common.collect.Sets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-
-import cpw.mods.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.IModGuiFactory;
 
 import openmods.config.gui.OpenModsConfigScreen;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IConstantRetrieverService;
 import openmods.igw.api.service.IService;
 
+import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Set;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class GuiFactory implements IModGuiFactory {

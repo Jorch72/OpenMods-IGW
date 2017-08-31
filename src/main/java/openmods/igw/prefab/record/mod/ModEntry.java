@@ -5,9 +5,8 @@ import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.record.Cached;
 import openmods.igw.api.record.Immutable;

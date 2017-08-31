@@ -1,24 +1,8 @@
 package openmods.igw.prefab.handler;
 
 import com.google.common.collect.Lists;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-
-import openmods.igw.api.OpenModsIGWApi;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 import igwmod.gui.GuiWiki;
 import igwmod.gui.IPageLink;
@@ -26,6 +10,20 @@ import igwmod.gui.IReservedSpace;
 import igwmod.gui.LocatedStack;
 import igwmod.gui.LocatedString;
 import igwmod.gui.tabs.IWikiTab;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.FMLClientHandler;
+
+import openmods.igw.api.OpenModsIGWApi;
 
 import java.util.List;
 import java.util.Map;
@@ -93,7 +91,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		};
 	}
 
-	private static final RenderItem RENDERER = new RenderItem();
+	private static final RenderItem RENDERER = Minecraft.getMinecraft().getRenderItem();
 
 	private final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
 	private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
@@ -117,14 +115,16 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		this.defaultEntities = allClaimedEntities;
 	}
 
+	@SuppressWarnings({"MethodCallSideOnly", "NewExpressionSideOnly"})
 	protected static IPageLinkFactory createStaticPageFactory(final String id,
 															  final OpenModsWikiTab tab,
 															  final IStaticPagePositionProvider provider) {
 		return new IPageLinkFactory() {
+			@SuppressWarnings("NewExpressionSideOnly")
 			@Override
 			public IPageLink createPage(final LinkNumerator numerator) {
 				final String pageName = tab.getPageName().endsWith(".")? tab.getPageName() : (tab.getPageName() + ".");
-				final String localizedLinkName = StatCollector.translateToLocal(pageName + id);
+                final String localizedLinkName = I18n.format(pageName + id);
 				return new LocatedString(localizedLinkName,
 						provider.getX(numerator),
 						provider.getY(numerator),
@@ -203,6 +203,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	public abstract int pagesPerScroll();
 
 	@Override
+    @SuppressWarnings("MethodCallSideOnly")
 	public void renderForeground(final GuiWiki gui, final int mouseX, final int mouseY) {
 		if (this.tabIcon == null) return;
 
@@ -214,7 +215,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		GL11.glPushMatrix();
 		GL11.glTranslated(49, 20, 0);
 		GL11.glScaled(2.2, 2.2, 2.2);
-		RENDERER.renderItemAndEffectIntoGUI(gui.getFontRenderer(), gui.mc.getTextureManager(), this.tabIcon, 0, 0);
+        RENDERER.renderItemAndEffectIntoGUI(this.tabIcon, 0, 0);
 		GL11.glPopMatrix();
 	}
 
@@ -266,6 +267,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	}
 
 	@Override
+    @SuppressWarnings("MethodCallSideOnly")
 	public void renderBackground(final GuiWiki gui, final int mouseX, final int mouseY) {
 		if (this.tabEntity == null) return;
 
@@ -285,9 +287,9 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 		RenderHelper.enableStandardItemLighting();
 		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(-igwmod.TickHandler.ticksExisted, 0.0F, 1.0F, 0.0F);
-		GL11.glTranslatef(0.0F, this.tabEntity.yOffset, 0.0F);
-		RenderManager.instance.playerViewY = 180.0F;
-		RenderManager.instance.renderEntityWithPosYaw(this.tabEntity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+		GL11.glTranslatef(0.0F, (float) this.tabEntity.getYOffset(), 0.0F);
+		Minecraft.getMinecraft().getRenderManager().playerViewY = 180.0F;
+        Minecraft.getMinecraft().getRenderManager().doRenderEntity(this.tabEntity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
 		GL11.glPopMatrix();
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(org.lwjgl.opengl.GL12.GL_RESCALE_NORMAL);
@@ -345,7 +347,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			candidates.add(Item.getItemFromBlock(block));
 		}
 
-		candidates.add(Items.compass);
+		candidates.add(Items.COMPASS);
 
 		return candidates;
 	}

@@ -41,6 +41,6 @@ public class OpenModsIgwWikiTab extends BaseWikiTab {
 
 	@Override
 	public ItemStack renderTabIcon(final GuiWiki gui) {
-		return new ItemStack(Items.compass);
+		return new ItemStack(Items.COMPASS);
 	}
 }

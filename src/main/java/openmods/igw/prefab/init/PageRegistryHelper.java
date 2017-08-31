@@ -5,28 +5,25 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
+import igwmod.api.WikiRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
-
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
-import cpw.mods.fml.common.registry.FMLControlledNamespacedRegistry;
-import cpw.mods.fml.common.registry.GameData;
-
-import igwmod.api.WikiRegistry;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 import openmods.api.VisibleForDocumentation;
 import openmods.igw.api.init.IPageRegisterer;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -98,6 +95,7 @@ public final class PageRegistryHelper implements IPageRegisterer {
 
 	@Nonnull
 	@Override
+	@SuppressWarnings("MethodCallSideOnly")
 	public List<Pair<String, ItemStack>> claimModObjects(final String modId) {
 		final ModEntry entry = this.mods.get(modId);
 		if (entry == null) return Lists.newArrayList();
@@ -114,7 +112,7 @@ public final class PageRegistryHelper implements IPageRegisterer {
 			final Item blockItem = Item.getItemFromBlock(block);
 
 			final List<ItemStack> stacks = Lists.newArrayList();
-			blockItem.getSubItems(blockItem, CreativeTabs.tabAllSearch, stacks);
+			blockItem.getSubItems(blockItem, CreativeTabs.SEARCH, stacks);
 
 			for (final ItemStack stack : stacks) {
 				final String page = "openmods-igw:block/" + StringUtils.removeStart(stack.getUnlocalizedName(), "tile.");
@@ -130,7 +128,7 @@ public final class PageRegistryHelper implements IPageRegisterer {
 			final Item item = itemEntry.getValue();
 
 			final List<ItemStack> stacks = Lists.newArrayList();
-			item.getSubItems(item, CreativeTabs.tabAllSearch, stacks);
+			item.getSubItems(item, CreativeTabs.SEARCH, stacks);
 
 			for (final ItemStack stack : stacks) {
 				final String page = "openmods-igw:item/" + StringUtils.removeStart(stack.getUnlocalizedName(), "item.");
@@ -175,30 +173,33 @@ public final class PageRegistryHelper implements IPageRegisterer {
 		return ImmutableMap.copyOf(this.claimedEntities);
 	}
 
-	private <T> void iterateGameData(final FMLControlledNamespacedRegistry<T> registry,
-									 final Callback<T> callback) {
-		@SuppressWarnings("unchecked")
-		final Set<String> ids = registry.getKeys();
+	private <T extends IForgeRegistryEntry<T>> void iterateGameData(final FMLControlledNamespacedRegistry<T> registry,
+                                                                    final Callback<T> callback) {
+		final Set<ResourceLocation> ids = registry.getKeys();
 		final Splitter splitter = Splitter.on(':');
 
-		for (final String id : ids) {
+		for (final ResourceLocation id : ids) {
 			final T obj = registry.getObject(id);
 			if (obj == null) continue;
 
+			/*
 			final Iterator<String> components = splitter.split(id).iterator();
 			final String modId = components.next();
 			final String name = components.next();
+			*/
+			// FIXME Actually test if this works
+			final String modId = id.getResourceDomain();
+			final String name = id.getResourcePath();
 
 			callback.call(modId, name, obj);
 		}
 	}
 
 	private void iterateEntities(final Callback<Class<? extends Entity>> callback) {
-		@SuppressWarnings("unchecked")
-		final Set<Map.Entry<Class<? extends Entity>, String>> entrySet = EntityList.classToStringMapping.entrySet();
+		final Set<Map.Entry<Class<? extends Entity>, String>> entrySet = EntityList.CLASS_TO_NAME.entrySet();
 		for (final Map.Entry<Class<? extends Entity>, String> entry : entrySet) {
 			final Class<? extends Entity> cls = entry.getKey();
-			final EntityRegistration entityEntry = EntityRegistry.instance().lookupModSpawn(cls, false);
+			final EntityRegistry.EntityRegistration entityEntry = EntityRegistry.instance().lookupModSpawn(cls, false);
 			if (entityEntry != null) {
 				callback.call(entityEntry.getContainer().getModId(), entry.getValue(), cls);
 			}

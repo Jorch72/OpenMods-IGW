@@ -5,6 +5,8 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiErrorScreen;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.record.mod.IMismatchingModEntry;
 
@@ -25,6 +27,7 @@ import javax.annotation.Nonnull;
  *
  * @since 1.0
  */
+@SideOnly(Side.CLIENT)
 public class MismatchingVersionsGui extends GuiErrorScreen {
 
 	private static boolean show;
@@ -59,7 +62,6 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void initGui() {
 		this.buttonList.add(
 				new GuiButton(CONFIRM,

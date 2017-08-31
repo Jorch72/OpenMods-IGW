@@ -5,9 +5,8 @@ import com.google.common.collect.Lists;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiYesNo;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IConstantRetrieverService;
 
@@ -71,7 +70,7 @@ public class WarningGui extends GuiYesNo {
 					OpenModsIGWApi.get().log().severe("Why would you run a client in a headless environment?");
 				}
 				// Hot loading is not possible, so...
-				cpw.mods.fml.common.FMLCommonHandler.instance().exitJava(EXIT_CODE_INTERNAL, false);
+				net.minecraftforge.fml.common.FMLCommonHandler.instance().exitJava(EXIT_CODE_INTERNAL, false);
 				break;
 			default:
 				throw new IllegalStateException("Invalid button ID in WarningGui @ OpenMods-IGW");
@@ -84,13 +83,9 @@ public class WarningGui extends GuiYesNo {
 		// a web page: I think it is better to warn the user.
 		super.drawScreen(mouseX, mouseY, renderPartialTicks);
 
-		final Object btnObj = this.buttonList.get(INSTALL);
+		final GuiButton btn = this.buttonList.get(INSTALL);
 
-		if (!(btnObj instanceof GuiButton)) return;
-
-		final GuiButton btn = (GuiButton) btnObj;
-
-		if (!btn.func_146115_a()) return;
+		if (!btn.isMouseOver()) return;
 
 		final List<String> text = Lists.newArrayList();
 		text.add(INSTALL_BUTTON_WARNING);

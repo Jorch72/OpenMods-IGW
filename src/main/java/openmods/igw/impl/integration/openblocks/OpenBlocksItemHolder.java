@@ -2,8 +2,7 @@ package openmods.igw.impl.integration.openblocks;
 
 import net.minecraft.block.Block;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import openmods.Mods;
 
 @GameRegistry.ObjectHolder(Mods.OPENBLOCKS)

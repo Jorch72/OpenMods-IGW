@@ -2,11 +2,10 @@ package openmods.igw.impl.integration.openblocks;
 
 import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
 
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.prefab.handler.OpenModsEventHandler;
 

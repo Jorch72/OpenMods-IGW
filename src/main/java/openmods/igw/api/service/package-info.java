@@ -7,5 +7,5 @@
  *
  * @since 1.0
  */
-@cpw.mods.fml.common.API(apiVersion = "1.0", owner = "OpenMods-IGW", provides = "OpenMods-IGW|API|Service")
+@net.minecraftforge.fml.common.API(apiVersion = "1.0", owner = "OpenMods-IGW", provides = "OpenMods-IGW|API|Service")
 package openmods.igw.api.service;

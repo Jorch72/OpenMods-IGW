@@ -144,8 +144,9 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 			return;
 		}
 
+		// FIXME Deprecation
 		CACHE_BLOCK.put(configId,
-				cpw.mods.fml.common.registry.GameRegistry.findBlock(this.modId(), configId) != null);
+				net.minecraftforge.fml.common.registry.GameRegistry.findBlock(this.modId(), configId) != null);
 
 		event.replacementValue = CACHE_BLOCK.get(configId).toString();
 	}
@@ -169,8 +170,9 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 			return;
 		}
 
+		// FIXME Deprecation
 		CACHE_ITEM.put(configId,
-				cpw.mods.fml.common.registry.GameRegistry.findBlock(this.modId(), configId) != null);
+				net.minecraftforge.fml.common.registry.GameRegistry.findBlock(this.modId(), configId) != null);
 
 		event.replacementValue = CACHE_ITEM.get(configId).toString();
 	}

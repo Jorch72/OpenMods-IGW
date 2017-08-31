@@ -9,12 +9,11 @@ import com.google.common.collect.Maps;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import openmods.igw.impl.integration.IntegrationHandler;
-
-import cpw.mods.fml.common.event.FMLConstructionEvent;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 import igwmod.api.WikiRegistry;
 import igwmod.gui.tabs.IWikiTab;
@@ -60,7 +59,7 @@ public class ClientProxy implements IInitProxy, IPageInit {
 
 	@Override
 	public void preInit(final FMLPreInitializationEvent evt) {
-		if (!cpw.mods.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
+		if (!net.minecraftforge.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
 		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
 
 		new ModStartupHelper(this.constantService().<String>getConstant("MOD_ID").orNull()) {

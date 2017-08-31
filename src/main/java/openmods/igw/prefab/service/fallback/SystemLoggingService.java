@@ -35,7 +35,7 @@ public final class SystemLoggingService implements ILoggingService {
 				|| isInvalidCall(stackTrace[3], "sun.reflect.DelegatingMethodAccessorImpl.invoke")
 				|| isInvalidCall(stackTrace[5], "openmods.igw.api.OpenModsIGWApi.<clinit>")
 				|| isInvalidCall(stackTrace[7], "openmods.igw.impl.proxy.ClientProxy.construct")
-				|| isInvalidCall(stackTrace[13], "cpw.mods.fml.common.FMLModContainer.handleModStateEvent"))
+				|| isInvalidCall(stackTrace[13], "net.minecraftforge.fml.common.FMLModContainer.handleModStateEvent"))
 			throw new SecurityException("Unsafe call to " + SystemLoggingService.class);
 		return THE_LOGGING_SERVICE;
 	}

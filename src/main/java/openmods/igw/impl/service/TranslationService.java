@@ -1,7 +1,8 @@
 package openmods.igw.impl.service;
 
-import net.minecraft.util.StatCollector;
-
+import net.minecraft.client.resources.I18n;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ITranslationService;
@@ -15,6 +16,7 @@ import javax.annotation.Nullable;
  * Utility class representing the default translation service provided
  * by this mod.
  */
+@SideOnly(Side.CLIENT)
 public final class TranslationService implements ITranslationService {
 
 	private static final TranslationService IT = new TranslationService();
@@ -49,7 +51,7 @@ public final class TranslationService implements ITranslationService {
 	@Nonnull
 	@Override
 	public String translate(@Nonnull final String modId, @Nonnull final String translationId, @Nonnull final ErrorBehaviour behaviour) {
-		final String translation = StatCollector.translateToLocal(
+		final String translation = I18n.format(
 				String.format("%s.%s", modId, translationId.toLowerCase(Locale.ENGLISH).trim())
 		);
 		if (behaviour == ErrorBehaviour.REPORT && translation.equals(translationId)) {

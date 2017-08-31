@@ -10,5 +10,5 @@
  * @author TheSilkMiner
  * @since 1.0
  */
-@cpw.mods.fml.common.API(apiVersion = "1.0", owner = "OpenMods-IGW", provides = "OpenMods-IGW|Prefab|Service|Fallback")
+@net.minecraftforge.fml.common.API(apiVersion = "1.0", owner = "OpenMods-IGW", provides = "OpenMods-IGW|Prefab|Service|Fallback")
 package openmods.igw.prefab.service.fallback;

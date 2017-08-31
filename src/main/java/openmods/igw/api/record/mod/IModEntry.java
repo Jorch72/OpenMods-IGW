@@ -2,7 +2,7 @@ package openmods.igw.api.record.mod;
 
 import com.google.common.base.Optional;
 
-import cpw.mods.fml.common.ModContainer;
+import net.minecraftforge.fml.common.ModContainer;
 import openmods.igw.api.record.IRecord;
 
 import javax.annotation.Nonnull;

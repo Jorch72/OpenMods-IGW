@@ -90,6 +90,6 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
 	@Nonnull
 	@Override
 	protected List<Block> getBlockCandidates() {
-		return Lists.newArrayList(OpenBlocksItemHolder.FLAG, Blocks.sponge);
+		return Lists.newArrayList(OpenBlocksItemHolder.FLAG, Blocks.SPONGE);
 	}
 }
