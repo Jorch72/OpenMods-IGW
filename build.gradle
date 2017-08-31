@@ -1,76 +1,59 @@
-/*
- * OpenMods-IGW build file.
- * @author Arkan <arkan@emberwalker.cc>
- */
-
-//================================================
-// Pre-execute
+import net.thesilkminer.gradle.plugin.translationchecker.tasks.TranslationCheckTask
 
 buildscript {
     repositories {
-        // General deps
+        // General dependencies
         mavenCentral()
+        jcenter()
         // Minecraft Forge
         maven {
             name = 'Forge'
             url = 'http://files.minecraftforge.net/maven'
         }
-        // Sonatype (for SpecialSource in 1.7+)
         maven {
-            name = "Sonatype Nexus"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+            name 'OpenMods Third Party'
+            url 'http://repo.openmods.info/artifactory/simple/thirdparty'
         }
     }
 
-    //noinspection GroovyAssignabilityCheck
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '2.2-SNAPSHOT'
+        classpath group: 'net.thesilkminer.gradle.translationchecker', name: 'TranslationChecker', version: '1.1'
+        classpath group: 'com.autoscout24.gradle', name: 'gradle-todo-plugin', version: '1.0'
     }
 }
 
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'com.autoscout24.gradle.todo'
+
+idea {
+    module {
+        inheritOutputDirs = true
+    }
+}
+
+todo {
+    todoPattern = '\\/(\\/|\\*)(( )|())[\\\\t\\\\s]*(TODO|FIXME)(.*)'
+}
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
 repositories {
+    mavenCentral()
+    jcenter()
     maven {
         name "IGW"
         url "http://maven.k-4u.nl/"
     }
 }
 
-buildscript {
-  repositories {
-    maven {
-      name 'OpenMods Third Party'
-      url 'http://repo.openmods.info/artifactory/simple/thirdparty'
-    }
-  }
-  //noinspection GroovyAssignabilityCheck
-  dependencies {
-    classpath group: 'net.thesilkminer.gradle.translationchecker',
-              name: 'TranslationChecker',
-              version: '1.1'
-    classpath group: 'com.autoscout24.gradle',
-              name: 'gradle-todo-plugin',
-              version: '1.0'
-  }
-}
-
-apply plugin: 'forge'
-apply plugin: 'com.autoscout24.gradle.todo'
-
-compileJava.dependsOn checkTodo
-
-idea {
-	module {
-		inheritOutputDirs = true
-	}
-}
-
-//================================================
-// Dependencies
-
-//noinspection GroovyAssignabilityCheck
 dependencies {
-    compile project(":OpenModsLib") // Load OpenModsLib from submodule
-    compile "igwmod:IGW-Mod-1.7.10:1.1.9-29:userdev"
+    // OpenModsLib
+    compile project(":OpenModsLib")
+    
+    // IGW-Mod
+    compile group: 'igwmod', name: 'IGW-Mod-1.9.4', version: '1.3.0-5', classifier: 'userdev' // Don't ask why we're using 1.9.4. Just don't
 }
 
 //================================================
@@ -79,17 +62,13 @@ dependencies {
 // Grab system env
 ext.env = System.getenv()
 
-version = mc_ver + "-" + mod_version
+version = mc_version + "-" + openmods_igw_version
 
 ext.in_jenkins = false
-// Get Jenkins metadata
-ext.jenkinsManifest = manifest {
-    if (env.BUILD_TAG != null) { // If this works, we'll assume we're in Jenkins atleast.
-        attributes("Jenkins-Build": "true", "Jenkins-Tag": env.BUILD_TAG, "Jenkins-ID": env.BUILD_ID)
-        in_jenkins = true
-    } else {
-        attributes("Jenkins-Build": "false")
-    }
+
+if (env.BUILD_TAG != null) {
+    // If this works, we'll assume we're in Jenkins at least.
+    in_jenkins = true
 }
 
 def branch = null
@@ -112,7 +91,7 @@ if (!in_jenkins) {
 }
 
 // If not on master, add branch to jar name
-if (branch != null && !branch.equals("master")) {
+if (branch != null && !(branch.equals("master") || branch.equals(current_dev_branch))) {
     version += "-" + branch
 } else {
     //version += "-" + hash
@@ -120,35 +99,50 @@ if (branch != null && !branch.equals("master")) {
 
 // Version tag for jar file name
 if (env.BUILD_NUMBER != null) {
+    //noinspection GroovyAssignabilityCheck
     version += "-snapshot-" + env.BUILD_NUMBER
 }
 
-// Get Git metadata (if in Jenkins)
-ext.gitManifest = manifest {
-    if (env.GIT_BRANCH != null) {
-        attributes("Git-Branch": branch, "Git-Hash": hash)
+// Jar Data END
+//================================================
+
+ext.jenkinsManifest = manifest {
+    if (in_jenkins) {
+        attributes("Jenkins-Build": "true", "Jenkins-Tag": env.BUILD_TAG, "Jenkins-ID": env.BUILD_ID)
+    } else {
+        attributes("Jenkins-Build": "false")
     }
 }
 
-// Setup Forge plugin
+ext.gitManifest = manifest {
+    if (env.GIT_BRANCH != null) {
+        attributes("Git-Branch": branch, "Git-Hash": hash)
+    } else {
+        attributes("Git-Branch": 'Not in a Git Branch', "Git-Hash": 'unavailable')
+    }
+}
+
+ext.coremodManifest = manifest {}
+
 minecraft {
-    version = mc_ver + "-" + forge_ver
+    version = mc_version + "-" + forge_version
     runDir = "run"
+    mappings = mcp_mappings
 
     replaceIn 'openmods/igw/impl/utils/Constants.java'
-    replace '$VERSION$', mod_version
+    replace '$VERSION$', openmods_igw_version
     replace '$LIB-VERSION$', project(':OpenModsLib').mod_version
     replace '$NEXT-LIB-VERSION$', project(':OpenModsLib').next_mod_version
 }
 
-//noinspection GroovyAssignabilityCheck
 processResources {
-    inputs.property "version", rootProject.mod_version
+    inputs.property 'version', openmods_igw_version
+    inputs.property 'mc_version', mc_version
 
-    // Process mcmod.info
+    // Process *.info
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
-        expand 'version':mod_version,'MCVersion':mc_ver
+        expand 'version': openmods_igw_version, 'mc_version': mc_version
     }
 
     // Copy anything else directly
@@ -157,58 +151,63 @@ processResources {
     }
 }
 
-//================================================
-// Jar tasks
-
-// Generate FML Coremod manifest
-ext.fmlManifest = manifest {}
-
 // Merge Jenkins and Git manifests to form final manifest in final release jar
-//noinspection GroovyAssignabilityCheck
 jar {
     manifest {
-        from jenkinsManifest, gitManifest, fmlManifest
+        //noinspection GroovyAssignabilityCheck
+        from jenkinsManifest, gitManifest, coremodManifest
     }
 }
 
+ext.sourcesPath = new File(new File(new File(buildDir, "sources"), "main"), "java")
+
 // API jar
 task apiJar(type: Jar) {
+    baseName 'OpenMods-IGW-API'
+    version openmods_igw_api_version
 
+    //noinspection GroovyAssignabilityCheck
     from sourceSets.main.output
-    from sourceSets.main.java
 
     include 'openmods/igw/api/**'
 
-	classifier = 'api'
-	
+    classifier = 'api'
+
     manifest {
+        //noinspection GroovyAssignabilityCheck
         from jenkinsManifest, gitManifest
     }
 }
 
-// Dev jar
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'deobf'
+// API Src Jar
+task apiSrcJar(type: Jar) {
+    baseName 'OpenMods-IGW-API'
+    version openmods_igw_api_version
+    classifier 'sources'
+    
+    from sourcesPath
+    
+    include 'openmods/igw/api/**'
+    
     manifest {
-        from jenkinsManifest, gitManifest, fmlManifest
+        //noinspection GroovyAssignabilityCheck
+        from jenkinsManifest, gitManifest
     }
 }
 
+compileJava.dependsOn checkTodo
+
 artifacts {
-	archives apiJar
-    archives deobfJar
+    archives apiJar
+    archives apiSrcJar
 }
 
-//================================================
-// Misc tasks
-
-// Configure todo finder plugin
-todo {
-    todoPattern = '\\/(\\/|\\*)(( )|())[\\\\t\\\\s]*(TODO|FIXME)(.*)'
+task checkTranslations(type: TranslationCheckTask) {
+    modId = 'openmods-igw'
 }
 
-// Check and update all language files
-task translationCheck(type: net.thesilkminer.gradle.plugin.translationchecker.tasks.TranslationCheckTask) {
-	modId = 'openmods-igw'
+build.dependsOn checkTranslations
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "3.5-rc-2"
 }
