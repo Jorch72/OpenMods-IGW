@@ -1,17 +1,9 @@
 package openmods.igw.prefab.handler;
 
 import com.google.common.collect.Lists;
-import org.apache.commons.lang3.tuple.Pair;
-import org.lwjgl.opengl.GL11;
-
-import igwmod.gui.GuiWiki;
-import igwmod.gui.IPageLink;
-import igwmod.gui.IReservedSpace;
-import igwmod.gui.LocatedStack;
-import igwmod.gui.LocatedString;
-import igwmod.gui.tabs.IWikiTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
@@ -22,6 +14,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import org.apache.commons.lang3.tuple.Pair;
+import org.lwjgl.opengl.GL11;
+
+import igwmod.gui.GuiWiki;
+import igwmod.gui.IPageLink;
+import igwmod.gui.IReservedSpace;
+import igwmod.gui.LocatedStack;
+import igwmod.gui.LocatedString;
+import igwmod.gui.tabs.IWikiTab;
 
 import openmods.igw.api.OpenModsIGWApi;
 
@@ -126,10 +127,10 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 				final String pageName = tab.getPageName().endsWith(".")? tab.getPageName() : (tab.getPageName() + ".");
                 final String localizedLinkName = I18n.format(pageName + id);
 				return new LocatedString(localizedLinkName,
-						provider.getX(numerator),
-						provider.getY(numerator),
-						false,
-						"openmods-igw:tab/" + id);
+                                         provider.getX(numerator),
+                                         provider.getY(numerator),
+                                         false,
+                                         "openmods-igw:tab/" + id);
 			}
 		};
 	}
@@ -142,8 +143,8 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 			public IPageLink createPage(final LinkNumerator numerator) {
 				final int entryId = numerator.getNextItemId();
 				return new LocatedStack(itemStack,
-						provider.getX(entryId),
-						provider.getY(entryId)) {
+                                        provider.getX(entryId),
+                                        provider.getY(entryId)) {
 					@Override
 					public String getLinkAddress() {
 						return location;
@@ -207,8 +208,11 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	public void renderForeground(final GuiWiki gui, final int mouseX, final int mouseY) {
 		if (this.tabIcon == null) return;
 
+        GlStateManager.enableLighting();
+        RenderHelper.enableGUIStandardItemLighting();
+
 		if (this.tabIcon.getItem() instanceof ItemBlock) {
-			gui.renderRotatingBlockIntoGUI(gui, this.tabIcon, 55, 33, 2.8F);
+			gui.renderRotatingBlockIntoGUI(gui, this.tabIcon, 55, 58, 2.8F);
 			return;
 		}
 
@@ -326,7 +330,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 	}
 
 	// TODO Move to custom utility class
-	private static<T> T firstNonNull(final List<T> list) {
+	private static <T> T firstNonNull(final List<T> list) {
 		for (final T obj : list) {
 			if (obj != null) return obj;
 		}
