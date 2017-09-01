@@ -52,6 +52,7 @@ public class GuiFactory implements IModGuiFactory {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation") // How else? Considering I have to implement this method
 	public RuntimeOptionGuiHandler getHandlerFor(final RuntimeOptionCategoryElement element) {
 		return null;
 	}

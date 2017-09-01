@@ -1,22 +1,24 @@
 package openmods.igw.prefab.integration;
 
 import com.google.common.base.Preconditions;
-import igwmod.api.WikiRegistry;
-import igwmod.gui.tabs.IWikiTab;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import org.apache.commons.lang3.tuple.Pair;
+
+import igwmod.api.WikiRegistry;
+import igwmod.gui.tabs.IWikiTab;
+
 import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.integration.IIntegrationExecutor;
 import openmods.igw.api.record.mod.IModEntry;
 import openmods.igw.api.service.IClassProviderService;
 import openmods.igw.prefab.init.PageRegistryHelper;
-import org.apache.commons.lang3.tuple.Pair;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nonnull;
 
 /**
  * Provides a skeletal implementation of the {@link IIntegrationExecutor}
@@ -128,6 +130,7 @@ public abstract class AbstractIntegrationExecutor implements IIntegrationExecuto
 	private void integrateWikiPage0(final List<Pair<String, ItemStack>> itemsAndBlockEntries,
 									final Map<String, ItemStack> allClaimedPages,
 									final Map<String, Class<? extends Entity>> allClaimedEntityPages) throws Exception {
+		//noinspection JavaReflectionMemberAccess
 		final Constructor<?> constructor = this.tabClass.getConstructor(List.class, Map.class, Map.class);
 		final Object tabInstance = constructor.newInstance(itemsAndBlockEntries, allClaimedPages, allClaimedEntityPages);
 		final IWikiTab tab = IWikiTab.class.cast(tabInstance);

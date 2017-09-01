@@ -34,7 +34,8 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
 	private static final String TITLE = OpenModsIGWApi.get().translate("mismatching.title");
 	private static final String MESSAGE_FIRST_PART = OpenModsIGWApi.get().translate("mismatching.message.first");
 	private static final String MESSAGE_SECOND_PART = OpenModsIGWApi.get().translate("mismatching.message.second");
-	private static final String ENTRY_RAW = OpenModsIGWApi.get().translate("mismatching.entry.raw");
+	@SuppressWarnings("SpellCheckingInspection")
+    private static final String ENTRY_RAW = "openmods.igw.mismatching.entry.raw"; // FFS, I18n! Why you break my services??
 	private static final String ENTRY_MORE = OpenModsIGWApi.get().translate("mismatching.entry.more");
 	private static final String BUTTON_TEXT = OpenModsIGWApi.get().translate("button.confirm");
 	private static final int CONFIRM = 0;
@@ -124,12 +125,8 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
 
 	@Nonnull
 	private String format(final IMismatchingModEntry entry) {
-		return String.format(
-				ENTRY_RAW,
-				entry.modId(),
-				entry.version(),
-				entry.installedVersion()
-		);
+	    // TODO Expose this in API
+	    return net.minecraft.client.resources.I18n.format(ENTRY_RAW, entry.modId(), entry.version(), entry.installedVersion());
 	}
 
 	/**

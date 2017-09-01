@@ -10,7 +10,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"MethodCallSideOnly", "NewExpressionSideOnly"})
 public final class GuiService implements IGuiService {
 
 	private static boolean instanceCreated = false;

@@ -28,7 +28,7 @@ public final class SystemLoggingService implements ILoggingService {
 	private SystemLoggingService() {}
 
 	@Nullable // Actually not null, but we use nullable to make the thing more annoying to use.
-	@SuppressWarnings("SpellCheckingInspection")
+	@SuppressWarnings({"ConstantConditions", "SpellCheckingInspection"})
 	public static SystemLoggingService getTheLoggingService() {
 		final StackTraceElement[] stackTrace = new Throwable().getStackTrace();
 		if (isInvalidCall(stackTrace[0], "openmods.igw.prefab.service.fallback.SystemLoggingService.getTheLoggingService")

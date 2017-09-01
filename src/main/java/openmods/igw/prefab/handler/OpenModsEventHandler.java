@@ -2,8 +2,10 @@ package openmods.igw.prefab.handler;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
-
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import igwmod.api.PageChangeEvent;
 import igwmod.api.VariableRetrievalEvent;
@@ -91,6 +93,7 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 		for (int i = 0; i < callStack.length; ++i) {
 			if (i == 0) continue;
 			if (i > 2) break;
+			//noinspection SpellCheckingInspection
 			if (callStack[i].getClassName().startsWith("openmods.igw.")) allowed = true;
 		}
 
@@ -144,9 +147,10 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 			return;
 		}
 
-		// FIXME Deprecation
-		CACHE_BLOCK.put(configId,
-				net.minecraftforge.fml.common.registry.GameRegistry.findBlock(this.modId(), configId) != null);
+		//noinspection ConstantConditions
+		CACHE_BLOCK.put(configId, Block.REGISTRY.getObjectBypass(new ResourceLocation(this.modId(), configId)) != null);
+		// What we are doing right now is bypass the defaulting check (which gives back 'air' instead of 'null',
+        // which may be in fact a perfectly valid value for us.
 
 		event.replacementValue = CACHE_BLOCK.get(configId).toString();
 	}
@@ -170,9 +174,7 @@ public abstract class OpenModsEventHandler implements IEventHandler {
 			return;
 		}
 
-		// FIXME Deprecation
-		CACHE_ITEM.put(configId,
-				net.minecraftforge.fml.common.registry.GameRegistry.findBlock(this.modId(), configId) != null);
+		CACHE_ITEM.put(configId, Item.REGISTRY.getObject(new ResourceLocation(this.modId(), configId)) != null);
 
 		event.replacementValue = CACHE_ITEM.get(configId).toString();
 	}

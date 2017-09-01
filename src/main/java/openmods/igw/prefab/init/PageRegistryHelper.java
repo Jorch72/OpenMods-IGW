@@ -5,10 +5,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
-
-import igwmod.api.WikiRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,10 +14,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
-import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
+
+import igwmod.api.WikiRegistry;
 
 import openmods.api.VisibleForDocumentation;
+import openmods.igw.api.OpenModsIGWApi;
 import openmods.igw.api.init.IPageRegisterer;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public final class PageRegistryHelper implements IPageRegisterer {
 	 *
 	 * @since 1.0
 	 */
-	//@FunctionalInterface // Needed to implement lambdas (and we are not in Java 8...)
+	//@FunctionalInterface
 	private interface Callback<T> {
 		void call(final String modId, final String name, final T object);
 	}
@@ -71,14 +72,14 @@ public final class PageRegistryHelper implements IPageRegisterer {
 	@Override
 	public void loadItems() {
 		// When lambdas would be extremely useful...
-		this.iterateGameData(GameData.getBlockRegistry(), new Callback<Block>() {
+        this.iterateGameData((FMLControlledNamespacedRegistry<Block>) GameRegistry.findRegistry(Block.class), new Callback<Block>() {
 			@Override
 			public void call(final String modId, final String name, final Block object) {
 				getOrCreateModEntry(modId).blocks.put(name, object);
 			}
 		});
 
-		this.iterateGameData(GameData.getItemRegistry(), new Callback<Item>() {
+        this.iterateGameData((FMLControlledNamespacedRegistry<Item>) GameRegistry.findRegistry(Item.class), new Callback<Item>() {
 			@Override
 			public void call(final String modId, final String name, final Item object) {
 				getOrCreateModEntry(modId).items.put(name, object);
@@ -110,6 +111,11 @@ public final class PageRegistryHelper implements IPageRegisterer {
 
 			final Block block = blockEntry.getValue();
 			final Item blockItem = Item.getItemFromBlock(block);
+
+			if (blockItem == null) {
+                OpenModsIGWApi.get().log().severe("ItemBlock 'null' for given block {}! THIS IS A SERIOUS ERROR!", block);
+                continue;
+            }
 
 			final List<ItemStack> stacks = Lists.newArrayList();
 			blockItem.getSubItems(blockItem, CreativeTabs.SEARCH, stacks);
@@ -180,14 +186,7 @@ public final class PageRegistryHelper implements IPageRegisterer {
 
 		for (final ResourceLocation id : ids) {
 			final T obj = registry.getObject(id);
-			if (obj == null) continue;
 
-			/*
-			final Iterator<String> components = splitter.split(id).iterator();
-			final String modId = components.next();
-			final String name = components.next();
-			*/
-			// FIXME Actually test if this works
 			final String modId = id.getResourceDomain();
 			final String name = id.getResourcePath();
 

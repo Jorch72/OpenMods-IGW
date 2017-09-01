@@ -29,14 +29,9 @@ public class WarningGui extends GuiYesNo {
 	private static final int INSTALL = 1;
 	private static final int EXIT_CODE_INTERNAL = "IGW-Hot-Load".hashCode();
 
-	@SuppressWarnings({"WeakerAccess","unused"})
+	@SuppressWarnings({"ConstantConditions", "WeakerAccess","unused"})
 	public WarningGui() {
-		super(null,
-				TITLE,
-				MESSAGE,
-				CONTINUE_BUTTON_LABEL,
-				INSTALL_BUTTON_LABEL,
-				0);
+		super(null, TITLE, MESSAGE, CONTINUE_BUTTON_LABEL, INSTALL_BUTTON_LABEL, 0);
 		OpenModsIGWApi.get().log().info("IGW Mod not found. Gui constructed and shown");
 		shouldShow = false;
 	}

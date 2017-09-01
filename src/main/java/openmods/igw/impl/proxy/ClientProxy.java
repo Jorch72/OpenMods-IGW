@@ -5,18 +5,18 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import openmods.igw.impl.integration.IntegrationHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import igwmod.api.WikiRegistry;
 import igwmod.gui.tabs.IWikiTab;
+import io.netty.util.internal.ThreadLocalRandom;
 
 import openmods.Mods;
 import openmods.config.game.ModStartupHelper;
@@ -31,14 +31,18 @@ import openmods.igw.api.service.IGuiService;
 import openmods.igw.api.service.IService;
 import openmods.igw.api.service.ISystemIdentifierService;
 import openmods.igw.impl.client.GuiOpenEventHandler;
+import openmods.igw.impl.integration.IntegrationHandler;
 import openmods.igw.prefab.record.mod.MismatchingModEntry;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 // TODO Move some things to API (Remove direct implementation imports)
+@SideOnly(Side.CLIENT)
 public class ClientProxy implements IInitProxy, IPageInit {
 
 	/**
@@ -175,14 +179,16 @@ public class ClientProxy implements IInitProxy, IPageInit {
 		if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
 			this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 		}
-		this.mismatchingMods.add(MismatchingModEntry.of("test1", "1.0", "1.1"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test2", "0.0", "0.1"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test3", "v1.0", "v1.1"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test4", "v1.0-stable", "v1.0-beta"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test5", "", "0.7"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test6", "v0.0-stable", "v0.0-beta"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test7", "v1.0-stable", "v0.0-beta"));
-		this.mismatchingMods.add(MismatchingModEntry.of("test8", "$version$", "$version$"));
+
+		final List<String> s = ImmutableList.of("0.1", "0.0", "1.0", "1.1", "stable", "beta", "", "$version$", "random", "-");
+		final Random rng = ThreadLocalRandom.current();
+		final int size = s.size();
+
+		for (int i = 0; i < 10; ++i) {
+		    this.mismatchingMods.add(MismatchingModEntry.of("id" + i, s.get(rng.nextInt(size)), s.get(rng.nextInt(size))));
+        }
+
+		Collections.shuffle(this.mismatchingMods);
 	}
 
 	@Nonnull
