@@ -15,23 +15,23 @@ import javax.annotation.Nonnull;
  */
 public interface IMutableModEntry extends IModEntry {
 
-	/**
-	 * Sets the mod id of the current entry.
-	 *
-	 * @param modId
-	 * 		The new mod id.
-	 *
-	 * @since 1.0
-	 */
-	void modId(@Nonnull final String modId);
+    /**
+     * Sets the mod id of the current entry.
+     *
+     * @param modId
+     *         The new mod id.
+     *
+     * @since 1.0
+     */
+    void modId(@Nonnull final String modId);
 
-	/**
-	 * Sets the version of the current entry.
-	 *
-	 * @param version
-	 * 		The new version.
-	 *
-	 * @since 1.0
-	 */
-	void version(@Nonnull final String version);
+    /**
+     * Sets the version of the current entry.
+     *
+     * @param version
+     *         The new version.
+     *
+     * @since 1.0
+     */
+    void version(@Nonnull final String version);
 }

@@ -17,27 +17,27 @@ import javax.annotation.Nullable;
 // TODO Move to IModEntry instead of String
 public interface IPageInit {
 
-	/**
-	 * Gets the wiki tab registered for the specified mod id.
-	 *
-	 * @param modId
-	 * 		The mod id.
-	 * @return
-	 * 		The specified wiki tab or {@code null} if no one has been registered.
-	 * @since 1.0
-	 */
-	@Nullable
-	igwmod.gui.tabs.IWikiTab getTabForModId(@Nonnull final String modId);
+    /**
+     * Gets the wiki tab registered for the specified mod id.
+     *
+     * @param modId
+     *         The mod id.
+     * @return
+     *         The specified wiki tab or {@code null} if no one has been registered.
+     * @since 1.0
+     */
+    @Nullable
+    igwmod.gui.tabs.IWikiTab getTabForModId(@Nonnull final String modId);
 
-	/**
-	 * Registers the specified wiki tab for the specified mod id.
-	 *
-	 * @param modId
-	 * 		The mod id. It must not be {@code null}.
-	 * @param tab
-	 * 		The tab to register. It must not be {@code null}.
-	 *
-	 * @since 1.0
-	 */
-	void addTabForModId(@Nonnull final String modId, @Nonnull final igwmod.gui.tabs.IWikiTab tab);
+    /**
+     * Registers the specified wiki tab for the specified mod id.
+     *
+     * @param modId
+     *         The mod id. It must not be {@code null}.
+     * @param tab
+     *         The tab to register. It must not be {@code null}.
+     *
+     * @since 1.0
+     */
+    void addTabForModId(@Nonnull final String modId, @Nonnull final igwmod.gui.tabs.IWikiTab tab);
 }

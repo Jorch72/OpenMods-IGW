@@ -21,14 +21,14 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Immutable {
 
-	/**
-	 * Marks if it is possible to switch to a mutable
-	 * version of the same type.
-	 *
-	 * @return
-	 * 		If it is possible to switch to a mutable type.
-	 *
-	 * @since 1.0
-	 */
-	boolean toMutable() default false;
+    /**
+     * Marks if it is possible to switch to a mutable
+     * version of the same type.
+     *
+     * @return
+     *         If it is possible to switch to a mutable type.
+     *
+     * @since 1.0
+     */
+    boolean toMutable() default false;
 }

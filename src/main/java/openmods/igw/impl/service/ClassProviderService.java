@@ -14,49 +14,49 @@ import javax.annotation.Nullable;
 @SuppressWarnings("WeakerAccess")
 public final class ClassProviderService implements IClassProviderService {
 
-	private static boolean instanceCreated = false;
+    private static boolean instanceCreated = false;
 
-	ClassProviderService() {
-		if (instanceCreated) throw new RuntimeException(new IllegalStateException("Instance already created"));
-		instanceCreated = true;
-	}
+    ClassProviderService() {
+        if (instanceCreated) throw new RuntimeException(new IllegalStateException("Instance already created"));
+        instanceCreated = true;
+    }
 
-	@Nonnull
-	@Override
-	public Object mainClass() {
-		return this.mainClassAsInit();
-	}
+    @Nonnull
+    @Override
+    public Object mainClass() {
+        return this.mainClassAsInit();
+    }
 
-	@Nonnull
-	@Override
-	public IInit mainClassAsInit() {
-		return OpenModsIGW.getInstance();
-	}
+    @Nonnull
+    @Override
+    public IInit mainClassAsInit() {
+        return OpenModsIGW.getInstance();
+    }
 
-	@Nullable
-	@Override
-	public IInitProxy proxy() {
-		return OpenModsIGW.proxy();
-	}
+    @Nullable
+    @Override
+    public IInitProxy proxy() {
+        return OpenModsIGW.proxy();
+    }
 
-	@Nonnull
-	@Override
-	public IClassProviderService cast() {
-		return this;
-	}
+    @Nonnull
+    @Override
+    public IClassProviderService cast() {
+        return this;
+    }
 
-	@Nonnull
-	@Override
-	public Class<? extends IConfig> config() {
-		return Config.class;
-	}
+    @Nonnull
+    @Override
+    public Class<? extends IConfig> config() {
+        return Config.class;
+    }
 
-	@Override
-	public void onRegisterPre(@Nullable final IService<IClassProviderService> previous) {}
+    @Override
+    public void onRegisterPre(@Nullable final IService<IClassProviderService> previous) {}
 
-	@Override
-	public void onRegisterPost() {}
+    @Override
+    public void onRegisterPost() {}
 
-	@Override
-	public void onUnregister() {}
+    @Override
+    public void onUnregister() {}
 }

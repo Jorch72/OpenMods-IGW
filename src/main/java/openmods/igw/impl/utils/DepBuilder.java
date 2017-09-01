@@ -4,86 +4,86 @@ package openmods.igw.impl.utils;
 //@Explain("Why??????? Utility class does not necessary mean only utils package!!!")
 public class DepBuilder {
 
-	@SuppressWarnings("unused")
-	public enum Type {
+    @SuppressWarnings("unused")
+    public enum Type {
 
-		REQUIRED_BEFORE(true, Order.BEFORE),
-		REQUIRED_AFTER(true, Order.AFTER),
-		BEFORE(Order.BEFORE),
-		AFTER(Order.AFTER);
+        REQUIRED_BEFORE(true, Order.BEFORE),
+        REQUIRED_AFTER(true, Order.AFTER),
+        BEFORE(Order.BEFORE),
+        AFTER(Order.AFTER);
 
-		private final boolean required;
+        private final boolean required;
 
-		private final Order order;
+        private final Order order;
 
-		Type(final boolean required, final Order order) {
+        Type(final boolean required, final Order order) {
 
-			this.required = required;
-			this.order = order;
-		}
+            this.required = required;
+            this.order = order;
+        }
 
-		Type(final Order order) {
+        Type(final Order order) {
 
-			this(false, order);
-		}
+            this(false, order);
+        }
 
-		@Override
-		public String toString() {
+        @Override
+        public String toString() {
 
-			String builder = "";
-			builder += this.required ? "required-" : "";
-			builder += this.order.toString();
-			return builder;
-		}
-	}
+            String builder = "";
+            builder += this.required ? "required-" : "";
+            builder += this.order.toString();
+            return builder;
+        }
+    }
 
-	private enum Order {
-		BEFORE,
-		AFTER;
+    private enum Order {
+        BEFORE,
+        AFTER;
 
-		@Override
-		public String toString() {
+        @Override
+        public String toString() {
 
-			return this == BEFORE ? "before" : "after";
-		}
-	}
+            return this == BEFORE ? "before" : "after";
+        }
+    }
 
-	private final StringBuilder builder;
+    private final StringBuilder builder;
 
-	public DepBuilder() {
+    public DepBuilder() {
 
-		builder = new StringBuilder();
-		this.addDepWithVersion(DepBuilder.Type.REQUIRED_AFTER, "OpenMods", "$LIB-VERSION$", "$NEXT-LIB-VERSION$");
-	}
+        builder = new StringBuilder();
+        this.addDepWithVersion(DepBuilder.Type.REQUIRED_AFTER, "OpenMods", "$LIB-VERSION$", "$NEXT-LIB-VERSION$");
+    }
 
-	public DepBuilder addDep(Type type, String modId) {
+    public DepBuilder addDep(Type type, String modId) {
 
-		if (!builder.toString().isEmpty()) builder.append(";");
+        if (!builder.toString().isEmpty()) builder.append(";");
 
-		builder.append(type.toString());
-		builder.append(":");
-		builder.append(modId);
+        builder.append(type.toString());
+        builder.append(":");
+        builder.append(modId);
 
-		return this;
-	}
+        return this;
+    }
 
-	@SuppressWarnings("UnusedReturnValue")
-	//@Explain("API method")
-	public DepBuilder addDepWithVersion(Type type, String modId, String minVer, String maxVer) {
+    @SuppressWarnings("UnusedReturnValue")
+    //@Explain("API method")
+    public DepBuilder addDepWithVersion(Type type, String modId, String minVer, String maxVer) {
 
-		this.addDep(type, modId);
-		builder.append("@[");
-		builder.append(minVer);
-		builder.append(",");
-		builder.append(maxVer == null ? " " : maxVer);
-		builder.append(")");
+        this.addDep(type, modId);
+        builder.append("@[");
+        builder.append(minVer);
+        builder.append(",");
+        builder.append(maxVer == null ? " " : maxVer);
+        builder.append(")");
 
-		return this;
-	}
+        return this;
+    }
 
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
 
-		return builder.toString();
-	}
+        return builder.toString();
+    }
 }

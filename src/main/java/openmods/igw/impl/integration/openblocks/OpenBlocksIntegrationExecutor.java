@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
  */
 public final class OpenBlocksIntegrationExecutor extends AbstractIntegrationExecutor {
 
-	public OpenBlocksIntegrationExecutor(@Nonnull final IModEntry entry) {
-		super(entry, OpenBlocksWikiTab.class, OpenBlocksEventHandler.class);
-	}
+    public OpenBlocksIntegrationExecutor(@Nonnull final IModEntry entry) {
+        super(entry, OpenBlocksWikiTab.class, OpenBlocksEventHandler.class);
+    }
 }

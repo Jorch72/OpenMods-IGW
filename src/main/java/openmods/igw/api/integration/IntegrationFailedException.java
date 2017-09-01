@@ -9,18 +9,18 @@ import javax.annotation.Nonnull;
  */
 public class IntegrationFailedException extends RuntimeException {
 
-	/**
-	 * Constructs a new runtime exception with the specified cause and a
-	 * detail message of {@code cause.toString()} (which typically contains
-	 * the class and detail message of {@code cause}).
-	 *
-	 * @param cause
-	 * 		The cause (which is saved for later retrieval by the
-	 * 		{@link #getCause()} method). It must not be {@code null}.
-	 *
-	 * @since 1.0
-	 */
-	public IntegrationFailedException(@Nonnull final Throwable cause) {
-		super(cause);
-	}
+    /**
+     * Constructs a new runtime exception with the specified cause and a
+     * detail message of {@code cause.toString()} (which typically contains
+     * the class and detail message of {@code cause}).
+     *
+     * @param cause
+     *         The cause (which is saved for later retrieval by the
+     *         {@link #getCause()} method). It must not be {@code null}.
+     *
+     * @since 1.0
+     */
+    public IntegrationFailedException(@Nonnull final Throwable cause) {
+        super(cause);
+    }
 }

@@ -19,39 +19,39 @@ import javax.annotation.Nullable;
 @SuppressWarnings("unused")
 public class CommonProxy implements IInitProxy {
 
-	@Override
-	public void construct(final FMLConstructionEvent event) {
-		// Force load services
-		OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class);
-	}
+    @Override
+    public void construct(final FMLConstructionEvent event) {
+        // Force load services
+        OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class);
+    }
 
-	@Override
-	public void preInit(final FMLPreInitializationEvent evt) {}
+    @Override
+    public void preInit(final FMLPreInitializationEvent evt) {}
 
-	@Override
-	public void init(final FMLInitializationEvent evt) {}
+    @Override
+    public void init(final FMLInitializationEvent evt) {}
 
-	@Override
-	@SuppressWarnings("ConstantConditions")
-	public void postInit(final FMLPostInitializationEvent evt) {
-		OpenModsIGWApi.get().log().warning("This mod (%s) is currently not needed on server side.",
-				OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME")
-						.orNull());
-		OpenModsIGWApi.get().log().info("You can install it to force people to use it, though.");
-	}
+    @Override
+    @SuppressWarnings("ConstantConditions")
+    public void postInit(final FMLPostInitializationEvent evt) {
+        OpenModsIGWApi.get().log().warning("This mod (%s) is currently not needed on server side.",
+                OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME")
+                        .orNull());
+        OpenModsIGWApi.get().log().info("You can install it to force people to use it, though.");
+    }
 
-	@Nonnull
-	@Override
-	public List<IMismatchingModEntry> getMismatchingMods() {
-		return Lists.newArrayList();
-	}
+    @Nonnull
+    @Override
+    public List<IMismatchingModEntry> getMismatchingMods() {
+        return Lists.newArrayList();
+    }
 
-	@Nullable
-	@Override
-	public IPageInit asPageInit() {
-		return null;
-	}
+    @Nullable
+    @Override
+    public IPageInit asPageInit() {
+        return null;
+    }
 
-	@Override
-	public void addMismatchingMod(@Nonnull final IMismatchingModEntry entry) {}
+    @Override
+    public void addMismatchingMod(@Nonnull final IMismatchingModEntry entry) {}
 }

@@ -18,73 +18,73 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class WarningGui extends GuiYesNo {
 
-	private static boolean shouldShow;
-	private static final String TITLE = OpenModsIGWApi.get().translate("missing.title");
-	private static final String MESSAGE = OpenModsIGWApi.get().translate("missing.text");
-	private static final String CONTINUE_BUTTON_LABEL = OpenModsIGWApi.get().translate("button.continue");
-	private static final String INSTALL_BUTTON_LABEL = OpenModsIGWApi.get().translate("button.install");
-	private static final String INSTALL_BUTTON_WARNING = OpenModsIGWApi.get().translate("button.install.warning");
-	private static final String IGW_URL = "http://www.curse.com/mc-mods/minecraft/223815-in-game-wiki-mod";
-	private static final int CONTINUE = 0;
-	private static final int INSTALL = 1;
-	private static final int EXIT_CODE_INTERNAL = "IGW-Hot-Load".hashCode();
+    private static boolean shouldShow;
+    private static final String TITLE = OpenModsIGWApi.get().translate("missing.title");
+    private static final String MESSAGE = OpenModsIGWApi.get().translate("missing.text");
+    private static final String CONTINUE_BUTTON_LABEL = OpenModsIGWApi.get().translate("button.continue");
+    private static final String INSTALL_BUTTON_LABEL = OpenModsIGWApi.get().translate("button.install");
+    private static final String INSTALL_BUTTON_WARNING = OpenModsIGWApi.get().translate("button.install.warning");
+    private static final String IGW_URL = "http://www.curse.com/mc-mods/minecraft/223815-in-game-wiki-mod";
+    private static final int CONTINUE = 0;
+    private static final int INSTALL = 1;
+    private static final int EXIT_CODE_INTERNAL = "IGW-Hot-Load".hashCode();
 
-	@SuppressWarnings({"ConstantConditions", "WeakerAccess","unused"})
-	public WarningGui() {
-		super(null, TITLE, MESSAGE, CONTINUE_BUTTON_LABEL, INSTALL_BUTTON_LABEL, 0);
-		OpenModsIGWApi.get().log().info("IGW Mod not found. Gui constructed and shown");
-		shouldShow = false;
-	}
+    @SuppressWarnings({"ConstantConditions", "WeakerAccess","unused"})
+    public WarningGui() {
+        super(null, TITLE, MESSAGE, CONTINUE_BUTTON_LABEL, INSTALL_BUTTON_LABEL, 0);
+        OpenModsIGWApi.get().log().info("IGW Mod not found. Gui constructed and shown");
+        shouldShow = false;
+    }
 
-	@SuppressWarnings("ConstantConditions")
-	public static void markShow() {
-		if (!OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get()
-				.cast().getBooleanConfigConstant("enableMissingModWarningMessage").get()) return;
-		shouldShow = true;
-	}
+    @SuppressWarnings("ConstantConditions")
+    public static void markShow() {
+        if (!OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get()
+                .cast().getBooleanConfigConstant("enableMissingModWarningMessage").get()) return;
+        shouldShow = true;
+    }
 
-	@SuppressWarnings("WeakerAccess")
-	public static boolean shallShow() {
-		return shouldShow;
-	}
+    @SuppressWarnings("WeakerAccess")
+    public static boolean shallShow() {
+        return shouldShow;
+    }
 
-	@Override
-	protected void actionPerformed(final GuiButton button) {
-		switch (button.id) {
-			case CONTINUE:
-				this.mc.displayGuiScreen(null);
-				break;
-			case INSTALL:
-				try {
-					java.awt.Desktop.getDesktop().browse(new java.net.URL(IGW_URL).toURI());
-				} catch (final MalformedURLException e) {
-					throw new RuntimeException(e);
-				} catch (final URISyntaxException e) {
-					throw new RuntimeException(e);
-				} catch (final IOException e) {
-					OpenModsIGWApi.get().log().severe("Why would you run a client in a headless environment?");
-				}
-				// Hot loading is not possible, so...
-				net.minecraftforge.fml.common.FMLCommonHandler.instance().exitJava(EXIT_CODE_INTERNAL, false);
-				break;
-			default:
-				throw new IllegalStateException("Invalid button ID in WarningGui @ OpenMods-IGW");
-		}
-	}
+    @Override
+    protected void actionPerformed(final GuiButton button) {
+        switch (button.id) {
+            case CONTINUE:
+                this.mc.displayGuiScreen(null);
+                break;
+            case INSTALL:
+                try {
+                    java.awt.Desktop.getDesktop().browse(new java.net.URL(IGW_URL).toURI());
+                } catch (final MalformedURLException e) {
+                    throw new RuntimeException(e);
+                } catch (final URISyntaxException e) {
+                    throw new RuntimeException(e);
+                } catch (final IOException e) {
+                    OpenModsIGWApi.get().log().severe("Why would you run a client in a headless environment?");
+                }
+                // Hot loading is not possible, so...
+                net.minecraftforge.fml.common.FMLCommonHandler.instance().exitJava(EXIT_CODE_INTERNAL, false);
+                break;
+            default:
+                throw new IllegalStateException("Invalid button ID in WarningGui @ OpenMods-IGW");
+        }
+    }
 
-	@Override
-	public void drawScreen(final int mouseX, final int mouseY, final float renderPartialTicks) {
-		// We want to add a tooltip to the INSTALL button because it opens
-		// a web page: I think it is better to warn the user.
-		super.drawScreen(mouseX, mouseY, renderPartialTicks);
+    @Override
+    public void drawScreen(final int mouseX, final int mouseY, final float renderPartialTicks) {
+        // We want to add a tooltip to the INSTALL button because it opens
+        // a web page: I think it is better to warn the user.
+        super.drawScreen(mouseX, mouseY, renderPartialTicks);
 
-		final GuiButton btn = this.buttonList.get(INSTALL);
+        final GuiButton btn = this.buttonList.get(INSTALL);
 
-		if (!btn.isMouseOver()) return;
+        if (!btn.isMouseOver()) return;
 
-		final List<String> text = Lists.newArrayList();
-		text.add(INSTALL_BUTTON_WARNING);
-		text.add(IGW_URL);
-		this.drawHoveringText(text, mouseX, mouseY, this.fontRendererObj);
-	}
+        final List<String> text = Lists.newArrayList();
+        text.add(INSTALL_BUTTON_WARNING);
+        text.add(IGW_URL);
+        this.drawHoveringText(text, mouseX, mouseY, this.fontRendererObj);
+    }
 }

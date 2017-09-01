@@ -19,38 +19,38 @@ import javax.annotation.Nonnull;
  */
 public interface IModEntry extends IRecord<IModEntry, IMutableModEntry> {
 
-	/**
-	 * Gets the mod id associated with this mod entry.
-	 *
-	 * @return
-	 * 		The mod id.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	String modId();
+    /**
+     * Gets the mod id associated with this mod entry.
+     *
+     * @return
+     *         The mod id.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    String modId();
 
-	/**
-	 * Gets the mod version associated with this mod entry.
-	 *
-	 * @return
-	 * 		The mod version.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	String version();
+    /**
+     * Gets the mod version associated with this mod entry.
+     *
+     * @return
+     *         The mod version.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    String version();
 
-	/**
-	 * Used to obtain the mod container instance for this specific mod.
-	 *
-	 * @return
-	 * 		An {@link Optional} containing either a mod container or an
-	 * 		{@link Optional#absent() absent} value if no container was
-	 * 		found or if the mod was unavailable.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	Optional<ModContainer> modContainer();
+    /**
+     * Used to obtain the mod container instance for this specific mod.
+     *
+     * @return
+     *         An {@link Optional} containing either a mod container or an
+     *         {@link Optional#absent() absent} value if no container was
+     *         found or if the mod was unavailable.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    Optional<ModContainer> modContainer();
 }

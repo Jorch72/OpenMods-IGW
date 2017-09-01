@@ -22,37 +22,37 @@ import javax.annotation.Nonnull;
  */
 public interface IRecord<I, M> {
 
-	/**
-	 * Gets a new instance of the record as an immutable one.
-	 *
-	 * <p>Implementors of this interface should attempt to
-	 * return a record of their immutable type wrapped in an
-	 * {@link Optional}, if available. If no implementation
-	 * is available, implementors should return
-	 * {@link Optional#absent()}.</p>
-	 *
-	 * @return
-	 * 		A new immutable record instance or an empty optional.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	Optional<I> toImmutable();
+    /**
+     * Gets a new instance of the record as an immutable one.
+     *
+     * <p>Implementors of this interface should attempt to
+     * return a record of their immutable type wrapped in an
+     * {@link Optional}, if available. If no implementation
+     * is available, implementors should return
+     * {@link Optional#absent()}.</p>
+     *
+     * @return
+     *         A new immutable record instance or an empty optional.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    Optional<I> toImmutable();
 
-	/**
-	 * Gets a new instance of the record as a mutable one.
-	 *
-	 * <p>Implementors of this interface should attempt to
-	 * return a record of their mutable type wrapped in an
-	 * {@link Optional}, if available. If no implementation
-	 * is available, implementors should return
-	 * {@link Optional#absent()}.</p>
-	 *
-	 * @return
-	 * 		A new mutable record instance or an empty optional.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	Optional<M> toMutable();
+    /**
+     * Gets a new instance of the record as a mutable one.
+     *
+     * <p>Implementors of this interface should attempt to
+     * return a record of their mutable type wrapped in an
+     * {@link Optional}, if available. If no implementation
+     * is available, implementors should return
+     * {@link Optional#absent()}.</p>
+     *
+     * @return
+     *         A new mutable record instance or an empty optional.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    Optional<M> toMutable();
 }

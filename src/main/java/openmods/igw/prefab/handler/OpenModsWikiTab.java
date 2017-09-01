@@ -109,7 +109,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
                               final IItemPositionProvider positionProvider) {
 
         for (final Pair<String, ItemStack> e : stacks) {
-            this.itemPageFactories.add(createItemPageFactory(e.getLeft(), e.getRight(),	positionProvider));
+            this.itemPageFactories.add(createItemPageFactory(e.getLeft(), e.getRight(),    positionProvider));
         }
 
         this.defaultIcons = allClaimedPages;

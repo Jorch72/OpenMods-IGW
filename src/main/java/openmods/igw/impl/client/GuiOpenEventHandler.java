@@ -16,27 +16,27 @@ import openmods.igw.api.service.IGuiService;
 @SideOnly(Side.CLIENT)
 public class GuiOpenEventHandler {
 
-	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	@SuppressWarnings("unused")
-	//@Explain("Called by Forge, not by us")
-	public void onMainMenuOpen(final GuiOpenEvent event) {
-		if (!(event.getGui() instanceof GuiMainMenu)) return;
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unused")
+    //@Explain("Called by Forge, not by us")
+    public void onMainMenuOpen(final GuiOpenEvent event) {
+        if (!(event.getGui() instanceof GuiMainMenu)) return;
 
-		final IGuiService it = Preconditions.checkNotNull(OpenModsIGWApi.get().serviceManager()
-				.obtainAndCastService(IGuiService.class));
+        final IGuiService it = Preconditions.checkNotNull(OpenModsIGWApi.get().serviceManager()
+                .obtainAndCastService(IGuiService.class));
 
-		if (it.shouldShow(IGuiService.GUIs.WARNING)) {
-			event.setGui(it.<GuiScreen>construct(IGuiService.GUIs.WARNING));
-			return;
-		}
+        if (it.shouldShow(IGuiService.GUIs.WARNING)) {
+            event.setGui(it.<GuiScreen>construct(IGuiService.GUIs.WARNING));
+            return;
+        }
 
-		if (it.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
-			event.setGui(it.<GuiScreen>construct(IGuiService.GUIs.MISMATCHING_MODS, Preconditions.checkNotNull(
-					Preconditions.checkNotNull(
-							OpenModsIGWApi.get().serviceManager().obtainAndCastService(IClassProviderService.class)
-					).proxy()
-			).getMismatchingMods()));
-		}
-	}
+        if (it.shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
+            event.setGui(it.<GuiScreen>construct(IGuiService.GUIs.MISMATCHING_MODS, Preconditions.checkNotNull(
+                    Preconditions.checkNotNull(
+                            OpenModsIGWApi.get().serviceManager().obtainAndCastService(IClassProviderService.class)
+                    ).proxy()
+            ).getMismatchingMods()));
+        }
+    }
 }

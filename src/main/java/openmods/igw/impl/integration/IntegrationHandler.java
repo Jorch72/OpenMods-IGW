@@ -8,39 +8,39 @@ import openmods.igw.api.integration.IntegrationLoader;
 import openmods.igw.impl.integration.openblocks.OpenBlocksIntegrationProvider;
 
 public enum IntegrationHandler {
-	IT;
+    IT;
 
-	private final IntegrationLoader loader;
+    private final IntegrationLoader loader;
 
-	IntegrationHandler() {
-		this.loader = IntegrationLoader.construct();
-	}
+    IntegrationHandler() {
+        this.loader = IntegrationLoader.construct();
+    }
 
-	public void register() {
-		OpenModsIGWApi.get().log().info("Registering provided mod integrations");
+    public void register() {
+        OpenModsIGWApi.get().log().info("Registering provided mod integrations");
 
-		this.register(Mods.OPENBLOCKS, new OpenBlocksIntegrationProvider());
-		// Add other mod support here
+        this.register(Mods.OPENBLOCKS, new OpenBlocksIntegrationProvider());
+        // Add other mod support here
 
-		OpenModsIGWApi.get().log().info("Successfully registered integrations");
-	}
+        OpenModsIGWApi.get().log().info("Successfully registered integrations");
+    }
 
-	private void register(final String modId, final IIntegrationProvider provider) {
-		OpenModsIGWApi.get().log().info("Registering provider (class %s) for mod %s in loader %s", provider.getClass(), modId, this.loader);
-		this.loader.registerIntegration(provider);
-	}
+    private void register(final String modId, final IIntegrationProvider provider) {
+        OpenModsIGWApi.get().log().info("Registering provider (class %s) for mod %s in loader %s", provider.getClass(), modId, this.loader);
+        this.loader.registerIntegration(provider);
+    }
 
-	public void load() {
-		OpenModsIGWApi.get().log().info("Loading external mod integrations");
+    public void load() {
+        OpenModsIGWApi.get().log().info("Loading external mod integrations");
 
-		if (!this.loader.load()) {
-			OpenModsIGWApi.get().log().info("Successfully loaded all integrations");
-		} else {
-			OpenModsIGWApi.get().log().warning("Some errors have occurred while registering integrations");
+        if (!this.loader.load()) {
+            OpenModsIGWApi.get().log().info("Successfully loaded all integrations");
+        } else {
+            OpenModsIGWApi.get().log().warning("Some errors have occurred while registering integrations");
 
-			for (final IntegrationFailedException e : this.loader.getThrownExceptions()) {
-				OpenModsIGWApi.get().log().warning(e, e.getMessage());
-			}
-		}
-	}
+            for (final IntegrationFailedException e : this.loader.getThrownExceptions()) {
+                OpenModsIGWApi.get().log().warning(e, e.getMessage());
+            }
+        }
+    }
 }

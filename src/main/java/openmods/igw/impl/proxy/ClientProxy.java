@@ -45,163 +45,163 @@ import javax.annotation.Nullable;
 @SideOnly(Side.CLIENT)
 public class ClientProxy implements IInitProxy, IPageInit {
 
-	/**
-	 * Keep this to {@code false} unless you want to activate debug mode for the
-	 * mismatching versions GUI.
-	 */
-	private static final boolean MISMATCHING_GUI_DEBUG = false;
+    /**
+     * Keep this to {@code false} unless you want to activate debug mode for the
+     * mismatching versions GUI.
+     */
+    private static final boolean MISMATCHING_GUI_DEBUG = false;
 
-	private boolean abort;
-	private final Map<String, IWikiTab> currentTabs = Maps.newHashMap();
-	private final List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
+    private boolean abort;
+    private final Map<String, IWikiTab> currentTabs = Maps.newHashMap();
+    private final List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
 
-	@Override
-	public void construct(final FMLConstructionEvent event) {
-		// Hot load services
-		this.constantService();
-	}
+    @Override
+    public void construct(final FMLConstructionEvent event) {
+        // Hot load services
+        this.constantService();
+    }
 
-	@Override
-	public void preInit(final FMLPreInitializationEvent evt) {
-		if (!net.minecraftforge.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
-		MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
+    @Override
+    public void preInit(final FMLPreInitializationEvent evt) {
+        if (!net.minecraftforge.fml.common.Loader.isModLoaded(Mods.IGW)) this.abort = true;
+        MinecraftForge.EVENT_BUS.register(new GuiOpenEventHandler());
 
-		new ModStartupHelper(this.constantService().<String>getConstant("MOD_ID").orNull()) {
-			@Override
-			@SuppressWarnings("ConstantConditions")
-			protected void populateConfig(final Configuration cfg) {
-				ConfigProcessing.processAnnotations(
-						ClientProxy.this.constantService().<String>getConstant("MOD_ID").orNull(),
-						cfg,
-						OpenModsIGWApi.get().obtainService(IClassProviderService.class).get().cast().config()
-				);
-			}
-		}.preInit(evt.getSuggestedConfigurationFile());
+        new ModStartupHelper(this.constantService().<String>getConstant("MOD_ID").orNull()) {
+            @Override
+            @SuppressWarnings("ConstantConditions")
+            protected void populateConfig(final Configuration cfg) {
+                ConfigProcessing.processAnnotations(
+                        ClientProxy.this.constantService().<String>getConstant("MOD_ID").orNull(),
+                        cfg,
+                        OpenModsIGWApi.get().obtainService(IClassProviderService.class).get().cast().config()
+                );
+            }
+        }.preInit(evt.getSuggestedConfigurationFile());
 
-		// Join beta program before handling registration: some integrations may, in fact, be supported
-		// only in a beta stage
-		this.attemptToJoinBetaProgram();
+        // Join beta program before handling registration: some integrations may, in fact, be supported
+        // only in a beta stage
+        this.attemptToJoinBetaProgram();
 
-		// Register all the various integrations and get ready to load them
-		IntegrationHandler.IT.register();
-	}
+        // Register all the various integrations and get ready to load them
+        IntegrationHandler.IT.register();
+    }
 
-	// This allows us to use return statements without the possibility to see our
-	// code not run because of special conditions (aka Developer system)
-	private void attemptToJoinBetaProgram() {
-		if (this.constantService().getBooleanConfigConstant("joinBetaProgram").get()) {
-			final ISystemIdentifierService service = Preconditions.checkNotNull(
-					OpenModsIGWApi.get().serviceManager().obtainAndCastService(ISystemIdentifierService.class)
-			);
+    // This allows us to use return statements without the possibility to see our
+    // code not run because of special conditions (aka Developer system)
+    private void attemptToJoinBetaProgram() {
+        if (this.constantService().getBooleanConfigConstant("joinBetaProgram").get()) {
+            final ISystemIdentifierService service = Preconditions.checkNotNull(
+                    OpenModsIGWApi.get().serviceManager().obtainAndCastService(ISystemIdentifierService.class)
+            );
 
-			// If the current system is a developer one, skip the addition: that would be pretty dumb otherwise
-			if (service.getSystemType() == ISystemIdentifierService.SystemType.DEVELOPER) return;
+            // If the current system is a developer one, skip the addition: that would be pretty dumb otherwise
+            if (service.getSystemType() == ISystemIdentifierService.SystemType.DEVELOPER) return;
 
-			service.switchCurrentType(ISystemIdentifierService.SystemType.BETA_TESTER);
-			OpenModsIGWApi.get().log().info("Successfully joined beta program for OpenMods-IGW");
-		}
-	}
+            service.switchCurrentType(ISystemIdentifierService.SystemType.BETA_TESTER);
+            OpenModsIGWApi.get().log().info("Successfully joined beta program for OpenMods-IGW");
+        }
+    }
 
-	@Override
-	public void init(final FMLInitializationEvent evt) {
-		if (this.abort) this.guiService().show(IGuiService.GUIs.WARNING);
-	}
+    @Override
+    public void init(final FMLInitializationEvent evt) {
+        if (this.abort) this.guiService().show(IGuiService.GUIs.WARNING);
+    }
 
-	@Override
-	public void postInit(final FMLPostInitializationEvent evt) {
-		if (this.abort) return;
+    @Override
+    public void postInit(final FMLPostInitializationEvent evt) {
+        if (this.abort) return;
 
-		this.registerOwnWikiTab();
-		this.handleModIntegrations();
-	}
+        this.registerOwnWikiTab();
+        this.handleModIntegrations();
+    }
 
-	@Nonnull
-	@Override
-	public List<IMismatchingModEntry> getMismatchingMods() {
-		return ImmutableList.copyOf(this.mismatchingMods);
-	}
+    @Nonnull
+    @Override
+    public List<IMismatchingModEntry> getMismatchingMods() {
+        return ImmutableList.copyOf(this.mismatchingMods);
+    }
 
-	@Nullable
-	@Override
-	public IPageInit asPageInit() {
-		return this;
-	}
+    @Nullable
+    @Override
+    public IPageInit asPageInit() {
+        return this;
+    }
 
-	@Override
-	public void addMismatchingMod(@Nonnull final IMismatchingModEntry entry) {
-		this.mismatchingMods.add(entry);
-	}
+    @Override
+    public void addMismatchingMod(@Nonnull final IMismatchingModEntry entry) {
+        this.mismatchingMods.add(entry);
+    }
 
-	@Nullable
-	@Override
-	public IWikiTab getTabForModId(@Nonnull final String modId) {
-		return this.currentTabs.get(modId);
-	}
+    @Nullable
+    @Override
+    public IWikiTab getTabForModId(@Nonnull final String modId) {
+        return this.currentTabs.get(modId);
+    }
 
-	@Override
-	public void addTabForModId(@Nonnull final String modId, @Nonnull final IWikiTab tab) {
-		Preconditions.checkNotNull(modId, "Mod ID must not be null");
-		Preconditions.checkNotNull(tab, "Tab must not be null");
-		this.currentTabs.put(modId, tab);
-	}
+    @Override
+    public void addTabForModId(@Nonnull final String modId, @Nonnull final IWikiTab tab) {
+        Preconditions.checkNotNull(modId, "Mod ID must not be null");
+        Preconditions.checkNotNull(tab, "Tab must not be null");
+        this.currentTabs.put(modId, tab);
+    }
 
-	private void registerOwnWikiTab() {
-		final IWikiTab tab = new openmods.igw.impl.client.wiki.OpenModsIgwWikiTab();
-		this.currentTabs.put(this.constantService().<String>getConstant("MOD_ID").orElseThrow(), tab);
-		WikiRegistry.registerWikiTab(tab);
-	}
+    private void registerOwnWikiTab() {
+        final IWikiTab tab = new openmods.igw.impl.client.wiki.OpenModsIgwWikiTab();
+        this.currentTabs.put(this.constantService().<String>getConstant("MOD_ID").orElseThrow(), tab);
+        WikiRegistry.registerWikiTab(tab);
+    }
 
-	private void handleModIntegrations() {
-		// Load all the integrations registered previously
-		IntegrationHandler.IT.load();
+    private void handleModIntegrations() {
+        // Load all the integrations registered previously
+        IntegrationHandler.IT.load();
 
-		// Show mismatching mod screen if some integrations have reported mismatching versions
-		this.checkForReportedMismatchingMods();
-	}
+        // Show mismatching mod screen if some integrations have reported mismatching versions
+        this.checkForReportedMismatchingMods();
+    }
 
-	private void checkForReportedMismatchingMods() {
-		if (this.mismatchingMods.isEmpty()) OpenModsIGWApi.get().log().info("No mismatching mod versions found");
-		else if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
+    private void checkForReportedMismatchingMods() {
+        if (this.mismatchingMods.isEmpty()) OpenModsIGWApi.get().log().info("No mismatching mod versions found");
+        else if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
 
-		// Make sure to open the GUI if we are running in debug mode
-		// And also, let's add some more entries to the list.
-		final Optional<IService<ISystemIdentifierService>> id = OpenModsIGWApi.get()
-				.obtainService(ISystemIdentifierService.class);
-		if (!id.isPresent()) throw new IllegalStateException("ISystemIdentifierService");
-		final ISystemIdentifierService it = id.get().cast();
-		if (MISMATCHING_GUI_DEBUG || it.isSystemLevelEnough(it.populate(), ISystemIdentifierService.SystemType.DEVELOPER)) {
-			this.debugModVersionsCheck();
-			OpenModsIGWApi.get().log().warning("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
-		}
-	}
+        // Make sure to open the GUI if we are running in debug mode
+        // And also, let's add some more entries to the list.
+        final Optional<IService<ISystemIdentifierService>> id = OpenModsIGWApi.get()
+                .obtainService(ISystemIdentifierService.class);
+        if (!id.isPresent()) throw new IllegalStateException("ISystemIdentifierService");
+        final ISystemIdentifierService it = id.get().cast();
+        if (MISMATCHING_GUI_DEBUG || it.isSystemLevelEnough(it.populate(), ISystemIdentifierService.SystemType.DEVELOPER)) {
+            this.debugModVersionsCheck();
+            OpenModsIGWApi.get().log().warning("Added debug entries to Mismatching Mods GUI"); // So nobody freaks out (and why would a dev?)
+        }
+    }
 
-	private void debugModVersionsCheck() {
-		if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
-			this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
-		}
-
-		final List<String> s = ImmutableList.of("0.1", "0.0", "1.0", "1.1", "stable", "beta", "", "$version$", "random", "-");
-		final Random rng = ThreadLocalRandom.current();
-		final int size = s.size();
-
-		for (int i = 0; i < 10; ++i) {
-		    this.mismatchingMods.add(MismatchingModEntry.of("id" + i, s.get(rng.nextInt(size)), s.get(rng.nextInt(size))));
+    private void debugModVersionsCheck() {
+        if (!this.guiService().shouldShow(IGuiService.GUIs.MISMATCHING_MODS)) {
+            this.guiService().show(IGuiService.GUIs.MISMATCHING_MODS);
         }
 
-		Collections.shuffle(this.mismatchingMods);
-	}
+        final List<String> s = ImmutableList.of("0.1", "0.0", "1.0", "1.1", "stable", "beta", "", "$version$", "random", "-");
+        final Random rng = ThreadLocalRandom.current();
+        final int size = s.size();
 
-	@Nonnull
-	private IConstantRetrieverService constantService() {
-		return Preconditions.checkNotNull(
-				OpenModsIGWApi.get().serviceManager().obtainAndCastService(IConstantRetrieverService.class)
-		);
-	}
+        for (int i = 0; i < 10; ++i) {
+            this.mismatchingMods.add(MismatchingModEntry.of("id" + i, s.get(rng.nextInt(size)), s.get(rng.nextInt(size))));
+        }
 
-	@Nonnull
-	private IGuiService guiService() {
-		return Preconditions.checkNotNull(
-				OpenModsIGWApi.get().serviceManager().obtainAndCastService(IGuiService.class)
-		);
-	}
+        Collections.shuffle(this.mismatchingMods);
+    }
+
+    @Nonnull
+    private IConstantRetrieverService constantService() {
+        return Preconditions.checkNotNull(
+                OpenModsIGWApi.get().serviceManager().obtainAndCastService(IConstantRetrieverService.class)
+        );
+    }
+
+    @Nonnull
+    private IGuiService guiService() {
+        return Preconditions.checkNotNull(
+                OpenModsIGWApi.get().serviceManager().obtainAndCastService(IGuiService.class)
+        );
+    }
 }

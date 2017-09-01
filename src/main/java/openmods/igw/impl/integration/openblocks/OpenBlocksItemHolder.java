@@ -9,9 +9,9 @@ import openmods.Mods;
 @SuppressWarnings("WeakerAccess")
 public final class OpenBlocksItemHolder {
 
-	@GameRegistry.ObjectHolder("flag")
-	public static final Block FLAG = null;
+    @GameRegistry.ObjectHolder("flag")
+    public static final Block FLAG = null;
 
-	@GameRegistry.ObjectHolder("canvasglass")
-	public static final Block GLASS_CANVAS = null;
+    @GameRegistry.ObjectHolder("canvasglass")
+    public static final Block GLASS_CANVAS = null;
 }

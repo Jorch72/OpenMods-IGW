@@ -14,15 +14,15 @@ import javax.annotation.Nonnull;
  */
 public final class OpenBlocksIntegrationProvider extends AbstractIntegrationProvider {
 
-	private static final String SUPPORTED_OPEN_BLOCKS_VERSION = "1.6";
+    private static final String SUPPORTED_OPEN_BLOCKS_VERSION = "1.6";
 
-	public OpenBlocksIntegrationProvider() {
-		super(ModEntry.of(Mods.OPENBLOCKS, SUPPORTED_OPEN_BLOCKS_VERSION));
-	}
+    public OpenBlocksIntegrationProvider() {
+        super(ModEntry.of(Mods.OPENBLOCKS, SUPPORTED_OPEN_BLOCKS_VERSION));
+    }
 
-	@Nonnull
-	@Override
-	public IIntegrationExecutor getExecutor() {
-		return new OpenBlocksIntegrationExecutor(this.getModEntry());
-	}
+    @Nonnull
+    @Override
+    public IIntegrationExecutor getExecutor() {
+        return new OpenBlocksIntegrationExecutor(this.getModEntry());
+    }
 }

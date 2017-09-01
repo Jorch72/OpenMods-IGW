@@ -23,68 +23,68 @@ import javax.annotation.Nullable;
  */
 public interface IClassProviderService extends IService<IClassProviderService> {
 
-	/**
-	 * Gets the main mod class.
-	 *
-	 * <p>In order to not rely directly on implementation,
-	 * this method returns an Object. In order to use this
-	 * class you either need reflection to inspect the various
-	 * methods or rely directly on implementation.</p>
-	 *
-	 * <p>Before calling this method, please try to use
-	 * {@link #mainClassAsInit()} to obtain an instance
-	 * of the main class as a {@link IInit} interface
-	 * implementation.</p>
-	 *
-	 * @return
-	 * 		The mod's main class.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	Object mainClass();
+    /**
+     * Gets the main mod class.
+     *
+     * <p>In order to not rely directly on implementation,
+     * this method returns an Object. In order to use this
+     * class you either need reflection to inspect the various
+     * methods or rely directly on implementation.</p>
+     *
+     * <p>Before calling this method, please try to use
+     * {@link #mainClassAsInit()} to obtain an instance
+     * of the main class as a {@link IInit} interface
+     * implementation.</p>
+     *
+     * @return
+     *         The mod's main class.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    Object mainClass();
 
-	/**
-	 * Gets the main mod class as an instance of {@link IInit}.
-	 *
-	 * <p>You should try to use this method before relying on
-	 * {@link #mainClass()} or reflection.</p>
-	 *
-	 * @return
-	 * 		The mod's main class.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	IInit mainClassAsInit();
+    /**
+     * Gets the main mod class as an instance of {@link IInit}.
+     *
+     * <p>You should try to use this method before relying on
+     * {@link #mainClass()} or reflection.</p>
+     *
+     * @return
+     *         The mod's main class.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    IInit mainClassAsInit();
 
-	/**
-	 * Gets the mod's proxy instance.
-	 *
-	 * <p>The instance is automatically populated by Forge
-	 * on mod initialization. Attempting to get it before
-	 * then is going to lead to a NullPointerException.</p>
-	 *
-	 * @return
-	 * 		The mod's currently active proxy.
-	 *
-	 * @since 1.0
-	 */
-	@Nullable
-	IInitProxy proxy();
+    /**
+     * Gets the mod's proxy instance.
+     *
+     * <p>The instance is automatically populated by Forge
+     * on mod initialization. Attempting to get it before
+     * then is going to lead to a NullPointerException.</p>
+     *
+     * @return
+     *         The mod's currently active proxy.
+     *
+     * @since 1.0
+     */
+    @Nullable
+    IInitProxy proxy();
 
-	/**
-	 * Gets the main configuration class.
-	 *
-	 * <p>At the moment, you need to rely on services and/or implementation
-	 * to do something with config values. Have a look at
-	 * {@link IConstantRetrieverService} for more information.</p>
-	 *
-	 * @return
-	 * 		The mod's config class.
-	 *
-	 * @since 1.0
-	 */
-	@Nonnull
-	Class<? extends IConfig> config();
+    /**
+     * Gets the main configuration class.
+     *
+     * <p>At the moment, you need to rely on services and/or implementation
+     * to do something with config values. Have a look at
+     * {@link IConstantRetrieverService} for more information.</p>
+     *
+     * @return
+     *         The mod's config class.
+     *
+     * @since 1.0
+     */
+    @Nonnull
+    Class<? extends IConfig> config();
 }
