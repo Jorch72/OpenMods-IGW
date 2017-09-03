@@ -94,6 +94,20 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
     private static final RenderItem RENDERER = Minecraft.getMinecraft().getRenderItem();
 
+    private static final int ROTATING_BLOCK_X = 55;
+    private static final int ROTATING_BLOCK_Y = 58;
+    private static final float ROTATING_BLOCK_SCALE = 2.8F;
+
+    private static final int STATIC_ITEM_X = 49;
+    private static final int STATIC_ITEM_Y = 20;
+    private static final double STATIC_ITEM_SCALE = 2.2D;
+
+    private static final float ENTITY_Z_TRANSLATION = 50.0F;
+    private static final float ENTITY_ROTATION_ANGLE_FIRST = 180.0F;
+    private static final float ENTITY_ROTATION_ANGLE_SECOND = 30.0F;
+    private static final float ENTITY_ROTATION_ANGLE_LIGHTNING = 135.0F;
+    private static final float ENTITY_PLAYER_VIEW_HEIGHT = 180.0F;
+
     private final List<IPageLinkFactory> staticPageFactories = Lists.newArrayList();
     private final List<IPageLinkFactory> itemPageFactories = Lists.newArrayList();
     private final Map<String, ItemStack> defaultIcons;
@@ -116,7 +130,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
         this.defaultEntities = allClaimedEntities;
     }
 
-    @SuppressWarnings({"MethodCallSideOnly", "NewExpressionSideOnly"})
+    @SuppressWarnings({"MethodCallSideOnly", "NewExpressionSideOnly", "SameParameterValue"})
     protected static IPageLinkFactory createStaticPageFactory(final String id,
                                                               final OpenModsWikiTab tab,
                                                               final IStaticPagePositionProvider provider) {
@@ -212,13 +226,13 @@ public abstract class OpenModsWikiTab implements IWikiTab {
         RenderHelper.enableGUIStandardItemLighting();
 
         if (this.tabIcon.getItem() instanceof ItemBlock) {
-            gui.renderRotatingBlockIntoGUI(gui, this.tabIcon, 55, 58, 2.8F);
+            gui.renderRotatingBlockIntoGUI(gui, this.tabIcon, ROTATING_BLOCK_X, ROTATING_BLOCK_Y, ROTATING_BLOCK_SCALE);
             return;
         }
 
         GL11.glPushMatrix();
-        GL11.glTranslated(49, 20, 0);
-        GL11.glScaled(2.2, 2.2, 2.2);
+        GL11.glTranslated(STATIC_ITEM_X, STATIC_ITEM_Y, 0);
+        GL11.glScaled(STATIC_ITEM_SCALE, STATIC_ITEM_SCALE, STATIC_ITEM_SCALE);
         RENDERER.renderItemAndEffectIntoGUI(this.tabIcon, 0, 0);
         GL11.glPopMatrix();
     }
@@ -283,16 +297,16 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
         GL11.glPushMatrix();
-        GL11.glTranslatef(x, y, 50.0F);
+        GL11.glTranslatef(x, y, ENTITY_Z_TRANSLATION);
         GL11.glScalef(-scale, scale, scale);
-        GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-        GL11.glRotatef(30.0F, 1.0F, 0.0F, 0.0F);
-        GL11.glRotatef(135.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(ENTITY_ROTATION_ANGLE_FIRST, 0.0F, 0.0F, 1.0F);
+        GL11.glRotatef(ENTITY_ROTATION_ANGLE_SECOND, 1.0F, 0.0F, 0.0F);
+        GL11.glRotatef(ENTITY_ROTATION_ANGLE_LIGHTNING, 0.0F, 1.0F, 0.0F);
         RenderHelper.enableStandardItemLighting();
-        GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(-ENTITY_ROTATION_ANGLE_LIGHTNING, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(-igwmod.TickHandler.ticksExisted, 0.0F, 1.0F, 0.0F);
         GL11.glTranslatef(0.0F, (float) this.tabEntity.getYOffset(), 0.0F);
-        Minecraft.getMinecraft().getRenderManager().playerViewY = 180.0F;
+        Minecraft.getMinecraft().getRenderManager().playerViewY = ENTITY_PLAYER_VIEW_HEIGHT;
         Minecraft.getMinecraft().getRenderManager().doRenderEntity(this.tabEntity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
         GL11.glPopMatrix();
         RenderHelper.disableStandardItemLighting();

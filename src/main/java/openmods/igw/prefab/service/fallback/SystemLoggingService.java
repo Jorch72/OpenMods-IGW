@@ -25,18 +25,25 @@ public final class SystemLoggingService implements ILoggingService {
 
     private static final SystemLoggingService THE_LOGGING_SERVICE = new SystemLoggingService();
 
+    private static final byte STACK_IDX_THIS = 0;
+    private static final byte STACK_IDX_INVOKE = 3;
+    private static final byte STACK_IDX_API_INIT = 5;
+    private static final byte STACK_IDX_CONSTRUCT = 7;
+    private static final byte STACK_IDX_STATE = 13;
+
     private SystemLoggingService() {}
 
-    @Nullable // Actually not null, but we use nullable to make the thing more annoying to use.
-    @SuppressWarnings({"ConstantConditions", "SpellCheckingInspection"})
+    @Nonnull
+    @SuppressWarnings({"SpellCheckingInspection", "UnusedReturnValue"})
     public static SystemLoggingService getTheLoggingService() {
         final StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-        if (isInvalidCall(stackTrace[0], "openmods.igw.prefab.service.fallback.SystemLoggingService.getTheLoggingService")
-                || isInvalidCall(stackTrace[3], "sun.reflect.DelegatingMethodAccessorImpl.invoke")
-                || isInvalidCall(stackTrace[5], "openmods.igw.api.OpenModsIGWApi.<clinit>")
-                || isInvalidCall(stackTrace[7], "openmods.igw.impl.proxy.ClientProxy.construct")
-                || isInvalidCall(stackTrace[13], "net.minecraftforge.fml.common.FMLModContainer.handleModStateEvent"))
+        if (isInvalidCall(stackTrace[STACK_IDX_THIS], "openmods.igw.prefab.service.fallback.SystemLoggingService.getTheLoggingService")
+                || isInvalidCall(stackTrace[STACK_IDX_INVOKE], "sun.reflect.DelegatingMethodAccessorImpl.invoke")
+                || isInvalidCall(stackTrace[STACK_IDX_API_INIT], "openmods.igw.api.OpenModsIGWApi.<clinit>")
+                || isInvalidCall(stackTrace[STACK_IDX_CONSTRUCT], "openmods.igw.impl.proxy.ClientProxy.construct")
+                || isInvalidCall(stackTrace[STACK_IDX_STATE], "net.minecraftforge.fml.common.FMLModContainer.handleModStateEvent")) {
             throw new SecurityException("Unsafe call to " + SystemLoggingService.class);
+        }
         return THE_LOGGING_SERVICE;
     }
 

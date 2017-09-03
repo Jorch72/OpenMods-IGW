@@ -143,6 +143,7 @@ public abstract class AbstractIntegrationProvider implements IIntegrationProvide
      * @since 1.0
      */
     @Nonnull
+    @SuppressWarnings("WeakerAccess")
     protected ScanResult checkSpecialConditions() {
         return ScanResult.SAFE_TO_LOAD;
     }

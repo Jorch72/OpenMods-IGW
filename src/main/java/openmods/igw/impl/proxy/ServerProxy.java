@@ -6,24 +6,20 @@ import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import openmods.igw.api.OpenModsIGWApi;
+import openmods.Log;
 import openmods.igw.api.init.IPageInit;
 import openmods.igw.api.proxy.IInitProxy;
 import openmods.igw.api.record.mod.IMismatchingModEntry;
-import openmods.igw.api.service.IConstantRetrieverService;
 
 import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
-public class CommonProxy implements IInitProxy {
+public class ServerProxy implements IInitProxy {
 
     @Override
-    public void construct(final FMLConstructionEvent event) {
-        // Force load services
-        OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class);
-    }
+    public void construct(final FMLConstructionEvent event) {}
 
     @Override
     public void preInit(final FMLPreInitializationEvent evt) {}
@@ -32,12 +28,11 @@ public class CommonProxy implements IInitProxy {
     public void init(final FMLInitializationEvent evt) {}
 
     @Override
-    @SuppressWarnings("ConstantConditions")
     public void postInit(final FMLPostInitializationEvent evt) {
-        OpenModsIGWApi.get().log().warning("This mod (%s) is currently not needed on server side.",
-                OpenModsIGWApi.get().obtainService(IConstantRetrieverService.class).get().cast().getConstant("NAME")
-                        .orNull());
-        OpenModsIGWApi.get().log().info("You can install it to force people to use it, though.");
+        // Use direct implementation imports mainly because we do not want to crash with client-side only services
+        // TODO Split client-side services and load them only through ClientProxy
+        Log.warn("This mod is currently not needed on server side.");
+        Log.warn("You can install it to force people to use it, though.");
     }
 
     @Nonnull

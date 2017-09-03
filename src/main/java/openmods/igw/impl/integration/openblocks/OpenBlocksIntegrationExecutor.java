@@ -10,9 +10,9 @@ import javax.annotation.Nonnull;
  *
  * @since 1.0
  */
-public final class OpenBlocksIntegrationExecutor extends AbstractIntegrationExecutor {
+final class OpenBlocksIntegrationExecutor extends AbstractIntegrationExecutor {
 
-    public OpenBlocksIntegrationExecutor(@Nonnull final IModEntry entry) {
+    OpenBlocksIntegrationExecutor(@Nonnull final IModEntry entry) {
         super(entry, OpenBlocksWikiTab.class, OpenBlocksEventHandler.class);
     }
 }

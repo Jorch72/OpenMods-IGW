@@ -36,11 +36,11 @@ public abstract class OpenModsEventHandler implements IEventHandler {
             this.id = this.toString().toLowerCase(java.util.Locale.ENGLISH).trim();
         }
 
-        public final String id() {
+        final String id() {
             return this.id;
         }
 
-        public static VariableType construct(final String from) {
+        static VariableType construct(final String from) {
 
             final String[] parts = from.substring(1).split(java.util.regex.Pattern.quote("@"));
 

@@ -57,6 +57,7 @@ public final class PageRegistryHelper implements IPageRegisterer {
      *
      * @since 1.0
      */
+    @SuppressWarnings("WeakerAccess")
     private static class ModEntry {
         public final Map<String, Item> items = Maps.newHashMap();
         public final Map<String, Block> blocks = Maps.newHashMap();

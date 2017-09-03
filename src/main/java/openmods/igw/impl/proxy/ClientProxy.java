@@ -56,9 +56,10 @@ public class ClientProxy implements IInitProxy, IPageInit {
     private final List<IMismatchingModEntry> mismatchingMods = Lists.newArrayList();
 
     @Override
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void construct(final FMLConstructionEvent event) {
         // Hot load services
-        this.constantService();
+        OpenModsIGWApi.get().toString();
     }
 
     @Override

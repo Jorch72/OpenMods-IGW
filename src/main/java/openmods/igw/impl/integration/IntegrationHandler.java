@@ -25,6 +25,7 @@ public enum IntegrationHandler {
         OpenModsIGWApi.get().log().info("Successfully registered integrations");
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void register(final String modId, final IIntegrationProvider provider) {
         OpenModsIGWApi.get().log().info("Registering provider (class %s) for mod %s in loader %s", provider.getClass(), modId, this.loader);
         this.loader.registerIntegration(provider);

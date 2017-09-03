@@ -45,8 +45,7 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
          * @author TheSilkMiner
          * @since 1.0
          */
-        @SuppressWarnings("WeakerAccess")
-        public interface Supplier<T> {
+        interface Supplier<T> {
 
             /**
              * Gets an instance of the appropriate type.
@@ -62,7 +61,7 @@ public interface IConstantRetrieverService extends IService<IConstantRetrieverSe
 
         private final T constant;
 
-        public ConfigConstantWrapper(@Nullable final T value) {
+        protected ConfigConstantWrapper(@Nullable final T value) {
             this.constant = value;
         }
 

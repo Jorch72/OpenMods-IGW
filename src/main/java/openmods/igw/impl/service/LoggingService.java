@@ -114,7 +114,7 @@ public final class LoggingService implements ILoggingService {
         try {
             lvl = org.apache.logging.log4j.Level.valueOf(levelName);
         } catch (final IllegalArgumentException e) {
-            throw new InvalidLevelException("An error has occurred while converting to apache level", e);
+            throw new InvalidLevelException("An error has occurred while converting to apache level\nValue given: " + level.name(), e);
         }
         this.cache.put(level, lvl);
         return lvl;

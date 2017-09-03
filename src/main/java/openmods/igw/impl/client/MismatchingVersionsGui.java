@@ -111,7 +111,7 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
             currentJump += LIST_Y_JUMP;
 
             if (currentJump >= this.height - DISTANCE_FROM_BOTTOM && i != (this.mismatchingMods.size() - 1)) {
-                toDraw += this.handleMore(ENTRY_MORE);
+                toDraw += this.handleMore();
                 flag = false;
             }
 
@@ -135,15 +135,14 @@ public class MismatchingVersionsGui extends GuiErrorScreen {
      * <p>If this operation is not performed, the string will be drawn incorrectly:
      * the shadow will appear normal, while the full string will be drawn in bold.</p>
      *
-     * @param translation
-     *     The translated text to check.
      * @return
-     *     The passed in text if it ends with {@code §r}, or the translated text with
+     *     The more string if it ends with {@code §r}, or the more string with
      *     the formatting code appended if it doesn't.
      */
     @Nonnull
-    private String handleMore(final String translation) {
-        return translation.endsWith("\u00A7r")? translation : translation + "\u00A7r";
+    private String handleMore() {
+        final String more = MismatchingVersionsGui.ENTRY_MORE;
+        return more.endsWith("\u00A7r")? more : more + "\u00A7r";
     }
 
     /**
