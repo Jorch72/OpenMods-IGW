@@ -1,16 +1,16 @@
 language: java
 jdk:
+  - oraclejdk9
   - oraclejdk8
   - openjdk8
-  - oraclejdk7
   - openjdk7
-# Goodbye Java 6
-#  - openjdk6
+# Not using openjdk6 to test because... well... it simply destroys the build for no apparent reason
 sudo: required
 dist: trusty
 addons:
   hostname: OpenMods-Host
 before_install:
+  - echo === SETTING ENVIRONMENT UP ===
   - echo Before install...
   - echo Updating submodules...
   - git submodule update --init --recursive
@@ -20,12 +20,12 @@ before_install:
   - echo Downloading Gradle...
   - ./gradlew
   - ./gradlew -version
-  - ./gradlew setupCIWorkspace
 install:
   - echo Install...
+  - ./gradlew setupCIWorkspace
   - ./gradlew assemble
 before_script:
-  - echo Starting building process...
+  - echo === CHECKING ===
   - echo Before script...
   - echo Printing dependencies...
   - ./gradlew dependencies
@@ -33,25 +33,19 @@ script:
   - echo Script...
   - ./gradlew check --info
 after_success:
-  - echo Build successful
+  - echo === BUILD SUCCESSFUL ===
   - echo Now building the artifacts
-  - ./gradlew build --info
-  - echo Deploying artifact
-  - echo == Insert here artifact deploy ==
+  - ./gradlew build
 after_failure:
-  - echo Build failed
-  - echo See the log for errors
-  - echo Deploying build log...
-  - echo == Insert here log deploy ==
+  - echo === BUILD FAILED ===
 after_script:
   - echo After script...
-  - echo == Insert cleanup if needed ==
-  - echo Build terminated.
+  - echo === BUILD TERMINATED ===
 notifications:
   email:
     recipients:
-      - sir.karati@outlook.com
-    on_success: always
+      - thesilkminer@outlook.com
+    on_success: change
     on_failure: always
   slack:
     on_success: always
