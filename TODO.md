@@ -3,11 +3,6 @@ List of things to complete before version **1.0**<br />
 **Note:** the items on this list are ordered by priority.<br />
 **Note:** could this be moved to "Projects" on GitHub?
 
-**Current progress (including sub-tasks):** `19`/138 (`14`%)<br />
-**Current progress (excluding sub-tasks):** `2`/17 (`12`%)<br />
-**Current progress (wiki entries):** `16`/101 (`16`%)<br />
-**Current progress (personal judgement):** Early alpha - Wondering if 1.10.X is a valid move right now
-
 - [ ] Javadoc
   - [ ] API
   - [ ] Implementation (?)
@@ -105,15 +100,12 @@ List of things to complete before version **1.0**<br />
   - [ ] Mini Me
 - [ ] Add other bits and pieces
   - [ ] About page
-    - [ ] Add locale to en_US.lang
-	- [ ] Add documentation
   - [ ] B Key (rewrite)
   - [ ] Credits (rewrite)
   - [ ] Enchantments (rewrite)
   - [ ] OB Utilities (rewrite)
-  - [ ] Maybe pages
-    - [ ] Changelog (try to implement) (maybe just for beta testers and higher, for now)
-	- [ ] Contacts (if **@boq** wants, replace either Changelog or B Key `->` OB Utilities)
+  - [ ] Changelog (try to implement) (maybe just for beta testers and higher, for now)
+  - [ ] Contacts (if **@boq** wants, replace either Changelog or B Key `->` OB Utilities)
 - [ ] Provide templates
   - [X] Block
   - [ ] Item
@@ -129,12 +121,10 @@ List of things to complete before version **1.0**<br />
   - [ ] ...
 - [ ] **FIX**: Some config types not displayed correctly (service or **utility class**)
   - [ ] Arrays
-- [X] Utility methods on System Identifier Service to allow for easier testing
 - [ ] URL splitting on custom missing mod GUI
 - [ ] Mismatching mod GUI tweaks
   - [ ] Better gradient (from yellow to red, maybe?)
   - [ ] Switching gradient (from completely color 1 to completely color 2 and vice versa) (?)
-- [X] Logging service (By default calls `openmods.Log`)
 - [ ] More logging (?)
 - [ ] Post events on service editing (?)
   - [ ] Event posting service (various platforms could be supported)
@@ -144,7 +134,7 @@ List of things to complete before version **1.0**<br />
     - [ ] `ServiceEvent.Substitution`
     - [ ] `ServiceEvent.Unregistration` (?)
   - [ ] Allow events to be canceled to stop service editing (? feels like a bad idea)
+  - [ ] **OR** Use `@Fixed` annotation to set a service as not replaceable (?)
 - [ ] Allow to pass from custom `Optional`s to default ones (reflection)
   - [ ] `com.google.common.base.Optional`
   - [ ] `java.util.Optional`
-- [ ] Use `@Fixed` annotation to set a service as not replaceable (?)
