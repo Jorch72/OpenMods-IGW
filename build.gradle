@@ -2,10 +2,8 @@ import net.thesilkminer.gradle.plugin.translationchecker.tasks.TranslationCheckT
 
 buildscript {
     repositories {
-        // General dependencies
         mavenCentral()
         jcenter()
-        // Minecraft Forge
         maven {
             name = 'Forge'
             url = 'http://files.minecraftforge.net/maven'
@@ -23,8 +21,14 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.github.hierynomus.license' version '0.14.0'
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.autoscout24.gradle.todo'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
 
 idea {
     module {
@@ -32,8 +36,57 @@ idea {
     }
 }
 
+// noinspection GrUnresolvedAccess
+license {
+    // noinspection GrUnresolvedAccess
+    header file('LICENSE')
+    // noinspection GrUnresolvedAccess
+    include '**/*.java'
+
+    // noinspection GrUnresolvedAccess
+    strictCheck true
+    // noinspection GrUnresolvedAccess
+    ignoreFailures false
+
+    // noinspection GrUnresolvedAccess
+    mapping {
+        java='SLASHSTAR_STYLE'
+    }
+}
+
 todo {
     todoPattern = '\\/(\\/|\\*)(( )|())[\\\\t\\\\s]*(TODO|FIXME)(.*)'
+}
+
+findbugs {
+    ignoreFailures = true
+}
+
+checkstyle {
+    toolVersion = '8.2'
+    configFile = new File(new File(rootDir, 'etc'), 'checkstyle.xml')
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        // FindBugs only supports one report, ffs
+        xml.enabled = false
+
+        html.enabled = true
+        html.stylesheet project.resources.text.fromFile('etc/findbugs.xsl')
+        html.destination rootProject.file('build/reports/findbugs.html')
+    }
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = true
+        xml.destination rootProject.file('build/reports/checkstyle.xml')
+
+        html.enabled = true
+        html.stylesheet project.resources.text.fromFile('etc/checkstyle.xsl')
+        html.destination rootProject.file('build/reports/checkstyle.html')
+    }
 }
 
 sourceCompatibility = 1.6
@@ -195,7 +248,13 @@ task apiSrcJar(type: Jar) {
     }
 }
 
+//noinspection GrUnresolvedAccess,GroovyAssignabilityCheck
+compileJava.dependsOn licenseMain
+//noinspection GrUnresolvedAccess,GroovyAssignabilityCheck
+licenseMain.dependsOn licenseFormatMain
+//noinspection GrUnresolvedAccess,GroovyAssignabilityCheck
 compileJava.dependsOn checkTodo
+build.dependsOn check
 
 artifacts {
     archives apiJar

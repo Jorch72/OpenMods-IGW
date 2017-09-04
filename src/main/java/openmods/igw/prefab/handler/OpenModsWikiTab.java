@@ -1,3 +1,26 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2017 Open Mods
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package openmods.igw.prefab.handler;
 
 import com.google.common.collect.Lists;
@@ -64,6 +87,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
         int getY(final int entryId);
     }
 
+    @SuppressWarnings("checkstyle:magicnumber")
     protected static class CommonPositionProviders {
 
         public static final IStaticPagePositionProvider STATIC_PAGES = new IStaticPagePositionProvider() {
@@ -189,10 +213,10 @@ public abstract class OpenModsWikiTab implements IWikiTab {
         final List<IPageLink> pages = Lists.newArrayList();
         final LinkNumerator numerator = new LinkNumerator();
         if (pageIndexes == null) {
-            for (final IPageLinkFactory factory : itemPageFactories)
+            for (final IPageLinkFactory factory : itemPageFactories) {
                 pages.add(factory.createPage(numerator));
-        }
-        else {
+            }
+        } else {
             for (final int index : pageIndexes) {
                 if (index >= itemPageFactories.size()) break;
                 final IPageLinkFactory factory = itemPageFactories.get(index);
@@ -202,8 +226,9 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
         // always append static ones, otherwise it looks weird when scrolling
         // also, must be last to prevent empty spaces (still, some of them are present)
-        for (final IPageLinkFactory factory : staticPageFactories)
+        for (final IPageLinkFactory factory : staticPageFactories) {
             pages.add(factory.createPage(numerator));
+        }
 
         return pages;
     }
@@ -264,10 +289,10 @@ public abstract class OpenModsWikiTab implements IWikiTab {
             entity = null;
             this.iconRequest = null;
         } else if (metadata.length > 0 && metadata[0] instanceof ItemStack) {
-            stack = (ItemStack)metadata[0];
+            stack = (ItemStack) metadata[0];
             entity = null;
         } else if (metadata.length > 0 && metadata[0] instanceof Entity) {
-            entity = getEntity(((Entity)metadata[0]).getClass());
+            entity = getEntity(((Entity) metadata[0]).getClass());
             stack = entity == null? createFallbackItemStack() : null;
         } else if (metadata.length == 0) {
             final ItemStack defaultStack = defaultIcons.get(pageName);
@@ -291,7 +316,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         final float maxHitBox = Math.max(1, Math.max(tabEntity.width, tabEntity.height));
-        final int scale = (int)(40 * 0.7F / maxHitBox);
+        final int scale = (int) (40 * 0.7F / maxHitBox);
         final float x = gui.getGuiLeft() + 65;
         final float y = gui.getGuiTop() + 49;
 
@@ -375,7 +400,7 @@ public abstract class OpenModsWikiTab implements IWikiTab {
         try {
             return clazz.getConstructor(net.minecraft.world.World.class)
                     .newInstance(FMLClientHandler.instance().getClient().theWorld);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             // So ReflectiveOperationException is only from Java 7 onwards...
             OpenModsIGWApi.get().log().warning(e, "The entity %s does not have a constructor with a single world parameter.", clazz); // I guess
             return null;
