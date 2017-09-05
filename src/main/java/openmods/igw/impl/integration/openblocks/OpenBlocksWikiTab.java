@@ -57,7 +57,7 @@ public final class OpenBlocksWikiTab extends OpenModsWikiTab {
     private static final int ITEM_GRID_DEFAULT_X = 40;
     private static final int ITEM_GRID_DEFAULT_Y = 110;
     private static final int ITEM_GRID_DEFAULT_SLOT_DIMENSION = 16;
-    private static final int ITEM_GRID_DEFAULT_WIDTH = ITEM_GRID_DEFAULT_SLOT_DIMENSION * 2;
+    private static final int ITEM_GRID_DEFAULT_WIDTH = ITEM_GRID_DEFAULT_SLOT_DIMENSION * 2 + 4;
     private static final int ITEM_GRID_DEFAULT_HEIGHT = ITEM_GRID_DEFAULT_SLOT_DIMENSION * 6 + 12;
 
     public OpenBlocksWikiTab(final List<Pair<String, ItemStack>> stacks,
