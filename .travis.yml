@@ -1,10 +1,12 @@
 language: java
 jdk:
-  - oraclejdk9
   - oraclejdk8
   - openjdk8
-  - openjdk7
-# Not using openjdk6 to test because... well... it simply destroys the build for no apparent reason
+# Using only Java 8 to compile the build because...
+# 1) Java 6 destroys absolutely everything
+# 2) Java 7 (openjdk) doesn't trust Gradle's certificate for whatever reason
+# 3) It seems that Java 9 and ForgeGradle are having some little arguments
+# Once the above reasons are fixed, we will resume building on those JDKs too
 sudo: required
 dist: trusty
 addons:
