@@ -25,7 +25,7 @@ List of things to complete before version **1.0**<br />
   - [X] Fan
   - [X] Flag
   - [X] Golden Egg
-  - [ ] Grave
+  - [X] Grave
   - [ ] Guide (the normal one)
   - [ ] Healer
   - [ ] Item Dropper

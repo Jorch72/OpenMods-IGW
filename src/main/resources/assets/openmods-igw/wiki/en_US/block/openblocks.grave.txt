@@ -1,1 +1,198 @@
-[color{FF0000}] Missing data on Info-Book
+[prefix{l}][prefix{1}]GRAVE [prefix{}] [prefix{}]
+
+"[prefix{o}]Player graves, safekeeping for your last death (assuming you’re capable of regeneration) [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page.
+
+The grave acts as a sort of safe for the player's inventory in case they die.
+The concept of a grave is not new and is present in various other mods (e.g. "Gravestones"), but OpenBlocks adds its own twist to it.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Non-solid block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]2000.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}]No tool required
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Its contents
+[prefix{4}]Name: [prefix{}]openblocks:grave
+
+[prefix{l}]Obtaining [prefix{}]
+There is no way to obtain a Grave in its item form during a normal survival gameplay session.
+Players in creative or that have access to commands can still obtain it through the creative inventory or the /give command respectively.
+The appearance of the grave also changes according to its spawning location: a base will spawn in addition to the gravestone if the block is placed on top of a grass or dirt-like block.
+
+[prefix{2}]Dying [prefix{}]
+A grave block is automatically placed near the player death location, if applicable.
+In case the algorithm does not find any suitable location for spawning and [prefix{o}]destructiveGraves [prefix{}]is set to [prefix{o}]false [prefix{}]in the config file, then the grave won't be spawned.
+Otherwise, the grave will replace one of the existing blocks at the given location.
+
+Also, if specified in the configuration file, the grave may require its item form to be present in the inventory in order to spawn.
+The enabling of the configuration option does [prefix{l}]not [prefix{}]add a recipe for it, though: the player needs to specify its own using external tools such as CraftTweaker.
+
+The spawning of graves can be controlled through the gamerule [prefix{o}]openblocks:spawn_graves [prefix{}].
+
+[prefix{l}]Usage [prefix{}]
+The Grave acts as a simple no-password safe, with no way to access the inventory directly.
+In other words, every player can access the grave's contents via standard means.
+
+[prefix{2}]Mob spawning [prefix{}]
+If the world difficulty is not peaceful and the behavior is activated in the configuration files, the grave may spawn mobs around it at random intervals.
+In fact, the block will check its surroundings according to the rate specified by the user and then attempt to spawn either a [link{entity/Bat}]bat [link{}]or a [link{entity/Skeleton}]skeleton [link{}]if there aren't already a handful of mobs around it.
+
+[prefix{2}]Death reason discovering [prefix{}]
+A player can discover the reason of the grave's owner's death using the "Place Block/Use Item" keybind (right-click, by default) while having a non-shovel-like item in hand.
+The reason will be displayed in chat.
+In case no reason is stored in the block, e.g. because it was placed by a creative player, then no message will be printed.
+
+[prefix{2}]Destroying [prefix{}]
+The quickest and most effective way to access the grave contents is via breaking it.
+The grave does not require any tool to be successfully broken.
+As soon as a player breaks the block, all the contents will be dropped on the ground but the grave itself, which will disappear.
+The players can then pick up all the various items.
+
+[prefix{2}]Robbing [prefix{}]
+Should a player not want to destroy the block, then the grave may also be robbed.
+To do this, the player has to activate the grave using the "Place Block/Use Item" keybind (right-click, by default) while holding in its hand a [link{item/shovelDiamond}]Shovel [link{}].
+The grave will stay in place, but all the contents will drop on the ground and the grave will be emptied.
+This method has its risks: if enabled in the configuration, the grave has a chance to "react" to the robbing by starting a thunderstorm, with all its consequences.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+There is no particular set-up for this block in survival mode: simply die and the block will spawn there.
+For creative players, on placement. the grave will be filled with their current inventory contents.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:grave [prefix{}]
+Allows to enable (true) or disable (false) the Grave.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@grave}]
+
+[prefix{2}]"debug" category [prefix{}]
+[prefix{5}]B:gravesDebug [prefix{}]
+If set to true, then the grave will dump to the log more information on spawning and breaking. It is useful to turn on this setting in case you experience weird grave behavior.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@debugGraves}]
+
+[prefix{2}]"graves" category [prefix{}]
+[prefix{5}]B:canSpawnBase [prefix{}]
+If set to true, the grave will spawn a single block of [link{block/dirt.default}]dirt [link{}] under it if there is no block supporting it on spawn.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@graveBase}]
+[prefix{5}]B:destructiveGraves [prefix{}]
+If set to true, then the grave will replace an existing block if it doesn't find a suitable location for spawning.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@destructiveGraves}]
+[prefix{5}]I:maximalPosY [prefix{}]
+Maximal height the grave should be spawned.
+[prefix{o}]Default value: [prefix{}] 249
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@maxGraveY}]
+[prefix{5}]I:minimalPosY [prefix{}]
+Minimal height the grave should be spawned. The default value of 6 prevents spawning enclosed in [link{block/bedrock}]bedrock [link{}], thus making the grave unusable.
+[prefix{o}]Default value: [prefix{}] 6
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@minGraveY}]
+[prefix{5}]B:requiresGraveInInv [prefix{}]
+If set to true, the game requires a grave item to be present in a player inventory to consume and spawn a grave block on death. Enabling this option does not add a recipe for the grave item.
+[prefix{o}]Default value: [prefix{}] false
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@requiresGraveInInv}]
+[prefix{5}]D:skeletonSpawnRate [prefix{}]
+Defines the rate of spawning of skeletons. Modifications have effect only if spawnSkeletons is set to true. The default value is about 1 skeleton every 500 attempts.
+[prefix{o}]Default value: [prefix{}] 0.002
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@skeletonSpawnRate}]
+[prefix{5}]I:spawnRange [prefix{}]
+The size of the cube around the place of death that is suitable for the grave to spawn.
+[prefix{o}]Default value: [prefix{}] 10
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@graveSpawnRange}]
+[prefix{5}]B:spawnSkeletons [prefix{}]
+Enables (true) or disables (false) the spawning of bats and skeletons near graves.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@spawnSkeletons}]
+[prefix{5}]D:specialActionFrequency [prefix{}]
+Sets the frequency of the unforeseen consequences of a grave robbing. The default value is about 1 "revenge" every 100 attempts.
+[prefix{o}]Default value: [prefix{}] 0.03
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@graveSpecialAction}]
+[prefix{5}]B:storeContents [prefix{}]
+Enables (true) or disables (false) the saving of the inventory in an external NBT file. The file can then be used to restore inventory later via commands.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@backupGraves}]
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+Probably not a great idea.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Grave (Only Stone/North)
+[prefix{o}]1: [prefix{}] Grave (Only Stone/West)
+[prefix{o}]2: [prefix{}] Grave (Only Stone/South)
+[prefix{o}]3: [prefix{}] Grave (Only Stone/East)
+[prefix{o}]4: [prefix{}] Grave (Only Stone/North)
+[prefix{o}]5: [prefix{}] Grave (Only Stone/West)
+[prefix{o}]6: [prefix{}] Grave (Only Stone/South)
+[prefix{o}]7: [prefix{}] Grave (Only Stone/East)
+[prefix{o}]8: [prefix{}] Grave (Stone and Base/North)
+[prefix{o}]9: [prefix{}] Grave (Stone and Base/West)
+[prefix{o}]10: [prefix{}] Grave (Stone and Base/South)
+[prefix{o}]11: [prefix{}] Grave (Stone and Base/East)
+[prefix{o}]12: [prefix{}] Grave (Stone and Base/North)
+[prefix{o}]13: [prefix{}] Grave (Stone and Base/West)
+[prefix{o}]14: [prefix{}] Grave (Stone and Base/South)
+[prefix{o}]15: [prefix{}] Grave (Stone and Base/East)
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Grave added.
+[prefix{2}]1.2.4: [prefix{}]Added [prefix{o}]gravesDebug [prefix{}] configuration options and logging of location and item number.
+[prefix{2}]1.2.4: [prefix{}]Fixed multiple graves spawning on death.
+[prefix{2}]1.2.8: [prefix{}]Tweaked Grave blast resistance.
+[prefix{2}]1.2.8: [prefix{}]Tweaked Grave breaking when block below is destroyed.
+[prefix{2}]1.3.0: [prefix{}]Added gamerule to control grave spawning.
+[prefix{2}]1.3.0: [prefix{}]Added external NBT inventory backup on Grave spawn and relative command (/ob_inventory).
+[prefix{2}]1.3.0: [prefix{}]Fixed Graves not spawning after an explosion.
+[prefix{2}]1.3.0: [prefix{}]Graves cannot be broken by Ender Dragons or Withers from now on.
+[prefix{2}]1.4.0: [prefix{}]Graves replay the death message when right-clicked with an empty hand.
+[prefix{2}]1.4.0: [prefix{}]Named Graves now keep their names when placed.
+[prefix{2}]1.4.0: [prefix{}]Grave can now be right-clicked with a shovel to "rob" it without breaking it.
+[prefix{2}]1.4.0: [prefix{}]Grave now post an event when spawning, to allow handling from other mod developers.
+[prefix{2}]1.4.0: [prefix{}]Graves now won't spawn in protected regions.
+[prefix{2}]1.4.0: [prefix{}]Fixed Graves not spawning when player died in the Void.
+[prefix{2}]1.4.0: [prefix{}]Grave skeleton spawning can now be tweaked via config files.
+[prefix{2}]1.4.0: [prefix{}]Graves can now spawn a block of dirt under them when appearing in the air.
+[prefix{2}]1.4.0: [prefix{}]Added Graves to the creative inventory.
+[prefix{2}]1.5.0: [prefix{}]Improved and tweaked Grave debug logging.
+[prefix{2}]1.6.0: [prefix{}]Limited Grave spawn height via config.
+[prefix{2}]1.6.0: [prefix{}]Allow players to require a grave item in their inventory to place Grave.
+
+[prefix{l}]Trivia [prefix{}]
+- As of now, graves can be placed floating in air: it is unknown if this is a bug or a feature.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2620, openmods-igw:wiki/worldwide/images/block/openblocks/grave/gallery_comparison_with_base_with_no_base.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A comparison between a Grave with a dirt base (on the right) and one without (on the left) [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.heal}]Healing Block [link{}]
