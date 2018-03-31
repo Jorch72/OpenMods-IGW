@@ -60,7 +60,7 @@ public final class Constants {
                             this.os = "Windows 10";
                             this.architecture = "amd64";
                             this.runDir = "E:/GitHub/OpenMods-IGW/run";
-                            this.diskSpace = 119559680000L;
+                            this.diskSpace = 119122100224L;
                             this.processors = 4;
                         }
                     }, ISystemIdentifierService.SystemType.DEVELOPER)

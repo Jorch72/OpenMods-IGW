@@ -1,15 +1,194 @@
-[crafting{200,15,key=block/openblocks.guide}]
+[prefix{l}][prefix{1}]BUILDING GUIDE [prefix{}] [prefix{}]
 
+"[prefix{o}]A guide block to assist in various constructions [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
 
+The Building Guide is a block that aids players in building particularly hard shapes such as cylinders or spheres.
+Differently from the [link{openmods-igw:block/openblocks.builder_guide}]Enhanced Building Guide [link{}], the Building Guide only shows the outline of the shape.
+It does not allow to place blocks directly.
 
-
-
-
-
-
-
-
-
-The building guide, once powered with [link{item/redstone}]redstone [link{}], will give you an outline of ghost blocks in different shapes and sizes that'll help you plan out rooms.
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+The building guide, once powered with [link{item/redstone}]redstone [link{}], will give you an outline of ghost blocks in different shapes and sizes that will help you plan out rooms.
 Use touch-buttons on block to change outline dimensions and shapes.
-Color of markers can be changed by using [link{item/dyePowder}]dye [link{}]on central block.
+Color of markers can be changed by using [link{item/dyePowder.black}]dye [link{}]on central block.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]Yes
+[prefix{4}]Luminance: [prefix{}]9
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]openblocks:guide
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Enhanced Building Guide can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+
+[crafting{200,545,key=block/openblocks.guide}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Building Guide is able to show with ghost blocks the requested shape and color it via [link{item/dyePowder.black}]dyes [link{}].
+The shown shape can also be edited with the buttons on the building guide.
+
+[prefix{2}]Shape showing [prefix{}]
+As soon as a Building Guide is placed for the first time, it will automatically apply its default settings, shown in the image that follows.
+[image{200, 775, openmods-igw:wiki/worldwide/images/block/openblocks/guide/usage_default_settings.png}]
+
+
+
+
+
+
+
+When powered with [link{item/redstone}]redstone [link{}], or if [prefix{o}]guide.redstoneSensivity [prefix{}] is on false, the building guide will activate and show ghost blocks forming the stored form.
+
+[prefix{2}]Ghost blocks colouring [prefix{}]
+The ghost blocks can be colored by right clicking on the central part of the Building Guide with a [link{item/dyePowder.black}]dye [link{}].
+When the guide is right clicked, all the ghost blocks will immediately turn to the dye's color.
+There is no way to undo this operation, apart from using [link{item/dyePowder.white}]bone meal [link{}] to reset the color to white.
+
+[prefix{o}]See also Gallery [prefix{}]
+
+[prefix{2}]Shape editing [prefix{}]
+You can edit the shape shown by the Enhanced Building Guide with the various buttons on its faces.
+In particular, using the buttons on the sides, you can edit the dimension of the shape and its location.
+
+[image{200, 1130, openmods-igw:wiki/worldwide/images/block/openblocks/guide/usage_guide_side_new_drawings.png}]
+Using the buttons circled in red, you can augment or diminish by one the size of the shape on that particular direction.
+E.g., if we consider the image representing the north side of the building guide, using the buttons on the left side, you can augment or diminish the positive height (considering the block as 0, 0) of the build.
+Using the ones on the right side, you can augment or diminish the negative height, while with the buttons on top or bottom, you can vary the value of the length of the construction.
+
+With the arrows in center (circled in green), you can set the value of the quantity on the selected side to the opposite.
+E.g., if the current settings are (-3, 0, -3) and (3, 3, 3), clicking the top arrow will set them to (-3, -3, -3) and (3, 3, 3).
+
+Using the buttons on the top, you can rotate the block and set the shape it should outline.
+
+[image{200, 1380, openmods-igw:wiki/worldwide/images/block/openblocks/guide/usage_guide_top_new_drawings.png}]
+With the yellow-circled arrows, you are able to completely rotate the block, like when using a [link{openmods-igw:item/openblocks.wrench}]Wrench [link{}].
+With the blue-circled ones, you can change the shape the building guide should outline.
+The shape will change in a loop, meaning that you can go forward (up arrow) and backward (down arrow), but you cannot skip directly to the desired shape.
+The order of the shapes is the following:
+[prefix{o}]Sphere, Cylinder, Cuboid, Full Cuboid, Dome, Triangle, Pentagon, Hexagon, Octagon, Axes, Planes [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place down an Building Guide with a [link{block/lever}]Lever [link{}] near it.
+Flip the lever and then use the buttons on the building guide to set the shape and the bounds of the outline.
+Now you are ready, provided you have enough materials, to start building the shape outlined by placing blocks in place of the ghost blocks shown.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:guide [prefix{}]
+Allows to enable (true) or disable (false) the Building Guide.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@guide}]
+
+[prefix{2}]"guide" category [prefix{}]
+[prefix{5}]I:redstoneSensitivity [prefix{}]
+Allows to set the sensitivity to redstone of the Enhanced Building Guide.
+The possibile values are 0 (not sensitive), 1 (on when powered), -1 (off when powered).
+[prefix{o}]Default value: [prefix{}] 1
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@guideRedstone}]
+[prefix{5}]D:renderDistanceSq [prefix{}]
+Allows to set the maximum render distance of the Enhanced Building Guide and its outline.
+[prefix{o}]Default value: [prefix{}] 65536.0
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@guideRenderRangeSq}]
+[prefix{5}]B:useAdvancedRenderer [prefix{}]
+Enables (true) or disables (false) the use of advanced OpenGL features which improve performance.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@useAdvancedRenderer}]
+
+[prefix{l}]Tutorials [prefix{}]
+A YouTube tutorial made by boq is available through the [link{openmods-igw:item/openblocks.info_book}]Info Book [link{}].
+Link: [prefix{n}] [prefix{1}]https://youtu.be/p_2L3DuM4Ek [prefix{}] [prefix{}]
+
+[prefix{l}]Useful structures [prefix{}]
+There are no featured structures for this block.
+Creating structures is the goal of this block, so...
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Building Guide (Up-South)
+[prefix{o}]1: [prefix{}] Building Guide (Up-North)
+[prefix{o}]2: [prefix{}] Building Guide (Up-West)
+[prefix{o}]3: [prefix{}] Building Guide (Up-East)
+[prefix{o}]4: [prefix{}] Building Guide (East-South)
+[prefix{o}]5: [prefix{}] Building Guide (East-North)
+[prefix{o}]6: [prefix{}] Building Guide (East-Down)
+[prefix{o}]7: [prefix{}] Building Guide (East-Up)
+[prefix{o}]8: [prefix{}] Building Guide (South-Up)
+[prefix{o}]9: [prefix{}] Building Guide (South-Down)
+[prefix{o}]10: [prefix{}] Building Guide (South-West)
+[prefix{o}]11: [prefix{}] Building Guide (South-East)
+
+Using data values from [prefix{o}]12 [prefix{}]to [prefix{o}]15 [prefix{}]will simply place the Building Guide with the default facing (Up-South).
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}]Building Guide added.
+[prefix{2}]1.2.5: [prefix{}]Localized Building Guide properly.
+[prefix{2}]1.2.6: [prefix{}]Tweaked Building Guide to allow for better shape generation.
+[prefix{2}]1.2.8: [prefix{}]Added the possibility to change marker color using dye.
+[prefix{2}]1.2.8: [prefix{}]Building Guide now shows total number of blocks needed for the construction.
+[prefix{2}]1.4.0: [prefix{}]Building Guide now stores settings when broken.
+[prefix{2}]1.4.0: [prefix{}]Building Guide now supports OpenPeripheral.
+[prefix{2}]1.4.0: [prefix{}]Tweaked Building Guide rendering.
+[prefix{2}]1.5.0: [prefix{}]Added more flexibility to Building Guide.
+[prefix{2}]1.5.1: [prefix{}]Fixed Building Guide not storing settings on drop.
+[prefix{2}]1.6.0: [prefix{}]Improved Building Guide rendering performance.
+[prefix{2}]1.6.0: [prefix{}]Tweaked Building Guide rotation to allow more dome template orientations.
+
+[prefix{l}]Trivia [prefix{}]
+- Both the Enhanced Building Guide and the Building Guide share the same texture. The only visual difference is the "core" and its flame (green for the former, red for the latter).
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 2490, openmods-igw:wiki/worldwide/images/block/openblocks/guide/gallery_example_usage.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]A practical usage example of the Building Guide: the guide is currently on and its outlining the shape of a cylinder.
+The outline has been colored red for ease of identification. [prefix{}]
+
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.builder_guide}]Enhanced Building Guide [link{}]
+[link{openmods-igw:item/openblocks.wrench}]Wrench [link{}]
