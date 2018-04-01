@@ -26,8 +26,8 @@ List of things to complete before version **1.0**<br />
   - [X] Flag
   - [X] Golden Egg
   - [X] Grave
-  - [ ] Guide (the normal one)
-  - [ ] Healer
+  - [X] Guide (the normal one)
+  - [X] Healer
   - [ ] Item Dropper
   - [ ] Ladder
   - [ ] Paint Can

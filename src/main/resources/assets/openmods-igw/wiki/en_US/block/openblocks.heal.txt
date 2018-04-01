@@ -1,1 +1,92 @@
-The healing block is a creative-mode only block that gives off a slight healing effect over time.
+[prefix{l}][prefix{1}]HEALER [prefix{}] [prefix{}]
+
+"[prefix{o}]A creative-only healer block that slowly replenishes your health and food when you stand on it. [prefix{}]"
+- The feature mentioned in the README on OpenBlocks's GitHub page
+
+The Healer is a block that heals and "feeds" every player who's not in creative mode that is standing on it.
+The healing effect it gives off is not instantaneous.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+[prefix{l}][prefix{4}]Error: Block not present in Info-Book [prefix{}] [prefix{}]
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]openblocks:heal
+
+[prefix{l}]Obtaining [prefix{}]
+The Healer is a creative-only block, that is it is accessible only to creative players through the creative inventory, much like player heads.
+Survival players can nonetheless obtain it, if they find one in the world, through the following means.
+
+[prefix{2}]Mining [prefix{}]
+The Healer can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{l}]Usage [prefix{}]
+The Healer has only one goal: it heals and replenishes the saturation of every non-creative player who stands on top of it.
+
+[prefix{l}]GUI [prefix{}]
+This block has no GUI.
+
+[prefix{l}]Setup [prefix{}]
+Place down a Healer and then stand on top of it to replenish your health.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:heal [prefix{}]
+Allows to enable (true) or disable (false) the Healer.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@heal}]
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+There is no particularly useful structure for this block.
+
+[prefix{l}]Data values [prefix{}]
+All Data Values from 0 to 15 represent the basic block.
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.2: [prefix{}]Healer added.
+
+[prefix{l}]Trivia [prefix{}]
+- The player does not see any particle effects around it during the healing process, due to the length of the potion effect applied. The developers express their desire to have them shown to the player in the mod code, though.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 930, openmods-igw:wiki/worldwide/images/block/openblocks/heal/gallery_healing_process.png}]
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]The result of a survival player standing on top of the Healer block.
+You can notice how the health and the saturation (represented by the yellow lines around the food bar thanks to AppleCore) are up to the maximum. [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.canvas}]Canvas [link{}]
+
