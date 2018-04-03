@@ -3,7 +3,7 @@
   "modList": [
     {
       "modid": "OpenMods-IGW",
-      "name": "OpenMods-IGW integration",
+      "name": "OpenMods-IGW",
       "description": "Integration between OpenMods and InGameWiki Mod",
       "version": "${version}",
       "mcversion": "${mc_version}",

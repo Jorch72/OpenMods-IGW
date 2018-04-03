@@ -1,7 +1,8 @@
-# OpenBlocks WorldWide Wiki Directory
+# OpenMods-IGW WorldWide Wiki Directory
 
-This directory must not contain any pages for the wiki, neither translated or untranslated.
-This is because IGW-Mod won't read files that are in this directory.
+This directory must not contain any wiki content, but for the following items:
 
-**Purpose of this directory**
-- Storing images
+- Storing images for usage in wiki (`images`)
+- Storing images at their full resolution for references (`full_images`)
+
+*Note: in parentheses it is given the name of the directory*
