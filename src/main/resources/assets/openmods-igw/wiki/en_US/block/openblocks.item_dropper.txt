@@ -1,0 +1,156 @@
+[prefix{l}][prefix{1}]ITEM DROPPER [prefix{}] [prefix{}]
+
+"[prefix{o}]The item dropper is similar to the vanilla dropper, except it drops items without any random bias. [prefix{}]"
+- The feature mentioned on the in-game Info Book of the mod
+
+The Item Dropper is a special version of the [link{block/dropper}]vanilla dropper [link{}] which emits blocks in a perfectly straight line.
+
+[prefix{l}]Info-Book description [prefix{}]
+[prefix{o}]
+The item dropper is similar to the [link{block/dropper}]vanilla dropper [link{}], except it drops items without any random bias.
+User can also control speed of dropped item from GUI and with [link{item/redstone}]redstone [link{}]power.
+[prefix{}]
+
+[prefix{l}]Technical information [prefix{}]
+[prefix{4}]Type: [prefix{}]Solid Block
+[prefix{4}]Physics: [prefix{}]No
+[prefix{4}]Transparency: [prefix{}]No
+[prefix{4}]Luminance: [prefix{}]No
+[prefix{4}]Blast resistance: [prefix{}]1.0
+[prefix{4}]Hardness: [prefix{}]1.0
+[prefix{4}]Tool: [prefix{}] [link{item/pickaxeWood}]Wooden Pickaxe [link{}]
+[prefix{4}]Stackable: [prefix{}]Yes, up to 64
+[prefix{4}]Flammable: [prefix{}]No
+[prefix{4}]Drops: [prefix{}]Itself
+[prefix{4}]Name: [prefix{}]openblocks:item_dropper
+
+[prefix{l}]Obtaining [prefix{}]
+[prefix{2}]Mining [prefix{}]
+The Item Dropper can be mined with any type of pickaxe. If mined without a pickaxe, it drops nothing.
+
+[prefix{5}]Breaking times [prefix{}]
+[prefix{o}]Hand or other non-pickaxe tool: [prefix{}]5 seconds
+[prefix{o}]Wooden pickaxe: [prefix{}]1.01 seconds
+[prefix{o}]Stone pickaxe: [prefix{}]0.57 seconds
+[prefix{o}]Iron pickaxe: [prefix{}]0.39 seconds
+[prefix{o}]Diamond pickaxe: [prefix{}]0.26 seconds
+[prefix{o}]Gold pickaxe: [prefix{}]0.22 seconds
+
+[prefix{2}]Crafting [prefix{}]
+[crafting{200,484,key=block/openblocks.item_dropper}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+[prefix{l}]Usage [prefix{}]
+The Item Dropper only purpose is to serve as an alternative to the vanilla dropper, allowing items to be dropped with a defined speed and direction, without any form of random deviation.
+
+[prefix{2}]Item dropping [prefix{}]
+The Item Dropper will drop one item from its internal inventory, which is accessible through the GUI, every time it receives a redstone input.
+The Item will be dropped in a straight line starting from the center of the block and continuing towards the direction it is facing.
+The Item Dropper will also apply a certain amount of speed, configurable through the GUI, to the item, allowing him to travel further distances if needed.
+The applied speed ranges from 0 to a certain maximum value specified in the configuration file and can be either fixed or scaled according to the strength of the given redstone input.
+Using a speed value of 0, whether scaled or fixed, means that the item will simply be dropped in front of the block without any additional velocity applied.
+
+[prefix{o}]See also: GUI [prefix{}]
+[prefix{o}]See also: Configuration options [prefix{}]
+
+[prefix{l}]GUI [prefix{}]
+[image{200, 891, openmods-igw:wiki/worldwide/images/block/openblocks/item_dropper/gui.png}]
+
+
+
+
+
+
+
+
+
+
+
+The GUI can be divided into three different zones: the left zone, the right zone and the bottom zone.
+
+The left zone represents the internal inventory of the Item Dropper.
+When powered, the machine will pick from there one of the items, following a top-most left-most order, and drop it according to the given settings.
+If the internal inventory is empty, then the Item Dropper will not drop anything.
+
+The right zone can also be defined as "Settings zone" because every parameter that can be configured is represented there.
+Currently you can see on the top the speed slider, which is used to configure the speed the item dropper will use to emit the items.
+The slider is placed on 0 by default, but can be raised up to a configurable maximum, which by default is 4.
+On the bottom of the "Settings zone", you can see a check-box: that check-box represents whether the given speed is fixed or scaled.
+When the check-box is ticked, the speed is considered scaled, which means that the value given above will be diminished according to the redstone power level.
+E.g., if the slider is set to 2, the initial velocity will have modulo 2 if and only if the power level is 15; if the power level is lower, let's say 7, the speed will be lower, 1 in this simple case.
+If the check-box is not ticked, the speed is considered fixed and the redstone input strength is ignored.
+
+The bottom part simply represents the player inventory.
+
+[prefix{l}]Setup [prefix{}]
+Place the Item Dropper with the desired facing, then fill the inventory with the items.
+Use the Speed slider and the check-box below to configure the speed and the effects of redstone power input.
+Wire up the Item Dropper to any source of redstone power, such as a [link{item/lever}]Lever [link{}], and activate it.
+The Item Dropper will drop one item.
+
+Wire it up to a redstone clock or any source of intermittent power to drop items at regular intervals.
+
+[prefix{l}]Configuration options [prefix{}]
+[prefix{2}]"blocks" category [prefix{}]
+[prefix{5}]B:item_dropper [prefix{}]
+Allows to enable (true) or disable (false) the Item Dropper.
+[prefix{o}]Default value: [prefix{}] true
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@block@item_dropper}]
+
+[prefix{2}]"itemdropper" category [prefix{}]
+[prefix{5}]D:maxItemDropSpeed [prefix{}]
+Allows to set the maximum speed the Item Dropper should let the user configure on the GUI.
+[prefix{o}]Default value: [prefix{}] 4.0
+[prefix{o}]Current value: [prefix{}] [variable{@var@OpenBlocks@config@maxItemDropSpeed}]
+
+[prefix{l}]Tutorials [prefix{}]
+There are no tutorials for this block.
+
+[prefix{l}]Useful structures [prefix{}]
+There are no useful structures for this block.
+
+[prefix{l}]Data values [prefix{}]
+[prefix{o}]0: [prefix{}] Item Dropper (Up)
+[prefix{o}]1: [prefix{}] Item Dropper (Down)
+[prefix{o}]2: [prefix{}] Item Dropper (South)
+[prefix{o}]3: [prefix{}] Item Dropper (North)
+[prefix{o}]4: [prefix{}] Item Dropper (East)
+[prefix{o}]5: [prefix{}] Item Dropper (West)
+
+Using data values from [prefix{o}]6 [prefix{}]to [prefix{o}]15 [prefix{}]will simply place the Item Dropper with the default facing (up).
+
+[prefix{l}]History [prefix{}]
+[prefix{2}]1.2.0: [prefix{}] Item Dropper added.
+
+[prefix{l}]Trivia [prefix{}]
+- If the speed is set to scaled, the number of blocks travelled is equal to the current redstone level multiplied by the speed chosen. This is most noticeable with the speed set to 1. See also the Gallery.
+
+[prefix{l}]Gallery [prefix{}]
+[image{200, 1960, openmods-igw:wiki/worldwide/images/block/openblocks/item_dropper/gallery_all_redstone_levels.png}]
+
+
+
+
+
+
+
+
+
+
+[prefix{o}]In this image, you can see the distance an item travels according to the redstone level the Item Dropper is powered with.
+Speed has been set to 1 for ease of comparison.
+You can see how one block matches one level of redstone power (that is, one level equals one block). [prefix{}]
+
+[prefix{l}]Related features [prefix{}]
+[link{openmods-igw:block/openblocks.cannon}]Cannon [link{}]

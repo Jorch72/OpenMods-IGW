@@ -1,12 +1,6 @@
 # TODO
-List of things to complete before version **1.0**<br />
-**Note:** the items on this list are ordered by priority.<br />
-**Note:** could this be moved to "Projects" on GitHub?
+List of things to complete before version **1.0**
 
-- [ ] Javadoc
-  - [ ] API
-  - [ ] Implementation (?)
-  - [ ] Prefab
 - [ ] Add block documentation
   - [X] Auto Anvil
   - [X] Auto Enchantment Table
@@ -28,7 +22,7 @@ List of things to complete before version **1.0**<br />
   - [X] Grave
   - [X] Guide (the normal one)
   - [X] Healer
-  - [ ] Item Dropper
+  - [X] Item Dropper
   - [ ] Ladder
   - [ ] Paint Can
   - [ ] Paint Mixer
@@ -100,41 +94,44 @@ List of things to complete before version **1.0**<br />
   - [ ] Mini Me
 - [ ] Add other bits and pieces
   - [ ] About page
-  - [ ] B Key (rewrite)
   - [ ] Credits (rewrite)
   - [ ] Enchantments (rewrite)
-  - [ ] OB Utilities (rewrite)
-  - [ ] Changelog (try to implement) (maybe just for beta testers and higher, for now)
-  - [ ] Contacts (if **@boq** wants, replace either Changelog or B Key `->` OB Utilities)
+  - [ ] OB Utilities (rewrite, also move `B` key inside here)
+  - [ ] Changelog (for beta testers and higher)
+  - [ ] Contacts
 - [ ] Provide templates
   - [X] Block
   - [ ] Item
   - [ ] Fluid
   - [ ] Entity
   - [ ] Tab (?)
-- [ ] Remove references to external APIs
-  - [ ] `com.google.common.base.Optional` `-->` `openmods.igw.api.util[.base].Optional`
-  - [ ] `com.google.common.base.Objects` `-->` `openmods.igw.util[.base].Objects`
-  - [ ] `com.google.common.collect.Maps` `-->` `null` (self made instantiation)
-  - [ ] `openmods.igw.api.service.IConstantRetrieverService.ConfigConstantWrapper.Supplier` `-->` `openmods.igw.api.util[.function].Supplier`
-  - [ ] `openmods.igw.api.service.ILoggingService.Level` `-->` `openmods.igw.api.util[.logging].LogLevel`
-  - [ ] ...
-- [ ] **FIX**: Some config types not displayed correctly (service or **utility class**)
+- [ ] Check if all names match
+- [ ] Current history stops at OBv1.6.0: actualize history up to latest version
+- [ ] Rework API in order to vaporize the service pattern
+- [ ] **FIX**: Some config types not displayed correctly (**utility class**)
   - [ ] Arrays
 - [ ] URL splitting on custom missing mod GUI
 - [ ] Mismatching mod GUI tweaks
   - [ ] Better gradient (from yellow to red, maybe?)
-  - [ ] Switching gradient (from completely color 1 to completely color 2 and vice versa) (?)
-- [ ] More logging (?)
-- [ ] Post events on service editing (?)
-  - [ ] Event posting service (various platforms could be supported)
-  - [ ] Events (API and implementation)
-    - [ ] `ServiceEvent` (probably never posted)
-    - [ ] `ServiceEvent.Registration`
-    - [ ] `ServiceEvent.Substitution`
-    - [ ] `ServiceEvent.Unregistration` (?)
-  - [ ] Allow events to be canceled to stop service editing (? feels like a bad idea)
-  - [ ] **OR** Use `@Fixed` annotation to set a service as not replaceable (?)
-- [ ] Allow to pass from custom `Optional`s to default ones (reflection)
-  - [ ] `com.google.common.base.Optional`
-  - [ ] `java.util.Optional`
+  - [ ] Switching gradient (from completely color 1 to completely color 2 and vice versa, for beta testers)
+- [ ] OpenMods-IGW wiki page
+
+### Service pattern notes
+In the end we are still developing a mod for Minecraft, so we want to access its internals without too much of an hassle.
+At the same time, we want mod developers to be able to use our API without having to import an entire mod.
+Let's join the two worlds together then: we try to abstract some stuff out using interfaces, but referring to our internals if needed.
+At the same time, if something in the API needs a deeper entry point, it should be refactored or the method must be filled with ASM.
+I lean more on the first option, though.
+Services are going to go away, but some bits and pieces (such as `IntegrationHandler`) will be moved to the implementation and probably filled with more implementation related stuff.
+And then, well... go for interfaces!
+Probably we could also use the Java EE approach and use `@Inject`s or similar: I still need to think about that.
+
+### Javadoc
+Not on the current TODO list, sorry.
+Too much work already due to API refactor.
+
+### About Projects
+Yes, we will move to projects once OpenWiki 1.0 is released and this file is nuked out of orbit.
+No, OpenWiki and OpenMods-IGW are the same thing.
+No, I still don't know about the name.
+Yes, stop asking.
